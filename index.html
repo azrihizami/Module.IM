@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Induction Motor Training Solutions | MotorTech Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: #3498db;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            color: #5a6c7d;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #3498db;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-primary {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+        }
+        
+        .cta-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+        }
+        
+        .cta-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #3498db;
+            padding: 18px 35px;
+            text-decoration: none;
+            border: 2px solid #3498db;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-secondary:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .hero-visual {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mvp-showcase {
+            position: relative;
+        }
+        
+        .mvp-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mvp-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px dashed #7f8c8d;
+            border-radius: 8px;
+        }
+        
+        .mvp-placeholder {
+            text-align: center;
+            color: #7f8c8d;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .mvp-placeholder .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .mvp-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        
+        .mvp-feature {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #5a6c7d;
+        }
+        
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #5a6c7d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .methodology {
+            background: #f8f9fa;
+        }
+        
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+        
+        .methodology-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .methodology-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .methodology-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #3498db;
+            border-radius: 0 0 4px 4px;
+        }
+        
+        .methodology-card:nth-child(2)::before {
+            background: #e74c3c;
+        }
+        
+        .methodology-card:nth-child(3)::before {
+            background: #27ae60;
+        }
+        
+        .method-icon {
+            width: 80px;
+            height: 80px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .methodology-card:nth-child(2) .method-icon {
+            background: #e74c3c;
+        }
+        
+        .methodology-card:nth-child(3) .method-icon {
+            background: #27ae60;
+        }
+        
+        .method-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .method-description {
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+        
+        .value-props {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .value-content h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-list {
+            list-style: none;
+        }
+        
+        .value-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #ecf0f1;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .value-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .check-icon {
+            color: #27ae60;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+        
+        .value-visual {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonials {
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .testimonials .section-header h2,
+        .testimonials .section-header p {
+            color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .demo-form {
+            background: white;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            color: #2c3e50;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .submit-btn {
+            background: #3498db;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-grid,
+            .value-props,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .methodology-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-icon">MT</div>
+                <div class="logo-text">MotorTech Pro</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#testimonials">Success Stories</a></li>
+                <li><a href="#demo">Request Demo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Advanced Induction Motor Training Solutions</h1>
+                    <p class="subtitle">Transform your engineering workforce with comprehensive hands-on training that bridges theoretical knowledge with real-world application.</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">85%</span>
+                            <span class="stat-label">Skill Retention</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3x</span>
+                            <span class="stat-label">Faster Learning</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Industry Relevant</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <a href="#demo" class="cta-primary">Schedule Demo</a>
+                        <a href="#methodology" class="cta-secondary">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="mvp-showcase">
+                        <div class="mvp-image">
+                            <div class="mvp-placeholder">
+                                <div class="icon">⚙️</div>
+                                <h4>Modular Motor System</h4>
+                                <p>Interactive CAD model with actual components</p>
+                            </div>
+                        </div>
+                        <div class="mvp-features">
+                            <div class="mvp-feature">3D CAD Design</div>
+                            <div class="mvp-feature">Physical Assembly</div>
+                            <div class="mvp-feature">VFD Testing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section methodology" id="methodology">
+        <div class="container">
+            <div class="section-header">
+                <h2>Three-Phase Learning Methodology</h2>
+                <p>Our comprehensive approach ensures deep understanding through progressive, hands-on experience</p>
+            </div>
+            
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <div class="method-icon">📐</div>
+                    <h3 class="method-title">Phase 1: Design & Analysis</h3>
+                    <p class="method-description">Master analytical calculations, finite element analysis, and design optimization. Learn the engineering principles behind every motor parameter and component selection.</p>
+                </div>
+                
+                <div class="methodology-card">
+                    <div class="method-icon">🔧</div>
+                    <h3 class="method-title">Phase 2: Manufacturing & Assembly</h3>
+                    <p class="method-description">Build actual motor components using our modular system. Experience manufacturing tolerances, assembly processes, and quality control in a controlled learning environment.</p>
+                </div>
+                
+                <div class="methodology-card">
+                    <div class="method-icon">⚡</div>
+                    <h3 class="method-title">Phase 3: Integration & Testing</h3>
+                    <p class="method-description">Connect motors to VFDs, run comprehensive performance tests, and validate design calculations against real-world results. Develop troubleshooting expertise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="benefits">
+        <div class="container">
+            <div class="value-props">
+                <div class="value-content">
+                    <h3>Enterprise-Grade Training Solutions</h3>
+                    <ul class="value-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <div>
+                                <strong>Curriculum Integration:</strong> Seamlessly integrates with existing electrical and mechanical engineering programs
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <div>
+                                <strong>Scalable Implementation:</strong> Modular approach allows flexible deployment across different class sizes and budgets
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <div>
+                                <strong>Industry Alignment:</strong> Training directly addresses skills gaps identified by manufacturing employers
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <div>
+                                <strong>Measurable Outcomes:</strong> Comprehensive assessment tools track learning progress and skill development
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <div>
+                                <strong>Expert Support:</strong> Ongoing instructor training and technical support ensures successful implementation
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="value-visual">
+                    <div style="background: #f8f9fa; padding: 2rem; border-radius: 8px; text-align: center;">
+                        <h4 style="margin-bottom: 1rem; color: #2c3e50;">MVP Components Preview</h4>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <strong>Stator Assembly</strong><br>
+                                <small>Modular lamination system</small>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <strong>Rotor Components</strong><br>
+                                <small>Interchangeable designs</small>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <strong>VFD Interface</strong><br>
+                                <small>Real-time testing</small>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <strong>Analysis Tools</strong><br>
+                                <small>FEA integration</small>
+                            </div>
+                        </div>
+                        <p style="color: #5a6c7d; font-size: 0.9rem;">Complete system ready for pilot deployment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trusted by Leading Institutions</h2>
+                <p>See how our training solutions are transforming engineering education</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="quote">"This training system completely transformed how our students understand motor design. The hands-on approach bridges the gap between theory and practice in ways I never thought possible."</p>
+                    <div class="author">
+                        <div class="author-avatar">SC</div>
+                        <div class="author-info">
+                            <h4>Dr. Sarah Chen</h4>
+                            <p>Department Head, Electrical Engineering</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="quote">"Our engineering graduates now enter the workforce with practical motor experience that sets them apart. Employee feedback has been exceptional since implementing this program."</p>
+                    <div class="author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Michael Rodriguez</h4>
+                            <p>Training Director, Industrial Solutions Inc.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-section" id="demo">
+        <div class="container">
+            <h2>Experience the Future of Motor Training</h2>
+            <p>Join leading institutions in revolutionizing engineering education with hands-on motor technology training.</p>
+            
+            <form class="demo-form" onsubmit="handleDemoRequest(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Business Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="organization">Organization *</label>
+                    <input type="text" id="organization" name="organization" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="role">Your Role *</label>
+                        <select id="role" name="role" required>
+                            <option value="">Select Role</option>
+                            <option value="department_head">Department Head</option>
+                            <option value="professor">Professor/Educator</option>
+                            <option value="training_director">Training Director</option>
+                            <option value="curriculum_manager">Curriculum Manager</option>
+                            <option value="dean">Dean/Administrator</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="students">Number of Students/Trainees</label>
+                        <select id="students" name="students">
+                            <option value="">Select Range</option>
+                            <option value="1-25">1-25</option>
+                            <option value="26-50">26-50</option>
+                            <option value="51-100">51-100</option>
+                            <option value="100+">100+</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="implementation">Implementation Timeline</label>
+                    <select id="implementation" name="implementation">
+                        <option value="">Select Timeline</option>
+                        <option value="immediate">Within 3 months</option>
+                        <option value="next_semester">Next semester</option>
+                        <option value="next_year">Next academic year</option>
+                        <option value="evaluating">Currently evaluating</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="requirements">Specific Requirements or Questions</label>
+                    <textarea id="requirements" name="requirements" rows="3" placeholder="Tell us about your training needs, budget considerations, or specific questions..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Schedule Demo Call</button>
+                
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #7f8c8d; text-align: center;">
+                    We'll contact you within 24 hours to schedule your personalized demo
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>MotorTech Pro</h3>
+                    <p>Advancing engineering education through innovative hands-on training solutions that bridge the gap between theory and practice.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="#">University Programs</a></li>
+                        <li><a href="#">Corporate Training</a></li>
+                        <li><a href="#">Technical Colleges</a></li>
+                        <li><a href="#">Custom Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MotorTech Pro. All rights reserved. | Transforming engineering education worldwide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleDemoRequest(event) {
+            event.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Add timestamp and lead source
+            const submission = {
+                ...data,
+                timestamp: new Date().toISOString(),
+                source: 'landing_page',
+                leadScore: calculateLeadScore(data)
+            };
+            
+            // Store submission (replace with your CRM integration)
+            const submissions = JSON.parse(localStorage.getItem('demoRequests') || '[]');
+            submissions.push(submission);
+            localStorage.setItem('demoRequests', JSON.stringify(submissions));
+            
+            // Show success message
+            const form = event.target;
+            form.innerHTML = `
+                <div style="text-align: center; padding: 3rem 2rem;">
+                    <div style="width: 80px; height: 80px; background: #27ae60; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2.5rem; color: white;">✓</div>
+                    <h3 style="color: #27ae60; margin-bottom: 1rem; font-size: 1.4rem;">Demo Request Received</h3>
+                    <p style="color: #5a6c7d; margin-bottom: 1.5rem;">Thank you for your interest in MotorTech Pro. Our team will contact you within 24 hours to schedule your personalized demonstration.</p>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3498db;">
+                        <p style="margin: 0; font-size: 0.9rem; color: #2c3e50;"><strong>Next Steps:</strong> Check your email for confirmation and prepare any specific questions about your training requirements.</p>
+                    </div>
+                </div>
+            `;
+            
+            // Track conversion
+            trackEvent('demo_request', submission);
+        }
+        
+        function calculateLeadScore(data) {
+            let score = 0;
+            
+            // Role-based scoring
+            const roleScores = {
+                'department_head': 10,
+                'dean': 10,
+                'training_director': 9,
+                'curriculum_manager': 8,
+                'professor': 7
+            };
+            score += roleScores[data.role] || 5;
+            
+            // Student count scoring
+            const sizeScores = {
+                '100+': 10,
+                '51-100': 8,
+                '26-50': 6,
+                '1-25': 4
+            };
+            score += sizeScores[data.students] || 0;
+            
+            // Timeline scoring
+            const timelineScores = {
+                'immediate': 10,
+                'next_semester': 8,
+                'next_year': 6,
+                'evaluating': 4
+            };
+            score += timelineScores[data.implementation] || 0;
+            
+            return score;
+        }
+        
+        function trackEvent(eventName, data = {}) {
+            // Analytics tracking (replace with your analytics service)
+            console.log('Event:', eventName, data);
+            
+            // Example: Google Analytics 4
+            // gtag('event', eventName, data);
+            
+            // Example: Facebook Pixel
+            // fbq('track', eventName, data);
+        }
+        
+        // Track page engagement
+        trackEvent('page_view', {
+            page: 'landing_page',
+            timestamp: new Date().toISOString()
+        });
+        
+        // Track section views
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '-100px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    trackEvent('section_view', {
+                        section: entry.target.id || entry.target.className
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
