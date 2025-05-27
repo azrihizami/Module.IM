@@ -171,8 +171,8 @@
         }
         
         .hero {
-            /* Default background with lighter overlay for better image visibility */
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.6) 0%, rgba(52, 73, 94, 0.5) 100%),
+            /* Single overlay for better image visibility */
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.4) 0%, rgba(52, 73, 94, 0.3) 100%),
                         url('images/hero-background.jpg');
             background-size: cover;
             background-position: center;
@@ -183,29 +183,29 @@
             min-height: 100vh;
         }
         
-        /* Alternative hero backgrounds with adjusted transparency */
+        /* Alternative hero backgrounds with single overlay */
         
         /* Option 1: Engineering Lab/Workshop */
         .hero.engineering-lab {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.55) 0%, rgba(52, 73, 94, 0.45) 100%),
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.35) 0%, rgba(52, 73, 94, 0.25) 100%),
                         url('images/engineering-lab-hero.jpg');
         }
         
         /* Option 2: Electric Motor/Manufacturing */
         .hero.motor-manufacturing {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.5) 0%, rgba(52, 73, 94, 0.4) 100%),
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.3) 0%, rgba(52, 73, 94, 0.2) 100%),
                         url('images/motor-manufacturing-hero.jpg');
         }
         
         /* Option 3: TVET Students Learning */
         .hero.tvet-students {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.55) 0%, rgba(52, 73, 94, 0.45) 100%),
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.35) 0%, rgba(52, 73, 94, 0.25) 100%),
                         url('images/tvet-students-hero.jpg');
         }
         
         /* Option 4: High-tech Laboratory */
         .hero.high-tech-lab {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.5) 0%, rgba(52, 73, 94, 0.4) 100%),
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.3) 0%, rgba(52, 73, 94, 0.2) 100%),
                         url('images/high-tech-lab-hero.jpg');
         }
         
@@ -224,37 +224,29 @@
             pointer-events: none;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.3) 0%, rgba(52, 73, 94, 0.2) 100%);
-            z-index: 1;
-        }
+        /* Removed redundant overlay - now using single overlay in background property */
         
         .hero .container {
             position: relative;
             z-index: 2;
         }
         
+        /* Enhanced text shadows for better readability over lighter overlay */
         .hero-content h1 {
             font-size: 3.2rem;
             font-weight: 700;
             color: white;
             margin-bottom: 1.5rem;
             line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 1px 1px 4px rgba(0, 0, 0, 0.5);
         }
         
         .hero-content .subtitle {
             font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 2rem;
             line-height: 1.5;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6), 1px 1px 3px rgba(0, 0, 0, 0.4);
         }
         
         .stat-label {
@@ -1619,7 +1611,7 @@
                 
                 <div class="footer-logo-item">
                     <div class="footer-logo-image">
-                        <img src="images/cai-logo.png" alt="CAIC Logo">
+                        <img src="images/cai-logo.png" alt="CAI Logo">
                     </div>
                     <div class="footer-logo-text">
                         <div class="main-title">Centre for Academic</div>
