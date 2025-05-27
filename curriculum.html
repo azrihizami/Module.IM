@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Training Curriculum | Electromechanical Training </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #e74c3c;
+        }
+        
+        .back-link {
+            background: transparent;
+            color: #e74c3c;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 2px solid #e74c3c;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .curriculum-grid {
+            display: grid;
+            gap: 3rem;
+        }
+        
+        .curriculum-module {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .curriculum-module:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .curriculum-module.featured {
+            border: 2px solid #e74c3c;
+            position: relative;
+        }
+        
+        .curriculum-module.featured::before {
+            content: 'HANDS-ON';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        
+        .module-header {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .module-number {
+            width: 60px;
+            height: 60px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .module-header h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .module-type {
+            background: #27ae60;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .featured .module-type {
+            background: #f39c12;
+        }
+        
+        .module-content {
+            padding: 2rem;
+        }
+        
+        .module-content > p {
+            font-size: 1.1rem;
+            color: #5a6c7d;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .topic-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .topic-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f1f3f4;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .topic-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .topic-list li::before {
+            content: '•';
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+        
+        .module-outcomes {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+            margin-top: 1rem;
+        }
+        
+        .practical-badge {
+            background: #e8f5e8;
+            color: #27ae60;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+            border: 1px solid #d4edda;
+        }
+        
+        .curriculum-summary {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .summary-card h4 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-stat {
+            text-align: center;
+        }
+        
+        .summary-stat .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .summary-stat .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .summary-card p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary {
+            background: white;
+            color: #e74c3c;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-primary:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-secondary:hover {
+            background: white;
+            color: #e74c3c;
+        }
+        
+        .learning-path {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .path-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .path-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .path-header p {
+            font-size: 1.2rem;
+            color: #5a6c7d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .path-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .path-step {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+        
+        .path-step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .path-icon {
+            width: 60px;
+            height: 60px;
+            background: #e74c3c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .path-step:nth-child(2) .path-icon {
+            background: #f39c12;
+        }
+        
+        .path-step:nth-child(3) .path-icon {
+            background: #27ae60;
+        }
+        
+        .path-step:nth-child(4) .path-icon {
+            background: #3498db;
+        }
+        
+        .path-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .path-description {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .breadcrumb {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .summary-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .path-flow {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .path-step:not(:last-child)::after {
+                content: '↓';
+                right: 50%;
+                top: 100%;
+                transform: translateX(50%);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-icon">TET</div>
+                <div class="logo-text">TVET Electromechanical Training</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#methodology">Methodology</a></li>
+                <li><a href="#" class="active">Curriculum</a></li>
+                <li><a href="index.html#benefits">Benefits</a></li>
+                <li><a href="index.html#testimonials">Success Stories</a></li>
+                <li><a href="index.html#demo" class="back-link">Request Demo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Complete Training Curriculum</span>
+            </div>
+            <h1>Complete Training Curriculum</h1>
+            <p>Six comprehensive modules covering electromagnetic theory to practical VFD integration, designed to develop industry-ready engineering technologists through hands-on learning and real-world applications.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="curriculum-grid">
+                <div class="curriculum-module">
+                    <div class="module-header">
+                        <div class="module-number">1</div>
+                        <h3>Electromechanical Energy Conversion Principles</h3>
+                        <span class="module-type">Theoretical Foundation</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Master the fundamental principles governing motor operation through Faraday's law and Lorentz force concepts.</p>
+                        <ul class="topic-list">
+                            <li>Faraday's law: Induced current from flux variation</li>
+                            <li>Lorentz force: Force generation in magnetic fields</li>
+                            <li>Energy conversion mechanisms</li>
+                            <li>Mathematical modeling and analysis</li>
+                        </ul>
+                        <div class="module-outcomes">
+                            <strong>Learning Outcomes:</strong> Understand electromagnetic principles, calculate induced currents and forces
+                        </div>
+                    </div>
+                </div>
+
+                <div class="curriculum-module">
+                    <div class="module-header">
+                        <div class="module-number">2</div>
+                        <h3>Induction Motor Theory & Analysis</h3>
+                        <span class="module-type">Core Concepts</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Comprehensive understanding of induction motor structure, operation, and performance characteristics.</p>
+                        <ul class="topic-list">
+                            <li>Motor structure and key components</li>
+                            <li>Rotating magnetic field generation</li>
+                            <li>Slip concept and torque production</li>
+                            <li>Equivalent circuit analysis</li>
+                            <li>Efficiency and performance calculations</li>
+                        </ul>
+                        <div class="module-outcomes">
+                            <strong>Learning Outcomes:</strong> Analyze motor performance, calculate torque and efficiency parameters
+                        </div>
+                    </div>
+                </div>
+
+                <div class="curriculum-module featured">
+                    <div class="module-header">
+                        <div class="module-number">3</div>
+                        <h3>Finite Element Simulation (FEMM)</h3>
+                        <span class="module-type">Hands-On Design</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Professional-grade simulation skills using industry-standard software for motor design optimization.</p>
+                        <ul class="topic-list">
+                            <li>FEMM software introduction and setup</li>
+                            <li>Simulation preparation and meshing</li>
+                            <li>Magnetic flux density analysis</li>
+                            <li>Material property influence studies</li>
+                            <li>Geometry optimization techniques</li>
+                            <li>Winding configuration analysis</li>
+                        </ul>
+                        <div class="module-outcomes">
+                            <strong>Learning Outcomes:</strong> Design and optimize motor parameters using FE analysis
+                        </div>
+                        <div class="practical-badge">🔬 Includes Practical Exercises</div>
+                    </div>
+                </div>
+
+                <div class="curriculum-module featured">
+                    <div class="module-header">
+                        <div class="module-number">4</div>
+                        <h3>Motor Manufacturing Process</h3>
+                        <span class="module-type">Hands-On Manufacturing</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Complete manufacturing experience from core preparation to final assembly using professional equipment.</p>
+                        <ul class="topic-list">
+                            <li>Core lamination cutting and stacking</li>
+                            <li>Precision winding assembly techniques</li>
+                            <li>Rotor construction and balancing</li>
+                            <li>Complete motor assembly process</li>
+                            <li>Quality control and inspection</li>
+                        </ul>
+                        <div class="module-outcomes">
+                            <strong>Learning Outcomes:</strong> Manufacture complete motors meeting industry standards
+                        </div>
+                        <div class="practical-badge">🔧 Full Manufacturing Experience</div>
+                    </div>
+                </div>
+
+                <div class="curriculum-module featured">
+                    <div class="module-header">
+                        <div class="module-number">5</div>
+                        <h3>Drive Systems & Integration</h3>
+                        <span class="module-type">Advanced Application</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Master various motor starting methods and advanced VFD integration for real-world applications.</p>
+                        <ul class="topic-list">
+                            <li>Direct drive methods: DOL, star-delta</li>
+                            <li>Auto-transformer starting techniques</li>
+                            <li>Variable Frequency Drive (VFD) operation</li>
+                            <li>System commissioning and tuning</li>
+                            <li>Performance optimization</li>
+                        </ul>
+                        <div class="module-outcomes">
+                            <strong>Learning Outcomes:</strong> Commission and optimize motor-drive systems
+                        </div>
+                        <div class="practical-badge">⚡ Live System Testing</div>
+                    </div>
+                </div>
+
+                <div class="curriculum-module">
+                    <div class="module-header">
+                        <div class="module-number">6</div>
+                        <h3>Standards & Compliance</h3>
+                        <span class="module-type">Professional Practice</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Essential knowledge of international standards and regulatory compliance for professional practice.</p>
+                        <ul class="topic-list">
+                            <li>IEC standards for electrical machines</li>
+                            <li>IEEE testing and performance standards</li>
+                            <li>Safety regulations and compliance</li>
+                            <li>Quality assurance procedures</li>
+                            <li>Documentation and certification</li>
+                        </ul>
+                        <div class="module-outcomes">
+                            <strong>Learning Outcomes:</strong> Apply international standards in professional practice
+                        </div>
+                        <div class="practical-badge">📋 Certification Pathway</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="curriculum-summary">
+                <div class="summary-card">
+                    <h4>Complete Learning Experience</h4>
+                    <div class="summary-stats">
+                        <div class="summary-stat">
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">Core Modules</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Hands-On Modules</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Industry Relevant</span>
+                        </div>
+                    </div>
+                    <p>Each practical module includes examples, exercises, and real-world implementation projects. Students progress from fundamental theory to professional competency through structured, hands-on learning.</p>
+                    <div class="cta-buttons">
+                        <a href="index.html#demo" class="cta-primary">Join Pilot Program</a>
+                        <a href="index.html" class="cta-secondary">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="learning-path">
+        <div class="container">
+            <div class="path-header">
+                <h2>Learning Path Progression</h2>
+                <p>Students advance through four key phases, building competency from theoretical understanding to professional application</p>
+            </div>
+            
+            <div class="path-flow">
+                <div class="path-step">
+                    <div class="path-icon">🧠</div>
+                    <h4 class="path-title">Foundation</h4>
+                    <p class="path-description">Electromagnetic principles and motor theory</p>
+                </div>
+                
+                <div class="path-step">
+                    <div class="path-icon">💻</div>
+                    <h4 class="path-title">Design</h4>
+                    <p class="path-description">FEMM simulation and optimization</p>
+                </div>
+                
+                <div class="path-step">
+                    <div class="path-icon">🔧</div>
+                    <h4 class="path-title">Manufacturing</h4>
+                    <p class="path-description">Hands-on motor construction</p>
+                </div>
+                
+                <div class="path-step">
+                    <div class="path-icon">⚡</div>
+                    <h4 class="path-title">Integration</h4>
+                    <p class="path-description">VFD testing and validation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>TVET Electromechanical Training </h3>
+                    <p>Advancing engineering technologist education through innovative research-based training solutions developed at Universiti Malaysia Pahang Al-Sultan Abdullah, supported by the Centre for Academic Innovation & Competitiveness.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Training Programs</h4>
+                    <ul>
+                        <li><a href="#">Electromagnetic Design</a></li>
+                        <li><a href="#">Manufacturing Process</a></li>
+                        <li><a href="#">VFD Integration</a></li>
+                        <li><a href="#">TVET Certification</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Implementation Guide</a></li>
+                        <li><a href="#">Instructor Training</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Contact EMDLab</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EMDLab, Universiti Malaysia Pahang Al-Sultan Abdullah. Transforming engineering technologist education through research and innovation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Track curriculum page engagement
+        function trackEvent(eventName, data = {}) {
+            console.log('EMDLab Curriculum Event:', eventName, data);
+            // Integration with analytics services
+        }
+        
+        // Track page view
+        trackEvent('curriculum_page_view', {
+            page: 'curriculum_detail',
+            program: 'engineering_technologist',
+            timestamp: new Date().toISOString()
+        });
+        
+        // Track module engagement
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '-50px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const moduleNumber = entry.target.querySelector('.module-number')?.textContent;
+                    const moduleTitle = entry.target.querySelector('h3')?.textContent;
+                    
+                    trackEvent('curriculum_module_view', {
+                        module: moduleNumber,
+                        title: moduleTitle,
+                        featured: entry.target.classList.contains('featured')
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.curriculum-module').forEach(module => {
+            observer.observe(module);
+        });
+        
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to module cards
+        document.querySelectorAll('.curriculum-module').forEach(module => {
+            module.addEventListener('mouseenter', function() {
+                trackEvent('curriculum_module_hover', {
+                    module: this.querySelector('.module-number')?.textContent,
+                    title: this.querySelector('h3')?.textContent
+                });
+            });
+        });
+    </script>
+</body>
+</html>
