@@ -999,7 +999,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 3rem;
+            gap: 4rem;
             margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -1007,50 +1007,57 @@
         
         .footer-logo-item {
             display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 1rem;
-            opacity: 0.8;
+            opacity: 0.9;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .footer-logo-item:hover {
+            opacity: 1;
+            transform: translateY(-2px);
         }
         
         .footer-logo-image {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
+            padding: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer-logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
         }
         
         .footer-logo-text {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             line-height: 1.3;
+            text-align: center;
+            opacity: 0.8;
+        }
+        
+        .footer-logo-text .main-title {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .footer-logo-text .subtitle {
+            font-size: 0.7rem;
+            opacity: 0.7;
         }
         
         @media (max-width: 768px) {
-            .institutional-logos {
-                padding: 1.5rem 0;
-            }
-            
-            .logos-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-            }
-            
-            .logo-group {
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 1.5rem;
-            }
-            
-            .partnership-text {
-                order: -1;
-                margin-bottom: 1rem;
-            }
-            
             .hero-grid,
             .value-props,
             .testimonial-grid,
@@ -1094,51 +1101,6 @@
     </style>
 </head>
 <body>
-    <!-- Institutional Logos Section -->
-    <div class="institutional-logos">
-        <div class="container">
-            <div class="logos-container">
-                <div class="logo-group">
-                    <div class="institution-logo">
-                        <div class="logo-image university-logo">
-                            <img src="images/Logo UMPSA.png" alt="UMPSA Logo">
-                        </div>
-                        <div class="logo-text-info">
-                            <div class="logo-title">Universiti Malaysia Pahang Al-Sultan Abdullah</div>
-                            <div class="logo-subtitle">Leading Technical University</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="partnership-text">
-                    In partnership with
-                </div>
-                
-                <div class="logo-group">
-                    <div class="institution-logo">
-                        <div class="logo-image lab-logo">
-                            <img src="images/EMDLab.png" alt="EMDLab Logo">
-                        </div>
-                        <div class="logo-text-info">
-                            <div class="logo-title">EMDLab</div>
-                            <div class="logo-subtitle">Electrical Machine Design Laboratory</div>
-                        </div>
-                    </div>
-                    
-                    <div class="institution-logo">
-                        <div class="logo-image innovation-logo">
-                            <img src="images/cai-logo.png" alt="CAI Logo">
-                        </div>
-                        <div class="logo-text-info">
-                            <div class="logo-title">Centre for Academic Innovation</div>
-                            <div class="logo-subtitle">& Competitiveness</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <header>
         <nav class="container">
             <div class="logo">
@@ -1544,26 +1506,32 @@
             <!-- Footer Logos -->
             <div class="footer-logos">
                 <div class="footer-logo-item">
-                    <div class="footer-logo-image university-logo">UMPSA</div>
+                    <div class="footer-logo-image">
+                        <img src="images/umpsa-logo.png" alt="UMPSA Logo">
+                    </div>
                     <div class="footer-logo-text">
-                        <div>Universiti Malaysia Pahang</div>
-                        <div>Al-Sultan Abdullah</div>
+                        <div class="main-title">Universiti Malaysia Pahang</div>
+                        <div class="subtitle">Al-Sultan Abdullah</div>
                     </div>
                 </div>
                 
                 <div class="footer-logo-item">
-                    <div class="footer-logo-image lab-logo">EMDLab</div>
+                    <div class="footer-logo-image">
+                        <img src="images/emdlab-logo.png" alt="EMDLab Logo">
+                    </div>
                     <div class="footer-logo-text">
-                        <div>EMDLab</div>
-                        <div>Research & Development</div>
+                        <div class="main-title">EMDLab</div>
+                        <div class="subtitle">Research & Development</div>
                     </div>
                 </div>
                 
                 <div class="footer-logo-item">
-                    <div class="footer-logo-image innovation-logo">CAIC</div>
+                    <div class="footer-logo-image">
+                        <img src="images/cai-logo.png" alt="CAI Logo">
+                    </div>
                     <div class="footer-logo-text">
-                        <div>Centre for Academic</div>
-                        <div>Innovation & Competitiveness</div>
+                        <div class="main-title">Centre for Academic</div>
+                        <div class="subtitle">Innovation & Competitiveness</div>
                     </div>
                 </div>
             </div>
