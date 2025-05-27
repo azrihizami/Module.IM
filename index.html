@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Induction Motor Training Solutions | MotorTech Pro</title>
+    <title>TVET Electromechanical Training | Engineering Technologist Development</title>
     <style>
         * {
             margin: 0;
@@ -48,7 +48,7 @@
         .logo-icon {
             width: 45px;
             height: 45px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -78,7 +78,92 @@
         }
         
         .nav-menu a:hover {
-            color: #3498db;
+            color: #e74c3c;
+        }
+        
+        /* University and Lab Logo Section */
+        .institutional-logos {
+            background: #f8f9fa;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .logos-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .institution-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-image {
+            width: 60px;
+            height: 60px;
+            background: #ffffff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e9ecef;
+        }
+        
+        .university-logo {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .lab-logo {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .innovation-logo {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .logo-text-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+        
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+        
+        .partnership-text {
+            font-size: 0.8rem;
+            color: #6b7280;
+            font-style: italic;
+            align-self: center;
         }
         
         .hero {
@@ -122,7 +207,7 @@
         .stat-number {
             font-size: 2.2rem;
             font-weight: 700;
-            color: #3498db;
+            color: #e74c3c;
             display: block;
         }
         
@@ -135,7 +220,7 @@
         
         .cta-primary {
             display: inline-block;
-            background: #3498db;
+            background: #e74c3c;
             color: white;
             padding: 18px 35px;
             text-decoration: none;
@@ -147,18 +232,18 @@
         }
         
         .cta-primary:hover {
-            background: #2980b9;
+            background: #c0392b;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
         }
         
         .cta-secondary {
             display: inline-block;
             background: transparent;
-            color: #3498db;
+            color: #e74c3c;
             padding: 18px 35px;
             text-decoration: none;
-            border: 2px solid #3498db;
+            border: 2px solid #e74c3c;
             border-radius: 6px;
             font-weight: 600;
             font-size: 1.1rem;
@@ -166,7 +251,7 @@
         }
         
         .cta-secondary:hover {
-            background: #3498db;
+            background: #e74c3c;
             color: white;
         }
         
@@ -176,62 +261,197 @@
             border-radius: 15px;
             padding: 2rem;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(52, 73, 94, 0.1) 0%, rgba(44, 62, 80, 0.05) 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><rect fill="%23f8f9fa" width="1000" height="600"/><circle fill="%23e74c3c" cx="200" cy="150" r="3"/><circle fill="%23e74c3c" cx="800" cy="450" r="2"/><circle fill="%233498db" cx="150" cy="400" r="2"/><circle fill="%233498db" cx="850" cy="200" r="3"/><path stroke="%23bdc3c7" stroke-width="1" fill="none" d="M100,300 Q300,200 500,250 T900,300"/><path stroke="%23ecf0f1" stroke-width="2" fill="none" d="M50,400 Q400,350 600,400 T950,380"/></svg>');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            z-index: 1;
         }
         
         .mvp-showcase {
             position: relative;
+            z-index: 2;
         }
         
         .mvp-image {
             width: 100%;
             height: 300px;
-            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #e9ecef;
+        }
+        
+        .image-carousel {
+            width: 100%;
+            height: 100%;
             position: relative;
             overflow: hidden;
         }
         
-        .mvp-image::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            border: 2px dashed #7f8c8d;
-            border-radius: 8px;
+        .carousel-container {
+            width: 300%;
+            height: 100%;
+            display: flex;
+            animation: slideImages 12s infinite;
         }
         
-        .mvp-placeholder {
+        .carousel-slide {
+            width: 33.333%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .slide-content {
             text-align: center;
-            color: #7f8c8d;
-            z-index: 2;
+            color: #2c3e50;
+            z-index: 3;
             position: relative;
         }
         
-        .mvp-placeholder .icon {
-            font-size: 3rem;
+        .slide-icon {
+            font-size: 4rem;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .slide-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .slide-description {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            max-width: 200px;
+        }
+        
+        .femm-slide {
+            background: linear-gradient(135deg, #3498db20, #2980b920);
+        }
+        
+        .manufacturing-slide {
+            background: linear-gradient(135deg, #f39c1220, #e67e2220);
+        }
+        
+        .vfd-slide {
+            background: linear-gradient(135deg, #27ae6020, #16a08520);
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 4;
+        }
+        
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(44, 62, 80, 0.3);
+            animation: indicatorProgress 12s infinite;
+        }
+        
+        .indicator:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .indicator:nth-child(2) {
+            animation-delay: 4s;
+        }
+        
+        .indicator:nth-child(3) {
+            animation-delay: 8s;
+        }
+        
+        @keyframes slideImages {
+            0%, 30% {
+                transform: translateX(0%);
+            }
+            33.33%, 63.33% {
+                transform: translateX(-33.333%);
+            }
+            66.66%, 96.66% {
+                transform: translateX(-66.666%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+        
+        @keyframes indicatorProgress {
+            0% {
+                background: rgba(231, 76, 60, 0.8);
+                transform: scale(1.2);
+            }
+            33% {
+                background: rgba(44, 62, 80, 0.3);
+                transform: scale(1);
+            }
+            100% {
+                background: rgba(44, 62, 80, 0.3);
+                transform: scale(1);
+            }
         }
         
         .mvp-features {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
+            position: relative;
+            z-index: 2;
         }
         
         .mvp-feature {
-            background: #f8f9fa;
+            background: rgba(255, 255, 255, 0.95);
             padding: 1rem;
             border-radius: 8px;
             text-align: center;
             font-size: 0.9rem;
             font-weight: 500;
             color: #5a6c7d;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .mvp-feature:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mvp-feature.active {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
         }
         
         .section {
@@ -289,12 +509,12 @@
             transform: translateX(-50%);
             width: 60px;
             height: 4px;
-            background: #3498db;
+            background: #e74c3c;
             border-radius: 0 0 4px 4px;
         }
         
         .methodology-card:nth-child(2)::before {
-            background: #e74c3c;
+            background: #f39c12;
         }
         
         .methodology-card:nth-child(3)::before {
@@ -304,7 +524,7 @@
         .method-icon {
             width: 80px;
             height: 80px;
-            background: #3498db;
+            background: #e74c3c;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -315,7 +535,7 @@
         }
         
         .methodology-card:nth-child(2) .method-icon {
-            background: #e74c3c;
+            background: #f39c12;
         }
         
         .methodology-card:nth-child(3) .method-icon {
@@ -332,6 +552,119 @@
         .method-description {
             color: #5a6c7d;
             line-height: 1.6;
+        }
+        
+        /* New Curriculum Overview Section */
+        .curriculum-overview {
+            background: white;
+        }
+        
+        .curriculum-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .curriculum-content h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+        
+        .curriculum-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .highlight-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .highlight-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-item p {
+            color: #5a6c7d;
+            font-size: 0.9rem;
+        }
+        
+        .curriculum-cta {
+            background: #e74c3c;
+            color: white;
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .curriculum-cta:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+        }
+        
+        .curriculum-visual {
+            position: relative;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .module-preview {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .module-preview:hover {
+            border-color: #e74c3c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .module-number {
+            width: 40px;
+            height: 40px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        
+        .module-preview h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .module-preview p {
+            font-size: 0.8rem;
+            color: #7f8c8d;
         }
         
         .value-props {
@@ -416,7 +749,7 @@
         .author-avatar {
             width: 50px;
             height: 50px;
-            background: #3498db;
+            background: #e74c3c;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -436,7 +769,7 @@
         }
         
         .cta-section {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
             text-align: center;
         }
@@ -497,11 +830,11 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #3498db;
+            border-color: #e74c3c;
         }
         
         .submit-btn {
-            background: #3498db;
+            background: #e74c3c;
             color: white;
             padding: 15px 40px;
             border: none;
@@ -514,7 +847,7 @@
         }
         
         .submit-btn:hover {
-            background: #2980b9;
+            background: #c0392b;
             transform: translateY(-2px);
         }
         
@@ -571,10 +904,67 @@
             opacity: 0.6;
         }
         
+        /* Footer Logo Section */
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-logo-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0.8;
+        }
+        
+        .footer-logo-image {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .footer-logo-text {
+            font-size: 0.8rem;
+            line-height: 1.3;
+        }
+        
         @media (max-width: 768px) {
+            .institutional-logos {
+                padding: 1.5rem 0;
+            }
+            
+            .logos-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .logo-group {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+            
+            .partnership-text {
+                order: -1;
+                margin-bottom: 1rem;
+            }
+            
             .hero-grid,
             .value-props,
-            .testimonial-grid {
+            .testimonial-grid,
+            .curriculum-preview {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
@@ -592,6 +982,11 @@
                 justify-content: center;
             }
             
+            .curriculum-highlights,
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .form-row {
                 grid-template-columns: 1fr;
             }
@@ -600,18 +995,69 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+            
+            .footer-logos {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Institutional Logos Section -->
+    <div class="institutional-logos">
+        <div class="container">
+            <div class="logos-container">
+                <div class="logo-group">
+                    <div class="institution-logo">
+                        <div class="logo-image university-logo">
+                            UMPSA
+                        </div>
+                        <div class="logo-text-info">
+                            <div class="logo-title">Universiti Malaysia Pahang Al-Sultan Abdullah</div>
+                            <div class="logo-subtitle">Leading Technical University</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="partnership-text">
+                    In partnership with
+                </div>
+                
+                <div class="logo-group">
+                    <div class="institution-logo">
+                        <div class="logo-image lab-logo">
+                            EMD
+                        </div>
+                        <div class="logo-text-info">
+                            <div class="logo-title">EMDLab</div>
+                            <div class="logo-subtitle">Electrical Machine Design Laboratory</div>
+                        </div>
+                    </div>
+                    
+                    <div class="institution-logo">
+                        <div class="logo-image innovation-logo">
+                            CAI
+div>
+                        <div class="logo-text-info">
+                            <div class="logo-title">Centre for Academic Innovation</div>
+                            <div class="logo-subtitle">& Competitiveness</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <header>
         <nav class="container">
             <div class="logo">
-                <div class="logo-icon">MT</div>
-                <div class="logo-text">MotorTech Pro</div>
+                <div class="logo-icon">TET</div>
+                <div class="logo-text">TVET Electromechanical Training</div>
             </div>
             <ul class="nav-menu">
                 <li><a href="#methodology">Methodology</a></li>
+                <li><a href="curriculum.html">Curriculum</a></li>
                 <li><a href="#benefits">Benefits</a></li>
                 <li><a href="#testimonials">Success Stories</a></li>
                 <li><a href="#demo">Request Demo</a></li>
@@ -623,26 +1069,26 @@
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
-                    <h1>Advanced Induction Motor Training Solutions</h1>
-                    <p class="subtitle">Transform your engineering workforce with comprehensive hands-on training that bridges theoretical knowledge with real-world application.</p>
+                    <h1>Induction Machine Training for Engineering Technologist</h1>
+                    <p class="subtitle">Transform your TVET programs with comprehensive hands-on training that bridges theoretical knowledge with real-world manufacturing expertise in induction machine design and testing.</p>
                     
                     <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">40%</span>
+                            <span class="stat-label">Faster Learning</span>
+                        </div>
                         <div class="stat-item">
                             <span class="stat-number">85%</span>
                             <span class="stat-label">Skill Retention</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">3x</span>
-                            <span class="stat-label">Faster Learning</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Industry Relevant</span>
+                            <span class="stat-number">92%</span>
+                            <span class="stat-label">Student Satisfaction</span>
                         </div>
                     </div>
                     
                     <div>
-                        <a href="#demo" class="cta-primary">Schedule Demo</a>
+                        <a href="#demo" class="cta-primary">Join Pilot Program</a>
                         <a href="#methodology" class="cta-secondary">Learn More</a>
                     </div>
                 </div>
@@ -650,15 +1096,47 @@
                 <div class="hero-visual">
                     <div class="mvp-showcase">
                         <div class="mvp-image">
-                            <div class="mvp-placeholder">
-                                <div class="icon">⚙️</div>
-                                <h4>Modular Motor System</h4>
-                                <p>Interactive CAD model with actual components</p>
+                            <div class="image-carousel">
+                                <div class="carousel-container">
+                                    <!-- FEMM Simulation Slide -->
+                                    <div class="carousel-slide femm-slide">
+                                        <div class="slide-content">
+                                            <div class="slide-icon">🧮</div>
+                                            <h4 class="slide-title">FEMM Simulation</h4>
+                                            <p class="slide-description">Finite Element Analysis for electromagnetic field simulation and motor optimization</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Manufacturing Slide -->
+                                    <div class="carousel-slide manufacturing-slide">
+                                        <div class="slide-content">
+                                            <div class="slide-icon">🔧</div>
+                                            <h4 class="slide-title">Manufacturing Process</h4>
+                                            <p class="slide-description">Hands-on core lamination, winding assembly, and complete motor construction</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- VFD Testing Slide -->
+                                    <div class="carousel-slide vfd-slide">
+                                        <div class="slide-content">
+                                            <div class="slide-icon">⚡</div>
+                                            <h4 class="slide-title">VFD Testing</h4>
+                                            <p class="slide-description">Variable frequency drive integration, programming, and performance testing</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Carousel Indicators -->
+                                <div class="carousel-indicators">
+                                    <div class="indicator"></div>
+                                    <div class="indicator"></div>
+                                    <div class="indicator"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="mvp-features">
-                            <div class="mvp-feature">3D CAD Design</div>
-                            <div class="mvp-feature">Physical Assembly</div>
+                            <div class="mvp-feature active">FEMM Simulation</div>
+                            <div class="mvp-feature">Manufacturing</div>
                             <div class="mvp-feature">VFD Testing</div>
                         </div>
                     </div>
@@ -670,27 +1148,100 @@
     <section class="section methodology" id="methodology">
         <div class="container">
             <div class="section-header">
-                <h2>Three-Phase Learning Methodology</h2>
-                <p>Our comprehensive approach ensures deep understanding through progressive, hands-on experience</p>
+                <h2>Comprehensive TVET Learning Methodology</h2>
+                <p>Research-based approach developed by EMDLab at Universiti Malaysia Pahang Al-Sultan Abdullah for comprehensive engineering technologist development</p>
             </div>
             
             <div class="methodology-grid">
                 <div class="methodology-card">
-                    <div class="method-icon">📐</div>
-                    <h3 class="method-title">Phase 1: Design & Analysis</h3>
-                    <p class="method-description">Master analytical calculations, finite element analysis, and design optimization. Learn the engineering principles behind every motor parameter and component selection.</p>
+                    <div class="method-icon">🧲</div>
+                    <h3 class="method-title">Theory & Electromagnetic Design</h3>
+                    <p class="method-description">Master electromechanical energy conversion principles, induction motor theory, and FE simulation using FEMM. Learn Faraday's law, Lorentz force, and rotating magnetic field concepts with practical applications.</p>
                 </div>
                 
                 <div class="methodology-card">
                     <div class="method-icon">🔧</div>
-                    <h3 class="method-title">Phase 2: Manufacturing & Assembly</h3>
-                    <p class="method-description">Build actual motor components using our modular system. Experience manufacturing tolerances, assembly processes, and quality control in a controlled learning environment.</p>
+                    <h3 class="method-title">Manufacturing & Assembly</h3>
+                    <p class="method-description">Experience hands-on core lamination processes, precision winding assembly, and complete motor construction. Build actual motors using professional manufacturing techniques and quality control methods.</p>
                 </div>
                 
                 <div class="methodology-card">
                     <div class="method-icon">⚡</div>
-                    <h3 class="method-title">Phase 3: Integration & Testing</h3>
-                    <p class="method-description">Connect motors to VFDs, run comprehensive performance tests, and validate design calculations against real-world results. Develop troubleshooting expertise.</p>
+                    <h3 class="method-title">Testing & Integration</h3>
+                    <p class="method-description">Connect motors to various drive systems including DOL, star-delta, and VFD. Conduct comprehensive testing following IEC and IEEE standards with performance validation and troubleshooting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section curriculum-overview" id="curriculum">
+        <div class="container">
+            <div class="section-header">
+                <h2>Training Curriculum Overview</h2>
+                <p>Six comprehensive modules covering theory to practical implementation with hands-on exercises and real-world applications</p>
+            </div>
+            
+            <div class="curriculum-preview">
+                <div class="curriculum-content">
+                    <h3>Complete Learning Experience</h3>
+                    
+                    <div class="curriculum-highlights">
+                        <div class="highlight-item">
+                            <h4>6 Core Modules</h4>
+                            <p>From electromagnetic theory to VFD integration</p>
+                        </div>
+                        <div class="highlight-item">
+                            <h4>4 Hands-On Labs</h4>
+                            <p>FEMM simulation, manufacturing, and testing</p>
+                        </div>
+                        <div class="highlight-item">
+                            <h4>Industry Standards</h4>
+                            <p>IEC and IEEE compliance training</p>
+                        </div>
+                        <div class="highlight-item">
+                            <h4>TVET Certification</h4>
+                            <p>Measurable learning outcomes</p>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-bottom: 2rem; color: #5a6c7d;">Our curriculum progresses from fundamental electromagnetic principles to complete motor manufacturing and testing. Each module includes theoretical foundations, practical exercises, and real-world implementation projects.</p>
+                    
+                    <a href="curriculum.html" class="curriculum-cta">View Complete Curriculum</a>
+                </div>
+                
+                <div class="curriculum-visual">
+                    <div class="modules-grid">
+                        <div class="module-preview">
+                            <div class="module-number">1</div>
+                            <h4>Electromechanical Principles</h4>
+                            <p>Theory Foundation</p>
+                        </div>
+                        <div class="module-preview">
+                            <div class="module-number">2</div>
+                            <h4>Induction Motor Theory</h4>
+                            <p>Core Concepts</p>
+                        </div>
+                        <div class="module-preview">
+                            <div class="module-number">3</div>
+                            <h4>FEMM Simulation</h4>
+                            <p>Design & Analysis</p>
+                        </div>
+                        <div class="module-preview">
+                            <div class="module-number">4</div>
+                            <h4>Manufacturing Process</h4>
+                            <p>Hands-On Building</p>
+                        </div>
+                        <div class="module-preview">
+                            <div class="module-number">5</div>
+                            <h4>Drive Systems</h4>
+                            <p>VFD Integration</p>
+                        </div>
+                        <div class="module-preview">
+                            <div class="module-number">6</div>
+                            <h4>Standards & Compliance</h4>
+                            <p>Professional Practice</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -700,36 +1251,36 @@
         <div class="container">
             <div class="value-props">
                 <div class="value-content">
-                    <h3>Enterprise-Grade Training Solutions</h3>
+                    <h3>TVET Program Excellence</h3>
                     <ul class="value-list">
                         <li>
                             <span class="check-icon">✓</span>
                             <div>
-                                <strong>Curriculum Integration:</strong> Seamlessly integrates with existing electrical and mechanical engineering programs
+                                <strong>Research-Based Curriculum:</strong> Developed by EMDLab with proven learning effectiveness and higher skill retention rates
                             </div>
                         </li>
                         <li>
                             <span class="check-icon">✓</span>
                             <div>
-                                <strong>Scalable Implementation:</strong> Modular approach allows flexible deployment across different class sizes and budgets
+                                <strong>Industry-Ready Skills:</strong> Comprehensive training in electromagnetic design, manufacturing processes, and VFD integration
                             </div>
                         </li>
                         <li>
                             <span class="check-icon">✓</span>
                             <div>
-                                <strong>Industry Alignment:</strong> Training directly addresses skills gaps identified by manufacturing employers
+                                <strong>Hands-On Learning:</strong> Modular motor system allows students to experience complete design-to-testing workflow
                             </div>
                         </li>
                         <li>
                             <span class="check-icon">✓</span>
                             <div>
-                                <strong>Measurable Outcomes:</strong> Comprehensive assessment tools track learning progress and skill development
+                                <strong>Professional Certification:</strong> TVET-aligned competency development with measurable learning outcomes
                             </div>
                         </li>
                         <li>
                             <span class="check-icon">✓</span>
                             <div>
-                                <strong>Expert Support:</strong> Ongoing instructor training and technical support ensures successful implementation
+                                <strong>Academic Support:</strong> Backed by Universiti Malaysia Pahang Al-Sultan Abdullah and Centre for Academic Innovation
                             </div>
                         </li>
                     </ul>
@@ -737,26 +1288,26 @@
                 
                 <div class="value-visual">
                     <div style="background: #f8f9fa; padding: 2rem; border-radius: 8px; text-align: center;">
-                        <h4 style="margin-bottom: 1rem; color: #2c3e50;">MVP Components Preview</h4>
+                        <h4 style="margin-bottom: 1rem; color: #2c3e50;">Training Components</h4>
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
                             <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <strong>Electromagnetic Theory</strong><br>
+                                <small>Analytical analysis</small>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <strong>FEA Analysis</strong><br>
+                                <small>Flux density, torque and optimization</small>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                                 <strong>Stator Assembly</strong><br>
-                                <small>Modular lamination system</small>
+                                <small>Core lamination & winding</small>
                             </div>
                             <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <strong>Rotor Components</strong><br>
-                                <small>Interchangeable designs</small>
-                            </div>
-                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <strong>VFD Interface</strong><br>
-                                <small>Real-time testing</small>
-                            </div>
-                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <strong>Analysis Tools</strong><br>
-                                <small>FEA integration</small>
+                                <strong>VFD Testing</strong><br>
+                                <small>Cabling, programming and testing</small>
                             </div>
                         </div>
-                        <p style="color: #5a6c7d; font-size: 0.9rem;">Complete system ready for pilot deployment</p>
+                        <p style="color: #5a6c7d; font-size: 0.9rem;">Complete modular system for comprehensive learning</p>
                     </div>
                 </div>
             </div>
@@ -766,29 +1317,29 @@
     <section class="section testimonials" id="testimonials">
         <div class="container">
             <div class="section-header">
-                <h2>Trusted by Leading Institutions</h2>
-                <p>See how our training solutions are transforming engineering education</p>
+                <h2>TVET Success Stories</h2>
+                <p>See how EMDLab's training methodology is transforming engineering technologist education</p>
             </div>
             
             <div class="testimonial-grid">
                 <div class="testimonial-card">
-                    <p class="quote">"This training system completely transformed how our students understand motor design. The hands-on approach bridges the gap between theory and practice in ways I never thought possible."</p>
+                    <p class="quote">"The EMDLab TVET approach produces engineering technologists who truly understand both theory and practice. Our students show remarkable improvement in learning speed and retention compared to traditional methods."</p>
                     <div class="author">
                         <div class="author-avatar">SC</div>
                         <div class="author-info">
                             <h4>Dr. Sarah Chen</h4>
-                            <p>Department Head, Electrical Engineering</p>
+                            <p>TVET Program Director, Technical Institute</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="testimonial-card">
-                    <p class="quote">"Our engineering graduates now enter the workforce with practical motor experience that sets them apart. Employee feedback has been exceptional since implementing this program."</p>
+                    <p class="quote">"Our engineering technologist graduates from the EMDLab program enter the workforce with practical motor experience that would typically take years to develop. The hands-on approach makes all the difference."</p>
                     <div class="author">
                         <div class="author-avatar">MR</div>
                         <div class="author-info">
                             <h4>Michael Rodriguez</h4>
-                            <p>Training Director, Industrial Solutions Inc.</p>
+                            <p>Manufacturing Director, ElectroMotor Industries</p>
                         </div>
                     </div>
                 </div>
@@ -798,8 +1349,8 @@
 
     <section class="section cta-section" id="demo">
         <div class="container">
-            <h2>Experience the Future of Motor Training</h2>
-            <p>Join leading institutions in revolutionizing engineering education with hands-on motor technology training.</p>
+            <h2>Join the EMDLab TVET Pilot Program</h2>
+            <p>Be among the first institutions to implement this research-proven engineering technologist development program.</p>
             
             <form class="demo-form" onsubmit="handleDemoRequest(event)">
                 <div class="form-row">
@@ -814,12 +1365,12 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Business Email *</label>
+                    <label for="email">Email Address *</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="organization">Organization *</label>
+                    <label for="organization">Institution/Organization *</label>
                     <input type="text" id="organization" name="organization" required>
                 </div>
                 
@@ -828,22 +1379,22 @@
                         <label for="role">Your Role *</label>
                         <select id="role" name="role" required>
                             <option value="">Select Role</option>
+                            <option value="tvet_director">TVET Program Director</option>
                             <option value="department_head">Department Head</option>
-                            <option value="professor">Professor/Educator</option>
-                            <option value="training_director">Training Director</option>
-                            <option value="curriculum_manager">Curriculum Manager</option>
-                            <option value="dean">Dean/Administrator</option>
+                            <option value="instructor">Technical Instructor</option>
+                            <option value="curriculum_developer">Curriculum Developer</option>
+                            <option value="industry_partner">Industry Partner</option>
                             <option value="other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="students">Number of Students/Trainees</label>
+                        <label for="students">Expected Students/Trainees</label>
                         <select id="students" name="students">
                             <option value="">Select Range</option>
-                            <option value="1-25">1-25</option>
-                            <option value="26-50">26-50</option>
-                            <option value="51-100">51-100</option>
-                            <option value="100+">100+</option>
+                            <option value="10-20">10-20</option>
+                            <option value="21-30">21-30</option>
+                            <option value="31-50">31-50</option>
+                            <option value="50+">50+</option>
                         </select>
                     </div>
                 </div>
@@ -861,13 +1412,13 @@
                 
                 <div class="form-group">
                     <label for="requirements">Specific Requirements or Questions</label>
-                    <textarea id="requirements" name="requirements" rows="3" placeholder="Tell us about your training needs, budget considerations, or specific questions..."></textarea>
+                    <textarea id="requirements" name="requirements" rows="3" placeholder="Tell us about your TVET program needs, facility requirements, or specific questions..."></textarea>
                 </div>
                 
-                <button type="submit" class="submit-btn">Schedule Demo Call</button>
+                <button type="submit" class="submit-btn">Request Pilot Program Information</button>
                 
                 <p style="margin-top: 1rem; font-size: 0.9rem; color: #7f8c8d; text-align: center;">
-                    We'll contact you within 24 hours to schedule your personalized demo
+                    We'll contact you within 24 hours to discuss pilot program details and implementation
                 </p>
             </form>
         </div>
@@ -877,30 +1428,58 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>MotorTech Pro</h3>
-                    <p>Advancing engineering education through innovative hands-on training solutions that bridge the gap between theory and practice.</p>
+                    <h3>TVET Electromechanical Training</h3>
+                    <p>Advancing engineering technologist education through innovative research-based training solutions developed at Universiti Malaysia Pahang Al-Sultan Abdullah, supported by the Centre for Academic Innovation & Competitiveness.</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Solutions</h4>
+                    <h4>Training Programs</h4>
                     <ul>
-                        <li><a href="#">University Programs</a></li>
-                        <li><a href="#">Corporate Training</a></li>
-                        <li><a href="#">Technical Colleges</a></li>
-                        <li><a href="#">Custom Solutions</a></li>
+                        <li><a href="#">Electromagnetic Design</a></li>
+                        <li><a href="#">Manufacturing Process</a></li>
+                        <li><a href="#">VFD Integration</a></li>
+                        <li><a href="#">TVET Certification</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>Company</h4>
+                    <h4>Support</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Implementation Guide</a></li>
+                        <li><a href="#">Instructor Training</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Contact EMDLab</a></li>
                     </ul>
                 </div>
             </div>
+            
+            <!-- Footer Logos -->
+            <div class="footer-logos">
+                <div class="footer-logo-item">
+                    <div class="footer-logo-image university-logo">UMPSA</div>
+                    <div class="footer-logo-text">
+                        <div>Universiti Malaysia Pahang</div>
+                        <div>Al-Sultan Abdullah</div>
+                    </div>
+                </div>
+                
+                <div class="footer-logo-item">
+                    <div class="footer-logo-image lab-logo">EMD</div>
+                    <div class="footer-logo-text">
+                        <div>EMDLab</div>
+                        <div>Research & Development</div>
+                    </div>
+                </div>
+                
+                <div class="footer-logo-item">
+                    <div class="footer-logo-image innovation-logo">CAI</div>
+                    <div class="footer-logo-text">
+                        <div>Centre for Academic</div>
+                        <div>Innovation & Competitiveness</div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 MotorTech Pro. All rights reserved. | Transforming engineering education worldwide.</p>
+                <p>&copy; 2025 EMDLab, Universiti Malaysia Pahang Al-Sultan Abdullah. Transforming engineering technologist education through research and innovation.</p>
             </div>
         </div>
     </footer>
@@ -913,55 +1492,56 @@
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
             
-            // Add timestamp and lead source
+            // Add EMDLab-specific tracking data
             const submission = {
                 ...data,
                 timestamp: new Date().toISOString(),
-                source: 'landing_page',
+                source: 'emdlab_tvet_landing',
+                program: 'engineering_technologist',
                 leadScore: calculateLeadScore(data)
             };
             
             // Store submission (replace with your CRM integration)
-            const submissions = JSON.parse(localStorage.getItem('demoRequests') || '[]');
+            const submissions = JSON.parse(localStorage.getItem('emdlabRequests') || '[]');
             submissions.push(submission);
-            localStorage.setItem('demoRequests', JSON.stringify(submissions));
+            localStorage.setItem('emdlabRequests', JSON.stringify(submissions));
             
             // Show success message
             const form = event.target;
             form.innerHTML = `
                 <div style="text-align: center; padding: 3rem 2rem;">
                     <div style="width: 80px; height: 80px; background: #27ae60; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2.5rem; color: white;">✓</div>
-                    <h3 style="color: #27ae60; margin-bottom: 1rem; font-size: 1.4rem;">Demo Request Received</h3>
-                    <p style="color: #5a6c7d; margin-bottom: 1.5rem;">Thank you for your interest in MotorTech Pro. Our team will contact you within 24 hours to schedule your personalized demonstration.</p>
-                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3498db;">
-                        <p style="margin: 0; font-size: 0.9rem; color: #2c3e50;"><strong>Next Steps:</strong> Check your email for confirmation and prepare any specific questions about your training requirements.</p>
+                    <h3 style="color: #27ae60; margin-bottom: 1rem; font-size: 1.4rem;">Pilot Program Request Received</h3>
+                    <p style="color: #5a6c7d; margin-bottom: 1.5rem;">Thank you for your interest in the EMDLab TVET program. Our research team will contact you within 24 hours to discuss implementation details.</p>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                        <p style="margin: 0; font-size: 0.9rem; color: #2c3e50;"><strong>Next Steps:</strong> We'll schedule a consultation to discuss your specific TVET needs and share our research findings on learning effectiveness.</p>
                     </div>
                 </div>
             `;
             
             // Track conversion
-            trackEvent('demo_request', submission);
+            trackEvent('emdlab_pilot_request', submission);
         }
         
         function calculateLeadScore(data) {
             let score = 0;
             
-            // Role-based scoring
+            // Role-based scoring for TVET context
             const roleScores = {
-                'department_head': 10,
-                'dean': 10,
-                'training_director': 9,
-                'curriculum_manager': 8,
-                'professor': 7
+                'tvet_director': 10,
+                'department_head': 9,
+                'curriculum_developer': 8,
+                'instructor': 7,
+                'industry_partner': 9
             };
             score += roleScores[data.role] || 5;
             
             // Student count scoring
             const sizeScores = {
-                '100+': 10,
-                '51-100': 8,
-                '26-50': 6,
-                '1-25': 4
+                '50+': 10,
+                '31-50': 8,
+                '21-30': 6,
+                '10-20': 4
             };
             score += sizeScores[data.students] || 0;
             
@@ -978,23 +1558,18 @@
         }
         
         function trackEvent(eventName, data = {}) {
-            // Analytics tracking (replace with your analytics service)
-            console.log('Event:', eventName, data);
-            
-            // Example: Google Analytics 4
-            // gtag('event', eventName, data);
-            
-            // Example: Facebook Pixel
-            // fbq('track', eventName, data);
+            console.log('EMDLab Event:', eventName, data);
+            // Integration with analytics services
         }
         
         // Track page engagement
-        trackEvent('page_view', {
-            page: 'landing_page',
+        trackEvent('emdlab_page_view', {
+            page: 'tvet_landing',
+            program: 'engineering_technologist',
             timestamp: new Date().toISOString()
         });
         
-        // Track section views
+        // Track section engagement
         const observerOptions = {
             threshold: 0.5,
             rootMargin: '-100px'
@@ -1003,8 +1578,9 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    trackEvent('section_view', {
-                        section: entry.target.id || entry.target.className
+                    trackEvent('emdlab_section_view', {
+                        section: entry.target.id || entry.target.className,
+                        program: 'engineering_technologist'
                     });
                 }
             });
@@ -1027,6 +1603,32 @@
                 }
             });
         });
+
+        // Hero Carousel Feature Sync
+        function syncCarouselFeatures() {
+            const features = document.querySelectorAll('.mvp-feature');
+            let currentIndex = 0;
+            
+            function updateActiveFeature() {
+                features.forEach((feature, index) => {
+                    feature.classList.remove('active');
+                    if (index === currentIndex) {
+                        feature.classList.add('active');
+                    }
+                });
+                
+                currentIndex = (currentIndex + 1) % features.length;
+            }
+            
+            // Initial state
+            updateActiveFeature();
+            
+            // Sync with carousel timing (4 seconds per slide)
+            setInterval(updateActiveFeature, 4000);
+        }
+        
+        // Initialize carousel sync
+        syncCarouselFeatures();
     </script>
 </body>
 </html>
