@@ -84,7 +84,7 @@
         /* University and Lab Logo Section */
         .institutional-logos {
             background: #f8f9fa;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             border-bottom: 1px solid #e9ecef;
         }
         
@@ -99,7 +99,7 @@
         .logo-group {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 3rem;
         }
         
         .institution-logo {
@@ -109,36 +109,39 @@
         }
         
         .logo-image {
-            width: 60px;
-            height: 60px;
-            background: #ffffff;
-            border-radius: 8px;
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease;
         }
         
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+        
+        /* Specific sizing for different logos */
         .university-logo {
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-            color: white;
-            font-weight: bold;
-            font-size: 1.1rem;
+            width: 80px;
+            height: 80px;
         }
         
         .lab-logo {
-            background: linear-gradient(135deg, #dc2626, #ef4444);
-            color: white;
-            font-weight: bold;
-            font-size: 1.1rem;
+            width: 70px;
+            height: 70px;
         }
         
         .innovation-logo {
-            background: linear-gradient(135deg, #059669, #10b981);
-            color: white;
-            font-weight: bold;
-            font-size: 0.9rem;
+            width: 75px;
+            height: 75px;
         }
         
         .logo-text-info {
@@ -147,28 +150,29 @@
         }
         
         .logo-title {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: #2c3e50;
             line-height: 1.2;
         }
         
         .logo-subtitle {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #6b7280;
             margin-top: 2px;
         }
         
         .partnership-text {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #6b7280;
             font-style: italic;
             align-self: center;
+            font-weight: 500;
         }
         
         .hero {
             background: linear-gradient(135deg, rgba(44, 62, 80, 0.85) 0%, rgba(52, 73, 94, 0.75) 100%),
-                        url('images/Modular_IM.png');
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23ecf0f1" width="1920" height="1080"/><circle fill="%23bdc3c7" cx="400" cy="300" r="120" opacity="0.3"/><circle fill="%23bdc3c7" cx="1200" cy="600" r="80" opacity="0.2"/><circle fill="%2395a5a6" cx="800" cy="200" r="60" opacity="0.4"/><circle fill="%2395a5a6" cx="1400" cy="400" r="100" opacity="0.2"/><path stroke="%23bdc3c7" stroke-width="3" fill="none" d="M200,500 Q600,300 1000,500 T1600,500" opacity="0.3"/><rect fill="%23bdc3c7" x="300" y="700" width="200" height="80" rx="10" opacity="0.2"/><rect fill="%2395a5a6" x="1100" y="750" width="300" height="60" rx="8" opacity="0.3"/></svg>');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -354,6 +358,47 @@
             flex-direction: column;
             position: relative;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            overflow: hidden;
+        }
+        
+        /* Background image support for carousel slides */
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        /* Custom background images for each slide */
+        .femm-slide::before {
+            background-image: url('images/femm-background.jpg');
+            background: linear-gradient(rgba(52, 152, 219, 0.2), rgba(41, 128, 185, 0.3)), 
+                        url('images/femm-background.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .manufacturing-slide::before {
+            background-image: url('images/manufacturing-background.jpg');
+            background: linear-gradient(rgba(243, 156, 18, 0.2), rgba(230, 126, 34, 0.3)), 
+                        url('images/manufacturing-background.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .vfd-slide::before {
+            background-image: url('images/vfd-background.jpg');
+            background: linear-gradient(rgba(39, 174, 96, 0.2), rgba(22, 160, 133, 0.3)), 
+                        url('images/vfd-background.jpg');
+            background-size: cover;
+            background-position: center;
         }
         
         .slide-content {
@@ -361,15 +406,22 @@
             color: #2c3e50;
             z-index: 3;
             position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .slide-icon {
-            font-size: 4rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
         }
         
         .slide-title {
@@ -381,10 +433,12 @@
         
         .slide-description {
             font-size: 0.9rem;
-            color: #7f8c8d;
+            color: #5a6c7d;
             max-width: 200px;
+            line-height: 1.4;
         }
         
+        /* Fallback gradients when images are not available */
         .femm-slide {
             background: linear-gradient(135deg, #3498db20, #2980b920);
         }
@@ -1047,7 +1101,7 @@
                 <div class="logo-group">
                     <div class="institution-logo">
                         <div class="logo-image university-logo">
-                            UMPSA
+                            <img src="images/umpsa-logo.png" alt="UMPSA Logo">
                         </div>
                         <div class="logo-text-info">
                             <div class="logo-title">Universiti Malaysia Pahang Al-Sultan Abdullah</div>
@@ -1063,7 +1117,7 @@
                 <div class="logo-group">
                     <div class="institution-logo">
                         <div class="logo-image lab-logo">
-                            EMD
+                            <img src="images/emdlab-logo.png" alt="EMDLab Logo">
                         </div>
                         <div class="logo-text-info">
                             <div class="logo-title">EMDLab</div>
@@ -1073,8 +1127,8 @@
                     
                     <div class="institution-logo">
                         <div class="logo-image innovation-logo">
-                            CAI
-div>
+                            <img src="images/cai-logo.png" alt="CAI Logo">
+                        </div>
                         <div class="logo-text-info">
                             <div class="logo-title">Centre for Academic Innovation</div>
                             <div class="logo-subtitle">& Competitiveness</div>
