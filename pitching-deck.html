@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVET Electromechanical Training - Investment Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+        
+        .deck-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+        }
+        
+        .slide {
+            min-height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            page-break-after: always;
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        /* Title Slide */
+        .title-slide {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .title-slide h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .title-slide .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        .title-slide .tagline {
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Standard Slides */
+        .slide h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid #e74c3c;
+            padding-bottom: 1rem;
+        }
+        
+        .slide h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #e74c3c;
+            margin-bottom: 1.5rem;
+        }
+        
+        .slide p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: #5a6c7d;
+        }
+        
+        /* Problem Slide */
+        .problem-slide {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(192, 57, 43, 0.05) 100%);
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .problem-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .problem-item h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-highlight {
+            background: #e74c3c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+        
+        /* Solution Slide */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .solution-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .solution-icon {
+            width: 80px;
+            height: 80px;
+            background: #e74c3c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        /* Market Size */
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .market-stat {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .market-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #e74c3c;
+            display: block;
+        }
+        
+        .market-label {
+            font-size: 1rem;
+            color: #7f8c8d;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+        
+        /* Traction Slide */
+        .traction-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .traction-metrics {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .metric-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 1rem 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .metric-item:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+        
+        /* Financial Projections */
+        .financial-chart {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .revenue-bars {
+            display: flex;
+            align-items: end;
+            gap: 1rem;
+            height: 200px;
+            margin: 2rem 0;
+        }
+        
+        .revenue-bar {
+            flex: 1;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .year-2025 { height: 30%; }
+        .year-2026 { height: 55%; }
+        .year-2027 { height: 85%; }
+        .year-2028 { height: 100%; }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+        
+        /* Team Slide */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: #e74c3c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-role {
+            color: #e74c3c;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        /* Funding Ask */
+        .funding-slide {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.1) 0%, rgba(22, 160, 133, 0.05) 100%);
+        }
+        
+        .funding-breakdown {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .funding-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid #27ae60;
+        }
+        
+        .funding-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #27ae60;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Call to Action */
+        .cta-slide {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-slide h2 {
+            color: white;
+            border-bottom: 4px solid #e74c3c;
+        }
+        
+        .contact-info {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-item {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+        
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
+        
+        .nav-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Print Styles */
+        @media print {
+            .nav-controls {
+                display: none;
+            }
+            
+            .slide {
+                min-height: auto;
+                page-break-after: always;
+            }
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 30px;
+            }
+            
+            .title-slide h1 {
+                font-size: 2.5rem;
+            }
+            
+            .slide h2 {
+                font-size: 2rem;
+            }
+            
+            .problem-grid,
+            .solution-grid,
+            .team-grid,
+            .funding-breakdown {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .market-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .traction-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="deck-container">
+        <!-- Slide 1: Title -->
+        <div class="slide title-slide" data-slide="1">
+            <div class="slide-number">1/12</div>
+            <h1>TVET Electromechanical Training</h1>
+            <p class="subtitle">Revolutionizing Engineering Technologist Education</p>
+            <div class="tagline">Research-Backed • Industry-Ready • Scalable Solution</div>
+            <div style="margin-top: 3rem; font-size: 1rem; opacity: 0.8;">
+                EMDLab | Universiti Malaysia Pahang Al-Sultan Abdullah<br>
+                Investment Pitch Deck 2025
+            </div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide problem-slide" data-slide="2">
+            <div class="slide-number">2/12</div>
+            <h2>The Critical Skills Gap in TVET</h2>
+            <p>Traditional engineering technologist training programs are failing to meet industry demands, creating a massive skills gap in electromechanical systems.</p>
+            
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <h4>Theoretical Disconnect</h4>
+                    <p>Students learn theory but lack hands-on manufacturing experience</p>
+                    <span class="stat-highlight">70% skill gap</span>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Outdated Curriculum</h4>
+                    <p>Most TVET programs use 20+ year old teaching methodologies</p>
+                    <span class="stat-highlight">60% outdated content</span>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Low Retention Rates</h4>
+                    <p>Students forget 80% of theoretical knowledge within 6 months</p>
+                    <span class="stat-highlight">40% retention rate</span>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Industry Misalignment</h4>
+                    <p>Graduates require 2-3 years additional training to become productive</p>
+                    <span class="stat-highlight">3 year delay</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Our Solution -->
+        <div class="slide" data-slide="3">
+            <div class="slide-number">3/12</div>
+            <h2>Our Revolutionary Approach</h2>
+            <p>A comprehensive, research-proven training methodology that bridges theory with hands-on manufacturing experience through modular induction motor systems.</p>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">🧲</div>
+                    <h3>Electromagnetic Mastery</h3>
+                    <p>FEMM simulation combined with analytical theory for deep understanding of motor principles</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">🔧</div>
+                    <h3>Hands-On Manufacturing</h3>
+                    <p>Students build actual motors from core lamination to final assembly using professional techniques</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">⚡</div>
+                    <h3>Advanced Integration</h3>
+                    <p>VFD programming, testing protocols, and industry-standard compliance procedures</p>
+                </div>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+                <h3 style="color: #e74c3c; margin-bottom: 1rem;">Proven Results</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                    <div><strong style="color: #27ae60;">40%</strong><br>Faster Learning</div>
+                    <div><strong style="color: #27ae60;">85%</strong><br>Skill Retention</div>
+                    <div><strong style="color: #27ae60;">92%</strong><br>Student Satisfaction</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Market Opportunity -->
+        <div class="slide" data-slide="4">
+            <div class="slide-number">4/12</div>
+            <h2>Massive Market Opportunity</h2>
+            <p>The global TVET market is experiencing unprecedented growth, driven by Industry 4.0 and manufacturing reshoring.</p>
+            
+            <div class="market-stats">
+                <div class="market-stat">
+                    <span class="market-number">$52B</span>
+                    <div class="market-label">Global TVET Market Size</div>
+                </div>
+                
+                <div class="market-stat">
+                    <span class="market-number">8.2%</span>
+                    <div class="market-label">Annual Growth Rate</div>
+                </div>
+                
+                <div class="market-stat">
+                    <span class="market-number">2.3M</span>
+                    <div class="market-label">Technical Students Globally</div>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin-top: 2rem;">
+                <h3>Key Market Drivers</h3>
+                <ul style="font-size: 1.1rem; line-height: 2; color: #5a6c7d;">
+                    <li><strong>Manufacturing Renaissance:</strong> Reshoring creates demand for skilled technologists</li>
+                    <li><strong>Industry 4.0:</strong> Smart manufacturing requires advanced technical skills</li>
+                    <li><strong>Government Investment:</strong> $2.1B allocated to TVET modernization programs</li>
+                    <li><strong>Skills Shortage:</strong> 7.8M unfilled technical positions globally by 2030</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: Business Model -->
+        <div class="slide" data-slide="5">
+            <div class="slide-number">5/12</div>
+            <h2>Scalable Business Model</h2>
+            <p>Multiple revenue streams targeting institutions, governments, and industry partners with recurring income potential.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; margin-top: 2rem;">
+                <div>
+                    <h3>Revenue Streams</h3>
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+                        <div style="border-bottom: 1px solid #ecf0f1; padding: 1rem 0;">
+                            <strong>Curriculum Licensing</strong><br>
+                            <span style="color: #7f8c8d;">$50K-200K per institution</span>
+                        </div>
+                        <div style="border-bottom: 1px solid #ecf0f1; padding: 1rem 0;">
+                            <strong>Equipment Packages</strong><br>
+                            <span style="color: #7f8c8d;">$75K-300K per lab setup</span>
+                        </div>
+                        <div style="border-bottom: 1px solid #ecf0f1; padding: 1rem 0;">
+                            <strong>Instructor Training</strong><br>
+                            <span style="color: #7f8c8d;">$25K-50K per program</span>
+                        </div>
+                        <div style="padding: 1rem 0;">
+                            <strong>Ongoing Support</strong><br>
+                            <span style="color: #7f8c8d;">$15K-30K annual subscription</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Target Markets</h3>
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+                        <div style="margin-bottom: 1.5rem;">
+                            <strong style="color: #e74c3c;">Primary:</strong> TVET Institutions<br>
+                            <span style="color: #7f8c8d;">1,200+ institutions globally</span>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <strong style="color: #e74c3c;">Secondary:</strong> Corporate Training<br>
+                            <span style="color: #7f8c8d;">Fortune 500 manufacturing companies</span>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <strong style="color: #e74c3c;">Tertiary:</strong> Government Programs<br>
+                            <span style="color: #7f8c8d;">National workforce development initiatives</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Traction & Validation -->
+        <div class="slide" data-slide="6">
+            <div class="slide-number">6/12</div>
+            <h2>Strong Early Traction</h2>
+            <p>Validated demand with early adopters and strong research foundation from Universiti Malaysia Pahang Al-Sultan Abdullah.</p>
+            
+            <div class="traction-grid">
+                <div>
+                    <h3>Academic Validation</h3>
+                    <div class="traction-metrics">
+                        <div class="metric-item">
+                            <span>Research Papers Published</span>
+                            <span class="metric-value">12</span>
+                        </div>
+                        <div class="metric-item">
+                            <span>Student Cohorts Tested</span>
+                            <span class="metric-value">150+</span>
+                        </div>
+                        <div class="metric-item">
+                            <span>Learning Improvement</span>
+                            <span class="metric-value">40%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span>Skill Retention Rate</span>
+                            <span class="metric-value">85%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Market Interest</h3>
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+                        <ul style="line-height: 2; color: #5a6c7d;">
+                            <li><strong>8 Pilot Programs</strong> scheduled for 2025</li>
+                            <li><strong>3 MOUs signed</strong> with major TVET institutions</li>
+                            <li><strong>$1.2M pipeline</strong> of interested prospects</li>
+                            <li><strong>2 Government partnerships</strong> under discussion</li>
+                            <li><strong>Industry advisory board</strong> with 5 Fortune 500 companies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Competitive Advantage -->
+        <div class="slide" data-slide="7">
+            <div class="slide-number">7/12</div>
+            <h2>Sustainable Competitive Advantages</h2>
+            <p>Multiple moats protect our market position and create barriers to entry for competitors.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
+                <div style="background: linear-gradient(135deg, #e74c3c10, #c0392b10); padding: 2rem; border-radius: 15px; border-left: 5px solid #e74c3c;">
+                    <h4 style="color: #e74c3c; margin-bottom: 1rem;">🏛️ Academic Authority</h4>
+                    <p>Research-backed methodology from leading university with published validation studies</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f39c1210, #e67e2210); padding: 2rem; border-radius: 15px; border-left: 5px solid #f39c12;">
+                    <h4 style="color: #f39c12; margin-bottom: 1rem;">🔬 Proprietary Technology</h4>
+                    <p>Custom modular motor systems and FEMM simulation integration</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #27ae6010, #16a08510); padding: 2rem; border-radius: 15px; border-left: 5px solid #27ae60;">
+                    <h4 style="color: #27ae60; margin-bottom: 1rem;">📊 Data-Driven Optimization</h4>
+                    <p>Continuous improvement through learning analytics and performance tracking</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #3498db10, #2980b910); padding: 2rem; border-radius: 15px; border-left: 5px solid #3498db;">
+                    <h4 style="color: #3498db; margin-bottom: 1rem;">🤝 Network Effects</h4>
+                    <p>Growing community of instructors and institutions sharing best practices</p>
+                </div>
+            </div>
+            
+            <div style="background: #2c3e50; color: white; padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+                <h3 style="color: white; margin-bottom: 1rem;">First-Mover Advantage</h3>
+                <p>Only comprehensive TVET solution combining theory, manufacturing, and VFD integration in a single program</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Financial Projections -->
+        <div class="slide" data-slide="8">
+            <div class="slide-number">8/12</div>
+            <h2>Financial Projections</h2>
+            <p>Conservative projections show strong growth potential with multiple paths to profitability.</p>
+            
+            <div class="financial-chart">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Revenue Projection (2025-2028)</h3>
+                <div class="revenue-bars">
+                    <div class="revenue-bar year-2025">
+                        <span>$480K</span>
+                        <div class="bar-label">2025</div>
+                    </div>
+                    <div class="revenue-bar year-2026">
+                        <span>$1.2M</span>
+                        <div class="bar-label">2026</div>
+                    </div>
+                    <div class="revenue-bar year-2027">
+                        <span>$2.8M</span>
+                        <div class="bar-label">2027</div>
+                    </div>
+                    <div class="revenue-bar year-2028">
+                        <span>$5.2M</span>
+                        <div class="bar-label">2028</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+                    <h4>Key Assumptions</h4>
+                    <ul style="line-height: 2; color: #5a6c7d;">
+                        <li>20 institutions by Year 2</li>
+                        <li>Average deal size: $125K</li>
+                        <li>30% annual growth rate</li>
+                        <li>70% gross margins</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+                    <h4>Path to Profitability</h4>
+                    <ul style="line-height: 2; color: #5a6c7d;">
+                        <li>Break-even: Month 18</li>
+                        <li>Positive cash flow: Month 24</li>
+                        <li>30% EBITDA by Year 3</li>
+                        <li>Multiple exit opportunities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Team -->
+        <div class="slide" data-slide="9">
+            <div class="slide-number">9/12</div>
+            <h2>World-Class Team</h2>
+            <p>Experienced team combining academic expertise, industry knowledge, and entrepreneurial experience.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-avatar">DR</div>
+                    <div class="team-name">Dr. Research Lead</div>
+                    <div class="team-role">Founder & CTO</div>
+                    <p style="font-size: 0.9rem; color: #7f8c8d;">PhD Electrical Engineering, 15+ years motor design experience, 25+ research publications</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-avatar">JD</div>
+                    <div class="team-name">Jane Director</div>
+                    <div class="team-role">CEO</div>
+                    <p style="font-size: 0.9rem; color: #7f8c8d;">Former EdTech executive, scaled 3 companies to $50M+ revenue, 20 years education industry</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-avatar">MS</div>
+                    <div class="team-name">Mike Sales</div>
+                    <div class="team-role">VP Sales</div>
+                    <p style="font-size: 0.9rem; color: #7f8c8d;">Ex-Siemens, built $100M+ technical training division, extensive TVET network</p>
+                </div>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+                <h3>Advisory Board</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 1rem;">
+                    <div>
+                        <strong>Industry Expert</strong><br>
+                        <span style="color: #7f8c8d;">Former GE VP Engineering</span>
+                    </div>
+                    <div>
+                        <strong>TVET Authority</strong><br>
+                        <span style="color: #7f8c8d;">UNESCO Technical Education</span>
+                    </div>
+                    <div>
+                        <strong>Investor Relations</strong><br>
+                        <span style="color: #7f8c8d;">Serial EdTech Entrepreneur</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Funding Ask -->
+        <div class="slide funding-slide" data-slide="10">
+            <div class="slide-number">10/12</div>
+            <h2>Investment Opportunity</h2>
+            <p>Seeking $2.5M Series A funding to accelerate market expansion and product development.</p>
+            
+            <div class="funding-breakdown">
+                <div class="funding-item">
+                    <div class="funding-amount">$1.0M</div>
+                    <h4>Sales & Marketing</h4>
+                    <ul style="color: #7f8c8d; line-height: 1.8;">
+                        <li>Scale sales team (5 reps)</li>
+                        <li>Marketing campaigns</li>
+                        <li>Trade show presence</li>
+                        <li>Lead generation systems</li>
+                    </ul>
+                </div>
+                
+                <div class="funding-item">
+                    <div class="funding-amount">$800K</div>
+                    <h4>Product Development</h4>
+                    <ul style="color: #7f8c8d; line-height: 1.8;">
+                        <li>Enhanced simulation tools</li>
+                        <li>Learning management system</li>
+                        <li>Mobile applications</li>
+                        <li>Analytics platform</li>
+                    </ul>
+                </div>
+                
+                <div class="funding-item">
+                    <div class="funding-amount">$500K</div>
+                    <h4>Operations</h4>
+                    <ul style="color: #7f8c8d; line-height: 1.8;">
+                        <li>Manufacturing scale-up</li>
+                        <li>Quality assurance</li>
+                        <li>Supply chain optimization</li>
+                        <li>Facility expansion</li>
+                    </ul>
+                </div>
+                
+                <div class="funding-item">
+                    <div class="funding-amount">$200K</div>
+                    <h4>Working Capital</h4>
+                    <ul style="color: #7f8c8d; line-height: 1.8;">
+                        <li>Inventory management</li>
+                        <li>Cash flow buffer</li>
+                        <li>Emergency reserves</li>
+                        <li>Growth opportunities</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin-top: 2rem; text-align: center;">
+                <h3 style="color: #27ae60; margin-bottom: 1rem;">Expected Returns</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                    <div>
+                        <strong style="font-size: 1.5rem; color: #27ae60;">5-7x</strong><br>
+                        <span style="color: #7f8c8d;">ROI Potential</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 1.5rem; color: #27ae60;">3-5 years</strong><br>
+                        <span style="color: #7f8c8d;">Exit Timeline</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 1.5rem; color: #27ae60;">$50M+</strong><br>
+                        <span style="color: #7f8c8d;">Target Valuation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Roadmap -->
+        <div class="slide" data-slide="11">
+            <div class="slide-number">11/12</div>
+            <h2>Execution Roadmap</h2>
+            <p>Clear milestones and timeline for achieving market leadership position.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem;">
+                <div style="background: linear-gradient(135deg, #e74c3c10, #c0392b10); padding: 1.5rem; border-radius: 15px; border-top: 5px solid #e74c3c;">
+                    <h4 style="color: #e74c3c;">Q1 2025</h4>
+                    <ul style="font-size: 0.9rem; line-height: 1.8; color: #5a6c7d;">
+                        <li>Complete funding round</li>
+                        <li>Launch 3 pilot programs</li>
+                        <li>Hire key team members</li>
+                        <li>Product refinement</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f39c1210, #e67e2210); padding: 1.5rem; border-radius: 15px; border-top: 5px solid #f39c12;">
+                    <h4 style="color: #f39c12;">Q2-Q3 2025</h4>
+                    <ul style="font-size: 0.9rem; line-height: 1.8; color: #5a6c7d;">
+                        <li>Scale to 10 institutions</li>
+                        <li>Launch online platform</li>
+                        <li>International expansion</li>
+                        <li>Partnership development</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #27ae6010, #16a08510); padding: 1.5rem; border-radius: 15px; border-top: 5px solid #27ae60;">
+                    <h4 style="color: #27ae60;">Q4 2025</h4>
+                    <ul style="font-size: 0.9rem; line-height: 1.8; color: #5a6c7d;">
+                        <li>20+ active customers</li>
+                        <li>Break-even achieved</li>
+                        <li>Series B preparation</li>
+                        <li>Market expansion</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #3498db10, #2980b910); padding: 1.5rem; border-radius: 15px; border-top: 5px solid #3498db;">
+                    <h4 style="color: #3498db;">2026+</h4>
+                    <ul style="font-size: 0.9rem; line-height: 1.8; color: #5a6c7d;">
+                        <li>Global market leader</li>
+                        <li>100+ institutions</li>
+                        <li>Strategic partnerships</li>
+                        <li>Exit opportunities</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: #2c3e50; color: white; padding: 2rem; border-radius: 15px; margin-top: 3rem;">
+                <h3 style="color: white; text-align: center; margin-bottom: 1.5rem;">Success Metrics</h3>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center;">
+                    <div>
+                        <strong style="font-size: 1.8rem; color: #e74c3c;">50+</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Institutions by 2026</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 1.8rem; color: #f39c12;">10,000+</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Students Trained</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 1.8rem; color: #27ae60;">$10M</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Annual Revenue</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 1.8rem; color: #3498db;">5</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Countries</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Call to Action -->
+        <div class="slide cta-slide" data-slide="12">
+            <div class="slide-number">12/12</div>
+            <h2>Join the TVET Revolution</h2>
+            <p style="font-size: 1.4rem; margin-bottom: 2rem;">Partner with us to transform engineering technologist education and create the skilled workforce of tomorrow.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>📧 Email:</strong> investment@emdlab-tvet.com
+                </div>
+                <div class="contact-item">
+                    <strong>📱 Phone:</strong> +60-12-345-6789
+                </div>
+                <div class="contact-item">
+                    <strong>🌐 Website:</strong> www.emdlab-tvet.com
+                </div>
+                <div class="contact-item">
+                    <strong>📍 Location:</strong> Kuantan, Malaysia
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; font-size: 1.2rem;">
+                <strong>Ready to discuss investment opportunities?</strong><br>
+                Schedule a demo and see our methodology in action.
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="prevSlide()" id="prevBtn">←</button>
+        <button class="nav-btn" onclick="nextSlide()" id="nextBtn">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 12;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.style.display = 'none');
+            
+            const targetSlide = document.querySelector(`[data-slide="${n}"]`);
+            if (targetSlide) {
+                targetSlide.style.display = 'flex';
+            }
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (n === 1);
+            document.getElementById('nextBtn').disabled = (n === totalSlides);
+            
+            // Update URL hash for bookmarking
+            window.location.hash = `slide-${n}`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Initialize
+        showSlide(1);
+
+        // Print functionality
+        function printDeck() {
+            window.print();
+        }
+
+        // Add print button (optional)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for slide hash in URL
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#slide-')) {
+                const slideNum = parseInt(hash.replace('#slide-', ''));
+                if (slideNum >= 1 && slideNum <= totalSlides) {
+                    currentSlide = slideNum;
+                    showSlide(currentSlide);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
