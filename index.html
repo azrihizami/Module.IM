@@ -57,16 +57,42 @@
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    margin-top: 1rem;
+    margin: 1.5rem 0 2.5rem 0; /* Better spacing: top margin from stats, bottom margin to buttons */
     font-style: italic;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+}
+
+/* Add container for CTA buttons to ensure proper spacing */
+.hero-cta-buttons {
+    margin-top: 1rem; /* This creates separation from the disclaimer */
+}
+
+.hero-cta-buttons .cta-primary {
+    margin-right: 1rem;
 }
 
 @media (max-width: 768px) {
     .survey-disclaimer {
         font-size: 0.8rem;
+        margin: 1.5rem 0 2rem 0;
+        padding: 0 1rem;
+    }
+    
+    .hero-cta-buttons {
         margin-top: 1.5rem;
     }
+    
+    .hero-cta-buttons .cta-primary,
+    .hero-cta-buttons .cta-secondary {
+        display: block;
+        margin: 0 0 1rem 0;
+        text-align: center;
+    }
+}
 }
         
         .logo-icon {
@@ -1430,12 +1456,14 @@
         <small class="stat-note">*Survey in progress</small>
     </div>
 </div>
-                    <p class="survey-disclaimer">*Preliminary data from ongoing survey of first batch (60 students) at UMPSA</p>
-                    
-                    <div>
-                        <a href="#demo" class="cta-primary">Join Pilot Program</a>
-                        <a href="#methodology" class="cta-secondary">Learn More</a>
-                    </div>
+
+<!-- Move the disclaimer right after the stats, before the CTA buttons -->
+<p class="survey-disclaimer">*Preliminary data from ongoing survey of first batch (60 students) at UMPSA</p>
+
+<div class="hero-cta-buttons">
+    <a href="#demo" class="cta-primary">Join Pilot Program</a>
+    <a href="#methodology" class="cta-secondary">Learn More</a>
+</div>
                 </div>
                 
                 <div class="hero-visual">
