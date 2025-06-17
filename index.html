@@ -44,6 +44,30 @@
             align-items: center;
             gap: 15px;
         }
+
+        .stat-note {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    display: block;
+    margin-top: 0.3rem;
+}
+
+.survey-disclaimer {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin-top: 1rem;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .survey-disclaimer {
+        font-size: 0.8rem;
+        margin-top: 1.5rem;
+    }
+}
         
         .logo-icon {
             width: 45px;
@@ -1390,19 +1414,23 @@
                     <p class="subtitle">Transform your TVET programs with comprehensive hands-on training that bridges theoretical knowledge with real-world manufacturing expertise in induction machine design and testing.</p>
                     
                     <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">40%</span>
-                            <span class="stat-label">Faster Learning</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">85%</span>
-                            <span class="stat-label">Skill Retention</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">92%</span>
-                            <span class="stat-label">Student Satisfaction</span>
-                        </div>
-                    </div>
+    <div class="stat-item">
+        <span class="stat-number">40%</span>
+        <span class="stat-label">Faster Learning</span>
+        <small class="stat-note">*Survey in progress</small>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">85%</span>
+        <span class="stat-label">Skill Retention</span>
+        <small class="stat-note">*Survey in progress</small>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">92%</span>
+        <span class="stat-label">Student Satisfaction</span>
+        <small class="stat-note">*Survey in progress</small>
+    </div>
+</div>
+                    <p class="survey-disclaimer">*Preliminary data from ongoing survey of first batch (60 students) at UMPSA</p>
                     
                     <div>
                         <a href="#demo" class="cta-primary">Join Pilot Program</a>
@@ -1696,7 +1724,10 @@
             <h2>Join the EMDLab TVET Pilot Program</h2>
             <p>Be among the first institutions to implement this research-proven engineering technologist development program.</p>
             
-            <form class="demo-form" onsubmit="handleDemoRequest(event)">
+            <form class="demo-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <input type="hidden" name="_subject" value="New TVET Pilot Program Request - EMDLab">
+                <input type="hidden" name="_next" value="https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/thank-you.html">
+                <input type="hidden" name="_cc" value="your-backup-email@example.com">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First Name *</label>
