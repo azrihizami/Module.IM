@@ -21,12 +21,13 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 20px;
         }
-        
+
+        /* ── HEADER & NAV ─────────────────────────────────────── */
         header {
             background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -36,67 +37,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 1rem 0;
+            position: relative;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
         }
-
-        .stat-note {
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-style: italic;
-    display: block;
-    margin-top: 0.3rem;
-}
-
-.survey-disclaimer {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    margin: 1.5rem 0 2.5rem 0; /* Better spacing: top margin from stats, bottom margin to buttons */
-    font-style: italic;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.4;
-}
-
-/* Add container for CTA buttons to ensure proper spacing */
-.hero-cta-buttons {
-    margin-top: 1rem; /* This creates separation from the disclaimer */
-}
-
-.hero-cta-buttons .cta-primary {
-    margin-right: 1rem;
-}
-
-@media (max-width: 768px) {
-    .survey-disclaimer {
-        font-size: 0.8rem;
-        margin: 1.5rem 0 2rem 0;
-        padding: 0 1rem;
-    }
-    
-    .hero-cta-buttons {
-        margin-top: 1.5rem;
-    }
-    
-    .hero-cta-buttons .cta-primary,
-    .hero-cta-buttons .cta-secondary {
-        display: block;
-        margin: 0 0 1rem 0;
-        text-align: center;
-    }
-}
         
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             border-radius: 8px;
             display: flex;
@@ -104,18 +60,46 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
         
         .logo-text {
-            font-size: 1.6rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #2c3e50;
+            line-height: 1.2;
         }
+
+        /* Hamburger button */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-shrink: 0;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #2c3e50;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
         
         .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 1.8rem;
             list-style: none;
         }
         
@@ -123,18 +107,19 @@
             text-decoration: none;
             color: #2c3e50;
             font-weight: 500;
+            font-size: 0.95rem;
             transition: color 0.3s ease;
+            white-space: nowrap;
         }
         
-        .nav-menu a:hover {
-            color: #e74c3c;
-        }
-        
-        /* University and Lab Logo Section */
+        .nav-menu a:hover { color: #e74c3c; }
+
+        /* ── INSTITUTIONAL LOGOS ──────────────────────────────── */
         .institutional-logos {
             background: #f8f9fa;
-            padding: 1.5rem 0;
+            padding: 1.2rem 0;
             border-bottom: 1px solid #e9ecef;
+            overflow-x: auto;
         }
         
         .logos-container {
@@ -142,13 +127,14 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1.5rem;
         }
         
         .logo-group {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
         
         .institution-logo {
@@ -158,160 +144,52 @@
         }
         
         .logo-image {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: transform 0.3s ease;
         }
-        
-        .logo-image:hover {
-            transform: scale(1.05);
-        }
-        
+        .logo-image:hover { transform: scale(1.05); }
         .logo-image img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
+        .university-logo { width: 70px; height: 70px; }
+        .lab-logo { width: 60px; height: 60px; }
+        .innovation-logo { width: 65px; height: 65px; }
         
-        /* Specific sizing for different logos */
-        .university-logo {
-            width: 80px;
-            height: 80px;
-        }
-        
-        .lab-logo {
-            width: 70px;
-            height: 70px;
-        }
-        
-        .innovation-logo {
-            width: 75px;
-            height: 75px;
-        }
-        
-        .logo-text-info {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .logo-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #2c3e50;
-            line-height: 1.2;
-        }
-        
-        .logo-subtitle {
-            font-size: 0.8rem;
-            color: #6b7280;
-            margin-top: 2px;
-        }
-        
-        .partnership-text {
-            font-size: 0.85rem;
-            color: #6b7280;
-            font-style: italic;
-            align-self: center;
-            font-weight: 500;
-        }
-        
+        .logo-text-info { display: flex; flex-direction: column; }
+        .logo-title { font-size: 0.9rem; font-weight: 600; color: #2c3e50; line-height: 1.2; }
+        .logo-subtitle { font-size: 0.75rem; color: #6b7280; margin-top: 2px; }
+        .partnership-text { font-size: 0.85rem; color: #6b7280; font-style: italic; align-self: center; font-weight: 500; }
+
+        /* ── HERO ─────────────────────────────────────────────── */
         .hero {
-            /* Single overlay for better image visibility */
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.4) 0%, rgba(52, 73, 94, 0.3) 100%),
+            background: linear-gradient(135deg, rgba(44,62,80,0.4) 0%, rgba(52,73,94,0.3) 100%),
                         url('images/hero-background.png');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            padding: 120px 0;
+            padding: 80px 0 60px;
             position: relative;
             color: white;
             min-height: 100vh;
-        }
-        
-        /* Alternative hero backgrounds with single overlay */
-        
-        /* Option 1: Engineering Lab/Workshop */
-        .hero.engineering-lab {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.35) 0%, rgba(52, 73, 94, 0.25) 100%),
-                        url('images/engineering-lab-hero.jpg');
-        }
-        
-        /* Option 2: Electric Motor/Manufacturing */
-        .hero.motor-manufacturing {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.3) 0%, rgba(52, 73, 94, 0.2) 100%),
-                        url('images/motor-manufacturing-hero.jpg');
-        }
-        
-        /* Option 3: TVET Students Learning */
-        .hero.tvet-students {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.35) 0%, rgba(52, 73, 94, 0.25) 100%),
-                        url('images/tvet-students-hero.jpg');
-        }
-        
-        /* Option 4: High-tech Laboratory */
-        .hero.high-tech-lab {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.3) 0%, rgba(52, 73, 94, 0.2) 100%),
-                        url('images/high-tech-lab-hero.jpg');
-        }
-        
-        /* Fallback pattern background if image fails to load */
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="transparent" width="1920" height="1080"/><circle fill="%23ffffff" cx="400" cy="300" r="2" opacity="0.1"/><circle fill="%23ffffff" cx="1200" cy="600" r="1.5" opacity="0.08"/><circle fill="%23ffffff" cx="800" cy="200" r="1" opacity="0.1"/><circle fill="%23ffffff" cx="1400" cy="400" r="2" opacity="0.06"/><path stroke="%23ffffff" stroke-width="1" fill="none" d="M200,500 Q600,300 1000,500 T1600,500" opacity="0.05"/></svg>');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-            pointer-events: none;
+            display: flex;
+            align-items: center;
         }
         
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.3) 0%, rgba(52, 73, 94, 0.2) 100%);
+            inset: 0;
+            background: linear-gradient(135deg, rgba(44,62,80,0.3) 0%, rgba(52,73,94,0.2) 100%);
             z-index: 1;
         }
         
-        .hero .container {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero-content h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-content .subtitle {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            line-height: 1.5;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .hero .container { position: relative; z-index: 2; width: 100%; }
         
         .hero-grid {
             display: grid;
@@ -320,57 +198,95 @@
             align-items: center;
         }
         
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        
         .hero-stats {
             display: flex;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
         
         .stat-item {
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem 0.8rem;
             border-radius: 10px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+            flex: 1;
+            min-width: 80px;
         }
         
         .stat-number {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #ffffff;
             display: block;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
-        /* Remove the old custom background section */
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-note {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.7);
+            font-style: italic;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        .survey-disclaimer {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.8);
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            max-width: 400px;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.4;
+        }
         
-        /* Enhanced Pulse Animation Button for Join Pilot Program */
         .cta-primary {
             position: relative;
             display: inline-block;
             background: linear-gradient(45deg, #e74c3c, #c0392b);
             color: white;
-            padding: 20px 40px;
+            padding: 18px 36px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 8px 32px rgba(231, 76, 60, 0.4);
+            box-shadow: 0 8px 32px rgba(231,76,60,0.4);
             animation: pulse 2s infinite;
             transition: all 0.3s ease;
-            margin-right: 1rem;
         }
         
         .cta-primary::before {
             content: '';
             position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
             background: linear-gradient(45deg, #e74c3c, #c0392b, #e74c3c);
             border-radius: 50px;
             z-index: -1;
@@ -378,1039 +294,468 @@
             animation: pulseRing 2s infinite;
         }
         
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-        
-        @keyframes pulseRing {
-            0% {
-                transform: scale(1);
-                opacity: 0.7;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.3;
-            }
-            100% {
-                transform: scale(1.15);
-                opacity: 0;
-            }
-        }
-        
         .cta-primary:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 40px rgba(231, 76, 60, 0.6);
+            transform: scale(1.08);
+            box-shadow: 0 12px 40px rgba(231,76,60,0.6);
             animation-play-state: paused;
         }
         
-        /* Enhanced Secondary Button with Rounded Shape */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes pulseRing {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+            100% { transform: scale(1.15); opacity: 0; }
+        }
+        
         .cta-secondary {
             display: inline-block;
             background: transparent;
             color: white;
-            padding: 18px 35px;
+            padding: 16px 30px;
             text-decoration: none;
-            border: 2px solid rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(255,255,255,0.6);
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
         
         .cta-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.1);
             border-color: white;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
         }
         
+        /* ── HERO VISUAL / CAROUSEL ───────────────────────────── */
         .hero-visual {
-            position: relative;
             background: white;
             border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             overflow: hidden;
-        }
-        
-        .hero-visual::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(52, 73, 94, 0.1) 0%, rgba(44, 62, 80, 0.05) 100%), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><rect fill="%23f8f9fa" width="1000" height="600"/><circle fill="%23e74c3c" cx="200" cy="150" r="3"/><circle fill="%23e74c3c" cx="800" cy="450" r="2"/><circle fill="%233498db" cx="150" cy="400" r="2"/><circle fill="%233498db" cx="850" cy="200" r="3"/><path stroke="%23bdc3c7" stroke-width="1" fill="none" d="M100,300 Q300,200 500,250 T900,300"/><path stroke="%23ecf0f1" stroke-width="2" fill="none" d="M50,400 Q400,350 600,400 T950,380"/></svg>');
-            background-size: cover;
-            background-position: center;
-            border-radius: 15px;
-            z-index: 1;
-        }
-        
-        .mvp-showcase {
-            position: relative;
-            z-index: 2;
         }
         
         .mvp-image {
             width: 100%;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.95);
+            height: 280px;
+            background: #f8f9fa;
             border-radius: 10px;
-            margin-bottom: 1.5rem;
-            position: relative;
+            margin-bottom: 1.2rem;
             overflow: hidden;
             border: 2px solid #e9ecef;
         }
         
-        .image-carousel {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-        
+        .image-carousel { width: 100%; height: 100%; position: relative; overflow: hidden; }
         .carousel-container {
-            width: 300%;
-            height: 100%;
+            width: 300%; height: 100%;
             display: flex;
             animation: slideImages 12s infinite;
         }
-        
         .carousel-slide {
-            width: 33.333%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            overflow: hidden;
+            width: 33.333%; height: 100%;
+            display: flex; align-items: center; justify-content: center; flex-direction: column;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
         }
-        
-        /* Background image support for carousel slides */
-        .carousel-slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.3;
-            z-index: 1;
-        }
-        
-        /* Custom background images for each slide */
-        .femm-slide::before {
-            background-image: url('images/FEMM.png');
-            background: linear-gradient(rgba(52, 152, 219, 0.2), rgba(41, 128, 185, 0.3)), 
-                        url('images/FEMM.png');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .manufacturing-slide::before {
-            background-image: url('images/Modular-IM.png');
-            background: linear-gradient(rgba(243, 156, 18, 0.2), rgba(230, 126, 34, 0.3)), 
-                        url('images/Modular-IM.png');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .vfd-slide::before {
-            background-image: url('images/VFD.png');
-            background: linear-gradient(rgba(39, 174, 96, 0.2), rgba(22, 160, 133, 0.3)), 
-                        url('images/VFD.png');
-            background-size: cover;
-            background-position: center;
-        }
-        
+
+        .femm-slide { background: linear-gradient(135deg, #3498db20, #2980b920); }
+        .manufacturing-slide { background: linear-gradient(135deg, #f39c1220, #e67e2220); }
+        .vfd-slide { background: linear-gradient(135deg, #27ae6020, #16a08520); }
+
         .slide-content {
-            text-align: center;
-            color: #2c3e50;
-            z-index: 3;
-            position: relative;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem 1.5rem;
-            border-radius: 12px;
+            text-align: center; color: #2c3e50;
+            background: rgba(255,255,255,0.92);
+            padding: 1.5rem 1.2rem; border-radius: 12px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            max-width: 220px;
         }
         
-        .slide-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-        }
-        
-        .slide-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-        
-        .slide-description {
-            font-size: 0.9rem;
-            color: #5a6c7d;
-            max-width: 200px;
-            line-height: 1.4;
-        }
-        
-        /* Fallback gradients when images are not available */
-        .femm-slide {
-            background: linear-gradient(135deg, #3498db20, #2980b920);
-        }
-        
-        .manufacturing-slide {
-            background: linear-gradient(135deg, #f39c1220, #e67e2220);
-        }
-        
-        .vfd-slide {
-            background: linear-gradient(135deg, #27ae6020, #16a08520);
-        }
+        .slide-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+        .slide-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; color: #2c3e50; }
+        .slide-description { font-size: 0.85rem; color: #5a6c7d; line-height: 1.4; }
         
         .carousel-indicators {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-            z-index: 4;
+            position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px; z-index: 4;
         }
-        
         .indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(44, 62, 80, 0.3);
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(44,62,80,0.3);
             animation: indicatorProgress 12s infinite;
         }
-        
-        .indicator:nth-child(1) {
-            animation-delay: 0s;
-        }
-        
-        .indicator:nth-child(2) {
-            animation-delay: 4s;
-        }
-        
-        .indicator:nth-child(3) {
-            animation-delay: 8s;
-        }
+        .indicator:nth-child(2) { animation-delay: 4s; }
+        .indicator:nth-child(3) { animation-delay: 8s; }
         
         @keyframes slideImages {
-            0%, 30% {
-                transform: translateX(0%);
-            }
-            33.33%, 63.33% {
-                transform: translateX(-33.333%);
-            }
-            66.66%, 96.66% {
-                transform: translateX(-66.666%);
-            }
-            100% {
-                transform: translateX(0%);
-            }
+            0%, 30% { transform: translateX(0%); }
+            33.33%, 63.33% { transform: translateX(-33.333%); }
+            66.66%, 96.66% { transform: translateX(-66.666%); }
+            100% { transform: translateX(0%); }
         }
-        
         @keyframes indicatorProgress {
-            0% {
-                background: rgba(231, 76, 60, 0.8);
-                transform: scale(1.2);
-            }
-            33% {
-                background: rgba(44, 62, 80, 0.3);
-                transform: scale(1);
-            }
-            100% {
-                background: rgba(44, 62, 80, 0.3);
-                transform: scale(1);
-            }
+            0% { background: rgba(231,76,60,0.8); transform: scale(1.2); }
+            33% { background: rgba(44,62,80,0.3); transform: scale(1); }
+            100% { background: rgba(44,62,80,0.3); transform: scale(1); }
         }
         
         .mvp-features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            position: relative;
-            z-index: 2;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
         }
-        
         .mvp-feature {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #5a6c7d;
-            border: 1px solid #e9ecef;
-            transition: all 0.3s ease;
+            background: #f8f9fa; padding: 0.8rem 0.5rem;
+            border-radius: 8px; text-align: center;
+            font-size: 0.82rem; font-weight: 500; color: #5a6c7d;
+            border: 1px solid #e9ecef; transition: all 0.3s ease;
         }
-        
-        .mvp-feature:hover {
-            background: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .mvp-feature.active {
-            background: #e74c3c;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
-        }
+        .mvp-feature.active { background: #e74c3c; color: white; box-shadow: 0 4px 12px rgba(231,76,60,0.3); }
 
-        /* NEW: Hero Video Section */
+        /* ── VIDEO SECTION ────────────────────────────────────── */
         .hero-video-section {
-            padding: 100px 0;
+            padding: 80px 0;
             background: #f8f9fa;
-            position: relative;
         }
         
-        .hero-video-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(231, 76, 60, 0.02) 0%, rgba(192, 57, 43, 0.02) 100%);
-            z-index: 1;
-        }
-        
-        .hero-video-section .container {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .video-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .video-header h2 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-        
-        .video-header p {
-            font-size: 1.3rem;
-            color: #5a6c7d;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
+        .video-header { text-align: center; margin-bottom: 3rem; }
+        .video-header h2 { font-size: 2.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 1rem; }
+        .video-header p { font-size: 1.1rem; color: #5a6c7d; max-width: 600px; margin: 0 auto; line-height: 1.6; }
         
         .video-container {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            padding: 1.5rem;
+            max-width: 900px; margin: 0 auto;
+            background: white; border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.1);
+            overflow: hidden; padding: 1.2rem;
         }
-        
         .video-wrapper {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            position: relative; width: 100%; height: 0;
+            padding-bottom: 56.25%;
+            border-radius: 12px; overflow: hidden;
         }
-        
         .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 15px;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            border: none; border-radius: 12px;
         }
+
+        /* ── SECTIONS ─────────────────────────────────────────── */
+        .section { padding: 80px 0; }
         
-        .video-play-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: rgba(231, 76, 60, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-            opacity: 0;
-            animation: fadeInPlay 1s ease 0.5s forwards;
-        }
+        .section-header { text-align: center; margin-bottom: 3.5rem; }
+        .section-header h2 { font-size: 2.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 1rem; }
+        .section-header p { font-size: 1.1rem; color: #5a6c7d; max-width: 600px; margin: 0 auto; }
         
-        .video-play-overlay::before {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 25px solid white;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            margin-left: 5px;
-        }
-        
-        .video-play-overlay:hover {
-            background: #e74c3c;
-            transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
-        }
-        
-        @keyframes fadeInPlay {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-        
-        .video-highlights {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .video-highlight {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            border: 1px solid #e9ecef;
-            transition: all 0.3s ease;
-        }
-        
-        .video-highlight:hover {
-            background: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .video-highlight-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            color: white;
-        }
-        
-        .video-highlight h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-        
-        .video-highlight p {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            line-height: 1.5;
-        }
-        
-        .section {
-            padding: 100px 0;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-        
-        .section-header p {
-            font-size: 1.2rem;
-            color: #5a6c7d;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .methodology {
-            background: #f8f9fa;
-        }
+        /* ── METHODOLOGY ──────────────────────────────────────── */
+        .methodology { background: #f8f9fa; }
         
         .methodology-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;
         }
-        
         .methodology-card {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-            position: relative;
+            background: white; padding: 2.5rem 1.8rem;
+            border-radius: 12px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease; position: relative;
         }
-        
-        .methodology-card:hover {
-            transform: translateY(-5px);
-        }
-        
+        .methodology-card:hover { transform: translateY(-5px); }
         .methodology-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: #e74c3c;
-            border-radius: 0 0 4px 4px;
+            content: ''; position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%); width: 60px; height: 4px;
+            background: #e74c3c; border-radius: 0 0 4px 4px;
         }
-        
-        .methodology-card:nth-child(2)::before {
-            background: #f39c12;
-        }
-        
-        .methodology-card:nth-child(3)::before {
-            background: #27ae60;
-        }
+        .methodology-card:nth-child(2)::before { background: #f39c12; }
+        .methodology-card:nth-child(3)::before { background: #27ae60; }
         
         .method-icon {
-            width: 80px;
-            height: 80px;
-            background: #e74c3c;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
-            color: white;
+            width: 75px; height: 75px; background: #e74c3c;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem; font-size: 1.8rem; color: white;
         }
+        .methodology-card:nth-child(2) .method-icon { background: #f39c12; }
+        .methodology-card:nth-child(3) .method-icon { background: #27ae60; }
+        .method-title { font-size: 1.3rem; font-weight: 600; color: #2c3e50; margin-bottom: 1rem; }
+        .method-description { color: #5a6c7d; line-height: 1.6; }
         
-        .methodology-card:nth-child(2) .method-icon {
-            background: #f39c12;
-        }
-        
-        .methodology-card:nth-child(3) .method-icon {
-            background: #27ae60;
-        }
-        
-        .method-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-        
-        .method-description {
-            color: #5a6c7d;
-            line-height: 1.6;
-        }
-        
-        /* New Curriculum Overview Section */
-        .curriculum-overview {
-            background: white;
-        }
-        
-        .curriculum-preview {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .curriculum-content h3 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-        }
-        
-        .curriculum-highlights {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .highlight-item {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #e74c3c;
-        }
-        
-        .highlight-item h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-        
-        .highlight-item p {
-            color: #5a6c7d;
-            font-size: 0.9rem;
-        }
-        
+        /* ── CURRICULUM ───────────────────────────────────────── */
+        .curriculum-overview { background: white; }
+        .curriculum-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .curriculum-content h3 { font-size: 1.8rem; font-weight: 600; color: #2c3e50; margin-bottom: 1.5rem; }
+        .curriculum-highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
+        .highlight-item { background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #e74c3c; }
+        .highlight-item h4 { font-size: 1rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.4rem; }
+        .highlight-item p { color: #5a6c7d; font-size: 0.85rem; }
         .curriculum-cta {
-            background: #e74c3c;
-            color: white;
-            padding: 18px 35px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: inline-block;
+            background: #e74c3c; color: white; padding: 16px 32px;
+            text-decoration: none; border-radius: 6px; font-weight: 600;
+            font-size: 1rem; transition: all 0.3s ease; display: inline-block;
         }
+        .curriculum-cta:hover { background: #c0392b; transform: translateY(-2px); }
         
-        .curriculum-cta:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
-        }
-        
-        .curriculum-visual {
-            position: relative;
-        }
-        
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-        
+        .modules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
         .module-preview {
-            background: white;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
+            background: white; border: 2px solid #e9ecef;
+            border-radius: 8px; padding: 1.2rem; text-align: center;
             transition: all 0.3s ease;
         }
-        
-        .module-preview:hover {
-            border-color: #e74c3c;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-        
+        .module-preview:hover { border-color: #e74c3c; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
         .module-number {
-            width: 40px;
-            height: 40px;
-            background: #e74c3c;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin: 0 auto 1rem;
+            width: 38px; height: 38px; background: #e74c3c; color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: bold; margin: 0 auto 0.8rem;
         }
+        .module-preview h4 { font-size: 0.95rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.4rem; }
+        .module-preview p { font-size: 0.78rem; color: #7f8c8d; }
         
-        .module-preview h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-        
-        .module-preview p {
-            font-size: 0.8rem;
-            color: #7f8c8d;
-        }
-        
-        .value-props {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .value-content h3 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-        }
-        
-        .value-list {
-            list-style: none;
-        }
-        
+        /* ── BENEFITS ─────────────────────────────────────────── */
+        .value-props { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .value-content h3 { font-size: 1.8rem; font-weight: 600; color: #2c3e50; margin-bottom: 1.5rem; }
+        .value-list { list-style: none; }
         .value-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid #ecf0f1;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
+            padding: 0.9rem 0; border-bottom: 1px solid #ecf0f1;
+            display: flex; align-items: flex-start; gap: 1rem;
         }
+        .value-list li:last-child { border-bottom: none; }
+        .check-icon { color: #27ae60; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+        .value-visual { background: white; border-radius: 12px; padding: 1.8rem; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
         
-        .value-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .check-icon {
-            color: #27ae60;
-            font-size: 1.2rem;
-            margin-top: 2px;
-        }
-        
-        .value-visual {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .testimonials {
-            background: #2c3e50;
-            color: white;
-        }
-        
+        /* ── TESTIMONIALS ─────────────────────────────────────── */
+        .testimonials { background: #2c3e50; color: white; }
         .testimonials .section-header h2,
-        .testimonials .section-header p {
-            color: white;
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-        }
-        
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2.5rem;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .quote {
-            font-size: 1.1rem;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        
-        .author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
+        .testimonials .section-header p { color: white; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+        .testimonial-card { background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; backdrop-filter: blur(10px); }
+        .quote { font-size: 1rem; font-style: italic; margin-bottom: 1.5rem; line-height: 1.6; }
+        .author { display: flex; align-items: center; gap: 1rem; }
         .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #e74c3c;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
+            width: 48px; height: 48px; background: #e74c3c; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 1.1rem; flex-shrink: 0;
         }
+        .author-info h4 { font-weight: 600; margin-bottom: 0.2rem; }
+        .author-info p { font-size: 0.85rem; opacity: 0.8; }
         
-        .author-info h4 {
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-        
-        .author-info p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
+        /* ── CTA / FORM SECTION ───────────────────────────────── */
         .cta-section {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            text-align: center;
+            color: white; text-align: center;
+            padding: 80px 0;
         }
-        
-        .cta-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
+        .cta-section h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
+        .cta-section p { font-size: 1.1rem; margin-bottom: 2.5rem; opacity: 0.9; }
         
         .demo-form {
-            background: white;
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            background: white; max-width: 520px;
+            margin: 0 auto; padding: 2.5rem;
+            border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
             color: #2c3e50;
         }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem; }
         .form-group input,
         .form-group select,
         .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            font-family: inherit;
+            width: 100%; padding: 13px 15px;
+            border: 2px solid #e9ecef; border-radius: 6px;
+            font-size: 1rem; transition: border-color 0.3s ease;
+            font-family: inherit; appearance: none; -webkit-appearance: none;
         }
-        
         .form-group input:focus,
         .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #e74c3c;
-        }
-        
+        .form-group textarea:focus { outline: none; border-color: #e74c3c; }
         .submit-btn {
-            background: #e74c3c;
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
+            background: #e74c3c; color: white; padding: 16px 40px;
+            border: none; border-radius: 6px; font-size: 1.05rem;
+            font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
+        .submit-btn:hover { background: #c0392b; transform: translateY(-2px); }
+        .submit-btn:active { transform: translateY(0); }
         
-        .submit-btn:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-        }
+        /* ── FOOTER ───────────────────────────────────────────── */
+        footer { background: #2c3e50; color: white; padding: 3rem 0; }
+        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+        .footer-brand h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+        .footer-brand p { opacity: 0.8; line-height: 1.6; font-size: 0.9rem; }
+        .footer-links h4 { margin-bottom: 1rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.5rem; }
+        .footer-links a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease; font-size: 0.9rem; }
+        .footer-links a:hover { opacity: 1; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 2rem; padding-top: 2rem; text-align: center; opacity: 0.6; font-size: 0.85rem; }
         
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 3rem 0;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .footer-brand h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-brand p {
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-        
-        .footer-links h4 {
-            margin-bottom: 1rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 2rem;
-            padding-top: 2rem;
-            text-align: center;
-            opacity: 0.6;
-        }
-        
-        /* Footer Logo Section */
         .footer-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; justify-content: center; align-items: center;
+            gap: 3rem; margin-top: 2rem; padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            flex-wrap: wrap;
         }
-        
         .footer-logo-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            opacity: 0.9;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 0.8rem; opacity: 0.9; transition: opacity 0.3s ease, transform 0.3s ease;
         }
-        
-        .footer-logo-item:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-        }
-        
-        .footer-logo-image {
-            width: auto;        /* ← Allow natural width */
-            height: 60px;       /* ← Keep height constraint */
-            /* background: rgba(255, 255, 255, 0.1); ← REMOVE */
-            /* border-radius: 8px; ← REMOVE */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;         /* ← Remove padding */
-            /* backdrop-filter: blur(10px); ← REMOVE */
-            /* border: 1px solid rgba(255, 255, 255, 0.2); ← REMOVE */
-        }
-        
-        .footer-logo-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* filter: brightness(0) invert(1); ← REMOVE OR COMMENT OUT */
-              opacity: 1; /* ← Change from 0.9 to 1 for full opacity */
-        }
-        
-        .footer-logo-text {
-            font-size: 0.75rem;
-            line-height: 1.3;
-            text-align: center;
-            opacity: 0.8;
-        }
-        
-        .footer-logo-text .main-title {
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-        
-        .footer-logo-text .subtitle {
-            font-size: 0.7rem;
-            opacity: 0.7;
-        }
-        
+        .footer-logo-item:hover { opacity: 1; transform: translateY(-2px); }
+        .footer-logo-image { height: 55px; display: flex; align-items: center; justify-content: center; }
+        .footer-logo-image img { height: 100%; width: auto; object-fit: contain; }
+        .footer-logo-text { font-size: 0.72rem; line-height: 1.3; text-align: center; opacity: 0.8; }
+        .footer-logo-text .main-title { font-weight: 600; margin-bottom: 2px; }
+        .footer-logo-text .subtitle { font-size: 0.68rem; opacity: 0.7; }
+
+
+        /* ═══════════════════════════════════════════════════════
+           MOBILE STYLES  ≤ 768px
+        ══════════════════════════════════════════════════════ */
         @media (max-width: 768px) {
-            .hero-grid,
-            .value-props,
-            .testimonial-grid,
-            .curriculum-preview {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
+
+            .container { padding: 0 16px; }
+
+            /* NAV */
+            .nav-toggle { display: flex; }
+            .logo-text { font-size: 0.85rem; }
             
-            .methodology-grid,
-            .video-highlights {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: calc(100% + 0px);
+                left: 0; right: 0;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                border-top: 1px solid #e9ecef;
+                z-index: 999;
             }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .nav-menu.open { display: flex; }
+            .nav-menu li { border-bottom: 1px solid #f0f0f0; }
+            .nav-menu a {
+                display: block;
+                padding: 14px 20px;
+                font-size: 1rem;
             }
 
-            .video-header h2 {
-                font-size: 2.2rem;
+            /* INSTITUTIONAL LOGOS */
+            .logos-container { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .logo-group { gap: 1.5rem; }
+            .logo-image, .university-logo, .lab-logo, .innovation-logo { width: 50px; height: 50px; }
+
+            /* HERO */
+            .hero {
+                padding: 70px 0 50px;
+                min-height: auto;
+                background-attachment: scroll; /* fixes parallax lag on iOS/Android */
             }
-            
-            .hero-stats {
-                justify-content: center;
-            }
-            
-            .curriculum-highlights,
-            .modules-grid {
+            .hero-grid {
                 grid-template-columns: 1fr;
+                gap: 2.5rem;
             }
-            
-            .form-row {
-                grid-template-columns: 1fr;
+            .hero-content h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
             }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .footer-logos {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            
-            .cta-primary,
-            .cta-secondary {
+            .hero-content .subtitle {
                 font-size: 1rem;
-                padding: 16px 32px;
+                margin-bottom: 1.5rem;
             }
+            .hero-stats {
+                gap: 0.8rem;
+                margin-bottom: 1rem;
+            }
+            .stat-item { padding: 1rem 0.6rem; }
+            .stat-number { font-size: 1.6rem; }
+            .stat-label { font-size: 0.7rem; }
+            .stat-note { font-size: 0.6rem; }
+            .survey-disclaimer { font-size: 0.78rem; margin-bottom: 1.2rem; }
+            .hero-cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
+            }
+            .cta-primary, .cta-secondary {
+                text-align: center;
+                padding: 16px 24px;
+                font-size: 0.95rem;
+            }
+
+            /* HERO VISUAL */
+            .hero-visual { padding: 1rem; }
+            .mvp-image { height: 200px; }
+            .slide-content { padding: 1rem; max-width: 180px; }
+            .slide-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+            .slide-title { font-size: 0.95rem; }
+            .slide-description { font-size: 0.78rem; }
+            .mvp-feature { font-size: 0.75rem; padding: 0.6rem 0.3rem; }
+
+            /* VIDEO */
+            .hero-video-section { padding: 50px 0; }
+            .video-header h2 { font-size: 1.8rem; }
+            .video-header p { font-size: 0.95rem; }
+            .video-container { padding: 0.8rem; border-radius: 14px; }
+
+            /* SECTIONS */
+            .section { padding: 60px 0; }
+            .section-header { margin-bottom: 2.5rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .section-header p { font-size: 0.95rem; }
+
+            /* METHODOLOGY */
+            .methodology-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .methodology-card { padding: 2rem 1.5rem; }
+            .method-icon { width: 65px; height: 65px; font-size: 1.6rem; }
+            .method-title { font-size: 1.2rem; }
+
+            /* CURRICULUM */
+            .curriculum-preview { grid-template-columns: 1fr; gap: 2rem; }
+            .curriculum-content h3 { font-size: 1.5rem; }
+            .curriculum-highlights { grid-template-columns: 1fr; gap: 0.8rem; }
+            .modules-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .module-preview { padding: 1rem; }
+            .module-preview h4 { font-size: 0.85rem; }
+            .curriculum-cta { width: 100%; text-align: center; padding: 15px; }
+
+            /* BENEFITS */
+            .value-props { grid-template-columns: 1fr; gap: 2rem; }
+            .value-content h3 { font-size: 1.5rem; }
+            .value-list li { font-size: 0.92rem; }
+
+            /* TESTIMONIALS */
+            .testimonial-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .testimonial-card { padding: 1.5rem; }
+            .quote { font-size: 0.95rem; }
+
+            /* CTA FORM */
+            .cta-section { padding: 60px 0; }
+            .cta-section h2 { font-size: 1.8rem; }
+            .cta-section p { font-size: 0.95rem; }
+            .demo-form { padding: 1.5rem; margin: 0 4px; border-radius: 10px; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 16px; /* prevents iOS zoom on focus */
+                padding: 14px 12px;
+            }
+            .submit-btn { font-size: 1rem; padding: 16px; }
+
+            /* FOOTER */
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-logos { flex-direction: column; gap: 1.5rem; align-items: center; }
+        }
+
+        /* ── Small phones ≤ 400px ─────────────────────────────── */
+        @media (max-width: 400px) {
+            .hero-content h1 { font-size: 1.75rem; }
+            .stat-number { font-size: 1.4rem; }
+            .modules-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1421,7 +766,10 @@
                 <div class="logo-icon">TET</div>
                 <div class="logo-text">TVET Electromechanical Training</div>
             </div>
-            <ul class="nav-menu">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#methodology">Methodology</a></li>
                 <li><a href="curriculum.html">Curriculum</a></li>
                 <li><a href="#benefits">Benefits</a></li>
@@ -1439,30 +787,29 @@
                     <p class="subtitle">Transform your TVET programs with comprehensive hands-on training that bridges theoretical knowledge with real-world manufacturing expertise in induction machine design and testing.</p>
                     
                     <div class="hero-stats">
-    <div class="stat-item">
-        <span class="stat-number">40%</span>
-        <span class="stat-label">Faster Learning</span>
-        <small class="stat-note">*Survey in progress</small>
-    </div>
-    <div class="stat-item">
-        <span class="stat-number">85%</span>
-        <span class="stat-label">Skill Retention</span>
-        <small class="stat-note">*Survey in progress</small>
-    </div>
-    <div class="stat-item">
-        <span class="stat-number">92%</span>
-        <span class="stat-label">Student Satisfaction</span>
-        <small class="stat-note">*Survey in progress</small>
-    </div>
-</div>
+                        <div class="stat-item">
+                            <span class="stat-number">40%</span>
+                            <span class="stat-label">Faster Learning</span>
+                            <small class="stat-note">*Survey in progress</small>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">85%</span>
+                            <span class="stat-label">Skill Retention</span>
+                            <small class="stat-note">*Survey in progress</small>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">92%</span>
+                            <span class="stat-label">Student Satisfaction</span>
+                            <small class="stat-note">*Survey in progress</small>
+                        </div>
+                    </div>
 
-<!-- Move the disclaimer right after the stats, before the CTA buttons -->
-<p class="survey-disclaimer">*Preliminary data from ongoing survey of first batch (60 students) at UMPSA</p>
+                    <p class="survey-disclaimer">*Preliminary data from ongoing survey of first batch (60 students) at UMPSA</p>
 
-<div class="hero-cta-buttons">
-    <a href="#demo" class="cta-primary">Join Pilot Program</a>
-    <a href="#methodology" class="cta-secondary">Learn More</a>
-</div>
+                    <div class="hero-cta-buttons">
+                        <a href="#demo" class="cta-primary">Join Pilot Program</a>
+                        <a href="#methodology" class="cta-secondary">Learn More</a>
+                    </div>
                 </div>
                 
                 <div class="hero-visual">
@@ -1470,7 +817,6 @@
                         <div class="mvp-image">
                             <div class="image-carousel">
                                 <div class="carousel-container">
-                                    <!-- FEMM Simulation Slide -->
                                     <div class="carousel-slide femm-slide">
                                         <div class="slide-content">
                                             <div class="slide-icon">🧮</div>
@@ -1478,8 +824,6 @@
                                             <p class="slide-description">Finite Element Analysis for electromagnetic field simulation and motor optimization</p>
                                         </div>
                                     </div>
-                                    
-                                    <!-- Manufacturing Slide -->
                                     <div class="carousel-slide manufacturing-slide">
                                         <div class="slide-content">
                                             <div class="slide-icon">🔧</div>
@@ -1487,8 +831,6 @@
                                             <p class="slide-description">Hands-on core lamination, winding assembly, and complete motor construction</p>
                                         </div>
                                     </div>
-                                    
-                                    <!-- VFD Testing Slide -->
                                     <div class="carousel-slide vfd-slide">
                                         <div class="slide-content">
                                             <div class="slide-icon">⚡</div>
@@ -1497,8 +839,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Carousel Indicators -->
                                 <div class="carousel-indicators">
                                     <div class="indicator"></div>
                                     <div class="indicator"></div>
@@ -1517,19 +857,14 @@
         </div>
     </section>
 
-        <!-- NEW: Hero Video Section -->
     <section class="hero-video-section" id="video">
         <div class="container">
             <div class="video-header">
                 <h2>See Our Training Program in Action</h2>
                 <p>Experience the comprehensive hands-on approach that's transforming engineering technologist education across TVET institutions</p>
             </div>
-            
             <div class="video-container">
-                <div class="video-wrapper" id="videoWrapper">
-                    <!-- Replace YOUR_YOUTUBE_VIDEO_ID with your actual YouTube video ID -->
-                    <!-- Example: if your YouTube URL is https://www.youtube.com/watch?v=dQw4w9WgXcQ -->
-                    <!-- Then YOUR_YOUTUBE_VIDEO_ID would be: dQw4w9WgXcQ -->
+                <div class="video-wrapper">
                     <iframe 
                         id="heroVideo"
                         src="https://www.youtube.com/embed/UetDVG1UXKg?enablejsapi=1&rel=0&modestbranding=1"
@@ -1537,8 +872,6 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                     </iframe>
-                    <div class="video-play-overlay" onclick="playVideo()">
-                    </div>
                 </div>
             </div>
         </div>
@@ -1550,20 +883,17 @@
                 <h2>Comprehensive TVET Learning Methodology</h2>
                 <p>Research-based approach developed by EMDLab at Universiti Malaysia Pahang Al-Sultan Abdullah for comprehensive engineering technologist development</p>
             </div>
-            
             <div class="methodology-grid">
                 <div class="methodology-card">
                     <div class="method-icon">🧲</div>
                     <h3 class="method-title">Theory & Electromagnetic Design</h3>
                     <p class="method-description">Master electromechanical energy conversion principles, induction motor theory, and FE simulation using FEMM. Learn Faraday's law, Lorentz force, and rotating magnetic field concepts with practical applications.</p>
                 </div>
-                
                 <div class="methodology-card">
                     <div class="method-icon">🔧</div>
                     <h3 class="method-title">Manufacturing & Assembly</h3>
                     <p class="method-description">Experience hands-on core lamination processes, precision winding assembly, and complete motor construction. Build actual motors using professional manufacturing techniques and quality control methods.</p>
                 </div>
-                
                 <div class="methodology-card">
                     <div class="method-icon">⚡</div>
                     <h3 class="method-title">Testing & Integration</h3>
@@ -1579,11 +909,9 @@
                 <h2>Training Curriculum Overview</h2>
                 <p>Six comprehensive modules covering theory to practical implementation with hands-on exercises and real-world applications</p>
             </div>
-            
             <div class="curriculum-preview">
                 <div class="curriculum-content">
                     <h3>Complete Learning Experience</h3>
-                    
                     <div class="curriculum-highlights">
                         <div class="highlight-item">
                             <h4>6 Core Modules</h4>
@@ -1602,44 +930,17 @@
                             <p>Measurable learning outcomes</p>
                         </div>
                     </div>
-                    
-                    <p style="margin-bottom: 2rem; color: #5a6c7d;">Our curriculum progresses from fundamental electromagnetic principles to complete motor manufacturing and testing. Each module includes theoretical foundations, practical exercises, and real-world implementation projects.</p>
-                    
+                    <p style="margin-bottom: 1.5rem; color: #5a6c7d; font-size: 0.95rem;">Our curriculum progresses from fundamental electromagnetic principles to complete motor manufacturing and testing. Each module includes theoretical foundations, practical exercises, and real-world implementation projects.</p>
                     <a href="curriculum.html" class="curriculum-cta">View Complete Curriculum</a>
                 </div>
-                
                 <div class="curriculum-visual">
                     <div class="modules-grid">
-                        <div class="module-preview">
-                            <div class="module-number">1</div>
-                            <h4>Electromechanical Principles</h4>
-                            <p>Theory Foundation</p>
-                        </div>
-                        <div class="module-preview">
-                            <div class="module-number">2</div>
-                            <h4>Induction Motor Theory</h4>
-                            <p>Core Concepts</p>
-                        </div>
-                        <div class="module-preview">
-                            <div class="module-number">3</div>
-                            <h4>FEMM Simulation</h4>
-                            <p>Design & Analysis</p>
-                        </div>
-                        <div class="module-preview">
-                            <div class="module-number">4</div>
-                            <h4>Manufacturing Process</h4>
-                            <p>Hands-On Building</p>
-                        </div>
-                        <div class="module-preview">
-                            <div class="module-number">5</div>
-                            <h4>Drive Systems</h4>
-                            <p>VFD Integration</p>
-                        </div>
-                        <div class="module-preview">
-                            <div class="module-number">6</div>
-                            <h4>Standards & Compliance</h4>
-                            <p>Professional Practice</p>
-                        </div>
+                        <div class="module-preview"><div class="module-number">1</div><h4>Electromechanical Principles</h4><p>Theory Foundation</p></div>
+                        <div class="module-preview"><div class="module-number">2</div><h4>Induction Motor Theory</h4><p>Core Concepts</p></div>
+                        <div class="module-preview"><div class="module-number">3</div><h4>FEMM Simulation</h4><p>Design & Analysis</p></div>
+                        <div class="module-preview"><div class="module-number">4</div><h4>Manufacturing Process</h4><p>Hands-On Building</p></div>
+                        <div class="module-preview"><div class="module-number">5</div><h4>Drive Systems</h4><p>VFD Integration</p></div>
+                        <div class="module-preview"><div class="module-number">6</div><h4>Standards & Compliance</h4><p>Professional Practice</p></div>
                     </div>
                 </div>
             </div>
@@ -1652,61 +953,23 @@
                 <div class="value-content">
                     <h3>TVET Program Excellence</h3>
                     <ul class="value-list">
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <div>
-                                <strong>Research-Based Curriculum:</strong> Developed by EMDLab with proven learning effectiveness and higher skill retention rates
-                            </div>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <div>
-                                <strong>Industry-Ready Skills:</strong> Comprehensive training in electromagnetic design, manufacturing processes, and VFD integration
-                            </div>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <div>
-                                <strong>Hands-On Learning:</strong> Modular motor system allows students to experience complete design-to-testing workflow
-                            </div>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <div>
-                                <strong>Professional Certification:</strong> TVET-aligned competency development with measurable learning outcomes
-                            </div>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <div>
-                                <strong>Academic Support:</strong> Backed by Universiti Malaysia Pahang Al-Sultan Abdullah and Centre for Academic Innovation
-                            </div>
-                        </li>
+                        <li><span class="check-icon">✓</span><div><strong>Research-Based Curriculum:</strong> Developed by EMDLab with proven learning effectiveness and higher skill retention rates</div></li>
+                        <li><span class="check-icon">✓</span><div><strong>Industry-Ready Skills:</strong> Comprehensive training in electromagnetic design, manufacturing processes, and VFD integration</div></li>
+                        <li><span class="check-icon">✓</span><div><strong>Hands-On Learning:</strong> Modular motor system allows students to experience complete design-to-testing workflow</div></li>
+                        <li><span class="check-icon">✓</span><div><strong>Professional Certification:</strong> TVET-aligned competency development with measurable learning outcomes</div></li>
+                        <li><span class="check-icon">✓</span><div><strong>Academic Support:</strong> Backed by Universiti Malaysia Pahang Al-Sultan Abdullah and Centre for Academic Innovation</div></li>
                     </ul>
                 </div>
-                
                 <div class="value-visual">
-                    <div style="background: #f8f9fa; padding: 2rem; border-radius: 8px; text-align: center;">
-                        <h4 style="margin-bottom: 1rem; color: #2c3e50;">Training Components</h4>
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
-                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <strong>Electromagnetic Theory</strong><br>
-                                <small>Analytical analysis</small>
-                            </div>
-                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <strong>FEA Analysis</strong><br>
-                                <small>Flux density, torque and optimization</small>
-                            </div>
-                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <strong>Stator Assembly</strong><br>
-                                <small>Core lamination & winding</small>
-                            </div>
-                            <div style="background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <strong>VFD Testing</strong><br>
-                                <small>Cabling, programming and testing</small>
-                            </div>
+                    <div style="background:#f8f9fa;padding:1.5rem;border-radius:8px;text-align:center;">
+                        <h4 style="margin-bottom:1rem;color:#2c3e50;">Training Components</h4>
+                        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;margin-bottom:1.2rem;">
+                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>Electromagnetic Theory</strong><br><small>Analytical analysis</small></div>
+                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>FEA Analysis</strong><br><small>Flux density, torque and optimization</small></div>
+                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>Stator Assembly</strong><br><small>Core lamination & winding</small></div>
+                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>VFD Testing</strong><br><small>Cabling, programming and testing</small></div>
                         </div>
-                        <p style="color: #5a6c7d; font-size: 0.9rem;">Complete modular system for comprehensive learning</p>
+                        <p style="color:#5a6c7d;font-size:0.85rem;">Complete modular system for comprehensive learning</p>
                     </div>
                 </div>
             </div>
@@ -1719,7 +982,6 @@
                 <h2>TVET Success Stories</h2>
                 <p>See how EMDLab's training methodology is transforming engineering technologist education</p>
             </div>
-            
             <div class="testimonial-grid">
                 <div class="testimonial-card">
                     <p class="quote">"The EMDLab TVET approach produces engineering technologists who truly understand both theory and practice. Our students show remarkable improvement in learning speed and retention compared to traditional methods."</p>
@@ -1731,7 +993,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="testimonial-card">
                     <p class="quote">"Our engineering technologist graduates from the EMDLab program enter the workforce with practical motor experience that would typically take years to develop. The hands-on approach makes all the difference."</p>
                     <div class="author">
@@ -1758,24 +1019,21 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First Name *</label>
-                        <input type="text" id="firstName" name="firstName" required>
+                        <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name *</label>
-                        <input type="text" id="lastName" name="lastName" required>
+                        <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
                     </div>
                 </div>
-                
                 <div class="form-group">
                     <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required autocomplete="email">
                 </div>
-                
                 <div class="form-group">
                     <label for="organization">Institution/Organization *</label>
                     <input type="text" id="organization" name="organization" required>
                 </div>
-                
                 <div class="form-row">
                     <div class="form-group">
                         <label for="role">Your Role *</label>
@@ -1793,14 +1051,13 @@
                         <label for="students">Expected Students/Trainees</label>
                         <select id="students" name="students">
                             <option value="">Select Range</option>
-                            <option value="10-20">10-20</option>
-                            <option value="21-30">21-30</option>
-                            <option value="31-50">31-50</option>
+                            <option value="10-20">10–20</option>
+                            <option value="21-30">21–30</option>
+                            <option value="31-50">31–50</option>
                             <option value="50+">50+</option>
                         </select>
                     </div>
                 </div>
-                
                 <div class="form-group">
                     <label for="implementation">Implementation Timeline</label>
                     <select id="implementation" name="implementation">
@@ -1811,17 +1068,12 @@
                         <option value="evaluating">Currently evaluating</option>
                     </select>
                 </div>
-                
                 <div class="form-group">
                     <label for="requirements">Specific Requirements or Questions</label>
                     <textarea id="requirements" name="requirements" rows="3" placeholder="Tell us about your TVET program needs, facility requirements, or specific questions..."></textarea>
                 </div>
-                
                 <button type="submit" class="submit-btn">Request Pilot Program Information</button>
-                
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: #7f8c8d; text-align: center;">
-                    We'll contact you within 24 hours to discuss pilot program details and implementation
-                </p>
+                <p style="margin-top:1rem;font-size:0.85rem;color:#7f8c8d;text-align:center;">We'll contact you within 24 hours to discuss pilot program details and implementation</p>
             </form>
         </div>
     </section>
@@ -1852,40 +1104,20 @@
                     </ul>
                 </div>
             </div>
-            
-            <!-- Footer Logos -->
             <div class="footer-logos">
                 <div class="footer-logo-item">
-                    <div class="footer-logo-image">
-                        <img src="images/Logo UMPSA.png" alt="UMPSA Logo">
-                    </div>
-                    <div class="footer-logo-text">
-                        <div class="main-title">Universiti Malaysia Pahang</div>
-                        <div class="subtitle">Al-Sultan Abdullah</div>
-                    </div>
+                    <div class="footer-logo-image"><img src="images/Logo UMPSA.png" alt="UMPSA Logo"></div>
+                    <div class="footer-logo-text"><div class="main-title">Universiti Malaysia Pahang</div><div class="subtitle">Al-Sultan Abdullah</div></div>
                 </div>
-                
                 <div class="footer-logo-item">
-                    <div class="footer-logo-image">
-                        <img src="images/EMDLab.png" alt="EMDLab Logo">
-                    </div>
-                    <div class="footer-logo-text">
-                        <div class="main-title">EMDLab</div>
-                        <div class="subtitle">Research & Development</div>
-                    </div>
+                    <div class="footer-logo-image"><img src="images/EMDLab.png" alt="EMDLab Logo"></div>
+                    <div class="footer-logo-text"><div class="main-title">EMDLab</div><div class="subtitle">Research & Development</div></div>
                 </div>
-                
                 <div class="footer-logo-item">
-                    <div class="footer-logo-image">
-                        <img src="images/cai-logo.png" alt="CAI Logo">
-                    </div>
-                    <div class="footer-logo-text">
-                        <div class="main-title">Centre for Academic</div>
-                        <div class="subtitle">Innovation & Competitiveness</div>
-                    </div>
+                    <div class="footer-logo-image"><img src="images/cai-logo.png" alt="CAI Logo"></div>
+                    <div class="footer-logo-text"><div class="main-title">Centre for Academic</div><div class="subtitle">Innovation & Competitiveness</div></div>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <p>&copy; 2025 EMDLab, Universiti Malaysia Pahang Al-Sultan Abdullah. Transforming engineering technologist education through research and innovation.</p>
             </div>
@@ -1893,147 +1125,67 @@
     </footer>
 
     <script>
-        /*function handleDemoRequest(event) {
-            event.preventDefault();
-            
-            // Collect form data
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Add EMDLab-specific tracking data
-            const submission = {
-                ...data,
-                timestamp: new Date().toISOString(),
-                source: 'emdlab_tvet_landing',
-                program: 'engineering_technologist',
-                leadScore: calculateLeadScore(data)
-            };
-            
-            // Store submission (replace with your CRM integration)
-            const submissions = JSON.parse(localStorage.getItem('emdlabRequests') || '[]');
-            submissions.push(submission);
-            localStorage.setItem('emdlabRequests', JSON.stringify(submissions));
-            
-            // Show success message
-            const form = event.target;
-            form.innerHTML = `
-                <div style="text-align: center; padding: 3rem 2rem;">
-                    <div style="width: 80px; height: 80px; background: #27ae60; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2.5rem; color: white;">✓</div>
-                    <h3 style="color: #27ae60; margin-bottom: 1rem; font-size: 1.4rem;">Pilot Program Request Received</h3>
-                    <p style="color: #5a6c7d; margin-bottom: 1.5rem;">Thank you for your interest in the EMDLab TVET program. Our research team will contact you within 24 hours to discuss implementation details.</p>
-                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
-                        <p style="margin: 0; font-size: 0.9rem; color: #2c3e50;"><strong>Next Steps:</strong> We'll schedule a consultation to discuss your specific TVET needs and share our research findings on learning effectiveness.</p>
-                    </div>
-                </div>
-            `;
-            
-            // Track conversion
-            trackEvent('emdlab_pilot_request', submission);
-        }*/
-        
-        function calculateLeadScore(data) {
-            let score = 0;
-            
-            // Role-based scoring for TVET context
-            const roleScores = {
-                'tvet_director': 10,
-                'department_head': 9,
-                'curriculum_developer': 8,
-                'instructor': 7,
-                'industry_partner': 9
-            };
-            score += roleScores[data.role] || 5;
-            
-            // Student count scoring
-            const sizeScores = {
-                '50+': 10,
-                '31-50': 8,
-                '21-30': 6,
-                '10-20': 4
-            };
-            score += sizeScores[data.students] || 0;
-            
-            // Timeline scoring
-            const timelineScores = {
-                'immediate': 10,
-                'next_semester': 8,
-                'next_year': 6,
-                'evaluating': 4
-            };
-            score += timelineScores[data.implementation] || 0;
-            
-            return score;
-        }
-        
-        function trackEvent(eventName, data = {}) {
-            console.log('EMDLab Event:', eventName, data);
-            // Integration with analytics services
-        }
-        
-        // Track page engagement
-        trackEvent('emdlab_page_view', {
-            page: 'tvet_landing',
-            program: 'engineering_technologist',
-            timestamp: new Date().toISOString()
+        // ── Hamburger nav toggle ───────────────────────────────
+        const navToggle = document.getElementById('navToggle');
+        const navMenu   = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('open');
+            navToggle.classList.toggle('active', isOpen);
+            navToggle.setAttribute('aria-expanded', isOpen);
         });
-        
-        // Track section engagement
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '-100px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    trackEvent('emdlab_section_view', {
-                        section: entry.target.id || entry.target.className,
-                        program: 'engineering_technologist'
-                    });
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-        
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+
+        // Close menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
             });
         });
 
-        // Hero Carousel Feature Sync
+        // ── Smooth scrolling ──────────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ── Carousel feature sync ─────────────────────────────
         function syncCarouselFeatures() {
             const features = document.querySelectorAll('.mvp-feature');
             let currentIndex = 0;
-            
             function updateActiveFeature() {
-                features.forEach((feature, index) => {
-                    feature.classList.remove('active');
-                    if (index === currentIndex) {
-                        feature.classList.add('active');
-                    }
-                });
-                
+                features.forEach((f, i) => f.classList.toggle('active', i === currentIndex));
                 currentIndex = (currentIndex + 1) % features.length;
             }
-            
-            // Initial state
             updateActiveFeature();
-            
-            // Sync with carousel timing (4 seconds per slide)
             setInterval(updateActiveFeature, 4000);
         }
-        
-        // Initialize carousel sync
         syncCarouselFeatures();
+
+        // ── Lead score helper (retained from original) ────────
+        function calculateLeadScore(data) {
+            let score = 0;
+            const roleScores = { tvet_director: 10, department_head: 9, curriculum_developer: 8, instructor: 7, industry_partner: 9 };
+            const sizeScores = { '50+': 10, '31-50': 8, '21-30': 6, '10-20': 4 };
+            const timelineScores = { immediate: 10, next_semester: 8, next_year: 6, evaluating: 4 };
+            score += roleScores[data.role] || 5;
+            score += sizeScores[data.students] || 0;
+            score += timelineScores[data.implementation] || 0;
+            return score;
+        }
+
+        // ── Analytics stub ────────────────────────────────────
+        function trackEvent(name, data = {}) { console.log('EMDLab Event:', name, data); }
+        trackEvent('emdlab_page_view', { page: 'tvet_landing', timestamp: new Date().toISOString() });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) trackEvent('emdlab_section_view', { section: e.target.id || e.target.className }); });
+        }, { threshold: 0.5, rootMargin: '-100px' });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>
