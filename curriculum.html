@@ -3,51 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Training Curriculum | Electromechanical Training </title>
+    <title>Complete Training Curriculum | Electromechanical Training</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #2c3e50;
             background: #ffffff;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 20px;
         }
-        
+
+        /* ── HEADER & NAV ─────────────────────────────────── */
         header {
             background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 1rem 0;
+            position: relative;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
         }
-        
+
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             border-radius: 8px;
             display: flex;
@@ -55,303 +56,306 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
-        
+
         .logo-text {
-            font-size: 1.6rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #2c3e50;
+            line-height: 1.2;
         }
-        
+
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-shrink: 0;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #2c3e50;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
         .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
+            align-items: center;
         }
-        
+
         .nav-menu a {
             text-decoration: none;
             color: #2c3e50;
             font-weight: 500;
+            font-size: 0.9rem;
             transition: color 0.3s ease;
+            white-space: nowrap;
         }
-        
         .nav-menu a:hover,
-        .nav-menu a.active {
-            color: #e74c3c;
-        }
-        
+        .nav-menu a.active { color: #e74c3c; }
+
         .back-link {
             background: transparent;
-            color: #e74c3c;
-            padding: 8px 16px;
-            text-decoration: none;
+            color: #e74c3c !important;
+            padding: 7px 14px;
             border: 2px solid #e74c3c;
             border-radius: 6px;
-            font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem !important;
             transition: all 0.3s ease;
         }
-        
         .back-link:hover {
-            background: #e74c3c;
-            color: white;
+            background: #e74c3c !important;
+            color: white !important;
         }
-        
+
+        /* ── HERO ─────────────────────────────────────────── */
         .hero {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
-            padding: 100px 0 80px;
+            padding: 80px 0 60px;
             text-align: center;
         }
-        
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
-        
+
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             opacity: 0.9;
             max-width: 800px;
             margin: 0 auto 2rem;
+            line-height: 1.6;
         }
-        
+
         .breadcrumb {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
-            font-size: 0.9rem;
+            gap: 0.8rem;
+            font-size: 0.85rem;
             opacity: 0.8;
+            margin-bottom: 1.5rem;
         }
-        
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-        }
-        
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        
-        .section {
-            padding: 80px 0;
-        }
-        
-        .curriculum-grid {
-            display: grid;
-            gap: 3rem;
-        }
-        
+        .breadcrumb a { color: white; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+
+        /* ── CURRICULUM SECTION ───────────────────────────── */
+        .section { padding: 70px 0; }
+
+        .curriculum-grid { display: grid; gap: 2.5rem; }
+
         .curriculum-module {
             background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
         .curriculum-module:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.12);
         }
-        
         .curriculum-module.featured {
             border: 2px solid #e74c3c;
             position: relative;
         }
-        
         .curriculum-module.featured::before {
             content: 'HANDS-ON';
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 16px;
+            right: 16px;
             background: #e74c3c;
             color: white;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
             letter-spacing: 0.5px;
             z-index: 2;
         }
-        
+
         .module-header {
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 2rem;
+            padding: 1.8rem;
             position: relative;
         }
-        
+
         .module-number {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             background: #e74c3c;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: bold;
             margin-bottom: 1rem;
         }
-        
+
         .module-header h3 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 600;
             color: #2c3e50;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            padding-right: 80px; /* space for HANDS-ON badge */
         }
-        
+
         .module-type {
             background: #27ae60;
             color: white;
             padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: inline-block;
         }
-        
-        .featured .module-type {
-            background: #f39c12;
-        }
-        
-        .module-content {
-            padding: 2rem;
-        }
-        
+        .featured .module-type { background: #f39c12; }
+
+        .module-content { padding: 1.8rem; }
+
         .module-content > p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #5a6c7d;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             line-height: 1.6;
         }
-        
-        .topic-list {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-        
+
+        .topic-list { list-style: none; margin-bottom: 1.2rem; }
+
         .topic-list li {
-            padding: 0.8rem 0;
+            padding: 0.7rem 0;
             border-bottom: 1px solid #f1f3f4;
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
+            gap: 0.8rem;
+            font-size: 0.95rem;
         }
-        
-        .topic-list li:last-child {
-            border-bottom: none;
-        }
-        
+        .topic-list li:last-child { border-bottom: none; }
         .topic-list li::before {
             content: '•';
             color: #e74c3c;
             font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 2px;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
         }
-        
+
         .module-outcomes {
             background: #f8f9fa;
-            padding: 1.5rem;
+            padding: 1.2rem;
             border-radius: 8px;
             border-left: 4px solid #e74c3c;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
+            font-size: 0.92rem;
         }
-        
+
         .practical-badge {
             background: #e8f5e8;
             color: #27ae60;
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             display: inline-block;
             margin-top: 1rem;
             border: 1px solid #d4edda;
         }
-        
+
+        /* ── SUMMARY CARD ─────────────────────────────────── */
         .curriculum-summary {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
             border-radius: 15px;
-            padding: 3rem;
+            padding: 3rem 2rem;
             text-align: center;
-            margin-top: 4rem;
+            margin-top: 3.5rem;
         }
-        
+
         .summary-card h4 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 2rem;
         }
-        
+
         .summary-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-bottom: 2rem;
         }
-        
-        .summary-stat {
-            text-align: center;
-        }
-        
+
         .summary-stat .stat-number {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             font-weight: 700;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
-        
+
         .summary-stat .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.9;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
-        .summary-card p {
-            font-size: 1.1rem;
+
+        .summary-card > p {
+            font-size: 1rem;
             opacity: 0.95;
             line-height: 1.6;
             margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
+
         .cta-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
-        
+
         .cta-primary {
             background: white;
             color: #e74c3c;
-            padding: 15px 30px;
+            padding: 14px 28px;
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
         .cta-primary:hover {
             background: #f8f9fa;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
-        
+
         .cta-secondary {
             background: transparent;
             color: white;
-            padding: 15px 30px;
+            padding: 14px 28px;
             text-decoration: none;
             border: 2px solid white;
             border-radius: 6px;
@@ -359,196 +363,226 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
-        .cta-secondary:hover {
-            background: white;
-            color: #e74c3c;
-        }
-        
+        .cta-secondary:hover { background: white; color: #e74c3c; }
+
+        /* ── LEARNING PATH ────────────────────────────────── */
         .learning-path {
             background: #f8f9fa;
-            padding: 80px 0;
+            padding: 70px 0;
         }
-        
+
         .path-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
         }
-        
         .path-header h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: #2c3e50;
             margin-bottom: 1rem;
         }
-        
         .path-header p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #5a6c7d;
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .path-flow {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            gap: 1.5rem;
         }
-        
+
         .path-step {
             background: white;
             border-radius: 12px;
-            padding: 2rem 1.5rem;
+            padding: 1.8rem 1.2rem;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
             flex: 1;
-            min-width: 200px;
             position: relative;
         }
-        
+
         .path-step:not(:last-child)::after {
             content: '→';
             position: absolute;
-            right: -1.5rem;
+            right: -1.2rem;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #e74c3c;
             font-weight: bold;
         }
-        
+
         .path-icon {
-            width: 60px;
-            height: 60px;
+            width: 56px;
+            height: 56px;
             background: #e74c3c;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1rem;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: white;
         }
-        
-        .path-step:nth-child(2) .path-icon {
-            background: #f39c12;
-        }
-        
-        .path-step:nth-child(3) .path-icon {
-            background: #27ae60;
-        }
-        
-        .path-step:nth-child(4) .path-icon {
-            background: #3498db;
-        }
-        
-        .path-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-        
-        .path-description {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-        }
-        
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 3rem 0;
-        }
-        
+        .path-step:nth-child(2) .path-icon { background: #f39c12; }
+        .path-step:nth-child(3) .path-icon { background: #27ae60; }
+        .path-step:nth-child(4) .path-icon { background: #3498db; }
+
+        .path-title { font-size: 1rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.4rem; }
+        .path-description { font-size: 0.85rem; color: #7f8c8d; }
+
+        /* ── FOOTER ───────────────────────────────────────── */
+        footer { background: #2c3e50; color: white; padding: 3rem 0; }
+
         .footer-content {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
             gap: 3rem;
         }
-        
-        .footer-brand h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-brand p {
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-        
-        .footer-links h4 {
-            margin-bottom: 1rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-        }
-        
+
+        .footer-brand h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+        .footer-brand p { opacity: 0.8; line-height: 1.6; font-size: 0.9rem; }
+        .footer-links h4 { margin-bottom: 1rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.5rem; }
+        .footer-links a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease; font-size: 0.9rem; }
+        .footer-links a:hover { opacity: 1; }
+
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255,255,255,0.1);
             margin-top: 2rem;
             padding-top: 2rem;
             text-align: center;
             opacity: 0.6;
+            font-size: 0.85rem;
         }
-        
+
+
+        /* ═══════════════════════════════════════════════════
+           MOBILE  ≤ 768px
+        ═══════════════════════════════════════════════════ */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .breadcrumb {
+
+            .container { padding: 0 16px; }
+
+            /* NAV */
+            .nav-toggle { display: flex; }
+            .logo-text { font-size: 0.85rem; }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: white;
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 0;
+                align-items: stretch;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                border-top: 1px solid #e9ecef;
+                z-index: 999;
             }
-            
+            .nav-menu.open { display: flex; }
+            .nav-menu li { border-bottom: 1px solid #f0f0f0; }
+            .nav-menu a {
+                display: block;
+                padding: 14px 20px;
+                font-size: 1rem;
+                white-space: normal;
+            }
+            .back-link {
+                border: none !important;
+                border-radius: 0 !important;
+                color: #e74c3c !important;
+                background: #fff5f5 !important;
+                padding: 14px 20px !important;
+            }
+
+            /* HERO */
+            .hero { padding: 60px 0 40px; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.95rem; }
+            .breadcrumb { flex-direction: row; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+
+            /* SECTION */
+            .section { padding: 50px 0; }
+            .curriculum-grid { gap: 1.8rem; }
+
+            /* MODULE CARDS */
+            .module-header { padding: 1.4rem; }
+            .module-header h3 {
+                font-size: 1.2rem;
+                padding-right: 0;        /* badge moves below on mobile */
+                margin-bottom: 0.5rem;
+            }
+            .curriculum-module.featured::before {
+                position: static;        /* inline instead of absolute */
+                display: inline-block;
+                margin-bottom: 0.6rem;
+                font-size: 0.6rem;
+            }
+            /* Re-order: badge first, then title */
+            .curriculum-module.featured .module-header {
+                display: flex;
+                flex-direction: column;
+            }
+            .module-number { width: 48px; height: 48px; font-size: 1.2rem; margin-bottom: 0.8rem; }
+
+            .module-content { padding: 1.2rem; }
+            .module-content > p { font-size: 0.92rem; }
+            .topic-list li { font-size: 0.88rem; padding: 0.6rem 0; }
+            .module-outcomes { font-size: 0.85rem; padding: 1rem; }
+            .practical-badge { font-size: 0.8rem; padding: 5px 12px; }
+
+            /* SUMMARY */
+            .curriculum-summary { padding: 2rem 1.2rem; border-radius: 12px; }
+            .summary-card h4 { font-size: 1.5rem; }
             .summary-stats {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
                 gap: 1rem;
             }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
+            .summary-stat .stat-number { font-size: 1.8rem; }
+            .summary-stat .stat-label { font-size: 0.72rem; }
+            .cta-buttons { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+            .cta-primary, .cta-secondary { text-align: center; padding: 14px; }
+
+            /* LEARNING PATH */
+            .learning-path { padding: 50px 0; }
+            .path-header h2 { font-size: 1.8rem; }
+            .path-header p { font-size: 0.95rem; }
+
             .path-flow {
                 flex-direction: column;
                 align-items: center;
+                gap: 2.5rem;
             }
-            
+            .path-step {
+                width: 100%;
+                max-width: 340px;
+                padding: 1.5rem 1.2rem;
+            }
             .path-step:not(:last-child)::after {
                 content: '↓';
-                right: 50%;
+                right: auto;
+                left: 50%;
                 top: 100%;
-                transform: translateX(50%);
+                transform: translateX(-50%) translateY(50%);
+                font-size: 1.4rem;
             }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
+
+            /* FOOTER */
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        /* Very small phones */
+        @media (max-width: 400px) {
+            .hero h1 { font-size: 1.55rem; }
+            .summary-stats { grid-template-columns: 1fr; gap: 0.8rem; }
+            .summary-stat .stat-number { font-size: 2rem; }
         }
     </style>
 </head>
@@ -559,7 +593,10 @@
                 <div class="logo-icon">TET</div>
                 <div class="logo-text">TVET Electromechanical Training</div>
             </div>
-            <ul class="nav-menu">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#methodology">Methodology</a></li>
                 <li><a href="#" class="active">Curriculum</a></li>
@@ -585,6 +622,7 @@
     <section class="section">
         <div class="container">
             <div class="curriculum-grid">
+
                 <div class="curriculum-module">
                     <div class="module-header">
                         <div class="module-number">1</div>
@@ -599,9 +637,7 @@
                             <li>Energy conversion mechanisms</li>
                             <li>Mathematical modeling and analysis</li>
                         </ul>
-                        <div class="module-outcomes">
-                            <strong>Learning Outcomes:</strong> Understand electromagnetic principles, calculate induced currents and forces
-                        </div>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Understand electromagnetic principles, calculate induced currents and forces</div>
                     </div>
                 </div>
 
@@ -620,9 +656,7 @@
                             <li>Equivalent circuit analysis</li>
                             <li>Efficiency and performance calculations</li>
                         </ul>
-                        <div class="module-outcomes">
-                            <strong>Learning Outcomes:</strong> Analyze motor performance, calculate torque and efficiency parameters
-                        </div>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Analyze motor performance, calculate torque and efficiency parameters</div>
                     </div>
                 </div>
 
@@ -642,9 +676,7 @@
                             <li>Geometry optimization techniques</li>
                             <li>Winding configuration analysis</li>
                         </ul>
-                        <div class="module-outcomes">
-                            <strong>Learning Outcomes:</strong> Design and optimize motor parameters using FE analysis
-                        </div>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Design and optimize motor parameters using FE analysis</div>
                         <div class="practical-badge">🔬 Includes Practical Exercises</div>
                     </div>
                 </div>
@@ -664,9 +696,7 @@
                             <li>Complete motor assembly process</li>
                             <li>Quality control and inspection</li>
                         </ul>
-                        <div class="module-outcomes">
-                            <strong>Learning Outcomes:</strong> Manufacture complete motors meeting industry standards
-                        </div>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Manufacture complete motors meeting industry standards</div>
                         <div class="practical-badge">🔧 Full Manufacturing Experience</div>
                     </div>
                 </div>
@@ -686,9 +716,7 @@
                             <li>System commissioning and tuning</li>
                             <li>Performance optimization</li>
                         </ul>
-                        <div class="module-outcomes">
-                            <strong>Learning Outcomes:</strong> Commission and optimize motor-drive systems
-                        </div>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Commission and optimize motor-drive systems</div>
                         <div class="practical-badge">⚡ Live System Testing</div>
                     </div>
                 </div>
@@ -708,13 +736,12 @@
                             <li>Quality assurance procedures</li>
                             <li>Documentation and certification</li>
                         </ul>
-                        <div class="module-outcomes">
-                            <strong>Learning Outcomes:</strong> Apply international standards in professional practice
-                        </div>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Apply international standards in professional practice</div>
                         <div class="practical-badge">📋 Certification Pathway</div>
                     </div>
                 </div>
-            </div>
+
+            </div><!-- end curriculum-grid -->
 
             <div class="curriculum-summary">
                 <div class="summary-card">
@@ -740,6 +767,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -749,26 +777,22 @@
                 <h2>Learning Path Progression</h2>
                 <p>Students advance through four key phases, building competency from theoretical understanding to professional application</p>
             </div>
-            
             <div class="path-flow">
                 <div class="path-step">
                     <div class="path-icon">🧠</div>
                     <h4 class="path-title">Foundation</h4>
                     <p class="path-description">Electromagnetic principles and motor theory</p>
                 </div>
-                
                 <div class="path-step">
                     <div class="path-icon">💻</div>
                     <h4 class="path-title">Design</h4>
                     <p class="path-description">FEMM simulation and optimization</p>
                 </div>
-                
                 <div class="path-step">
                     <div class="path-icon">🔧</div>
                     <h4 class="path-title">Manufacturing</h4>
                     <p class="path-description">Hands-on motor construction</p>
                 </div>
-                
                 <div class="path-step">
                     <div class="path-icon">⚡</div>
                     <h4 class="path-title">Integration</h4>
@@ -782,7 +806,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>TVET Electromechanical Training </h3>
+                    <h3>TVET Electromechanical Training</h3>
                     <p>Advancing engineering technologist education through innovative research-based training solutions developed at Universiti Malaysia Pahang Al-Sultan Abdullah, supported by the Centre for Academic Innovation & Competitiveness.</p>
                 </div>
                 <div class="footer-links">
@@ -811,67 +835,48 @@
     </footer>
 
     <script>
-        // Track curriculum page engagement
-        function trackEvent(eventName, data = {}) {
-            console.log('EMDLab Curriculum Event:', eventName, data);
-            // Integration with analytics services
-        }
-        
-        // Track page view
-        trackEvent('curriculum_page_view', {
-            page: 'curriculum_detail',
-            program: 'engineering_technologist',
-            timestamp: new Date().toISOString()
+        // Hamburger nav
+        const navToggle = document.getElementById('navToggle');
+        const navMenu   = document.getElementById('navMenu');
+        navToggle.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('open');
+            navToggle.classList.toggle('active', isOpen);
+            navToggle.setAttribute('aria-expanded', isOpen);
         });
-        
-        // Track module engagement
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '-50px'
-        };
-        
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Analytics stub
+        function trackEvent(name, data = {}) { console.log('EMDLab Curriculum Event:', name, data); }
+        trackEvent('curriculum_page_view', { page: 'curriculum_detail', timestamp: new Date().toISOString() });
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const moduleNumber = entry.target.querySelector('.module-number')?.textContent;
-                    const moduleTitle = entry.target.querySelector('h3')?.textContent;
-                    
                     trackEvent('curriculum_module_view', {
-                        module: moduleNumber,
-                        title: moduleTitle,
+                        module: entry.target.querySelector('.module-number')?.textContent,
+                        title:  entry.target.querySelector('h3')?.textContent,
                         featured: entry.target.classList.contains('featured')
                     });
                 }
             });
-        }, observerOptions);
-        
-        document.querySelectorAll('.curriculum-module').forEach(module => {
-            observer.observe(module);
-        });
-        
-        // Smooth scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        }, { threshold: 0.3, rootMargin: '-50px' });
 
-        // Add hover effects to module cards
-        document.querySelectorAll('.curriculum-module').forEach(module => {
-            module.addEventListener('mouseenter', function() {
-                trackEvent('curriculum_module_hover', {
-                    module: this.querySelector('.module-number')?.textContent,
-                    title: this.querySelector('h3')?.textContent
-                });
-            });
-        });
+        document.querySelectorAll('.curriculum-module').forEach(m => observer.observe(m));
     </script>
 </body>
 </html>
