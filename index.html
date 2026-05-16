@@ -5,497 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TVET Electromechanical Training | Engineering Technologist Development</title>
     <style>
-        * {
-            margin: 0; 
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: #ffffff;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #2c3e50; background: #ffffff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* ── HEADER & NAV ─────────────────────────────────────── */
-        header {
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            position: relative;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            min-width: 0;
-        }
-        
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            flex-shrink: 0;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-        
-        .logo-text {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            line-height: 1.2;
-        }
-
-        /* Hamburger button */
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            flex-shrink: 0;
-            z-index: 1001;
-        }
-
-        .nav-toggle span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: #2c3e50;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
+        /* ── HEADER & NAV ── */
+        header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; position: relative; }
+        .logo { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+        .logo-icon { width: 40px; height: 40px; flex-shrink: 0; background: linear-gradient(135deg, #e74c3c, #c0392b); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1rem; }
+        .logo-text { font-size: 1rem; font-weight: 600; color: #2c3e50; line-height: 1.2; }
+        .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; flex-shrink: 0; z-index: 1001; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: #2c3e50; border-radius: 2px; transition: all 0.3s ease; }
         .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .nav-toggle.active span:nth-child(2) { opacity: 0; }
         .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-        
-        .nav-menu {
-            display: flex;
-            gap: 1.8rem;
-            list-style: none;
-        }
-        
-        .nav-menu a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            white-space: nowrap;
-        }
-        
+        .nav-menu { display: flex; gap: 1.8rem; list-style: none; }
+        .nav-menu a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.95rem; transition: color 0.3s ease; white-space: nowrap; }
         .nav-menu a:hover { color: #e74c3c; }
 
-        /* ── INSTITUTIONAL LOGOS ──────────────────────────────── */
-        .institutional-logos {
-            background: #f8f9fa;
-            padding: 1.2rem 0;
-            border-bottom: 1px solid #e9ecef;
-            overflow-x: auto;
-        }
-        
-        .logos-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-        
-        .logo-group {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .institution-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .logo-image {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
-        }
-        .logo-image:hover { transform: scale(1.05); }
-        .logo-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-        }
-        .university-logo { width: 70px; height: 70px; }
-        .lab-logo { width: 60px; height: 60px; }
-        .innovation-logo { width: 65px; height: 65px; }
-        
-        .logo-text-info { display: flex; flex-direction: column; }
-        .logo-title { font-size: 0.9rem; font-weight: 600; color: #2c3e50; line-height: 1.2; }
-        .logo-subtitle { font-size: 0.75rem; color: #6b7280; margin-top: 2px; }
-        .partnership-text { font-size: 0.85rem; color: #6b7280; font-style: italic; align-self: center; font-weight: 500; }
-
-        /* ── HERO ─────────────────────────────────────────────── */
-        .hero {
-            background: linear-gradient(135deg, rgba(44,62,80,0.4) 0%, rgba(52,73,94,0.3) 100%),
-                        url('images/hero-background.png');
-            background-size: cover;
-            background-position: center;
-            padding: 80px 0 60px;
-            position: relative;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(44,62,80,0.3) 0%, rgba(52,73,94,0.2) 100%);
-            z-index: 1;
-        }
-        
+        /* ── HERO ── */
+        .hero { background: linear-gradient(135deg, rgba(44,62,80,0.4) 0%, rgba(52,73,94,0.3) 100%), url('images/hero-background.png'); background-size: cover; background-position: center; padding: 80px 0 60px; position: relative; color: white; min-height: 100vh; display: flex; align-items: center; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(44,62,80,0.3) 0%, rgba(52,73,94,0.2) 100%); z-index: 1; }
         .hero .container { position: relative; z-index: 2; width: 100%; }
-        
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .hero-content h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .hero-content .subtitle {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
-        
-        .hero-stats {
-            display: flex;
-            gap: 1.2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .stat-item {
-            text-align: center;
-            background: rgba(255,255,255,0.1);
-            padding: 1.2rem 0.8rem;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            flex: 1;
-            min-width: 80px;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ffffff;
-            display: block;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.8);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hero-content h1 { font-size: 3rem; font-weight: 700; color: white; margin-bottom: 1.5rem; line-height: 1.2; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero-content .subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem; line-height: 1.6; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .hero-stats { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .stat-item { text-align: center; background: rgba(255,255,255,0.1); padding: 1.2rem 0.8rem; border-radius: 10px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); flex: 1; min-width: 80px; }
+        .stat-number { font-size: 2rem; font-weight: 700; color: #ffffff; display: block; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-note { font-size: 0.65rem; color: rgba(255,255,255,0.7); font-style: italic; display: block; margin-top: 0.3rem; }
+        .survey-disclaimer { font-size: 0.82rem; color: rgba(255,255,255,0.8); font-style: italic; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); max-width: 400px; margin: 0 0 1.5rem 0; line-height: 1.4; }
+        .cta-primary { position: relative; display: inline-block; background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; padding: 18px 36px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 8px 32px rgba(231,76,60,0.4); animation: pulse 2s infinite; transition: all 0.3s ease; }
+        .cta-primary::before { content: ''; position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px; background: linear-gradient(45deg, #e74c3c, #c0392b, #e74c3c); border-radius: 50px; z-index: -1; opacity: 0.7; animation: pulseRing 2s infinite; }
+        .cta-primary:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(231,76,60,0.6); animation-play-state: paused; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes pulseRing { 0% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.1); opacity: 0.3; } 100% { transform: scale(1.15); opacity: 0; } }
+        .cta-secondary { display: inline-block; background: transparent; color: white; padding: 16px 30px; text-decoration: none; border: 2px solid rgba(255,255,255,0.6); border-radius: 50px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; backdrop-filter: blur(10px); }
+        .cta-secondary:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-2px); }
+        .hero-cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
 
-        .stat-note {
-            font-size: 0.65rem;
-            color: rgba(255,255,255,0.7);
-            font-style: italic;
-            display: block;
-            margin-top: 0.3rem;
-        }
-
-        .survey-disclaimer {
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.8);
-            font-style: italic;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            max-width: 400px;
-            margin: 0 0 1.5rem 0;
-            line-height: 1.4;
-        }
-        
-        .cta-primary {
-            position: relative;
-            display: inline-block;
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-            color: white;
-            padding: 18px 36px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 8px 32px rgba(231,76,60,0.4);
-            animation: pulse 2s infinite;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-primary::before {
-            content: '';
-            position: absolute;
-            top: -3px; left: -3px; right: -3px; bottom: -3px;
-            background: linear-gradient(45deg, #e74c3c, #c0392b, #e74c3c);
-            border-radius: 50px;
-            z-index: -1;
-            opacity: 0.7;
-            animation: pulseRing 2s infinite;
-        }
-        
-        .cta-primary:hover {
-            transform: scale(1.08);
-            box-shadow: 0 12px 40px rgba(231,76,60,0.6);
-            animation-play-state: paused;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        @keyframes pulseRing {
-            0% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.1); opacity: 0.3; }
-            100% { transform: scale(1.15); opacity: 0; }
-        }
-        
-        .cta-secondary {
-            display: inline-block;
-            background: transparent;
-            color: white;
-            padding: 16px 30px;
-            text-decoration: none;
-            border: 2px solid rgba(255,255,255,0.6);
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        .cta-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: white;
-            transform: translateY(-2px);
-        }
-
-        .hero-cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        
-        /* ── HERO VISUAL / CAROUSEL ───────────────────────────── */
-        .hero-visual {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            overflow: hidden;
-        }
-        
-        .mvp-image {
-            width: 100%;
-            height: 280px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin-bottom: 1.2rem;
-            overflow: hidden;
-            border: 2px solid #e9ecef;
-        }
-        
+        /* ── HERO VISUAL / CAROUSEL ── */
+        .hero-visual { background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.15); overflow: hidden; }
+        .mvp-image { width: 100%; height: 280px; background: #f8f9fa; border-radius: 10px; margin-bottom: 1.2rem; overflow: hidden; border: 2px solid #e9ecef; }
         .image-carousel { width: 100%; height: 100%; position: relative; overflow: hidden; }
-        .carousel-container {
-            width: 300%; height: 100%;
-            display: flex;
-            animation: slideImages 12s infinite;
-        }
-        .carousel-slide {
-            width: 33.333%; height: 100%;
-            display: flex; align-items: center; justify-content: center; flex-direction: column;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-        }
-
-        .femm-slide {
-            background: linear-gradient(rgba(52,152,219,0.55), rgba(41,128,185,0.65)),
-                        url('images/FEMM.png') center/cover no-repeat;
-        }
-        .manufacturing-slide {
-            background: linear-gradient(rgba(243,156,18,0.55), rgba(230,126,34,0.65)),
-                        url('images/Modular-IM.png') center/cover no-repeat;
-        }
-        .vfd-slide {
-            background: linear-gradient(rgba(39,174,96,0.55), rgba(22,160,133,0.65)),
-                        url('images/VFD.png') center/cover no-repeat;
-        }
-
-        .slide-content {
-            text-align: center; color: #2c3e50;
-            background: rgba(255,255,255,0.92);
-            padding: 1.5rem 1.2rem; border-radius: 12px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.3);
-            max-width: 220px;
-        }
-        
+        .carousel-container { width: 300%; height: 100%; display: flex; animation: slideImages 12s infinite; }
+        .carousel-slide { width: 33.333%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; background: linear-gradient(135deg, #f8f9fa, #e9ecef); }
+        .femm-slide { background: linear-gradient(rgba(52,152,219,0.55), rgba(41,128,185,0.65)), url('images/FEMM.png') center/cover no-repeat; }
+        .manufacturing-slide { background: linear-gradient(rgba(243,156,18,0.55), rgba(230,126,34,0.65)), url('images/Modular-IM.png') center/cover no-repeat; }
+        .vfd-slide { background: linear-gradient(rgba(39,174,96,0.55), rgba(22,160,133,0.65)), url('images/VFD.png') center/cover no-repeat; }
+        .slide-content { text-align: center; color: #2c3e50; background: rgba(255,255,255,0.92); padding: 1.5rem 1.2rem; border-radius: 12px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.3); max-width: 220px; }
         .slide-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
         .slide-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; color: #2c3e50; }
         .slide-description { font-size: 0.85rem; color: #5a6c7d; line-height: 1.4; }
-        
-        .carousel-indicators {
-            position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 8px; z-index: 4;
-        }
-        .indicator {
-            width: 8px; height: 8px; border-radius: 50%;
-            background: rgba(44,62,80,0.3);
-            animation: indicatorProgress 12s infinite;
-        }
+        .carousel-indicators { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 4; }
+        .indicator { width: 8px; height: 8px; border-radius: 50%; background: rgba(44,62,80,0.3); animation: indicatorProgress 12s infinite; }
         .indicator:nth-child(2) { animation-delay: 4s; }
         .indicator:nth-child(3) { animation-delay: 8s; }
-        
-        @keyframes slideImages {
-            0%, 30% { transform: translateX(0%); }
-            33.33%, 63.33% { transform: translateX(-33.333%); }
-            66.66%, 96.66% { transform: translateX(-66.666%); }
-            100% { transform: translateX(0%); }
-        }
-        @keyframes indicatorProgress {
-            0% { background: rgba(231,76,60,0.8); transform: scale(1.2); }
-            33% { background: rgba(44,62,80,0.3); transform: scale(1); }
-            100% { background: rgba(44,62,80,0.3); transform: scale(1); }
-        }
-        
-        .mvp-features {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 0.6rem;
-        }
-        .mvp-feature {
-            background: #f8f9fa; padding: 0.8rem 0.5rem;
-            border-radius: 8px; text-align: center;
-            font-size: 0.82rem; font-weight: 500; color: #5a6c7d;
-            border: 1px solid #e9ecef; transition: all 0.3s ease;
-        }
+        @keyframes slideImages { 0%, 30% { transform: translateX(0%); } 33.33%, 63.33% { transform: translateX(-33.333%); } 66.66%, 96.66% { transform: translateX(-66.666%); } 100% { transform: translateX(0%); } }
+        @keyframes indicatorProgress { 0% { background: rgba(231,76,60,0.8); transform: scale(1.2); } 33% { background: rgba(44,62,80,0.3); transform: scale(1); } 100% { background: rgba(44,62,80,0.3); transform: scale(1); } }
+        .mvp-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+        .mvp-feature { background: #f8f9fa; padding: 0.8rem 0.5rem; border-radius: 8px; text-align: center; font-size: 0.82rem; font-weight: 500; color: #5a6c7d; border: 1px solid #e9ecef; transition: all 0.3s ease; }
         .mvp-feature.active { background: #e74c3c; color: white; box-shadow: 0 4px 12px rgba(231,76,60,0.3); }
 
-        /* ── VIDEO SECTION ────────────────────────────────────── */
-        .hero-video-section {
-            padding: 80px 0;
-            background: #f8f9fa;
-        }
-        
+        /* ── VIDEO ── */
+        .hero-video-section { padding: 80px 0; background: #f8f9fa; }
         .video-header { text-align: center; margin-bottom: 3rem; }
         .video-header h2 { font-size: 2.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 1rem; }
         .video-header p { font-size: 1.1rem; color: #5a6c7d; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-        
-        .video-container {
-            max-width: 900px; margin: 0 auto;
-            background: white; border-radius: 20px;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.1);
-            overflow: hidden; padding: 1.2rem;
-        }
-        .video-wrapper {
-            position: relative; width: 100%; height: 0;
-            padding-bottom: 56.25%;
-            border-radius: 12px; overflow: hidden;
-        }
-        .video-wrapper iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            border: none; border-radius: 12px;
-        }
+        .video-container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 25px 80px rgba(0,0,0,0.1); overflow: hidden; padding: 1.2rem; }
+        .video-wrapper { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; border-radius: 12px; overflow: hidden; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 12px; }
 
-        /* ── SECTIONS ─────────────────────────────────────────── */
+        /* ── SECTIONS ── */
         .section { padding: 80px 0; }
-        
         .section-header { text-align: center; margin-bottom: 3.5rem; }
         .section-header h2 { font-size: 2.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 1rem; }
         .section-header p { font-size: 1.1rem; color: #5a6c7d; max-width: 600px; margin: 0 auto; }
-        
-        /* ── METHODOLOGY ──────────────────────────────────────── */
+
+        /* ── METHODOLOGY ── */
         .methodology { background: #f8f9fa; }
-        
-        .methodology-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;
-        }
-        .methodology-card {
-            background: white; padding: 2.5rem 1.8rem;
-            border-radius: 12px; text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease; position: relative;
-        }
+        .methodology-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+        .methodology-card { background: white; padding: 2.5rem 1.8rem; border-radius: 12px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.3s ease; position: relative; }
         .methodology-card:hover { transform: translateY(-5px); }
-        .methodology-card::before {
-            content: ''; position: absolute; top: 0; left: 50%;
-            transform: translateX(-50%); width: 60px; height: 4px;
-            background: #e74c3c; border-radius: 0 0 4px 4px;
-        }
+        .methodology-card::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: #e74c3c; border-radius: 0 0 4px 4px; }
         .methodology-card:nth-child(2)::before { background: #f39c12; }
         .methodology-card:nth-child(3)::before { background: #27ae60; }
-        
-        .method-icon {
-            width: 75px; height: 75px; background: #e74c3c;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 1.5rem; font-size: 1.8rem; color: white;
-        }
+        .method-icon { width: 75px; height: 75px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.8rem; color: white; }
         .methodology-card:nth-child(2) .method-icon { background: #f39c12; }
         .methodology-card:nth-child(3) .method-icon { background: #27ae60; }
         .method-title { font-size: 1.3rem; font-weight: 600; color: #2c3e50; margin-bottom: 1rem; }
         .method-description { color: #5a6c7d; line-height: 1.6; }
-        
-        /* ── CURRICULUM ───────────────────────────────────────── */
+
+        /* ── CURRICULUM ── */
         .curriculum-overview { background: white; }
         .curriculum-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
         .curriculum-content h3 { font-size: 1.8rem; font-weight: 600; color: #2c3e50; margin-bottom: 1.5rem; }
@@ -503,95 +106,51 @@
         .highlight-item { background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #e74c3c; }
         .highlight-item h4 { font-size: 1rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.4rem; }
         .highlight-item p { color: #5a6c7d; font-size: 0.85rem; }
-        .curriculum-cta {
-            background: #e74c3c; color: white; padding: 16px 32px;
-            text-decoration: none; border-radius: 6px; font-weight: 600;
-            font-size: 1rem; transition: all 0.3s ease; display: inline-block;
-        }
+        .curriculum-cta { background: #e74c3c; color: white; padding: 16px 32px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; display: inline-block; }
         .curriculum-cta:hover { background: #c0392b; transform: translateY(-2px); }
-        
         .modules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .module-preview {
-            background: white; border: 2px solid #e9ecef;
-            border-radius: 8px; padding: 1.2rem; text-align: center;
-            transition: all 0.3s ease;
-        }
+        .module-preview { background: white; border: 2px solid #e9ecef; border-radius: 8px; padding: 1.2rem; text-align: center; transition: all 0.3s ease; }
         .module-preview:hover { border-color: #e74c3c; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
-        .module-number {
-            width: 38px; height: 38px; background: #e74c3c; color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-weight: bold; margin: 0 auto 0.8rem;
-        }
+        .module-number { width: 38px; height: 38px; background: #e74c3c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 0.8rem; }
         .module-preview h4 { font-size: 0.95rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.4rem; }
         .module-preview p { font-size: 0.78rem; color: #7f8c8d; }
-        
-        /* ── BENEFITS ─────────────────────────────────────────── */
+        .module-preview.full-width { grid-column: 1 / -1; }
+
+        /* ── BENEFITS ── */
         .value-props { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
         .value-content h3 { font-size: 1.8rem; font-weight: 600; color: #2c3e50; margin-bottom: 1.5rem; }
         .value-list { list-style: none; }
-        .value-list li {
-            padding: 0.9rem 0; border-bottom: 1px solid #ecf0f1;
-            display: flex; align-items: flex-start; gap: 1rem;
-        }
+        .value-list li { padding: 0.9rem 0; border-bottom: 1px solid #ecf0f1; display: flex; align-items: flex-start; gap: 1rem; }
         .value-list li:last-child { border-bottom: none; }
         .check-icon { color: #27ae60; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
         .value-visual { background: white; border-radius: 12px; padding: 1.8rem; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
-        
-        /* ── TESTIMONIALS ─────────────────────────────────────── */
+
+        /* ── TESTIMONIALS ── */
         .testimonials { background: #2c3e50; color: white; }
-        .testimonials .section-header h2,
-        .testimonials .section-header p { color: white; }
+        .testimonials .section-header h2, .testimonials .section-header p { color: white; }
         .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
         .testimonial-card { background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; backdrop-filter: blur(10px); }
         .quote { font-size: 1rem; font-style: italic; margin-bottom: 1.5rem; line-height: 1.6; }
         .author { display: flex; align-items: center; gap: 1rem; }
-        .author-avatar {
-            width: 48px; height: 48px; background: #e74c3c; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: bold; font-size: 1.1rem; flex-shrink: 0;
-        }
+        .author-avatar { width: 48px; height: 48px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; flex-shrink: 0; }
         .author-info h4 { font-weight: 600; margin-bottom: 0.2rem; }
         .author-info p { font-size: 0.85rem; opacity: 0.8; }
-        
-        /* ── CTA / FORM SECTION ───────────────────────────────── */
-        .cta-section {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white; text-align: center;
-            padding: 80px 0;
-        }
+
+        /* ── CTA FORM ── */
+        .cta-section { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; text-align: center; padding: 80px 0; }
         .cta-section h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
         .cta-section p { font-size: 1.1rem; margin-bottom: 2.5rem; opacity: 0.9; }
-        
-        .demo-form {
-            background: white; max-width: 520px;
-            margin: 0 auto; padding: 2.5rem;
-            border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            color: #2c3e50;
-        }
+        .demo-form { background: white; max-width: 520px; margin: 0 auto; padding: 2.5rem; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); color: #2c3e50; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0; }
         .form-group { margin-bottom: 1.2rem; }
         .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem; }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%; padding: 13px 15px;
-            border: 2px solid #e9ecef; border-radius: 6px;
-            font-size: 1rem; transition: border-color 0.3s ease;
-            font-family: inherit; appearance: none; -webkit-appearance: none;
-        }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus { outline: none; border-color: #e74c3c; }
-        .submit-btn {
-            background: #e74c3c; color: white; padding: 16px 40px;
-            border: none; border-radius: 6px; font-size: 1.05rem;
-            font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%;
-            -webkit-tap-highlight-color: transparent;
-        }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 13px 15px; border: 2px solid #e9ecef; border-radius: 6px; font-size: 1rem; transition: border-color 0.3s ease; font-family: inherit; appearance: none; -webkit-appearance: none; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #e74c3c; }
+        .submit-btn { background: #e74c3c; color: white; padding: 16px 40px; border: none; border-radius: 6px; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%; -webkit-tap-highlight-color: transparent; }
         .submit-btn:hover { background: #c0392b; transform: translateY(-2px); }
         .submit-btn:active { transform: translateY(0); }
-        
-        /* ── FOOTER ───────────────────────────────────────────── */
+
+        /* ── FOOTER ── */
         footer { background: #2c3e50; color: white; padding: 3rem 0; }
         .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
         .footer-brand h3 { font-size: 1.3rem; margin-bottom: 1rem; }
@@ -602,17 +161,8 @@
         .footer-links a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease; font-size: 0.9rem; }
         .footer-links a:hover { opacity: 1; }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 2rem; padding-top: 2rem; text-align: center; opacity: 0.6; font-size: 0.85rem; }
-        
-        .footer-logos {
-            display: flex; justify-content: center; align-items: center;
-            gap: 3rem; margin-top: 2rem; padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            flex-wrap: wrap;
-        }
-        .footer-logo-item {
-            display: flex; flex-direction: column; align-items: center;
-            gap: 0.8rem; opacity: 0.9; transition: opacity 0.3s ease, transform 0.3s ease;
-        }
+        .footer-logos { display: flex; justify-content: center; align-items: center; gap: 3rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
+        .footer-logo-item { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; opacity: 0.9; transition: opacity 0.3s ease, transform 0.3s ease; }
         .footer-logo-item:hover { opacity: 1; transform: translateY(-2px); }
         .footer-logo-image { height: 55px; display: flex; align-items: center; justify-content: center; }
         .footer-logo-image img { height: 100%; width: auto; object-fit: contain; }
@@ -620,82 +170,27 @@
         .footer-logo-text .main-title { font-weight: 600; margin-bottom: 2px; }
         .footer-logo-text .subtitle { font-size: 0.68rem; opacity: 0.7; }
 
-
-        /* ═══════════════════════════════════════════════════════
-           MOBILE STYLES  ≤ 768px
-        ══════════════════════════════════════════════════════ */
+        /* ═══ MOBILE ≤768px ═══ */
         @media (max-width: 768px) {
-
             .container { padding: 0 16px; }
-
-            /* NAV */
             .nav-toggle { display: flex; }
             .logo-text { font-size: 0.85rem; }
-            
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: calc(100% + 0px);
-                left: 0; right: 0;
-                background: white;
-                flex-direction: column;
-                gap: 0;
-                box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-                border-top: 1px solid #e9ecef;
-                z-index: 999;
-            }
+            .nav-menu { display: none; position: absolute; top: calc(100% + 0px); left: 0; right: 0; background: white; flex-direction: column; gap: 0; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-top: 1px solid #e9ecef; z-index: 999; }
             .nav-menu.open { display: flex; }
             .nav-menu li { border-bottom: 1px solid #f0f0f0; }
-            .nav-menu a {
-                display: block;
-                padding: 14px 20px;
-                font-size: 1rem;
-            }
-
-            /* INSTITUTIONAL LOGOS */
-            .logos-container { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            .logo-group { gap: 1.5rem; }
-            .logo-image, .university-logo, .lab-logo, .innovation-logo { width: 50px; height: 50px; }
-
-            /* HERO */
-            .hero {
-                padding: 70px 0 50px;
-                min-height: auto;
-                background-attachment: scroll; /* fixes parallax lag on iOS/Android */
-            }
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-            .hero-content h1 {
-                font-size: 2rem;
-                margin-bottom: 1rem;
-            }
-            .hero-content .subtitle {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-            .hero-stats {
-                gap: 0.8rem;
-                margin-bottom: 1rem;
-            }
+            .nav-menu a { display: block; padding: 14px 20px; font-size: 1rem; }
+            .hero { padding: 70px 0 50px; min-height: auto; background-attachment: scroll; }
+            .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-content h1 { font-size: 2rem; margin-bottom: 1rem; }
+            .hero-content .subtitle { font-size: 1rem; margin-bottom: 1.5rem; }
+            .hero-stats { gap: 0.8rem; margin-bottom: 1rem; }
             .stat-item { padding: 1rem 0.6rem; }
             .stat-number { font-size: 1.6rem; }
             .stat-label { font-size: 0.7rem; }
             .stat-note { font-size: 0.6rem; }
             .survey-disclaimer { font-size: 0.78rem; margin-bottom: 1.2rem; }
-            .hero-cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.8rem;
-            }
-            .cta-primary, .cta-secondary {
-                text-align: center;
-                padding: 16px 24px;
-                font-size: 0.95rem;
-            }
-
-            /* HERO VISUAL */
+            .hero-cta-buttons { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+            .cta-primary, .cta-secondary { text-align: center; padding: 16px 24px; font-size: 0.95rem; }
             .hero-visual { padding: 1rem; }
             .mvp-image { height: 200px; }
             .slide-content { padding: 1rem; max-width: 180px; }
@@ -703,68 +198,47 @@
             .slide-title { font-size: 0.95rem; }
             .slide-description { font-size: 0.78rem; }
             .mvp-feature { font-size: 0.75rem; padding: 0.6rem 0.3rem; }
-
-            /* VIDEO */
             .hero-video-section { padding: 50px 0; }
             .video-header h2 { font-size: 1.8rem; }
             .video-header p { font-size: 0.95rem; }
             .video-container { padding: 0.8rem; border-radius: 14px; }
-
-            /* SECTIONS */
             .section { padding: 60px 0; }
             .section-header { margin-bottom: 2.5rem; }
             .section-header h2 { font-size: 1.8rem; }
             .section-header p { font-size: 0.95rem; }
-
-            /* METHODOLOGY */
             .methodology-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .methodology-card { padding: 2rem 1.5rem; }
             .method-icon { width: 65px; height: 65px; font-size: 1.6rem; }
             .method-title { font-size: 1.2rem; }
-
-            /* CURRICULUM */
             .curriculum-preview { grid-template-columns: 1fr; gap: 2rem; }
             .curriculum-content h3 { font-size: 1.5rem; }
             .curriculum-highlights { grid-template-columns: 1fr; gap: 0.8rem; }
             .modules-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
             .module-preview { padding: 1rem; }
             .module-preview h4 { font-size: 0.85rem; }
+            .module-preview.full-width { grid-column: 1 / -1; }
             .curriculum-cta { width: 100%; text-align: center; padding: 15px; }
-
-            /* BENEFITS */
             .value-props { grid-template-columns: 1fr; gap: 2rem; }
             .value-content h3 { font-size: 1.5rem; }
             .value-list li { font-size: 0.92rem; }
-
-            /* TESTIMONIALS */
             .testimonial-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .testimonial-card { padding: 1.5rem; }
             .quote { font-size: 0.95rem; }
-
-            /* CTA FORM */
             .cta-section { padding: 60px 0; }
             .cta-section h2 { font-size: 1.8rem; }
             .cta-section p { font-size: 0.95rem; }
             .demo-form { padding: 1.5rem; margin: 0 4px; border-radius: 10px; }
             .form-row { grid-template-columns: 1fr; gap: 0; }
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
-                font-size: 16px; /* prevents iOS zoom on focus */
-                padding: 14px 12px;
-            }
+            .form-group input, .form-group select, .form-group textarea { font-size: 16px; padding: 14px 12px; }
             .submit-btn { font-size: 1rem; padding: 16px; }
-
-            /* FOOTER */
             .footer-content { grid-template-columns: 1fr; gap: 2rem; }
             .footer-logos { flex-direction: column; gap: 1.5rem; align-items: center; }
         }
-
-        /* ── Small phones ≤ 400px ─────────────────────────────── */
         @media (max-width: 400px) {
             .hero-content h1 { font-size: 1.75rem; }
             .stat-number { font-size: 1.4rem; }
             .modules-grid { grid-template-columns: 1fr; }
+            .module-preview.full-width { grid-column: 1; }
         }
     </style>
 </head>
@@ -792,9 +266,10 @@
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
+                    <!-- UNCHANGED: hero h1 -->
                     <h1>Induction Machine Training for Engineering Technologist</h1>
-                    <p class="subtitle">Transform your TVET programs with comprehensive hands-on training that bridges theoretical knowledge with real-world manufacturing expertise in induction machine design and testing.</p>
-                    
+                    <!-- UPDATED: subtitle now mentions 5 modules and 1-week program -->
+                    <p class="subtitle">Transform your TVET programs with five comprehensive modules progressing from fundamental electromagnetic principles to complete motor manufacturing and testing — hands-on, affordable, and institution-ready.</p>
                     <div class="hero-stats">
                         <div class="stat-item">
                             <span class="stat-number">40%</span>
@@ -812,15 +287,12 @@
                             <small class="stat-note">*Survey in progress</small>
                         </div>
                     </div>
-
                     <p class="survey-disclaimer">*Preliminary data from ongoing survey of first batch (60 students) at UMPSA</p>
-
                     <div class="hero-cta-buttons">
                         <a href="#demo" class="cta-primary">Join Pilot Program</a>
                         <a href="#methodology" class="cta-secondary">Learn More</a>
                     </div>
                 </div>
-                
                 <div class="hero-visual">
                     <div class="mvp-showcase">
                         <div class="mvp-image">
@@ -830,21 +302,24 @@
                                         <div class="slide-content">
                                             <div class="slide-icon">🧮</div>
                                             <h4 class="slide-title">FEMM Simulation</h4>
-                                            <p class="slide-description">Finite Element Analysis for electromagnetic field simulation and motor optimization</p>
+                                            <!-- UPDATED: description aligned to Module 2 content -->
+                                            <p class="slide-description">Finite element analysis for core lamination design and electromagnetic optimisation</p>
                                         </div>
                                     </div>
                                     <div class="carousel-slide manufacturing-slide">
                                         <div class="slide-content">
                                             <div class="slide-icon">🔧</div>
                                             <h4 class="slide-title">Manufacturing Process</h4>
-                                            <p class="slide-description">Hands-on core lamination, winding assembly, and complete motor construction</p>
+                                            <!-- UPDATED: reflects Modules 3 & 4 -->
+                                            <p class="slide-description">Hands-on stator winding, lamination stacking, rotor mounting, and full motor assembly</p>
                                         </div>
                                     </div>
                                     <div class="carousel-slide vfd-slide">
                                         <div class="slide-content">
                                             <div class="slide-icon">⚡</div>
                                             <h4 class="slide-title">VFD Testing</h4>
-                                            <p class="slide-description">Variable frequency drive integration, programming, and performance testing</p>
+                                            <!-- UPDATED: reflects Module 5 content -->
+                                            <p class="slide-description">DOL, star-delta, and Variable Frequency Drive commissioning with safety procedures</p>
                                         </div>
                                     </div>
                                 </div>
@@ -874,13 +349,11 @@
             </div>
             <div class="video-container">
                 <div class="video-wrapper">
-                    <iframe 
-                        id="heroVideo"
+                    <iframe id="heroVideo"
                         src="https://www.youtube.com/embed/UetDVG1UXKg?enablejsapi=1&rel=0&modestbranding=1"
                         title="TVET Electromechanical Training Program Demo"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+                        allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -895,18 +368,21 @@
             <div class="methodology-grid">
                 <div class="methodology-card">
                     <div class="method-icon">🧲</div>
-                    <h3 class="method-title">Theory & Electromagnetic Design</h3>
-                    <p class="method-description">Master electromechanical energy conversion principles, induction motor theory, and FE simulation using FEMM. Learn Faraday's law, Lorentz force, and rotating magnetic field concepts with practical applications.</p>
+                    <h3 class="method-title">Theory &amp; Electromagnetic Design</h3>
+                    <!-- UPDATED: now mentions core lamination and FEMM alongside theory -->
+                    <p class="method-description">Master electromechanical energy conversion principles and induction motor theory. Learn Faraday's law, Lorentz force, and rotating magnetic field concepts, then apply FEMM simulation to analyse core lamination and rotor geometry.</p>
                 </div>
                 <div class="methodology-card">
                     <div class="method-icon">🔧</div>
-                    <h3 class="method-title">Manufacturing & Assembly</h3>
-                    <p class="method-description">Experience hands-on core lamination processes, precision winding assembly, and complete motor construction. Build actual motors using professional manufacturing techniques and quality control methods.</p>
+                    <h3 class="method-title">Manufacturing &amp; Assembly</h3>
+                    <!-- UPDATED: stator winding and mechanical assembly are now distinct steps -->
+                    <p class="method-description">Build a stator winding from scratch using IEC standard diagrams and Winding Assistant apps, then complete full mechanical assembly — lamination stacking, rotor mounting, balancing, and terminal connections.</p>
                 </div>
                 <div class="methodology-card">
                     <div class="method-icon">⚡</div>
-                    <h3 class="method-title">Testing & Integration</h3>
-                    <p class="method-description">Connect motors to various drive systems including DOL, star-delta, and VFD. Conduct comprehensive testing following IEC and IEEE standards with performance validation and troubleshooting.</p>
+                    <h3 class="method-title">Testing &amp; Integration</h3>
+                    <!-- UPDATED: safety added, matches Module 5 bullet points -->
+                    <p class="method-description">Connect the assembled motor to drive systems including DOL, star-delta, and Variable Frequency Drive (VFD). Apply electrical safety procedures and verify performance through live commissioning.</p>
                 </div>
             </div>
         </div>
@@ -916,40 +392,62 @@
         <div class="container">
             <div class="section-header">
                 <h2>Training Curriculum Overview</h2>
-                <p>Six comprehensive modules covering theory to practical implementation with hands-on exercises and real-world applications</p>
+                <!-- FIXED: was "Six comprehensive modules" -->
+                <p>Five comprehensive modules covering theory to practical implementation, supported by simulator apps, winding tools, and structured worksheets</p>
             </div>
             <div class="curriculum-preview">
                 <div class="curriculum-content">
                     <h3>Complete Learning Experience</h3>
                     <div class="curriculum-highlights">
+                        <!-- FIXED: was "6 Core Modules" / "4 Hands-On Labs" / "Industry Standards" / "TVET Certification" -->
                         <div class="highlight-item">
-                            <h4>6 Core Modules</h4>
-                            <p>From electromagnetic theory to VFD integration</p>
+                            <h4>5 Core Modules</h4>
+                            <p>From electromagnetic theory to drive system integration</p>
                         </div>
                         <div class="highlight-item">
-                            <h4>4 Hands-On Labs</h4>
-                            <p>FEMM simulation, manufacturing, and testing</p>
+                            <h4>1-Week Intensive</h4>
+                            <p>Compact program designed for TVET delivery schedules</p>
                         </div>
                         <div class="highlight-item">
-                            <h4>Industry Standards</h4>
-                            <p>IEC and IEEE compliance training</p>
+                            <h4>App-Supported Learning</h4>
+                            <p>Electromagnetic Simulator &amp; Winding Assistant apps included</p>
                         </div>
                         <div class="highlight-item">
-                            <h4>TVET Certification</h4>
-                            <p>Measurable learning outcomes</p>
+                            <h4>Structured Worksheets</h4>
+                            <p>Every module comes with notes and assessment materials</p>
                         </div>
                     </div>
-                    <p style="margin-bottom: 1.5rem; color: #5a6c7d; font-size: 0.95rem;">Our curriculum progresses from fundamental electromagnetic principles to complete motor manufacturing and testing. Each module includes theoretical foundations, practical exercises, and real-world implementation projects.</p>
+                    <p style="margin-bottom:1.5rem;color:#5a6c7d;font-size:0.95rem;">Our 1-week curriculum progresses from fundamental electromagnetic principles to complete motor manufacturing and testing. Each module includes theoretical foundations, app-guided practical exercises, and real-world assembly tasks.</p>
                     <a href="curriculum.html" class="curriculum-cta">View Complete Curriculum</a>
                 </div>
                 <div class="curriculum-visual">
+                    <!-- FIXED: was 6 cards with old names — now 5 cards matching brochure exactly -->
                     <div class="modules-grid">
-                        <div class="module-preview"><div class="module-number">1</div><h4>Electromechanical Principles</h4><p>Theory Foundation</p></div>
-                        <div class="module-preview"><div class="module-number">2</div><h4>Induction Motor Theory</h4><p>Core Concepts</p></div>
-                        <div class="module-preview"><div class="module-number">3</div><h4>FEMM Simulation</h4><p>Design & Analysis</p></div>
-                        <div class="module-preview"><div class="module-number">4</div><h4>Manufacturing Process</h4><p>Hands-On Building</p></div>
-                        <div class="module-preview"><div class="module-number">5</div><h4>Drive Systems</h4><p>VFD Integration</p></div>
-                        <div class="module-preview"><div class="module-number">6</div><h4>Standards & Compliance</h4><p>Professional Practice</p></div>
+                        <div class="module-preview">
+                            <div class="module-number">1</div>
+                            <h4>Theory Foundation</h4>
+                            <p>Electromagnetic Principles</p>
+                        </div>
+                        <div class="module-preview">
+                            <div class="module-number">2</div>
+                            <h4>Core Lamination Design</h4>
+                            <p>Design &amp; Simulation</p>
+                        </div>
+                        <div class="module-preview">
+                            <div class="module-number">3</div>
+                            <h4>Stator Winding</h4>
+                            <p>Hands-On Construction</p>
+                        </div>
+                        <div class="module-preview">
+                            <div class="module-number">4</div>
+                            <h4>Mechanical Assembly</h4>
+                            <p>Rotor &amp; Terminal Connections</p>
+                        </div>
+                        <div class="module-preview full-width">
+                            <div class="module-number">5</div>
+                            <h4>Drive System Integration</h4>
+                            <p>DOL / Star-Delta / VFD</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -963,20 +461,24 @@
                     <h3>TVET Program Excellence</h3>
                     <ul class="value-list">
                         <li><span class="check-icon">✓</span><div><strong>Research-Based Curriculum:</strong> Developed by EMDLab with proven learning effectiveness and higher skill retention rates</div></li>
-                        <li><span class="check-icon">✓</span><div><strong>Industry-Ready Skills:</strong> Comprehensive training in electromagnetic design, manufacturing processes, and VFD integration</div></li>
-                        <li><span class="check-icon">✓</span><div><strong>Hands-On Learning:</strong> Modular motor system allows students to experience complete design-to-testing workflow</div></li>
-                        <li><span class="check-icon">✓</span><div><strong>Professional Certification:</strong> TVET-aligned competency development with measurable learning outcomes</div></li>
-                        <li><span class="check-icon">✓</span><div><strong>Academic Support:</strong> Backed by Universiti Malaysia Pahang Al-Sultan Abdullah and Centre for Academic Innovation</div></li>
+                        <!-- UPDATED: now lists module topics specifically -->
+                        <li><span class="check-icon">✓</span><div><strong>Industry-Ready Skills:</strong> Comprehensive training in electromagnetic theory, core lamination design, stator winding, mechanical assembly, and VFD integration</div></li>
+                        <!-- UPDATED: "one week" added for specificity -->
+                        <li><span class="check-icon">✓</span><div><strong>Hands-On Learning:</strong> Modular motor system enables students to experience the complete design-to-operation workflow within one week</div></li>
+                        <!-- UPDATED: replaced "Professional Certification" with App-Supported Practice -->
+                        <li><span class="check-icon">✓</span><div><strong>App-Supported Practice:</strong> Electromagnetic Simulator and Winding Assistant apps reinforce learning at every practical stage</div></li>
+                        <li><span class="check-icon">✓</span><div><strong>Academic Support:</strong> Backed by Universiti Malaysia Pahang Al-Sultan Abdullah and Centre for Academic Innovation &amp; Competitiveness</div></li>
                     </ul>
                 </div>
                 <div class="value-visual">
                     <div style="background:#f8f9fa;padding:1.5rem;border-radius:8px;text-align:center;">
                         <h4 style="margin-bottom:1rem;color:#2c3e50;">Training Components</h4>
+                        <!-- UPDATED: component labels now match module content -->
                         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;margin-bottom:1.2rem;">
-                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>Electromagnetic Theory</strong><br><small>Analytical analysis</small></div>
-                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>FEA Analysis</strong><br><small>Flux density, torque and optimization</small></div>
-                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>Stator Assembly</strong><br><small>Core lamination & winding</small></div>
-                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>VFD Testing</strong><br><small>Cabling, programming and testing</small></div>
+                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>Electromagnetic Theory</strong><br><small>Analytical &amp; equivalent circuit</small></div>
+                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>Core Lamination &amp; FEMM</strong><br><small>Design &amp; simulation</small></div>
+                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>Stator Winding</strong><br><small>IEC diagrams &amp; coil winding</small></div>
+                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>VFD Integration</strong><br><small>DOL, star-delta &amp; VFD testing</small></div>
                         </div>
                         <p style="color:#5a6c7d;font-size:0.85rem;">Complete modular system for comprehensive learning</p>
                     </div>
@@ -992,23 +494,24 @@
                 <p>See how EMDLab's training methodology is transforming engineering technologist education</p>
             </div>
             <div class="testimonial-grid">
+                <!-- UPDATED: testimonials now match brochure quotes exactly, with correct names/roles -->
                 <div class="testimonial-card">
-                    <p class="quote">"The EMDLab TVET approach produces engineering technologists who truly understand both theory and practice. Our students show remarkable improvement in learning speed and retention compared to traditional methods."</p>
+                    <p class="quote">"Building real motors gave me hands-on experience that would have taken years to develop in industry. I am now confident to work with motors."</p>
                     <div class="author">
-                        <div class="author-avatar">SC</div>
+                        <div class="author-avatar">RN</div>
                         <div class="author-info">
-                            <h4>Rheyshan Naidu</h4>
-                            <p>Student participant (IEM Student Branch secretary), UMPSA</p>
+                            <h4>Rhesyan Naidu</h4>
+                            <p>Trainee, IEM Student Branch, UMPSA</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <p class="quote">"Our engineering technologist graduates from the EMDLab program enter the workforce with practical motor experience that would typically take years to develop. The hands-on approach makes all the difference."</p>
+                    <p class="quote">"The program bridges the missing practical gap in electrical machine education. My students are now confident technologists."</p>
                     <div class="author">
-                        <div class="author-avatar">MR</div>
+                        <div class="author-avatar">SP</div>
                         <div class="author-info">
-                            <h4>Dr. Mohd Azri Hizami</h4>
-                            <p>Senior Lecturer, electrical Drive Systems, UMPSA</p>
+                            <h4>Suhaimi Puteh</h4>
+                            <p>Vocational Training Officer, UMPSA</p>
                         </div>
                     </div>
                 </div>
@@ -1020,7 +523,6 @@
         <div class="container">
             <h2>Join the EMDLab TVET Pilot Program</h2>
             <p>Be among the first institutions to implement this research-proven engineering technologist development program.</p>
-            
             <form class="demo-form" action="https://formspree.io/f/xvgrqkdd" method="POST">
                 <input type="hidden" name="_subject" value="New TVET Pilot Program Request - EMDLab">
                 <input type="hidden" name="_next" value="https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/thank-you.html">
@@ -1092,15 +594,16 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>TVET Electromechanical Training</h3>
-                    <p>Advancing engineering technologist education through innovative research-based training solutions developed at Universiti Malaysia Pahang Al-Sultan Abdullah, supported by the Centre for Academic Innovation & Competitiveness.</p>
+                    <p>Advancing engineering technologist education through innovative research-based training solutions developed at Universiti Malaysia Pahang Al-Sultan Abdullah, supported by the Centre for Academic Innovation &amp; Competitiveness.</p>
                 </div>
+                <!-- FIXED: footer links updated from old module names to brochure-aligned names -->
                 <div class="footer-links">
-                    <h4>Training Programs</h4>
+                    <h4>Training Modules</h4>
                     <ul>
-                        <li><a href="#">Electromagnetic Design</a></li>
-                        <li><a href="#">Manufacturing Process</a></li>
-                        <li><a href="#">VFD Integration</a></li>
-                        <li><a href="#">TVET Certification</a></li>
+                        <li><a href="curriculum.html">Theory Foundation</a></li>
+                        <li><a href="curriculum.html">Core Lamination Design</a></li>
+                        <li><a href="curriculum.html">Stator Winding</a></li>
+                        <li><a href="curriculum.html">Drive System Integration</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -1120,11 +623,11 @@
                 </div>
                 <div class="footer-logo-item">
                     <div class="footer-logo-image"><img src="images/EMDLab.png" alt="EMDLab Logo"></div>
-                    <div class="footer-logo-text"><div class="main-title">EMDLab</div><div class="subtitle">Research & Development</div></div>
+                    <div class="footer-logo-text"><div class="main-title">EMDLab</div><div class="subtitle">Research &amp; Development</div></div>
                 </div>
                 <div class="footer-logo-item">
                     <div class="footer-logo-image"><img src="images/cai-logo.png" alt="CAI Logo"></div>
-                    <div class="footer-logo-text"><div class="main-title">Centre for Academic</div><div class="subtitle">Innovation & Competitiveness</div></div>
+                    <div class="footer-logo-text"><div class="main-title">Centre for Academic</div><div class="subtitle">Innovation &amp; Competitiveness</div></div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1134,17 +637,13 @@
     </footer>
 
     <script>
-        // ── Hamburger nav toggle ───────────────────────────────
         const navToggle = document.getElementById('navToggle');
         const navMenu   = document.getElementById('navMenu');
-
         navToggle.addEventListener('click', () => {
             const isOpen = navMenu.classList.toggle('open');
             navToggle.classList.toggle('active', isOpen);
             navToggle.setAttribute('aria-expanded', isOpen);
         });
-
-        // Close menu when a link is clicked
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('open');
@@ -1152,8 +651,6 @@
                 navToggle.setAttribute('aria-expanded', 'false');
             });
         });
-
-        // ── Smooth scrolling ──────────────────────────────────
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1161,8 +658,6 @@
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
-
-        // ── Carousel feature sync ─────────────────────────────
         function syncCarouselFeatures() {
             const features = document.querySelectorAll('.mvp-feature');
             let currentIndex = 0;
@@ -1174,8 +669,6 @@
             setInterval(updateActiveFeature, 4000);
         }
         syncCarouselFeatures();
-
-        // ── Lead score helper (retained from original) ────────
         function calculateLeadScore(data) {
             let score = 0;
             const roleScores = { tvet_director: 10, department_head: 9, curriculum_developer: 8, instructor: 7, industry_partner: 9 };
@@ -1186,11 +679,8 @@
             score += timelineScores[data.implementation] || 0;
             return score;
         }
-
-        // ── Analytics stub ────────────────────────────────────
         function trackEvent(name, data = {}) { console.log('EMDLab Event:', name, data); }
         trackEvent('emdlab_page_view', { page: 'tvet_landing', timestamp: new Date().toISOString() });
-
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) trackEvent('emdlab_section_view', { section: e.target.id || e.target.className }); });
         }, { threshold: 0.5, rootMargin: '-100px' });
