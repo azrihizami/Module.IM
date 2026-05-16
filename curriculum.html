@@ -216,7 +216,7 @@
             font-weight: 600;
             color: #2c3e50;
             margin-bottom: 0.6rem;
-            padding-right: 80px; /* space for HANDS-ON badge */
+            padding-right: 80px;
         }
 
         .module-type {
@@ -280,6 +280,41 @@
             display: inline-block;
             margin-top: 1rem;
             border: 1px solid #d4edda;
+        }
+
+        /* Supporting Materials panel */
+        .supporting-materials {
+            background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid #c5d5f8;
+            margin-top: 1rem;
+        }
+        .supporting-materials h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .supporting-materials ul { list-style: none; }
+        .supporting-materials li {
+            padding: 0.55rem 0;
+            font-size: 0.93rem;
+            color: #4a5568;
+            border-bottom: 1px solid #dce8fd;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
+        .supporting-materials li:last-child { border-bottom: none; }
+        .supporting-materials li::before {
+            content: '📎';
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
         /* ── SUMMARY CARD ─────────────────────────────────── */
@@ -431,6 +466,7 @@
         .path-step:nth-child(2) .path-icon { background: #f39c12; }
         .path-step:nth-child(3) .path-icon { background: #27ae60; }
         .path-step:nth-child(4) .path-icon { background: #3498db; }
+        .path-step:nth-child(5) .path-icon { background: #8e44ad; }
 
         .path-title { font-size: 1rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.4rem; }
         .path-description { font-size: 0.85rem; color: #7f8c8d; }
@@ -516,16 +552,15 @@
             .module-header { padding: 1.4rem; }
             .module-header h3 {
                 font-size: 1.2rem;
-                padding-right: 0;        /* badge moves below on mobile */
+                padding-right: 0;
                 margin-bottom: 0.5rem;
             }
             .curriculum-module.featured::before {
-                position: static;        /* inline instead of absolute */
+                position: static;
                 display: inline-block;
                 margin-bottom: 0.6rem;
                 font-size: 0.6rem;
             }
-            /* Re-order: badge first, then title */
             .curriculum-module.featured .module-header {
                 display: flex;
                 flex-direction: column;
@@ -615,7 +650,7 @@
                 <span>Complete Training Curriculum</span>
             </div>
             <h1>Complete Training Curriculum</h1>
-            <p>Six comprehensive modules covering electromagnetic theory to practical VFD integration, designed to develop industry-ready engineering technologists through hands-on learning and real-world applications.</p>
+            <p>Five comprehensive modules progressing from fundamental electromagnetic principles to complete motor manufacturing and testing — designed to develop industry-ready engineering technologists through hands-on learning.</p>
         </div>
     </section>
 
@@ -623,144 +658,136 @@
         <div class="container">
             <div class="curriculum-grid">
 
+                <!-- MODULE 1: Theory Foundation -->
                 <div class="curriculum-module">
                     <div class="module-header">
                         <div class="module-number">1</div>
-                        <h3>Electromechanical Energy Conversion Principles</h3>
+                        <h3>Theory Foundation</h3>
                         <span class="module-type">Theoretical Foundation</span>
                     </div>
                     <div class="module-content">
-                        <p>Master the fundamental principles governing motor operation through Faraday's law and Lorentz force concepts.</p>
+                        <p>Master electromechanical energy conversion principles and induction motor theory essential for understanding how motors work.</p>
                         <ul class="topic-list">
-                            <li>Faraday's law: Induced current from flux variation</li>
-                            <li>Lorentz force: Force generation in magnetic fields</li>
-                            <li>Energy conversion mechanisms</li>
-                            <li>Mathematical modeling and analysis</li>
+                            <li>Core electromagnetic concepts</li>
+                            <li>Faraday's law and Lorentz force concepts</li>
+                            <li>Rotating magnetic field principles</li>
+                            <li>Equivalent circuit of induction machine</li>
                         </ul>
-                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Understand electromagnetic principles, calculate induced currents and forces</div>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Understand electromagnetic principles governing induction motor operation and analyse motor performance using equivalent circuit models</div>
                     </div>
                 </div>
 
-                <div class="curriculum-module">
+                <!-- MODULE 2: Core Lamination Design -->
+                <div class="curriculum-module featured">
                     <div class="module-header">
                         <div class="module-number">2</div>
-                        <h3>Induction Motor Theory & Analysis</h3>
-                        <span class="module-type">Core Concepts</span>
+                        <h3>Core Lamination Design</h3>
+                        <span class="module-type">Design & Simulation</span>
                     </div>
                     <div class="module-content">
-                        <p>Comprehensive understanding of induction motor structure, operation, and performance characteristics.</p>
+                        <p>Learn about the stator core and rotor design, their materials and manufacturing process — including finite element simulation for design optimisation.</p>
                         <ul class="topic-list">
-                            <li>Motor structure and key components</li>
-                            <li>Rotating magnetic field generation</li>
-                            <li>Slip concept and torque production</li>
-                            <li>Equivalent circuit analysis</li>
-                            <li>Efficiency and performance calculations</li>
+                            <li>Core lamination design and issues</li>
+                            <li>Rotor design and issues</li>
+                            <li>Manufacturing methods for core</li>
+                            <li>Design optimization methods</li>
+                            <li>FEMM electromagnetic simulation</li>
                         </ul>
-                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Analyze motor performance, calculate torque and efficiency parameters</div>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Design and evaluate stator/rotor lamination geometry; use simulation tools to optimise core performance</div>
+                        <div class="practical-badge">🔬 Includes Simulation Exercises (Electromagnetic Simulator App)</div>
                     </div>
                 </div>
 
+                <!-- MODULE 3: Stator Winding -->
                 <div class="curriculum-module featured">
                     <div class="module-header">
                         <div class="module-number">3</div>
-                        <h3>Finite Element Simulation (FEMM)</h3>
-                        <span class="module-type">Hands-On Design</span>
-                    </div>
-                    <div class="module-content">
-                        <p>Professional-grade simulation skills using industry-standard software for motor design optimization.</p>
-                        <ul class="topic-list">
-                            <li>FEMM software introduction and setup</li>
-                            <li>Simulation preparation and meshing</li>
-                            <li>Magnetic flux density analysis</li>
-                            <li>Material property influence studies</li>
-                            <li>Geometry optimization techniques</li>
-                            <li>Winding configuration analysis</li>
-                        </ul>
-                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Design and optimize motor parameters using FE analysis</div>
-                        <div class="practical-badge">🔬 Includes Practical Exercises</div>
-                    </div>
-                </div>
-
-                <div class="curriculum-module featured">
-                    <div class="module-header">
-                        <div class="module-number">4</div>
-                        <h3>Motor Manufacturing Process</h3>
+                        <h3>Stator Winding</h3>
                         <span class="module-type">Hands-On Manufacturing</span>
                     </div>
                     <div class="module-content">
-                        <p>Complete manufacturing experience from core preparation to final assembly using professional equipment.</p>
+                        <p>Learn motor winding design and build your own stator winding using IEC standard winding diagrams and professional winding assistant tools.</p>
                         <ul class="topic-list">
-                            <li>Core lamination cutting and stacking</li>
-                            <li>Precision winding assembly techniques</li>
-                            <li>Rotor construction and balancing</li>
-                            <li>Complete motor assembly process</li>
-                            <li>Quality control and inspection</li>
+                            <li>Understanding winding parameters</li>
+                            <li>Use our winding assistant apps to build coils</li>
+                            <li>Use IEC standard winding diagrams</li>
+                            <li>Learn to estimate copper length and mass</li>
                         </ul>
-                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Manufacture complete motors meeting industry standards</div>
-                        <div class="practical-badge">🔧 Full Manufacturing Experience</div>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Design a three-phase stator winding layout, wind coils to specification, and estimate material requirements</div>
+                        <div class="practical-badge">🔧 Full Winding Construction Experience (Winding Assistant App)</div>
                     </div>
                 </div>
 
+                <!-- MODULE 4: Mechanical Assembly -->
+                <div class="curriculum-module featured">
+                    <div class="module-header">
+                        <div class="module-number">4</div>
+                        <h3>Mechanical Assembly</h3>
+                        <span class="module-type">Hands-On Assembly</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Complete and test the full mechanical assembly of the induction motor — from rotor installation to terminal connections.</p>
+                        <ul class="topic-list">
+                            <li>Understanding the issues of mechanical assembly of motor</li>
+                            <li>Balancing and mounting the rotor, alignment</li>
+                            <li>Complete the motor winding connection to terminals</li>
+                            <li>Quality inspection and verification</li>
+                        </ul>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Assemble a complete induction motor from components, verify mechanical integrity, and connect winding terminations correctly</div>
+                        <div class="practical-badge">🔩 Complete Motor Assembly</div>
+                    </div>
+                </div>
+
+                <!-- MODULE 5: Drive System Integration -->
                 <div class="curriculum-module featured">
                     <div class="module-header">
                         <div class="module-number">5</div>
-                        <h3>Drive Systems & Integration</h3>
+                        <h3>Drive System Integration</h3>
                         <span class="module-type">Advanced Application</span>
                     </div>
                     <div class="module-content">
-                        <p>Master various motor starting methods and advanced VFD integration for real-world applications.</p>
+                        <p>Connect the assembled motor to various drive systems and test real-world operating conditions — including safety procedures.</p>
                         <ul class="topic-list">
-                            <li>Direct drive methods: DOL, star-delta</li>
-                            <li>Auto-transformer starting techniques</li>
-                            <li>Variable Frequency Drive (VFD) operation</li>
-                            <li>System commissioning and tuning</li>
-                            <li>Performance optimization</li>
+                            <li>DOL (Direct-On-Line) connections</li>
+                            <li>Star-delta configurations</li>
+                            <li>Variable Frequency Drive (VFD) integration</li>
+                            <li>Safety and related issues</li>
                         </ul>
-                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Commission and optimize motor-drive systems</div>
-                        <div class="practical-badge">⚡ Live System Testing</div>
-                    </div>
-                </div>
-
-                <div class="curriculum-module">
-                    <div class="module-header">
-                        <div class="module-number">6</div>
-                        <h3>Standards & Compliance</h3>
-                        <span class="module-type">Professional Practice</span>
-                    </div>
-                    <div class="module-content">
-                        <p>Essential knowledge of international standards and regulatory compliance for professional practice.</p>
-                        <ul class="topic-list">
-                            <li>IEC standards for electrical machines</li>
-                            <li>IEEE testing and performance standards</li>
-                            <li>Safety regulations and compliance</li>
-                            <li>Quality assurance procedures</li>
-                            <li>Documentation and certification</li>
-                        </ul>
-                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Apply international standards in professional practice</div>
-                        <div class="practical-badge">📋 Certification Pathway</div>
+                        <div class="module-outcomes"><strong>Learning Outcomes:</strong> Commission and test a motor with DOL, star-delta, and VFD starting methods; apply electrical safety practices throughout</div>
+                        <div class="practical-badge">⚡ Live Drive System Testing</div>
                     </div>
                 </div>
 
             </div><!-- end curriculum-grid -->
+
+            <!-- Supporting Materials Panel -->
+            <div class="supporting-materials" style="margin-top: 2.5rem;">
+                <h4>📚 Supporting Materials — All Modules</h4>
+                <ul>
+                    <li>Module 1 supported with Electromagnetic Simulator app</li>
+                    <li>Module 3 supported with Winding Assistant app</li>
+                    <li>All modules come with structured worksheets &amp; notes</li>
+                </ul>
+            </div>
 
             <div class="curriculum-summary">
                 <div class="summary-card">
                     <h4>Complete Learning Experience</h4>
                     <div class="summary-stats">
                         <div class="summary-stat">
-                            <span class="stat-number">6</span>
+                            <span class="stat-number">5</span>
                             <span class="stat-label">Core Modules</span>
                         </div>
                         <div class="summary-stat">
-                            <span class="stat-number">4</span>
-                            <span class="stat-label">Hands-On Modules</span>
+                            <span class="stat-number">1 Week</span>
+                            <span class="stat-label">Intensive Program</span>
                         </div>
                         <div class="summary-stat">
                             <span class="stat-number">100%</span>
                             <span class="stat-label">Industry Relevant</span>
                         </div>
                     </div>
-                    <p>Each practical module includes examples, exercises, and real-world implementation projects. Students progress from fundamental theory to professional competency through structured, hands-on learning.</p>
+                    <p>Each practical module includes structured worksheets, app-guided exercises, and real-world assembly tasks. Students progress from fundamental electromagnetic theory to operating a fully assembled motor with live drive systems.</p>
                     <div class="cta-buttons">
                         <a href="index.html#demo" class="cta-primary">Join Pilot Program</a>
                         <a href="index.html" class="cta-secondary">Back to Home</a>
@@ -775,28 +802,33 @@
         <div class="container">
             <div class="path-header">
                 <h2>Learning Path Progression</h2>
-                <p>Students advance through four key phases, building competency from theoretical understanding to professional application</p>
+                <p>Students advance through five phases, building competency from theoretical understanding to live drive system integration</p>
             </div>
             <div class="path-flow">
                 <div class="path-step">
                     <div class="path-icon">🧠</div>
-                    <h4 class="path-title">Foundation</h4>
-                    <p class="path-description">Electromagnetic principles and motor theory</p>
+                    <h4 class="path-title">Theory</h4>
+                    <p class="path-description">Electromagnetic principles &amp; motor theory</p>
                 </div>
                 <div class="path-step">
                     <div class="path-icon">💻</div>
                     <h4 class="path-title">Design</h4>
-                    <p class="path-description">FEMM simulation and optimization</p>
+                    <p class="path-description">Core lamination &amp; simulation</p>
                 </div>
                 <div class="path-step">
                     <div class="path-icon">🔧</div>
-                    <h4 class="path-title">Manufacturing</h4>
-                    <p class="path-description">Hands-on motor construction</p>
+                    <h4 class="path-title">Winding</h4>
+                    <p class="path-description">Stator coil construction</p>
+                </div>
+                <div class="path-step">
+                    <div class="path-icon">🔩</div>
+                    <h4 class="path-title">Assembly</h4>
+                    <p class="path-description">Mechanical assembly &amp; termination</p>
                 </div>
                 <div class="path-step">
                     <div class="path-icon">⚡</div>
                     <h4 class="path-title">Integration</h4>
-                    <p class="path-description">VFD testing and validation</p>
+                    <p class="path-description">DOL / star-delta / VFD testing</p>
                 </div>
             </div>
         </div>
@@ -807,15 +839,15 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>TVET Electromechanical Training</h3>
-                    <p>Advancing engineering technologist education through innovative research-based training solutions developed at Universiti Malaysia Pahang Al-Sultan Abdullah, supported by the Centre for Academic Innovation & Competitiveness.</p>
+                    <p>Advancing engineering technologist education through innovative research-based training solutions developed at Universiti Malaysia Pahang Al-Sultan Abdullah, supported by the Centre for Academic Innovation &amp; Competitiveness.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Training Programs</h4>
                     <ul>
                         <li><a href="#">Electromagnetic Design</a></li>
-                        <li><a href="#">Manufacturing Process</a></li>
+                        <li><a href="#">Core Lamination &amp; Winding</a></li>
+                        <li><a href="#">Motor Assembly</a></li>
                         <li><a href="#">VFD Integration</a></li>
-                        <li><a href="#">TVET Certification</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
