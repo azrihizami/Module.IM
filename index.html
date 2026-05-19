@@ -1,625 +1,2048 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVET Electromechanical Training | Engineering Technologist Development</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #2c3e50; background: #ffffff; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TET-IM · TVET Electromechanical Training — Induction Machine</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-        /* ── HEADER & NAV ── */
-        header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; position: relative; }
-        .logo { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
-        .logo-icon { width: 40px; height: 40px; flex-shrink: 0; background: linear-gradient(135deg, #e74c3c, #c0392b); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1rem; }
-        .logo-text { font-size: 1rem; font-weight: 600; color: #2c3e50; line-height: 1.2; }
-        .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; flex-shrink: 0; z-index: 1001; }
-        .nav-toggle span { display: block; width: 24px; height: 2px; background: #2c3e50; border-radius: 2px; transition: all 0.3s ease; }
-        .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .nav-toggle.active span:nth-child(2) { opacity: 0; }
-        .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-        .nav-menu { display: flex; gap: 1.8rem; list-style: none; }
-        .nav-menu a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.95rem; transition: color 0.3s ease; white-space: nowrap; }
-        .nav-menu a:hover { color: #e74c3c; }
+:root {
+  --navy: #0C3B6E;
+  --teal: #1D9E75;
+  --teal-light: #5DCAA5;
+  --teal-deep: #166749;
+  --amber: #F5A623;
+  --red: #E24B4A;
+  --white: #FFFFFF;
+  --off-white: #E8EEF4;
+  --dark-bg: #060E1A;
+  --dark-bg-2: #0a1424;
+  --dark-bg-3: #0f1d31;
+  --card-bg: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.12);
+  --text-muted: rgba(255,255,255,0.65);
+  --text-dim: rgba(255,255,255,0.45);
+}
 
-        /* ── HERO ── */
-        .hero { background: linear-gradient(135deg, rgba(44,62,80,0.48) 0%, rgba(52,73,94,0.38) 100%), url('images/hero-background.png'); background-size: cover; background-position: center; padding: 64px 0 56px; position: relative; color: white; }
-        .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,14,26,0.18) 0%, rgba(6,14,26,0.55) 100%); z-index: 1; }
-        .hero .container { position: relative; z-index: 2; width: 100%; }
-        .hero-layout { display: flex; flex-direction: column; gap: 2.4rem; align-items: center; }
-        .hero-header { text-align: center; max-width: 940px; margin: 0 auto; }
-        .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; background: rgba(231,76,60,0.2); border: 1px solid rgba(231,76,60,0.5); border-radius: 24px; color: #ffd1cb; font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 1.3rem; backdrop-filter: blur(8px); }
-        .hero-eyebrow .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #e74c3c; box-shadow: 0 0 0 0 rgba(231,76,60,0.7); animation: livePulse 1.8s infinite; flex-shrink: 0; }
-        @keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(231,76,60,0.7); } 70% { box-shadow: 0 0 0 8px rgba(231,76,60,0); } 100% { box-shadow: 0 0 0 0 rgba(231,76,60,0); } }
-        .hero-header h1 { font-size: 2.7rem; font-weight: 700; color: white; margin-bottom: 1.1rem; line-height: 1.15; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .hero-header .subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.92); line-height: 1.55; max-width: 760px; margin: 0 auto; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
-        .hero-stage { width: 100%; max-width: 1100px; margin: 0 auto; }
-        .hero-footer { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; width: 100%; }
-        .hero-stats-strip { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
-        .stat-pill { display: inline-flex; align-items: center; gap: 10px; padding: 9px 18px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); border-radius: 50px; backdrop-filter: blur(10px); }
-        .stat-pill .stat-num { font-size: 1.4rem; font-weight: 700; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
-        .stat-pill .stat-lbl { font-size: 0.78rem; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
-        .survey-disclaimer { font-size: 0.8rem; color: rgba(255,255,255,0.78); font-style: italic; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); max-width: 620px; margin: 0 auto; text-align: center; line-height: 1.4; }
-        .cta-primary { position: relative; display: inline-block; background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; padding: 18px 36px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 8px 32px rgba(231,76,60,0.4); animation: pulse 2s infinite; transition: all 0.3s ease; }
-        .cta-primary::before { content: ''; position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px; background: linear-gradient(45deg, #e74c3c, #c0392b, #e74c3c); border-radius: 50px; z-index: -1; opacity: 0.7; animation: pulseRing 2s infinite; }
-        .cta-primary:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(231,76,60,0.6); animation-play-state: paused; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        @keyframes pulseRing { 0% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.1); opacity: 0.3; } 100% { transform: scale(1.15); opacity: 0; } }
-        .cta-secondary { display: inline-block; background: transparent; color: white; padding: 16px 30px; text-decoration: none; border: 2px solid rgba(255,255,255,0.6); border-radius: 50px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; backdrop-filter: blur(10px); }
-        .cta-secondary:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-2px); }
-        .hero-cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--dark-bg);
+  color: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
 
-        /* ── HERO STAGE / EXHIBITION FRAME ── */
-        .exhibition-frame { position: relative; background: #060E1A; border: 1px solid rgba(255,255,255,0.14); border-radius: 16px; padding: 12px; box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(231,76,60,0.18); overflow: hidden; }
-        .exhibition-frame::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #e74c3c, transparent); opacity: 0.6; z-index: 2; }
-        .exhibition-aspect { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; border-radius: 10px; overflow: hidden; background: #060E1A; }
-        .exhibition-aspect iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: #060E1A; }
-        .exhibition-caption { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.9rem; padding: 0 4px; color: rgba(255,255,255,0.78); font-size: 0.78rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.25); }
-        .exhibition-caption .cap-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .exhibition-caption .cap-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; border-radius: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); font-weight: 500; letter-spacing: 0.4px; }
-        .exhibition-caption .cap-right { font-style: italic; opacity: 0.85; }
+/* ── INSTITUTIONAL CREDIT (hero top) ── */
+.dev-credit {
+  display: inline-flex; align-items: center; gap: 18px;
+  margin-bottom: 28px;
+  padding: 10px 18px 10px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 60px;
+  backdrop-filter: blur(8px);
+}
+.dev-credit .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.dev-credit .logos { display: flex; align-items: center; gap: 14px; }
+.dev-credit .logos img {
+  height: 28px; width: auto; object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+}
+.dev-credit .dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--text-dim);
+}
 
-        /* ── VIDEO ── */
-        .hero-video-section { padding: 80px 0; background: #ffffff; }
-        .video-header { text-align: center; margin-bottom: 3rem; }
-        .video-header h2 { font-size: 2.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 1rem; }
-        .video-header p { font-size: 1.1rem; color: #5a6c7d; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-        .video-container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 25px 80px rgba(0,0,0,0.1); overflow: hidden; padding: 1.2rem; }
-        .video-wrapper { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; border-radius: 12px; overflow: hidden; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 12px; }
+/* ── MODULE PHOTOS ── */
+.module-photo {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 14px;
+  border: 2px solid rgba(29,158,117,0.45);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  background: var(--dark-bg-2);
+}
+.module-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.module-photo.placeholder {
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(29,158,117,0.12);
+  color: var(--teal-light);
+}
+.module-photo.placeholder svg { width: 44px; height: 44px; }
 
-        /* ── SECTIONS ── */
-        .section { padding: 80px 0; }
-        .section-header { text-align: center; margin-bottom: 3.5rem; }
-        .section-header h2 { font-size: 2.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 1rem; }
-        .section-header p { font-size: 1.1rem; color: #5a6c7d; max-width: 600px; margin: 0 auto; }
+/* ── INNOVATION PHOTOS ── */
+.innovation-card { padding: 0; overflow: hidden; }
+.innovation-photo {
+  position: relative;
+  width: 100%; aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-top-left-radius: 11px; border-top-right-radius: 11px;
+  background: var(--dark-bg-2);
+}
+.innovation-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.innovation-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(6,14,26,0) 50%, rgba(6,14,26,0.55) 100%);
+  pointer-events: none;
+}
+.innovation-body { padding: 28px 28px 32px; }
 
-        /* ── METHODOLOGY ── */
-        .methodology { background: #f8f9fa; }
-        .methodology-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
-        .methodology-card { background: white; padding: 2.5rem 1.8rem; border-radius: 12px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.3s ease; position: relative; }
-        .methodology-card:hover { transform: translateY(-5px); }
-        .methodology-card::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: #e74c3c; border-radius: 0 0 4px 4px; }
-        .methodology-card:nth-child(2)::before { background: #f39c12; }
-        .methodology-card:nth-child(3)::before { background: #27ae60; }
-        .method-icon { width: 75px; height: 75px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.8rem; color: white; }
-        .methodology-card:nth-child(2) .method-icon { background: #f39c12; }
-        .methodology-card:nth-child(3) .method-icon { background: #27ae60; }
-        .method-title { font-size: 1.3rem; font-weight: 600; color: #2c3e50; margin-bottom: 1rem; }
-        .method-description { color: #5a6c7d; line-height: 1.6; }
+/* ── HELPERS ── */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.container-tight { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+.eyebrow {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--teal);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+h1, h2, h3, h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: 0.5px;
+}
+.section-title {
+  font-size: 3.2rem;
+  margin-bottom: 18px;
+  max-width: 900px;
+}
+.section-title .accent { color: var(--teal); }
+.section-intro {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.15rem;
+  color: var(--off-white);
+  line-height: 1.6;
+  max-width: 720px;
+  margin-bottom: 48px;
+}
 
-        /* ── CURRICULUM ── */
-        .curriculum-overview { background: white; }
-        .curriculum-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .curriculum-content h3 { font-size: 1.8rem; font-weight: 600; color: #2c3e50; margin-bottom: 1.5rem; }
-        .curriculum-highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
-        .highlight-item { background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #e74c3c; }
-        .highlight-item h4 { font-size: 1rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.4rem; }
-        .highlight-item p { color: #5a6c7d; font-size: 0.85rem; }
-        .curriculum-cta { background: #e74c3c; color: white; padding: 16px 32px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; display: inline-block; }
-        .curriculum-cta:hover { background: #c0392b; transform: translateY(-2px); }
-        .modules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .module-preview { background: white; border: 2px solid #e9ecef; border-radius: 8px; padding: 1.2rem; text-align: center; transition: all 0.3s ease; }
-        .module-preview:hover { border-color: #e74c3c; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
-        .module-number { width: 38px; height: 38px; background: #e74c3c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 0.8rem; }
-        .module-preview h4 { font-size: 0.95rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.4rem; }
-        .module-preview p { font-size: 0.78rem; color: #7f8c8d; }
-        .module-preview.full-width { grid-column: 1 / -1; }
+/* ── NAV ── */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(6,14,26,0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.3s ease;
+}
+header.scrolled { background: rgba(6,14,26,0.92); }
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 32px;
+  max-width: 1480px; margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 12px; color: white; text-decoration: none; }
+.brand-mark {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700; font-size: 12px;
+  color: white;
+  letter-spacing: 0.5px;
+}
+.brand-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.brand-name .sub { display: block; font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1.5px; margin-top: 2px; }
+.nav-menu {
+  display: flex; gap: 2.2rem; list-style: none; align-items: center;
+}
+.nav-menu a {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.nav-menu a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--teal);
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  transition: all 0.2s ease;
+}
+.nav-cta:hover { background: var(--teal-light); transform: translateY(-1px); }
+.nav-toggle {
+  display: none;
+  flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 8px;
+}
+.nav-toggle span {
+  width: 22px; height: 2px; background: white; border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        /* ── BENEFITS ── */
-        .value-props { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .value-content h3 { font-size: 1.8rem; font-weight: 600; color: #2c3e50; margin-bottom: 1.5rem; }
-        .value-list { list-style: none; }
-        .value-list li { padding: 0.9rem 0; border-bottom: 1px solid #ecf0f1; display: flex; align-items: flex-start; gap: 1rem; }
-        .value-list li:last-child { border-bottom: none; }
-        .check-icon { color: #27ae60; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
-        .value-visual { background: white; border-radius: 12px; padding: 1.8rem; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 140px 0 100px;
+  overflow: hidden;
+  background: var(--dark-bg);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 30%, rgba(29,158,117,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(29,158,117,0.10) 0%, transparent 50%);
+  z-index: 0;
+}
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  z-index: 0;
+}
+.hero .container {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+.hero-content { max-width: 640px; }
+.hero-content h1 {
+  font-size: 4.6rem;
+  color: white;
+  margin-bottom: 24px;
+}
+.hero-content h1 .teal { color: var(--teal); display: block; }
+.hero-content .tagline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--amber);
+  margin-bottom: 18px;
+  text-transform: none;
+}
+.hero-content .lede {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: var(--off-white);
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 560px;
+}
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all 0.25s ease;
+  cursor: pointer; border: none;
+}
+.btn-primary {
+  background: var(--teal); color: white;
+  box-shadow: 0 8px 24px rgba(29,158,117,0.3);
+}
+.btn-primary:hover {
+  background: var(--teal-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(29,158,117,0.45);
+}
+.btn-secondary {
+  background: transparent; color: white;
+  border: 1.5px solid rgba(255,255,255,0.3);
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.6); }
+.btn-arrow { font-size: 1.1em; line-height: 1; }
 
-        /* ── TESTIMONIALS ── */
-        .testimonials { background: #2c3e50; color: white; }
-        .testimonials .section-header h2, .testimonials .section-header p { color: white; }
-        .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
-        .testimonial-card { background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; backdrop-filter: blur(10px); }
-        .quote { font-size: 1rem; font-style: italic; margin-bottom: 1.5rem; line-height: 1.6; }
-        .author { display: flex; align-items: center; gap: 1rem; }
-        .author-avatar { width: 48px; height: 48px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; flex-shrink: 0; }
-        .author-info h4 { font-weight: 600; margin-bottom: 0.2rem; }
-        .author-info p { font-size: 0.85rem; opacity: 0.8; }
+/* Hero visual — exhibition iframe as the centerpiece */
+.hero-visual {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--dark-bg);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.08),
+    inset 0 0 0 1px rgba(29,158,117,0.12);
+}
+.hero-visual::before {
+  content: '';
+  position: absolute; top: 0; left: 10%; right: 10%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  z-index: 3;
+}
+.hero-aspect { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; }
+.hero-aspect iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  border: none; background: var(--dark-bg);
+}
 
-        /* ── CTA FORM ── */
-        .cta-section { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; text-align: center; padding: 80px 0; }
-        .cta-section h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
-        .cta-section p { font-size: 1.1rem; margin-bottom: 2.5rem; opacity: 0.9; }
-        .demo-form { background: white; max-width: 520px; margin: 0 auto; padding: 2.5rem; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); color: #2c3e50; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0; }
-        .form-group { margin-bottom: 1.2rem; }
-        .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 13px 15px; border: 2px solid #e9ecef; border-radius: 6px; font-size: 1rem; transition: border-color 0.3s ease; font-family: inherit; appearance: none; -webkit-appearance: none; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #e74c3c; }
-        .submit-btn { background: #e74c3c; color: white; padding: 16px 40px; border: none; border-radius: 6px; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%; -webkit-tap-highlight-color: transparent; }
-        .submit-btn:hover { background: #c0392b; transform: translateY(-2px); }
-        .submit-btn:active { transform: translateY(0); }
+/* Hero scroll cue */
+.scroll-cue {
+  position: absolute;
+  bottom: 32px; left: 50%; transform: translateX(-50%);
+  z-index: 2;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px; text-transform: uppercase;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-decoration: none;
+  animation: floatCue 2.4s ease-in-out infinite;
+}
+.scroll-cue .line { width: 1px; height: 32px; background: linear-gradient(to bottom, var(--teal), transparent); }
+@keyframes floatCue { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
 
-        /* ── FOOTER ── */
-        footer { background: #2c3e50; color: white; padding: 3rem 0; }
-        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
-        .footer-brand h3 { font-size: 1.3rem; margin-bottom: 1rem; }
-        .footer-brand p { opacity: 0.8; line-height: 1.6; font-size: 0.9rem; }
-        .footer-links h4 { margin-bottom: 1rem; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 0.5rem; }
-        .footer-links a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease; font-size: 0.9rem; }
-        .footer-links a:hover { opacity: 1; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 2rem; padding-top: 2rem; text-align: center; opacity: 0.6; font-size: 0.85rem; }
-        .footer-logos { display: flex; justify-content: center; align-items: center; gap: 3rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
-        .footer-logo-item { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; opacity: 0.9; transition: opacity 0.3s ease, transform 0.3s ease; }
-        .footer-logo-item:hover { opacity: 1; transform: translateY(-2px); }
-        .footer-logo-image { height: 55px; display: flex; align-items: center; justify-content: center; }
-        .footer-logo-image img { height: 100%; width: auto; object-fit: contain; }
-        .footer-logo-text { font-size: 0.72rem; line-height: 1.3; text-align: center; opacity: 0.8; }
-        .footer-logo-text .main-title { font-weight: 600; margin-bottom: 2px; }
-        .footer-logo-text .subtitle { font-size: 0.68rem; opacity: 0.7; }
+/* ── SECTION SHELL ── */
+section { position: relative; }
+.section-padding { padding: 120px 0; }
+.section-padding-sm { padding: 80px 0; }
+.section-mark {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
 
-        /* ═══ MOBILE ≤768px ═══ */
-        @media (max-width: 768px) {
-            .container { padding: 0 16px; }
-            .nav-toggle { display: flex; }
-            .logo-text { font-size: 0.85rem; }
-            .nav-menu { display: none; position: absolute; top: calc(100% + 0px); left: 0; right: 0; background: white; flex-direction: column; gap: 0; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-top: 1px solid #e9ecef; z-index: 999; }
-            .nav-menu.open { display: flex; }
-            .nav-menu li { border-bottom: 1px solid #f0f0f0; }
-            .nav-menu a { display: block; padding: 14px 20px; font-size: 1rem; }
-            .hero { padding: 56px 0 48px; background-attachment: scroll; }
-            .hero-layout { gap: 1.8rem; }
-            .hero-eyebrow { font-size: 0.62rem; letter-spacing: 1.8px; padding: 5px 11px; margin-bottom: 1rem; }
-            .hero-header h1 { font-size: 2rem; margin-bottom: 0.8rem; }
-            .hero-header .subtitle { font-size: 0.98rem; }
-            .hero-stats-strip { gap: 0.5rem; }
-            .stat-pill { padding: 7px 14px; gap: 8px; }
-            .stat-pill .stat-num { font-size: 1.2rem; }
-            .stat-pill .stat-lbl { font-size: 0.7rem; letter-spacing: 0.5px; }
-            .survey-disclaimer { font-size: 0.75rem; }
-            .hero-cta-buttons { flex-direction: column; align-items: stretch; gap: 0.7rem; width: 100%; max-width: 360px; }
-            .cta-primary, .cta-secondary { text-align: center; padding: 15px 22px; font-size: 0.95rem; }
-            .exhibition-frame { padding: 8px; border-radius: 12px; }
-            .exhibition-caption { font-size: 0.7rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-            .exhibition-caption .cap-left { justify-content: center; gap: 8px; }
-            .exhibition-caption .cap-pill { padding: 3px 9px; }
-            .hero-video-section { padding: 50px 0; }
-            .video-header h2 { font-size: 1.8rem; }
-            .video-header p { font-size: 0.95rem; }
-            .video-container { padding: 0.8rem; border-radius: 14px; }
-            .section { padding: 60px 0; }
-            .section-header { margin-bottom: 2.5rem; }
-            .section-header h2 { font-size: 1.8rem; }
-            .section-header p { font-size: 0.95rem; }
-            .methodology-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .methodology-card { padding: 2rem 1.5rem; }
-            .method-icon { width: 65px; height: 65px; font-size: 1.6rem; }
-            .method-title { font-size: 1.2rem; }
-            .curriculum-preview { grid-template-columns: 1fr; gap: 2rem; }
-            .curriculum-content h3 { font-size: 1.5rem; }
-            .curriculum-highlights { grid-template-columns: 1fr; gap: 0.8rem; }
-            .modules-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-            .module-preview { padding: 1rem; }
-            .module-preview h4 { font-size: 0.85rem; }
-            .module-preview.full-width { grid-column: 1 / -1; }
-            .curriculum-cta { width: 100%; text-align: center; padding: 15px; }
-            .value-props { grid-template-columns: 1fr; gap: 2rem; }
-            .value-content h3 { font-size: 1.5rem; }
-            .value-list li { font-size: 0.92rem; }
-            .testimonial-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .testimonial-card { padding: 1.5rem; }
-            .quote { font-size: 0.95rem; }
-            .cta-section { padding: 60px 0; }
-            .cta-section h2 { font-size: 1.8rem; }
-            .cta-section p { font-size: 0.95rem; }
-            .demo-form { padding: 1.5rem; margin: 0 4px; border-radius: 10px; }
-            .form-row { grid-template-columns: 1fr; gap: 0; }
-            .form-group input, .form-group select, .form-group textarea { font-size: 16px; padding: 14px 12px; }
-            .submit-btn { font-size: 1rem; padding: 16px; }
-            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
-            .footer-logos { flex-direction: column; gap: 1.5rem; align-items: center; }
-        }
-        @media (max-width: 400px) {
-            .hero-content h1 { font-size: 1.75rem; }
-            .stat-number { font-size: 1.4rem; }
-            .modules-grid { grid-template-columns: 1fr; }
-            .module-preview.full-width { grid-column: 1; }
-        }
-    </style>
+/* ── PROBLEM SECTION ── */
+.problem {
+  background: var(--dark-bg);
+  padding-top: 60px;
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.problem-text h2 {
+  font-size: 3.8rem;
+  color: white;
+  margin-bottom: 20px;
+}
+.problem-text h2 .red-accent { color: var(--red); display: block; }
+.problem-text p {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.15rem;
+  color: var(--off-white);
+  line-height: 1.7;
+  max-width: 500px;
+}
+.problem-cards { display: flex; flex-direction: column; gap: 16px; }
+.problem-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left: 4px solid var(--amber);
+  border-radius: 10px;
+  padding: 28px 32px;
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+.problem-card.accent-red { border-left-color: var(--red); }
+.problem-card.accent-muted { border-left-color: rgba(255,255,255,0.25); }
+.problem-card .photo {
+  margin: -28px -32px 22px;
+  height: 160px;
+  overflow: hidden;
+  background: var(--dark-bg-2);
+}
+.problem-card .photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: grayscale(0.2) brightness(0.85);
+}
+.problem-card .price {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--amber);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.problem-card .copy {
+  font-size: 0.98rem;
+  color: var(--off-white);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ── INTRODUCING TET-IM ── */
+.intro-section {
+  background: var(--dark-bg-2);
+  position: relative;
+  overflow: hidden;
+}
+.intro-section::before {
+  content: '';
+  position: absolute;
+  width: 800px; height: 800px;
+  border-radius: 50%;
+  border: 1px solid rgba(29,158,117,0.08);
+  top: 50%; left: 25%; transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.intro-section::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  border: 1px solid rgba(29,158,117,0.12);
+  top: 50%; left: 25%; transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.intro-grid {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 4rem;
+  align-items: center;
+}
+.intro-text { text-align: left; }
+.tetim-mark {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 8.5rem;
+  letter-spacing: 6px;
+  line-height: 1;
+  color: white;
+  text-shadow: 0 4px 30px rgba(29,158,117,0.3);
+  margin-bottom: 22px;
+}
+.intro-section .name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--off-white);
+  letter-spacing: 0.5px;
+}
+.intro-section .divider {
+  width: 80px; height: 2px; background: var(--teal); margin: 24px 0;
+}
+.intro-section .quote {
+  font-family: 'DM Sans', sans-serif;
+  font-style: italic; font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--teal-light);
+  max-width: 520px;
+  line-height: 1.55;
+}
+.intro-photo {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+.intro-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.intro-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(6,14,26,0) 60%, rgba(6,14,26,0.5) 100%);
+  pointer-events: none;
+}
+.intro-photo .photo-tag {
+  position: absolute; bottom: 20px; left: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--teal-light);
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 6px 12px;
+  background: rgba(6,14,26,0.7);
+  border: 1px solid rgba(29,158,117,0.4);
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+}
+
+/* ── MODULES JOURNEY ── */
+.modules-section { background: var(--dark-bg); }
+.modules-header { text-align: center; margin-bottom: 70px; }
+.modules-header h2 { font-size: 3.2rem; }
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  position: relative;
+}
+.modules-grid::before {
+  content: '';
+  position: absolute;
+  top: 30px; left: 5%; right: 5%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--teal) 10%, var(--teal) 90%, transparent);
+  opacity: 0.3;
+  z-index: 0;
+}
+.module-node {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+.module-num {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--dark-bg);
+  border: 2px solid var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700; font-size: 1.3rem;
+  color: var(--teal);
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+.module-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--white);
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  min-height: 40px;
+}
+.module-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.modules-badges {
+  margin-top: 56px;
+  display: flex; gap: 14px;
+  justify-content: center; flex-wrap: wrap;
+}
+.modules-badge {
+  padding: 10px 22px;
+  border: 1.5px solid var(--teal);
+  border-radius: 30px;
+  background: rgba(29,158,117,0.08);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--teal-light);
+  letter-spacing: 1px;
+}
+.modules-caption {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--off-white);
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+/* ── INNOVATIONS ── */
+.innovations { background: var(--dark-bg-2); }
+.innovations-header { margin-bottom: 56px; }
+.innovations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.innovation-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-top: 4px solid var(--teal);
+  border-radius: 12px;
+  padding: 36px 28px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+.innovation-card:hover { transform: translateY(-4px); border-top-color: var(--teal-light); }
+.innovation-icon {
+  width: 52px; height: 52px;
+  border-radius: 10px;
+  background: rgba(29,158,117,0.12);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+  color: var(--teal);
+}
+.innovation-icon svg { width: 26px; height: 26px; }
+.innovation-card h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.innovation-card p {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.92rem;
+  color: var(--off-white);
+  line-height: 1.6;
+}
+
+/* ── COMPANION MATERIALS ── */
+.companion { background: var(--dark-bg); }
+.companion-header { text-align: center; margin-bottom: 56px; }
+.companion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.companion-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 0;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.companion-photo {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: var(--dark-bg-2);
+  border-bottom: 1px solid var(--card-border);
+}
+.companion-photo img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+}
+.companion-photo.contain { background: #f4f4ef; padding: 12px; }
+.companion-photo.contain img { object-fit: contain; }
+.companion-body { padding: 30px 30px 34px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.companion-card .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--teal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.companion-card h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 0.5px;
+}
+.companion-card p {
+  font-weight: 300;
+  color: var(--off-white);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.companion-card .feature-list {
+  list-style: none; margin-top: 6px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.companion-card .feature-list li {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.86rem;
+  color: var(--off-white);
+  padding-left: 22px;
+  position: relative;
+}
+.companion-card .feature-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 8px;
+  width: 10px; height: 2px;
+  background: var(--teal);
+}
+
+/* ── BROCHURE / TAKE IT WITH YOU ── */
+.brochure-section { background: var(--dark-bg-2); }
+.brochure-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
+  align-items: center;
+}
+.brochure-text h2 {
+  font-size: 3.4rem;
+  color: white;
+  margin-bottom: 22px;
+}
+.brochure-text h2 .teal { color: var(--teal); display: block; }
+.brochure-text p {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.08rem;
+  color: var(--off-white);
+  line-height: 1.65;
+  margin-bottom: 24px;
+  max-width: 500px;
+}
+.brochure-includes { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.brochure-includes li {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--off-white);
+  padding-left: 26px;
+  position: relative;
+}
+.brochure-includes li::before {
+  content: '→';
+  position: absolute; left: 0;
+  color: var(--teal); font-weight: 700;
+}
+.brochure-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.brochure-meta {
+  margin-top: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.brochure-meta .sep { margin: 0 10px; opacity: 0.4; }
+
+/* Trifold visual */
+.trifold-stage {
+  perspective: 1800px;
+  display: flex;
+  align-items: center; justify-content: center;
+  padding: 20px 0;
+}
+.trifold {
+  display: flex; gap: 4px;
+  transform: rotateY(-22deg) rotateX(6deg) rotateZ(-1deg);
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.5));
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.trifold:hover { transform: rotateY(-16deg) rotateX(4deg) rotateZ(0deg); }
+.trifold-panel {
+  width: 175px; height: 470px;
+  background: var(--dark-bg);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.06),
+    inset 8px 0 30px -20px rgba(0,0,0,0.6);
+  display: flex; flex-direction: column;
+}
+.trifold-panel.panel-2 { transform: translateZ(2px); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); }
+
+/* Panel 1 — cover */
+.panel-cover {
+  background:
+    linear-gradient(180deg, rgba(6,14,26,0.45) 0%, rgba(6,14,26,0.85) 100%),
+    url('images/photo-a.jpg') center/cover no-repeat;
+  padding: 22px 18px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.panel-cover .top {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  color: var(--teal-light);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.panel-cover .title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 0.95;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.panel-cover .title .a { color: var(--teal); display: block; }
+.panel-cover .sub {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--off-white);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+.panel-cover .tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-style: italic;
+  color: var(--amber);
+  font-size: 0.95rem;
+  text-transform: none;
+}
+
+/* Panels 2, 3 — content */
+.panel-content {
+  padding: 18px 14px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.panel-content .h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7px;
+  color: var(--teal);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.panel-content .ph {
+  width: 100%; height: 60px;
+  border-radius: 3px;
+  background: #1a2940;
+  overflow: hidden;
+}
+.panel-content .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.panel-content .line {
+  height: 4px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 2px;
+}
+.panel-content .line.w-80 { width: 80%; }
+.panel-content .line.w-60 { width: 60%; }
+.panel-content .line.w-90 { width: 90%; }
+.panel-content .line.w-40 { width: 40%; }
+.panel-content .line.w-70 { width: 70%; }
+.panel-content .line.teal {
+  background: var(--teal);
+  height: 5px;
+  width: 32px;
+  margin: 2px 0 4px;
+}
+.panel-content .heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  color: white;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  line-height: 1.1;
+}
+.panel-content .pricepill {
+  display: inline-block;
+  background: rgba(29,158,117,0.15);
+  border: 1px solid var(--teal);
+  color: var(--teal-light);
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7px;
+  font-weight: 700;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+.panel-content .qr {
+  width: 38px; height: 38px;
+  background:
+    repeating-conic-gradient(white 0% 25%, var(--dark-bg) 0% 50%) 50%/8px 8px;
+  border-radius: 3px;
+  align-self: center;
+  margin-top: 4px;
+}
+
+/* ── WHY INSTITUTIONS ── */
+.institutions {
+  background: linear-gradient(180deg, var(--dark-bg-2) 0%, var(--dark-bg) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.institutions::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url('images/photo-c.jpg');
+  background-size: cover;
+  background-position: center right;
+  opacity: 0.08;
+  mix-blend-mode: luminosity;
+  pointer-events: none;
+}
+.institutions .container { position: relative; z-index: 2; }
+.institutions-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 4rem;
+  align-items: center;
+}
+.institutions-text h2 {
+  font-size: 3.8rem;
+  margin-bottom: 24px;
+  color: white;
+}
+.institutions-text h2 .teal { color: var(--teal); display: block; }
+.institutions-text p {
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: var(--off-white);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+.metric-box {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px 20px;
+}
+.metric-box .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--teal-light);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.metric-box .lbl {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: var(--off-white);
+  line-height: 1.4;
+}
+.institutions-right { display: flex; flex-direction: column; gap: 18px; }
+.feat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 26px 28px;
+  border-left: 5px solid var(--teal);
+}
+.feat-card.amber { border-left-color: var(--amber); }
+.feat-card h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  text-transform: none;
+  color: var(--teal);
+  margin-bottom: 12px;
+  letter-spacing: 0;
+}
+.feat-card.amber h4 { color: var(--amber); }
+.feat-card p {
+  font-weight: 300;
+  color: var(--off-white);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 0;
+}
+.pills-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  padding: 6px 14px;
+  border: 1.5px solid var(--teal);
+  border-radius: 20px;
+  color: var(--teal-light);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+/* ── ENGAGEMENT OPTIONS ── */
+.engagement { background: var(--dark-bg); }
+.engagement-header { text-align: center; margin-bottom: 56px; }
+.engagement-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.eng-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 40px 36px;
+  display: flex; flex-direction: column;
+}
+.eng-card .top-accent {
+  width: 56px; height: 4px;
+  background: var(--teal);
+  margin-bottom: 22px;
+}
+.eng-card.opt-2 .top-accent { background: var(--amber); }
+.eng-card .opt-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.eng-card h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: white;
+  text-transform: uppercase;
+  margin: 6px 0 24px;
+  letter-spacing: 0.5px;
+}
+.eng-icon {
+  width: 56px; height: 56px;
+  border-radius: 12px;
+  background: rgba(29,158,117,0.1);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+  color: var(--teal);
+}
+.eng-card.opt-2 .eng-icon { background: rgba(245,166,35,0.1); color: var(--amber); }
+.eng-icon svg { width: 28px; height: 28px; }
+.eng-card .desc {
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--off-white);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.eng-features { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 12px; }
+.eng-features li {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.92rem;
+  color: var(--off-white);
+  padding-left: 26px;
+  position: relative;
+}
+.eng-features li::before {
+  content: '✓';
+  position: absolute; left: 0; top: 0;
+  color: var(--teal);
+  font-weight: 700;
+}
+.eng-card.opt-2 .eng-features li::before { color: var(--amber); }
+.eng-price {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+.eng-price .price {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.7rem;
+  color: var(--teal-light);
+  line-height: 1.1;
+}
+.eng-card.opt-2 .eng-price .price { color: var(--amber); }
+.eng-price .price-note {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.88rem;
+  color: var(--off-white);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials {
+  background: var(--dark-bg-2);
+}
+.testimonials-header { text-align: center; margin-bottom: 56px; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.testimonial {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 36px 36px;
+  position: relative;
+}
+.testimonial::before {
+  content: '"';
+  position: absolute; top: 16px; right: 28px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 6rem; color: rgba(29,158,117,0.18);
+  line-height: 1;
+}
+.testimonial .quote-text {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--off-white);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+.testimonial .author {
+  display: flex; align-items: center; gap: 14px;
+}
+.author-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: white;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+.author-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  color: white;
+  font-size: 0.98rem;
+}
+.author-role {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ── CTA ── */
+.cta-section {
+  background:
+    linear-gradient(135deg, rgba(6,14,26,0.92) 0%, rgba(6,14,26,0.85) 100%),
+    radial-gradient(ellipse at top right, rgba(29,158,117,0.25), transparent 60%);
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  border: 1px solid rgba(29,158,117,0.15);
+  bottom: -300px; left: -150px;
+  pointer-events: none;
+}
+.cta-section .container { position: relative; z-index: 2; }
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.cta-text h2 {
+  font-size: 3.6rem;
+  color: white;
+  margin-bottom: 24px;
+}
+.cta-text h2 .teal { color: var(--teal); display: block; }
+.cta-text p {
+  font-weight: 300;
+  font-size: 1.15rem;
+  color: var(--off-white);
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+.cta-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.cta-bullets li {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--off-white);
+  padding-left: 26px;
+  position: relative;
+}
+.cta-bullets li::before {
+  content: '→';
+  position: absolute; left: 0;
+  color: var(--teal);
+  font-weight: 700;
+}
+.demo-form {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 40px 36px;
+  color: #2c3e50;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+}
+.demo-form h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: var(--dark-bg);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+.demo-form .form-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.92rem;
+  color: #5a6c7d;
+  margin-bottom: 24px;
+}
+.demo-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.demo-form .form-group { margin-bottom: 16px; }
+.demo-form label {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--dark-bg);
+  margin-bottom: 6px;
+}
+.demo-form input, .demo-form select, .demo-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #e1e5ea;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  background: white;
+  color: var(--dark-bg);
+  transition: border-color 0.2s ease;
+  -webkit-appearance: none; appearance: none;
+}
+.demo-form input:focus, .demo-form select:focus, .demo-form textarea:focus {
+  outline: none; border-color: var(--teal);
+}
+.demo-form .submit-btn {
+  width: 100%;
+  background: var(--teal);
+  color: white;
+  padding: 16px;
+  border: none; border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.demo-form .submit-btn:hover { background: var(--teal-light); }
+.demo-form .form-note {
+  margin-top: 14px;
+  font-size: 0.78rem;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #04080f;
+  padding: 60px 0 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 48px;
+}
+.footer-brand h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+.footer-brand p {
+  font-weight: 300;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 420px;
+}
+.footer-links h5 {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--teal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-logos {
+  display: flex; justify-content: center; align-items: center;
+  gap: 56px; flex-wrap: wrap;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-logo {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.footer-logo:hover { opacity: 1; }
+.footer-logo img {
+  height: 48px; width: auto; object-fit: contain;
+}
+.footer-logo-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.4;
+}
+.footer-logo-text strong { color: white; font-weight: 600; display: block; }
+.footer-bottom {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+/* ── MOBILE / RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .container, .container-tight { padding: 0 24px; }
+  .section-title { font-size: 2.6rem; }
+  .hero-content h1 { font-size: 3.6rem; }
+  .modules-grid { grid-template-columns: repeat(3, 1fr); gap: 32px 20px; }
+  .modules-grid::before { display: none; }
+  .innovations-grid { grid-template-columns: repeat(2, 1fr); }
+  .companion-grid { grid-template-columns: 1fr; }
+  .institutions-grid { grid-template-columns: 1fr; gap: 48px; }
+  .engagement-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .brochure-grid { grid-template-columns: 1fr; gap: 56px; }
+  .brochure-text { text-align: center; }
+  .brochure-text p { margin-left: auto; margin-right: auto; }
+  .brochure-includes { max-width: 380px; margin-left: auto; margin-right: auto; text-align: left; }
+  .brochure-ctas { justify-content: center; }
+  .cta-grid { grid-template-columns: 1fr; gap: 48px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .tetim-mark { font-size: 7rem; }
+}
+
+@media (max-width: 768px) {
+  .section-padding { padding: 80px 0; }
+  .section-padding-sm { padding: 60px 0; }
+  .container, .container-tight { padding: 0 20px; }
+  nav { padding: 14px 20px; }
+  .brand-name { font-size: 0.95rem; }
+  .brand-name .sub { display: none; }
+  .nav-menu {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(6,14,26,0.97);
+    backdrop-filter: blur(16px);
+    flex-direction: column;
+    padding: 20px;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-menu.open { display: flex; }
+  .nav-menu li { width: 100%; }
+  .nav-menu a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .nav-menu .nav-cta { display: inline-block; margin-top: 8px; }
+  .nav-toggle { display: flex; }
+
+  .hero { padding: 110px 0 60px; min-height: auto; }
+  .hero .container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-content { margin: 0 auto; }
+  .hero-content h1 { font-size: 2.6rem; }
+  .hero-content .tagline { font-size: 1.2rem; }
+  .hero-content .lede { font-size: 1rem; margin-left: auto; margin-right: auto; }
+  .hero-ctas { justify-content: center; }
+  .scroll-cue { display: none; }
+
+  .section-title, .problem-text h2, .institutions-text h2, .cta-text h2 { font-size: 2.2rem; }
+  .modules-grid { grid-template-columns: repeat(2, 1fr); }
+  .innovations-grid { grid-template-columns: 1fr; }
+  .metrics-row { grid-template-columns: 1fr; }
+  .tetim-mark { font-size: 5rem; letter-spacing: 3px; }
+  .intro-section .quote { font-size: 1.05rem; }
+  .intro-grid { grid-template-columns: 1fr; gap: 36px; }
+  .intro-text { text-align: center; }
+  .intro-section .name { font-size: 1.2rem; }
+  .intro-section .quote { margin: 0 auto; }
+  .intro-section .divider { margin: 24px auto; }
+  .intro-photo { aspect-ratio: 4 / 3; max-width: 520px; margin: 0 auto; }
+
+  .testimonials-grid { gap: 16px; }
+  .testimonial { padding: 28px 24px; }
+  .brochure-text h2 { font-size: 2.2rem; }
+  .trifold-panel { width: 130px; height: 350px; }
+  .panel-cover .title { font-size: 1.8rem; }
+  .panel-content { padding: 14px 11px; gap: 8px; }
+  .panel-content .ph { height: 46px; }
+
+  .demo-form { padding: 28px 22px; }
+  .demo-form .form-row { grid-template-columns: 1fr; gap: 0; }
+  .demo-form input, .demo-form select, .demo-form textarea { font-size: 16px; }
+
+  .footer-logos { gap: 28px; }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 { font-size: 2.1rem; }
+  .modules-grid { grid-template-columns: 1fr; gap: 24px; }
+  .tetim-mark { font-size: 4rem; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">
-                <div class="logo-icon">TET</div>
-                <div class="logo-text">TVET Electromechanical Training</div>
-            </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#methodology">Methodology</a></li>
-                <li><a href="curriculum.html">Curriculum</a></li>
-                <li><a href="#benefits">Benefits</a></li>
-                <li><a href="#testimonials">Success Stories</a></li>
-                <li><a href="#demo">Request Demo</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-layout">
-                <!-- HEADER: title + subtitle, centered -->
-                <div class="hero-header">
-                    <h1>Induction Machine Training for Engineering Technologist</h1>
-                    <p class="subtitle">Transform your TVET programs with five comprehensive modules progressing from fundamental electromagnetic principles to complete motor manufacturing and testing — hands-on, affordable, and institution-ready.</p>
-                </div>
+<header id="topNav">
+  <nav>
+    <a href="#top" class="brand">
+      <div class="brand-mark">TET</div>
+      <div class="brand-name">
+        TET-IM
+        <span class="sub">EMDLab · UMPSA</span>
+      </div>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#modules">Modules</a></li>
+      <li><a href="#innovations">Innovations</a></li>
+      <li><a href="#engagement">Engagement</a></li>
+      <li><a href="curriculum.html">Curriculum</a></li>
+      <li><a href="#demo" class="nav-cta">Join Pilot</a></li>
+    </ul>
+  </nav>
+</header>
 
-                <!-- STAGE: full-width exhibition animation -->
-                <div class="hero-stage">
-                    <div class="exhibition-frame">
-                        <div class="exhibition-aspect">
-                            <iframe
-                                src="exhibition.html"
-                                title="TET-IM Exhibition Animation"
-                                loading="lazy"
-                                allow="autoplay"></iframe>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FOOTER: stats strip + disclaimer + CTAs -->
-                <div class="hero-footer">
-                    <div class="hero-stats-strip">
-                        <div class="stat-pill">
-                            <span class="stat-num">40%</span>
-                            <span class="stat-lbl">Faster Learning</span>
-                        </div>
-                        <div class="stat-pill">
-                            <span class="stat-num">85%</span>
-                            <span class="stat-lbl">Skill Retention</span>
-                        </div>
-                        <div class="stat-pill">
-                            <span class="stat-num">92%</span>
-                            <span class="stat-lbl">Student Satisfaction</span>
-                        </div>
-                    </div>
-                    <p class="survey-disclaimer">*Preliminary data from ongoing survey of first batch (60 students) at UMPSA</p>
-                    <div class="hero-cta-buttons">
-                        <a href="#demo" class="cta-primary">Join Pilot Program</a>
-                        <a href="#methodology" class="cta-secondary">Learn More</a>
-                    </div>
-                </div>
-            </div>
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <div class="hero-grid-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="dev-credit">
+        <span class="label">Developed at</span>
+        <div class="logos">
+          <img src="images/logo-umpsa.png" alt="UMPSA">
+          <span class="dot"></span>
+          <img src="images/logo-emdlab.png" alt="EMDLab">
         </div>
-    </section>
+      </div>
+      <div class="eyebrow">// TVET Electromechanical Training</div>
+      <h1>
+        Modular electric motor
+        <span class="teal">assembly</span>
+      </h1>
+      <div class="tagline">"From Design to Operation"</div>
+      <p class="lede">The first electric motor training platform built for hands-on TVET education. Students don't observe — they design, wind, assemble, and operate real induction machines from loose laminations to running motor.</p>
+      <div class="hero-ctas">
+        <a href="#demo" class="btn btn-primary">Join the Pilot Program <span class="btn-arrow">→</span></a>
+        <a href="#problem" class="btn btn-secondary">Explore the System</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-aspect">
+        <iframe
+          src="exhibition.html"
+          title="TET-IM Exhibition Animation"
+          loading="eager"
+          allow="autoplay"></iframe>
+      </div>
+    </div>
+  </div>
+  <a href="#problem" class="scroll-cue">
+    <span>Scroll</span>
+    <div class="line"></div>
+  </a>
+</section>
 
-    <section class="hero-video-section" id="video">
-        <div class="container">
-            <div class="video-header">
-                <h2>See Our Training Program in Action</h2>
-                <p>Experience the comprehensive hands-on approach that's transforming engineering technologist education across TVET institutions</p>
-            </div>
-            <div class="video-container">
-                <div class="video-wrapper">
-                    <iframe id="heroVideo"
-                        src="https://www.youtube.com/embed/UetDVG1UXKg?enablejsapi=1&rel=0&modestbranding=1"
-                        title="TVET Electromechanical Training Program Demo"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-            </div>
+<!-- ── PROBLEM ── -->
+<section class="problem section-padding" id="problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-text">
+        <div class="eyebrow">// The Problem</div>
+        <h2>Students observe.<br><span class="red-accent">Never build.</span></h2>
+        <p>Conventional motor training kits are sealed, fixed units. TVET institutions across Malaysia and the region lack affordable, disassemblable hardware for genuine hands-on learning — and the few that exist cost more than most departments can budget.</p>
+      </div>
+      <div class="problem-cards">
+        <div class="problem-card">
+          <div class="photo"><img src="images/photo-h.jpg" alt="Sealed commercial training kit"></div>
+          <div class="price">RM 50K – 100K</div>
+          <div class="copy">Commercial sets (Lucas Nülle, LabVolt) — sealed and non-disassemblable. The price of looking inside one motor.</div>
         </div>
-    </section>
-
-    <section class="section methodology" id="methodology">
-        <div class="container">
-            <div class="section-header">
-                <h2>Comprehensive TVET Learning Methodology</h2>
-                <p>Research-based approach developed by EMDLab at Universiti Malaysia Pahang Al-Sultan Abdullah for comprehensive engineering technologist development</p>
-            </div>
-            <div class="methodology-grid">
-                <div class="methodology-card">
-                    <div class="method-icon">🧲</div>
-                    <h3 class="method-title">Theory &amp; Electromagnetic Design</h3>
-                    <p class="method-description">Master electromechanical energy conversion principles and induction motor theory. Learn Faraday's law, Lorentz force, and rotating magnetic field concepts, then apply FEMM simulation to analyse core lamination and rotor geometry.</p>
-                </div>
-                <div class="methodology-card">
-                    <div class="method-icon">🔧</div>
-                    <h3 class="method-title">Manufacturing &amp; Assembly</h3>
-                    <p class="method-description">Build a stator winding from scratch using IEC standard diagrams and Winding Assistant apps, then complete full mechanical assembly — lamination stacking, rotor mounting, balancing, and terminal connections.</p>
-                </div>
-                <div class="methodology-card">
-                    <div class="method-icon">⚡</div>
-                    <h3 class="method-title">Testing &amp; Integration</h3>
-                    <p class="method-description">Connect the assembled motor to drive systems including DOL, star-delta, and Variable Frequency Drive (VFD). Apply electrical safety procedures and verify performance through live commissioning.</p>
-                </div>
-            </div>
+        <div class="problem-card accent-red">
+          <div class="copy">Sealed construction means students cannot access internal geometry, inspect end-windings, or measure design choices against outcomes.</div>
         </div>
-    </section>
-
-    <section class="section curriculum-overview" id="curriculum">
-        <div class="container">
-            <div class="section-header">
-                <h2>Training Curriculum Overview</h2>
-                <p>Five comprehensive modules covering theory to practical implementation, supported by simulator apps, winding tools, and structured worksheets</p>
-            </div>
-            <div class="curriculum-preview">
-                <div class="curriculum-content">
-                    <h3>Complete Learning Experience</h3>
-                    <div class="curriculum-highlights">
-                        <div class="highlight-item">
-                            <h4>5 Core Modules</h4>
-                            <p>From electromagnetic theory to drive system integration</p>
-                        </div>
-                        <div class="highlight-item">
-                            <h4>1-Week Intensive</h4>
-                            <p>Compact program designed for TVET delivery schedules</p>
-                        </div>
-                        <div class="highlight-item">
-                            <h4>App-Supported Learning</h4>
-                            <p>Electromagnetic Simulator &amp; Winding Assistant apps included</p>
-                        </div>
-                        <div class="highlight-item">
-                            <h4>Structured Worksheets</h4>
-                            <p>Every module comes with notes and assessment materials</p>
-                        </div>
-                    </div>
-                    <p style="margin-bottom:1.5rem;color:#5a6c7d;font-size:0.95rem;">Our 1-week curriculum progresses from fundamental electromagnetic principles to complete motor manufacturing and testing. Each module includes theoretical foundations, app-guided practical exercises, and real-world assembly tasks.</p>
-                    <a href="curriculum.html" class="curriculum-cta">View Complete Curriculum</a>
-                </div>
-                <div class="curriculum-visual">
-                    <div class="modules-grid">
-                        <div class="module-preview">
-                            <div class="module-number">1</div>
-                            <h4>Theory Foundation</h4>
-                            <p>Electromagnetic Principles</p>
-                        </div>
-                        <div class="module-preview">
-                            <div class="module-number">2</div>
-                            <h4>Core Lamination Design</h4>
-                            <p>Design &amp; Simulation</p>
-                        </div>
-                        <div class="module-preview">
-                            <div class="module-number">3</div>
-                            <h4>Stator Winding</h4>
-                            <p>Hands-On Construction</p>
-                        </div>
-                        <div class="module-preview">
-                            <div class="module-number">4</div>
-                            <h4>Mechanical Assembly</h4>
-                            <p>Rotor &amp; Terminal Connections</p>
-                        </div>
-                        <div class="module-preview full-width">
-                            <div class="module-number">5</div>
-                            <h4>Drive System Integration</h4>
-                            <p>DOL / Star-Delta / VFD</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="problem-card accent-muted">
+          <div class="copy">No known training system covers the full path from electromagnetic design through manufacturing to drive operation in one platform.</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="section" id="benefits">
-        <div class="container">
-            <div class="value-props">
-                <div class="value-content">
-                    <h3>TVET Program Excellence</h3>
-                    <ul class="value-list">
-                        <li><span class="check-icon">✓</span><div><strong>Research-Based Curriculum:</strong> Developed by EMDLab with proven learning effectiveness and higher skill retention rates</div></li>
-                        <li><span class="check-icon">✓</span><div><strong>Industry-Ready Skills:</strong> Comprehensive training in electromagnetic theory, core lamination design, stator winding, mechanical assembly, and VFD integration</div></li>
-                        <li><span class="check-icon">✓</span><div><strong>Hands-On Learning:</strong> Modular motor system enables students to experience the complete design-to-operation workflow within one week</div></li>
-                        <li><span class="check-icon">✓</span><div><strong>App-Supported Practice:</strong> Electromagnetic Simulator and Winding Assistant apps reinforce learning at every practical stage</div></li>
-                        <li><span class="check-icon">✓</span><div><strong>Academic Support:</strong> Backed by Universiti Malaysia Pahang Al-Sultan Abdullah and Centre for Academic Innovation &amp; Competitiveness</div></li>
-                    </ul>
-                </div>
-                <div class="value-visual">
-                    <div style="background:#f8f9fa;padding:1.5rem;border-radius:8px;text-align:center;">
-                        <h4 style="margin-bottom:1rem;color:#2c3e50;">Training Components</h4>
-                        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;margin-bottom:1.2rem;">
-                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>Electromagnetic Theory</strong><br><small>Analytical &amp; equivalent circuit</small></div>
-                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>Core Lamination &amp; FEMM</strong><br><small>Design &amp; simulation</small></div>
-                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>Stator Winding</strong><br><small>IEC diagrams &amp; coil winding</small></div>
-                            <div style="background:white;padding:0.9rem;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-size:0.9rem;"><strong>VFD Integration</strong><br><small>DOL, star-delta &amp; VFD testing</small></div>
-                        </div>
-                        <p style="color:#5a6c7d;font-size:0.85rem;">Complete modular system for comprehensive learning</p>
-                    </div>
-                </div>
-            </div>
+<!-- ── INTRODUCING ── -->
+<section class="intro-section section-padding">
+  <div class="container-tight">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <div class="eyebrow">// Introducing</div>
+        <div class="tetim-mark">TET-IM</div>
+        <div class="name">TVET Electromechanical Training — Induction Machine</div>
+        <div class="divider"></div>
+        <p class="quote">"The first electric motor training system built for hands-on TVET education — from loose silicon steel laminations to a running, fully-instrumented induction machine."</p>
+      </div>
+      <div class="intro-photo">
+        <img src="images/photo-f.jpg" alt="Students assembling the TET-IM motor">
+        <div class="photo-tag">Hands-on assembly</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 6 MODULES ── -->
+<section class="modules-section section-padding" id="modules">
+  <div class="container">
+    <div class="modules-header">
+      <div class="eyebrow">// From Design to Operation</div>
+      <h2 class="section-title">A complete learning <span class="accent">ecosystem</span></h2>
+      <p class="section-intro" style="margin-left:auto;margin-right:auto;text-align:left;display:inline-block;">Six progressive modules taking students from first principles to drive commissioning. Adopt the full programme, or integrate individual modules into your existing curriculum.</p>
+    </div>
+
+    <div class="modules-grid">
+      <div class="module-node">
+        <div class="module-num">01</div>
+        <div class="module-photo"><img src="images/photo-g.jpg" alt="Companion app screenshot"></div>
+        <div class="module-name">Electromagnetic Theory</div>
+        <div class="module-desc">Faraday, Lorentz, rotating fields — explored through interactive simulation</div>
+      </div>
+      <div class="module-node">
+        <div class="module-num">02</div>
+        <div class="module-photo"><img src="images/photo-d.jpg" alt="Silicon steel laminations"></div>
+        <div class="module-name">Core Lamination Design</div>
+        <div class="module-desc">FEMM-based design, M330-35A silicon steel, slot geometry trade-offs</div>
+      </div>
+      <div class="module-node">
+        <div class="module-num">03</div>
+        <div class="module-photo"><img src="images/photo-b.jpg" alt="Student winding stator"></div>
+        <div class="module-name">Motor Winding</div>
+        <div class="module-desc">Hand-wound 3-phase coils, IEC winding diagrams, guided app workflow</div>
+      </div>
+      <div class="module-node">
+        <div class="module-num">04</div>
+        <div class="module-photo"><img src="images/photo-f.jpg" alt="Motor assembly"></div>
+        <div class="module-name">Motor Assembly</div>
+        <div class="module-desc">Bolt-and-nut reversible build — disassemble and rebuild every session</div>
+      </div>
+      <div class="module-node">
+        <div class="module-num">05</div>
+        <div class="module-photo"><img src="images/photo-c.jpg" alt="Student at drives panel"></div>
+        <div class="module-name">Drives &amp; Control</div>
+        <div class="module-desc">DOL, star-delta, VFD commissioning with full electrical safety</div>
+      </div>
+      <div class="module-node">
+        <div class="module-num">06</div>
+        <div class="module-photo placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-    </section>
+        <div class="module-name">Assessment &amp; Feedback</div>
+        <div class="module-desc">Structured rubrics and outcome verification tied to each module</div>
+      </div>
+    </div>
 
-    <section class="section testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>TVET Success Stories</h2>
-                <p>See how EMDLab's training methodology is transforming engineering technologist education</p>
-            </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p class="quote">"Building real motors gave me hands-on experience that would have taken years to develop in industry. I am now confident to work with motors."</p>
-                    <div class="author">
-                        <div class="author-avatar">RN</div>
-                        <div class="author-info">
-                            <h4>Rhesyan Naidu</h4>
-                            <p>Trainee, IEM Student Branch, UMPSA</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="quote">"The program bridges the missing practical gap in electrical machine education. My students are now confident technologists."</p>
-                    <div class="author">
-                        <div class="author-avatar">SP</div>
-                        <div class="author-info">
-                            <h4>Suhaimi Puteh</h4>
-                            <p>Vocational Training Officer, UMPSA</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="modules-badges">
+      <div class="modules-badge">Engineering</div>
+      <div class="modules-badge">Engineering Technology</div>
+      <div class="modules-badge">Technology</div>
+    </div>
+    <p class="modules-caption">Flexible modular adoption — integrate at the level that fits your curriculum.</p>
+  </div>
+</section>
+
+<!-- ── INNOVATIONS ── -->
+<section class="innovations section-padding" id="innovations">
+  <div class="container">
+    <div class="innovations-header">
+      <div class="eyebrow">// Novelty &amp; Inventiveness</div>
+      <h2 class="section-title">What makes it <span class="accent">different</span></h2>
+      <p class="section-intro">Four design choices that turn invisible physics into something students can touch, see, and reason about.</p>
+    </div>
+
+    <div class="innovations-grid">
+      <div class="innovation-card">
+        <div class="innovation-photo"><img src="images/photo-d.jpg" alt="Stacked silicon steel laminations"></div>
+        <div class="innovation-body">
+          <div class="innovation-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="3" rx="0.5"/><rect x="3" y="10.5" width="18" height="3" rx="0.5"/><rect x="3" y="16" width="18" height="3" rx="0.5"/></svg>
+          </div>
+          <h3>Stackable Laminations</h3>
+          <p>24-slot stator built from individual loose M330-35A silicon steel sheets — hand-stacked by students.</p>
         </div>
-    </section>
-
-    <section class="section cta-section" id="demo">
-        <div class="container">
-            <h2>Join the EMDLab TVET Pilot Program</h2>
-            <p>Be among the first institutions to implement this research-proven engineering technologist development program.</p>
-            <form class="demo-form" action="https://formspree.io/f/xvgrqkdd" method="POST">
-                <input type="hidden" name="_subject" value="New TVET Pilot Program Request - EMDLab">
-                <input type="hidden" name="_next" value="https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/thank-you.html">
-                <input type="hidden" name="_cc" value="your-backup-email@example.com">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First Name *</label>
-                        <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name *</label>
-                        <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required autocomplete="email">
-                </div>
-                <div class="form-group">
-                    <label for="organization">Institution/Organization *</label>
-                    <input type="text" id="organization" name="organization" required>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="role">Your Role *</label>
-                        <select id="role" name="role" required>
-                            <option value="">Select Role</option>
-                            <option value="tvet_director">TVET Program Director</option>
-                            <option value="department_head">Department Head</option>
-                            <option value="instructor">Technical Instructor</option>
-                            <option value="curriculum_developer">Curriculum Developer</option>
-                            <option value="industry_partner">Industry Partner</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="students">Expected Students/Trainees</label>
-                        <select id="students" name="students">
-                            <option value="">Select Range</option>
-                            <option value="10-20">10–20</option>
-                            <option value="21-30">21–30</option>
-                            <option value="31-50">31–50</option>
-                            <option value="50+">50+</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="implementation">Implementation Timeline</label>
-                    <select id="implementation" name="implementation">
-                        <option value="">Select Timeline</option>
-                        <option value="immediate">Within 3 months</option>
-                        <option value="next_semester">Next semester</option>
-                        <option value="next_year">Next academic year</option>
-                        <option value="evaluating">Currently evaluating</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="requirements">Specific Requirements or Questions</label>
-                    <textarea id="requirements" name="requirements" rows="3" placeholder="Tell us about your TVET program needs, facility requirements, or specific questions..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Request Pilot Program Information</button>
-                <p style="margin-top:1rem;font-size:0.85rem;color:#7f8c8d;text-align:center;">We'll contact you within 24 hours to discuss pilot program details and implementation</p>
-            </form>
+      </div>
+      <div class="innovation-card">
+        <div class="innovation-photo"><img src="images/photo-e.jpg" alt="Bolt-and-nut assembly detail"></div>
+        <div class="innovation-body">
+          <div class="innovation-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 11-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 015.4-5.4l-3 3-2-2 3-3z"/></svg>
+          </div>
+          <h3>Bolt-and-Nut Assembly</h3>
+          <p>Reversible construction over permanent bonding — full disassembly and reassembly, session after session.</p>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>TVET Electromechanical Training</h3>
-                    <p>Advancing engineering technologist education through innovative research-based training solutions developed at Universiti Malaysia Pahang Al-Sultan Abdullah, supported by the Centre for Academic Innovation &amp; Competitiveness.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Training Modules</h4>
-                    <ul>
-                        <li><a href="curriculum.html">Theory Foundation</a></li>
-                        <li><a href="curriculum.html">Core Lamination Design</a></li>
-                        <li><a href="curriculum.html">Stator Winding</a></li>
-                        <li><a href="curriculum.html">Drive System Integration</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">Implementation Guide</a></li>
-                        <li><a href="#">Instructor Training</a></li>
-                        <li><a href="#">Research Papers</a></li>
-                        <li><a href="#">Contact EMDLab</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-logos">
-                <div class="footer-logo-item">
-                    <div class="footer-logo-image"><img src="images/Logo UMPSA.png" alt="UMPSA Logo"></div>
-                    <div class="footer-logo-text"><div class="main-title">Universiti Malaysia Pahang</div><div class="subtitle">Al-Sultan Abdullah</div></div>
-                </div>
-                <div class="footer-logo-item">
-                    <div class="footer-logo-image"><img src="images/EMDLab.png" alt="EMDLab Logo"></div>
-                    <div class="footer-logo-text"><div class="main-title">EMDLab</div><div class="subtitle">Research &amp; Development</div></div>
-                </div>
-                <div class="footer-logo-item">
-                    <div class="footer-logo-image"><img src="images/cai-logo.png" alt="CAI Logo"></div>
-                    <div class="footer-logo-text"><div class="main-title">Centre for Academic</div><div class="subtitle">Innovation &amp; Competitiveness</div></div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 EMDLab, Universiti Malaysia Pahang Al-Sultan Abdullah. Transforming engineering technologist education through research and innovation.</p>
-            </div>
+      </div>
+      <div class="innovation-card">
+        <div class="innovation-photo"><img src="images/photo-a.jpg" alt="Assembled TET-IM induction motor"></div>
+        <div class="innovation-body">
+          <div class="innovation-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7"/><polyline points="21 4 21 10 15 10"/></svg>
+          </div>
+          <h3>Interchangeable Rotor</h3>
+          <p>Swappable topology — IM, PMSM, SyRM — expandable as the curriculum advances.</p>
         </div>
-    </footer>
+      </div>
+      <div class="innovation-card">
+        <div class="innovation-photo"><img src="images/photo-b.jpg" alt="End-winding geometry on stator"></div>
+        <div class="innovation-body">
+          <div class="innovation-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Visible End-Windings</h3>
+          <p>Open construction lets students inspect winding geometry directly — invisible physics made tangible.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        const navToggle = document.getElementById('navToggle');
-        const navMenu   = document.getElementById('navMenu');
-        navToggle.addEventListener('click', () => {
-            const isOpen = navMenu.classList.toggle('open');
-            navToggle.classList.toggle('active', isOpen);
-            navToggle.setAttribute('aria-expanded', isOpen);
-        });
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('open');
-                navToggle.classList.remove('active');
-                navToggle.setAttribute('aria-expanded', 'false');
-            });
-        });
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-        function calculateLeadScore(data) {
-            let score = 0;
-            const roleScores = { tvet_director: 10, department_head: 9, curriculum_developer: 8, instructor: 7, industry_partner: 9 };
-            const sizeScores = { '50+': 10, '31-50': 8, '21-30': 6, '10-20': 4 };
-            const timelineScores = { immediate: 10, next_semester: 8, next_year: 6, evaluating: 4 };
-            score += roleScores[data.role] || 5;
-            score += sizeScores[data.students] || 0;
-            score += timelineScores[data.implementation] || 0;
-            return score;
-        }
-        function trackEvent(name, data = {}) { console.log('EMDLab Event:', name, data); }
-        trackEvent('emdlab_page_view', { page: 'tvet_landing', timestamp: new Date().toISOString() });
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) trackEvent('emdlab_section_view', { section: e.target.id || e.target.className }); });
-        }, { threshold: 0.5, rootMargin: '-100px' });
-        document.querySelectorAll('section').forEach(s => observer.observe(s));
-    </script>
+<!-- ── COMPANION MATERIALS ── -->
+<section class="companion section-padding">
+  <div class="container">
+    <div class="companion-header">
+      <div class="eyebrow">// Every Module Ready to Teach</div>
+      <h2 class="section-title" style="margin:0 auto;">Structured notes, worksheets &amp; <span class="accent">assistant apps</span></h2>
+      <p class="section-intro" style="margin:24px auto 0;text-align:center;">Each of the six modules ships with print-ready training materials, guided lab worksheets, and dedicated companion web apps. Instructors deliver from day one.</p>
+    </div>
+
+    <div class="companion-grid">
+      <div class="companion-card">
+        <div class="companion-photo contain"><img src="images/comp-booklet.jpg" alt="Module booklet cover"></div>
+        <div class="companion-body">
+          <div class="tag">// Print Material</div>
+          <h3>Structured Module Notes</h3>
+          <p>Self-contained training booklets — theory, illustrated procedures, references, and assessment rubrics for every module.</p>
+          <ul class="feature-list">
+            <li>Theory + worked examples</li>
+            <li>Step-by-step lab procedures</li>
+            <li>Assessment rubrics included</li>
+          </ul>
+        </div>
+      </div>
+      <div class="companion-card">
+        <div class="companion-photo"><img src="images/comp-app.jpg" alt="IM Winding Assistant web app"></div>
+        <div class="companion-body">
+          <div class="tag">// Companion Web Apps</div>
+          <h3>Interactive Design Assistants</h3>
+          <p>Browser-based tools — IM Winding Assistant, lamination calculator, electromagnetic theory explorer — turning each worksheet into a hands-on numerical experiment.</p>
+          <ul class="feature-list">
+            <li>IM Winding Assistant</li>
+            <li>Lamination calculator</li>
+            <li>Live electromagnetic simulator</li>
+          </ul>
+        </div>
+      </div>
+      <div class="companion-card">
+        <div class="companion-photo"><img src="images/comp-lab.jpg" alt="FEMM finite-element lab analysis"></div>
+        <div class="companion-body">
+          <div class="tag">// Guided Lab Worksheets</div>
+          <h3>Worksheets + Simulation</h3>
+          <p>Step-by-step activities pairing physical assembly with finite-element analysis — students validate design choices with measurable data.</p>
+          <ul class="feature-list">
+            <li>FEMM-paired exercises</li>
+            <li>Measurement &amp; verification</li>
+            <li>Outcome-driven assessment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INSTITUTIONS ── -->
+<section class="institutions section-padding" id="institutions">
+  <div class="container">
+    <div class="institutions-grid">
+      <div class="institutions-text">
+        <div class="eyebrow">// Why Institutions Choose TET-IM</div>
+        <h2>Curriculum-ready.<br><span class="teal">Day one.</span></h2>
+        <p>Modular curriculum architecture adoptable across Technology, Engineering Technology, and Engineering programmes — without redesign. Integrated lecture notes, worksheets, and structured lab activities included.</p>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="num">50+</div>
+            <div class="lbl">TVET institutions in Malaysia</div>
+          </div>
+          <div class="metric-box">
+            <div class="num">10–15</div>
+            <div class="lbl">Units required per institution</div>
+          </div>
+          <div class="metric-box">
+            <div class="num">RM 5K+</div>
+            <div class="lbl">Starting unit price</div>
+          </div>
+        </div>
+      </div>
+      <div class="institutions-right">
+        <div class="feat-card">
+          <h4>Scalable Across Levels</h4>
+          <div class="pills-row">
+            <span class="pill">Tech</span>
+            <span class="pill">Eng Tech</span>
+            <span class="pill">Engineering</span>
+          </div>
+        </div>
+        <div class="feat-card amber">
+          <h4>Ready to Teach — Zero Prep</h4>
+          <p>Lecture notes · Worksheets · Lab activities — all included with every unit.</p>
+        </div>
+        <div class="feat-card">
+          <h4>Train-the-Trainer Included</h4>
+          <p>On-site or at UMPSA — your instructors are walked through the full curriculum before you deliver it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ENGAGEMENT OPTIONS ── -->
+<section class="engagement section-padding" id="engagement">
+  <div class="container">
+    <div class="engagement-header">
+      <div class="eyebrow">// How Institutions Can Engage</div>
+      <h2 class="section-title" style="margin:0 auto;">Two ways to bring TET-IM <span class="accent">to your programme</span></h2>
+    </div>
+
+    <div class="engagement-grid">
+      <div class="eng-card opt-1">
+        <div class="top-accent"></div>
+        <div class="opt-label">Option 01</div>
+        <h3>Own the Equipment</h3>
+        <div class="eng-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.7l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.7l7 4a2 2 0 002 0l7-4a2 2 0 001-1.7z"/><polyline points="3.3 7 12 12 20.7 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>
+        </div>
+        <p class="desc">Complete TET-IM unit with stator, rotor variants, lamination kit, and bolt-and-nut assembly hardware — yours to keep.</p>
+        <ul class="eng-features">
+          <li>Companion web apps + lecture notes + lab worksheets bundled</li>
+          <li>Modules à la carte or as a full bundle</li>
+          <li>Train-the-Trainer programme included on delivery</li>
+          <li>Local servicing and spares from UMPSA</li>
+        </ul>
+        <div class="eng-price">
+          <div class="price">From RM 5,000 / unit</div>
+          <div class="price-note">Modules + apps available individually — typical bundle RM 5,000–8,000.</div>
+        </div>
+      </div>
+
+      <div class="eng-card opt-2">
+        <div class="top-accent"></div>
+        <div class="opt-label">Option 02</div>
+        <h3>Training Service</h3>
+        <div class="eng-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <p class="desc">No hardware purchase required. Participants use TET-IM equipment and software during the programme — at UMPSA or at your institution.</p>
+        <ul class="eng-features">
+          <li>Use TET-IM hardware + software during the programme</li>
+          <li>No procurement, no maintenance burden</li>
+          <li>Pick a public workshop or commission an on-site session</li>
+          <li>Same curriculum, same outcomes</li>
+        </ul>
+        <div class="eng-price">
+          <div class="price">RM 1,200 / participant</div>
+          <div class="price-note">Public workshops at UMPSA · or RM 15,000 / session for on-site delivery at your institution.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials section-padding">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="eyebrow">// Voices From the First Cohort</div>
+      <h2 class="section-title" style="margin:0 auto;">What students and instructors <span class="accent">are saying</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="quote-text">Building real motors gave me hands-on experience that would have taken years to develop in industry. I am now confident to work with motors.</div>
+        <div class="author">
+          <div class="author-avatar">RN</div>
+          <div>
+            <div class="author-name">Rhesyan Naidu</div>
+            <div class="author-role">Trainee, IEM Student Branch, UMPSA</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="quote-text">The program bridges the missing practical gap in electrical machine education. My students are now confident technologists.</div>
+        <div class="author">
+          <div class="author-avatar">SP</div>
+          <div>
+            <div class="author-name">Suhaimi Puteh</div>
+            <div class="author-role">Vocational Training Officer, UMPSA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BROCHURE / TAKE IT WITH YOU ── -->
+<section class="brochure-section section-padding" id="brochure">
+  <div class="container">
+    <div class="brochure-grid">
+      <div class="brochure-text">
+        <div class="eyebrow">// Take It With You</div>
+        <h2>One brochure.<br><span class="teal">Everything your team needs.</span></h2>
+        <p>Print-ready trifold summarising the TET-IM system — the problem, the six-module curriculum, key innovations, both engagement options, and contact details. Forward it to colleagues, take it to a planning meeting, or print a stack for your faculty.</p>
+        <ul class="brochure-includes">
+          <li>Six-module curriculum overview at a glance</li>
+          <li>Pricing for both engagement options</li>
+          <li>Direct contact + scannable QR to this page</li>
+        </ul>
+        <div class="brochure-ctas">
+          <a href="brochure.pdf" download class="btn btn-primary">Download Brochure <span class="btn-arrow">↓</span></a>
+          <a href="brochure.pdf" target="_blank" rel="noopener" class="btn btn-secondary">Open in Browser</a>
+        </div>
+        <div class="brochure-meta">
+          PDF · 2 pages <span class="sep">•</span> ~380 KB <span class="sep">•</span> A4 trifold
+        </div>
+      </div>
+
+      <div class="trifold-stage">
+        <div class="trifold">
+          <div class="trifold-panel panel-cover">
+            <div>
+              <div class="top">// EMDLab · UMPSA</div>
+            </div>
+            <div>
+              <div class="title">Modular<br>Electric Motor<br><span class="a">Assembly</span></div>
+              <div class="sub">for TVET Training</div>
+            </div>
+            <div class="tag">“From Design to Operation”</div>
+          </div>
+          <div class="trifold-panel panel-2 panel-content">
+            <div class="h">// SIX MODULES</div>
+            <div class="line teal"></div>
+            <div class="heading">Complete<br>Learning Ecosystem</div>
+            <div class="line w-90"></div>
+            <div class="line w-80"></div>
+            <div class="line w-60"></div>
+            <div class="ph"><img src="images/photo-b.jpg" alt=""></div>
+            <div class="line w-70"></div>
+            <div class="line w-90"></div>
+            <div class="line w-40"></div>
+            <div class="ph"><img src="images/photo-d.jpg" alt=""></div>
+            <div class="line w-80"></div>
+            <div class="line w-60"></div>
+          </div>
+          <div class="trifold-panel panel-content">
+            <div class="h">// ENGAGE</div>
+            <div class="line teal"></div>
+            <div class="heading">Two Ways<br>to Engage</div>
+            <div class="line w-90"></div>
+            <div class="line w-70"></div>
+            <div class="pricepill">RM 5,000+ / unit</div>
+            <div class="line w-60"></div>
+            <div class="line w-80"></div>
+            <div class="pricepill">RM 1,200 / pax</div>
+            <div class="line w-40"></div>
+            <div class="line w-70"></div>
+            <div class="qr"></div>
+            <div class="line w-90" style="margin-top:auto;"></div>
+            <div class="line w-60"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA / FORM ── -->
+<section class="cta-section section-padding" id="demo">
+  <div class="container">
+    <div class="cta-grid">
+      <div class="cta-text">
+        <div class="eyebrow">// Join the Pilot</div>
+        <h2>Bring TET-IM<br><span class="teal">to your institution.</span></h2>
+        <p>Be among the first institutions to deploy the research-proven engineering technologist development programme. We'll respond within 24 hours with deployment options, costs, and a timeline that fits your academic calendar.</p>
+        <ul class="cta-bullets">
+          <li>Tailored proposal for your programme level and student count</li>
+          <li>Optional site visit and instructor briefing</li>
+          <li>Pilot pricing for first-cohort institutions</li>
+        </ul>
+      </div>
+      <form class="demo-form" action="https://formspree.io/f/xvgrqkdd" method="POST">
+        <input type="hidden" name="_subject" value="New TET-IM Pilot Program Request">
+        <h3>Request pilot information</h3>
+        <div class="form-sub">We'll reply within 24 hours.</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="organization">Institution / Organization *</label>
+          <input type="text" id="organization" name="organization" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="role">Your Role *</label>
+            <select id="role" name="role" required>
+              <option value="">Select role</option>
+              <option value="tvet_director">TVET Program Director</option>
+              <option value="department_head">Department Head</option>
+              <option value="instructor">Technical Instructor</option>
+              <option value="curriculum_developer">Curriculum Developer</option>
+              <option value="industry_partner">Industry Partner</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="students">Expected Students</label>
+            <select id="students" name="students">
+              <option value="">Select range</option>
+              <option value="10-20">10–20</option>
+              <option value="21-30">21–30</option>
+              <option value="31-50">31–50</option>
+              <option value="50+">50+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="engagement-pref">Engagement Preference</label>
+          <select id="engagement-pref" name="engagementPreference">
+            <option value="">Open to either</option>
+            <option value="own-equipment">Option 1 — Own the Equipment</option>
+            <option value="training-service">Option 2 — Training Service</option>
+            <option value="discuss">Discuss with us</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="requirements">Questions or Specific Requirements</label>
+          <textarea id="requirements" name="requirements" rows="3" placeholder="Curriculum needs, timeline, site constraints, etc."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Request Pilot Information</button>
+        <div class="form-note">We respond within one business day.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>TET-IM</h4>
+        <p>TVET Electromechanical Training — Induction Machine. The first electric motor training platform built for hands-on TVET education, developed at EMDLab, Faculty of Manufacturing &amp; Mechatronic Engineering Technology, Universiti Malaysia Pahang Al-Sultan Abdullah.</p>
+      </div>
+      <div class="footer-links">
+        <h5>// Programme</h5>
+        <ul>
+          <li><a href="curriculum.html">Curriculum</a></li>
+          <li><a href="#modules">Six Modules</a></li>
+          <li><a href="#innovations">Innovations</a></li>
+          <li><a href="#engagement">Engagement</a></li>
+        <li><a href="#brochure">Brochure</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>// Get Started</h5>
+        <ul>
+          <li><a href="#demo">Join Pilot Programme</a></li>
+          <li><a href="#demo">Request Quote</a></li>
+          <li><a href="mailto:emdlab@umpsa.edu.my">Contact EMDLab</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-logos">
+      <div class="footer-logo">
+        <img src="images/Logo UMPSA.png" alt="UMPSA">
+        <div class="footer-logo-text"><strong>UMPSA</strong>Universiti Malaysia Pahang Al-Sultan Abdullah</div>
+      </div>
+      <div class="footer-logo">
+        <img src="images/EMDLab.png" alt="EMDLab">
+        <div class="footer-logo-text"><strong>EMDLab</strong>Electromagnetic Design Laboratory</div>
+      </div>
+      <div class="footer-logo">
+        <img src="images/cai-logo.png" alt="CAI">
+        <div class="footer-logo-text"><strong>CAI</strong>Centre for Academic Innovation &amp; Competitiveness</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 EMDLab · Universiti Malaysia Pahang Al-Sultan Abdullah. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav: shrink/darken on scroll
+  const topNav = document.getElementById('topNav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) topNav.classList.add('scrolled');
+    else topNav.classList.remove('scrolled');
+  });
+
+  // Mobile menu
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    navToggle.classList.toggle('active');
+  });
+  navMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      navToggle.classList.remove('active');
+    });
+  });
+</script>
+
 </body>
 </html>
