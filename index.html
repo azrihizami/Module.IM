@@ -36,15 +36,15 @@ body {
   overflow-x: hidden;
 }
 
-/* ── INSTITUTIONAL CREDIT (hero top) ── */
+/* ── INSTITUTIONAL CREDIT (hero, top-right) ── */
 .dev-credit {
-  display: inline-flex; align-items: center; gap: 18px;
-  margin-bottom: 28px;
-  padding: 10px 18px 10px 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
+  display: inline-flex; align-items: center; gap: 16px;
+  padding: 10px 18px 10px 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 60px;
   backdrop-filter: blur(8px);
+  margin-bottom: 18px;
 }
 .dev-credit .label {
   font-family: 'JetBrains Mono', monospace;
@@ -54,12 +54,13 @@ body {
   color: var(--text-muted);
   white-space: nowrap;
 }
-.dev-credit .logos { display: flex; align-items: center; gap: 14px; }
+.dev-credit .logos { display: flex; align-items: center; gap: 12px; }
 .dev-credit .logos img {
-  height: 28px; width: auto; object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.92;
+  width: auto; object-fit: contain;
+  display: block;
 }
+.dev-credit .logos img.umpsa { height: 26px; }
+.dev-credit .logos img.emdlab { height: 22px; }
 .dev-credit .dot {
   width: 3px; height: 3px; border-radius: 50%;
   background: var(--text-dim);
@@ -302,6 +303,12 @@ nav {
 .hero-visual {
   position: relative;
   border-radius: 14px;
+  overflow: visible;
+  background: transparent;
+}
+.hero-visual-frame {
+  position: relative;
+  border-radius: 14px;
   overflow: hidden;
   background: var(--dark-bg);
   box-shadow:
@@ -309,11 +316,16 @@ nav {
     0 0 0 1px rgba(255,255,255,0.08),
     inset 0 0 0 1px rgba(29,158,117,0.12);
 }
-.hero-visual::before {
+.hero-visual-frame::before {
   content: '';
   position: absolute; top: 0; left: 10%; right: 10%; height: 2px;
   background: linear-gradient(90deg, transparent, var(--teal), transparent);
   z-index: 3;
+}
+.hero-visual .dev-credit {
+  position: absolute;
+  top: -54px; right: 0;
+  margin-bottom: 0;
 }
 .hero-aspect { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; }
 .hero-aspect iframe {
@@ -1373,6 +1385,10 @@ footer {
   .nav-menu .nav-cta { display: inline-block; margin-top: 8px; }
   .nav-toggle { display: flex; }
 
+  .hero-visual .dev-credit {
+    position: static;
+    margin: 0 auto 18px;
+  }
   .hero { padding: 110px 0 60px; min-height: auto; }
   .hero .container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
   .hero-content { margin: 0 auto; }
@@ -1447,14 +1463,6 @@ footer {
   <div class="hero-grid-bg"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="dev-credit">
-        <span class="label">Developed at</span>
-        <div class="logos">
-          <img src="images/logo-umpsa.png" alt="UMPSA">
-          <span class="dot"></span>
-          <img src="images/logo-emdlab.png" alt="EMDLab">
-        </div>
-      </div>
       <div class="eyebrow">// TVET Electromechanical Training</div>
       <h1>
         Modular electric motor
@@ -1468,12 +1476,22 @@ footer {
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-aspect">
+      <div class="dev-credit">
+        <span class="label">Developed at</span>
+        <div class="logos">
+          <img src="images/Logo UMPSA.png" alt="UMPSA" class="umpsa">
+          <span class="dot"></span>
+          <img src="images/EMDLab.png" alt="EMDLab" class="emdlab">
+        </div>
+      </div>
+      <div class="hero-visual-frame">
+        <div class="hero-aspect">
         <iframe
           src="exhibition.html"
           title="TET-IM Exhibition Animation"
           loading="eager"
           allow="autoplay"></iframe>
+        </div>
       </div>
     </div>
   </div>
