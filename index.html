@@ -14,6 +14,7 @@
   --teal-deep: #166749;
   --amber: #F5A623;
   --red: #E24B4A;
+  --wa: #25D366;
   --white: #FFFFFF;
   --off-white: #E8EEF4;
   --dark-bg: #060E1A;
@@ -1195,6 +1196,42 @@ section { position: relative; }
   color: var(--teal);
   font-weight: 700;
 }
+.cta-bullets strong { color: var(--teal-light); font-weight: 600; }
+
+/* CTA WhatsApp line */
+.cta-whatsapp {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.cta-whatsapp .wa-lead {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--off-white);
+  margin-bottom: 14px;
+}
+.wa-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 24px;
+  border-radius: 50px;
+  background: rgba(37,211,102,0.12);
+  border: 1.5px solid var(--wa);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600; font-size: 0.92rem;
+  text-decoration: none;
+  transition: background .2s ease, transform .2s ease;
+}
+.wa-link:hover { background: rgba(37,211,102,0.22); transform: translateY(-1px); }
+.wa-link svg { width: 19px; height: 19px; fill: var(--wa); flex-shrink: 0; }
+.wa-link .wa-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.86rem;
+  color: var(--wa);
+}
+
+/* ── DEMO FORM ── */
 .demo-form {
   background: var(--white);
   border-radius: 16px;
@@ -1218,6 +1255,31 @@ section { position: relative; }
   color: #5a6c7d;
   margin-bottom: 24px;
 }
+.pilot-offer {
+  background: rgba(29,158,117,0.08);
+  border: 1.5px solid var(--teal);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 22px;
+}
+.pilot-offer .badge {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 6px;
+}
+.pilot-offer p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #2c3e50;
+  margin: 0;
+}
+.pilot-offer strong { color: var(--teal-deep); font-weight: 600; }
 .demo-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .demo-form .form-group { margin-bottom: 16px; }
 .demo-form label {
@@ -1262,6 +1324,27 @@ section { position: relative; }
   color: #7f8c8d;
   text-align: center;
 }
+.form-wa {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #eceff3;
+  text-align: center;
+}
+.form-wa .wa-ask {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  color: #5a6c7d;
+  margin-bottom: 10px;
+}
+.form-wa a {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600; font-size: 0.92rem;
+  color: #128C4B;
+  text-decoration: none;
+}
+.form-wa a:hover { text-decoration: underline; }
+.form-wa a svg { width: 18px; height: 18px; fill: var(--wa); }
 
 /* ── FOOTER ── */
 footer {
@@ -1338,6 +1421,141 @@ footer {
   text-align: center;
   font-size: 0.82rem;
   color: var(--text-dim);
+}
+
+/* ── FLOATING OFFER DOCK ── */
+.offer-dock {
+  position: fixed;
+  right: 24px; bottom: 24px;
+  z-index: 900;
+  width: 340px;
+  background: linear-gradient(155deg, #FFC65C 0%, #F5A623 55%, #E8941A 100%);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 16px;
+  padding: 26px 24px 22px;
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.55),
+    0 0 40px rgba(245,166,35,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.45);
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease;
+}
+.offer-dock.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+/* attention ring — fires once on appearance */
+.offer-dock::after {
+  content: '';
+  position: absolute; inset: -5px;
+  border-radius: 20px;
+  border: 2px solid var(--amber);
+  opacity: 0;
+  pointer-events: none;
+}
+.offer-dock.attention::after { animation: ringPulse 1.5s ease-out 2; }
+@keyframes ringPulse {
+  0%   { opacity: .7; transform: scale(1); }
+  100% { opacity: 0;  transform: scale(1.06); }
+}
+.offer-dock .dock-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 26px; height: 26px;
+  background: none; border: none; cursor: pointer;
+  color: rgba(6,14,26,0.45); font-size: 18px; line-height: 1;
+  border-radius: 50%;
+  transition: color .2s ease, background .2s ease;
+}
+.offer-dock .dock-close:hover { color: var(--dark-bg); background: rgba(6,14,26,0.1); }
+.offer-dock .dock-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(6,14,26,0.6);
+  margin-bottom: 14px;
+}
+.offer-dock .dot-pulse {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--dark-bg);
+  box-shadow: 0 0 0 0 rgba(6,14,26,0.5);
+  animation: dockPulse 2s infinite;
+}
+@keyframes dockPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(6,14,26,0.45); }
+  70%  { box-shadow: 0 0 0 9px rgba(6,14,26,0); }
+  100% { box-shadow: 0 0 0 0 rgba(6,14,26,0); }
+}
+.offer-dock h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 1.75rem;
+  line-height: 1.05; color: var(--dark-bg);
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+.offer-dock h4 .teal { color: #0B4A33; }
+.offer-dock .dock-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.offer-dock .dock-list li {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500; font-size: 0.85rem;
+  color: rgba(6,14,26,0.82); line-height: 1.45;
+  padding-left: 20px; position: relative;
+}
+.offer-dock .dock-list li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--dark-bg); font-weight: 700;
+}
+.offer-dock .dock-cta {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%;
+  background: var(--dark-bg); color: var(--white);
+  padding: 13px 18px; border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600; font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(6,14,26,0.25);
+  transition: background .2s ease, transform .2s ease;
+}
+.offer-dock .dock-cta:hover { background: #16304f; transform: translateY(-1px); }
+.offer-dock .dock-wa {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.83rem; font-weight: 600;
+  color: #0A5C33;
+  text-decoration: none;
+}
+.offer-dock .dock-wa:hover { text-decoration: underline; }
+.offer-dock .dock-wa svg { width: 16px; height: 16px; fill: #0A5C33; }
+
+/* Minimised bubble — reopens the dock */
+.offer-fab {
+  position: fixed;
+  right: 24px; bottom: 24px;
+  z-index: 899;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 20px;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 50px;
+  background: linear-gradient(155deg, #FFC65C, #F5A623);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.5), 0 0 26px rgba(245,166,35,0.28);
+  color: var(--dark-bg);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700; font-size: 0.86rem;
+  cursor: pointer;
+  opacity: 0; transform: translateY(14px);
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease, background .2s ease;
+}
+.offer-fab.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.offer-fab:hover { background: linear-gradient(155deg, #FFD27A, #FFB93F); }
+.offer-fab .fab-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--dark-bg);
+  animation: dockPulse 2s infinite;
 }
 
 /* ── MOBILE / RESPONSIVE ── */
@@ -1422,14 +1640,33 @@ footer {
   .demo-form { padding: 28px 22px; }
   .demo-form .form-row { grid-template-columns: 1fr; gap: 0; }
   .demo-form input, .demo-form select, .demo-form textarea { font-size: 16px; }
+  .cta-whatsapp { text-align: center; }
 
   .footer-logos { gap: 28px; }
+
+  .offer-dock {
+    right: 12px; left: 12px; bottom: 16px;
+    width: auto; padding: 20px 18px 18px;
+  }
+  .offer-dock h4 { font-size: 1.4rem; margin-bottom: 10px; }
+  .offer-dock .dock-list li:nth-child(n+3) { display: none; }
+  .offer-fab { right: 16px; bottom: 16px; }
 }
 
 @media (max-width: 480px) {
   .hero-content h1 { font-size: 2.1rem; }
   .modules-grid { grid-template-columns: 1fr; gap: 24px; }
   .tetim-mark { font-size: 4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offer-dock { transition: opacity .2s ease; transform: none; }
+  .offer-dock.visible { animation: none; opacity: 1; transform: none; }
+  .offer-dock.attention::after { animation: none; }
+  .offer-fab { transform: none; }
+  .offer-fab.visible { transform: none; }
+  .dot-pulse, .fab-dot { animation: none; }
+  .scroll-cue { animation: none; }
 }
 </style>
 </head>
@@ -1873,7 +2110,7 @@ footer {
               <div class="title">Modular<br>Electric Motor<br><span class="a">Assembly</span></div>
               <div class="sub">for TVET Training</div>
             </div>
-            <div class="tag">“From Design to Operation”</div>
+            <div class="tag">"From Design to Operation"</div>
           </div>
           <div class="trifold-panel panel-2 panel-content">
             <div class="h">// SIX MODULES</div>
@@ -1919,17 +2156,35 @@ footer {
       <div class="cta-text">
         <div class="eyebrow">// Join the Pilot</div>
         <h2>Bring TET-IM<br><span class="teal">to your institution.</span></h2>
-        <p>Be among the first institutions to deploy the research-proven engineering technologist development programme. We'll respond within 24 hours with deployment options, costs, and a timeline that fits your academic calendar.</p>
+        <p>Every institution that registers gets a tailored proposal — deployment options, costs, and a timeline that fits your academic calendar. Registering costs nothing and commits you to nothing.</p>
         <ul class="cta-bullets">
           <li>Tailored proposal for your programme level and student count</li>
           <li>Optional site visit and instructor briefing</li>
-          <li>Pilot pricing for first-cohort institutions</li>
+          <li><strong>Early adopter bonus</strong> — the first 5 institutions to register also receive a complimentary Train-the-Trainer session</li>
+          <li><strong>Early adopter bonus</strong> — plus a sample of the IM Winding Assistant app, sent out for your team to test</li>
         </ul>
+
+        <!-- ▼ REPLACE 60133902485 AND THE DISPLAYED NUMBER WITH YOUR OWN ▼ -->
+        <div class="cta-whatsapp">
+          <div class="wa-lead">Questions before you register? Message us directly — no form required.</div>
+          <a class="wa-link"
+             href="https://wa.me/60133902485?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20the%20TET-IM%20training%20system."
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2A10 10 0 002 12a9.9 9.9 0 001.4 5.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
+            WhatsApp
+            <span class="wa-num">+60 12-345 6789</span>
+          </a>
+        </div>
       </div>
+
       <form class="demo-form" action="https://formspree.io/f/xvgrqkdd" method="POST">
         <input type="hidden" name="_subject" value="New TET-IM Pilot Program Request">
-        <h3>Request pilot information</h3>
-        <div class="form-sub">We'll reply within 24 hours.</div>
+        <h3>Register your interest</h3>
+        <div class="form-sub">Open to all institutions. We'll reply within 24 hours.</div>
+        <div class="pilot-offer">
+          <span class="badge">// Early Adopter Bonus</span>
+          <p>Everyone who registers receives a tailored proposal. The <strong>first 5 institutions</strong> also get a <strong>complimentary Train-the-Trainer session</strong> and a <strong>sample of the IM Winding Assistant app</strong> to test — with no purchase commitment.</p>
+        </div>
         <div class="form-row">
           <div class="form-group">
             <label for="firstName">First Name *</label>
@@ -1940,9 +2195,15 @@ footer {
             <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
           </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" required autocomplete="email">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp *</label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+60 12-345 6789">
+          </div>
         </div>
         <div class="form-group">
           <label for="organization">Institution / Organization *</label>
@@ -1985,8 +2246,16 @@ footer {
           <label for="requirements">Questions or Specific Requirements</label>
           <textarea id="requirements" name="requirements" rows="3" placeholder="Curriculum needs, timeline, site constraints, etc."></textarea>
         </div>
-        <button type="submit" class="submit-btn">Request Pilot Information</button>
+        <button type="submit" class="submit-btn">Register Interest</button>
         <div class="form-note">We respond within one business day.</div>
+        <div class="form-wa">
+          <div class="wa-ask">Prefer to ask first?</div>
+          <a href="https://wa.me/60133902485?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20the%20TET-IM%20training%20system."
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2A10 10 0 002 12a9.9 9.9 0 001.4 5.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
+            WhatsApp +60 12-345 6789
+          </a>
+        </div>
       </form>
     </div>
   </div>
@@ -2013,8 +2282,9 @@ footer {
       <div class="footer-links">
         <h5>// Get Started</h5>
         <ul>
-          <li><a href="#demo">Join Pilot Programme</a></li>
+          <li><a href="#demo">Register Interest</a></li>
           <li><a href="#demo">Request Quote</a></li>
+          <li><a href="https://wa.me/60133902485" target="_blank" rel="noopener">WhatsApp Us</a></li>
           <li><a href="mailto:emdlab@umpsa.edu.my">Contact EMDLab</a></li>
         </ul>
       </div>
@@ -2039,6 +2309,29 @@ footer {
   </div>
 </footer>
 
+<!-- ── FLOATING OFFER DOCK ── -->
+<aside class="offer-dock" id="offerDock" aria-label="Early adopter bonus">
+  <button class="dock-close" id="offerDockClose" aria-label="Minimise">&times;</button>
+  <div class="dock-badge"><span class="dot-pulse"></span>Early adopter bonus</div>
+  <h4>First 5 Institutions<br><span class="teal">Train Free</span></h4>
+  <ul class="dock-list">
+    <li>Complimentary Train-the-Trainer session</li>
+    <li>Sample IM Winding Assistant app to test</li>
+    <li>No purchase commitment</li>
+  </ul>
+  <a href="#demo" class="dock-cta">Register Interest <span class="btn-arrow">→</span></a>
+  <a class="dock-wa"
+     href="https://wa.me/60133902485?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20the%20TET-IM%20training%20system."
+     target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2A10 10 0 002 12a9.9 9.9 0 001.4 5.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
+    Ask a question on WhatsApp
+  </a>
+</aside>
+
+<button class="offer-fab" id="offerFab" aria-label="Show early adopter bonus">
+  <span class="fab-dot"></span> Early adopter bonus
+</button>
+
 <script>
   // Nav: shrink/darken on scroll
   const topNav = document.getElementById('topNav');
@@ -2060,6 +2353,71 @@ footer {
       navToggle.classList.remove('active');
     });
   });
+
+  // Floating offer dock — pops in, minimises to a bubble, reopens on demand
+  (function () {
+    const dock = document.getElementById('offerDock');
+    const fab  = document.getElementById('offerFab');
+    const demo = document.getElementById('demo');
+    if (!dock || !fab || !demo) return;
+
+    let minimised = false;
+    let demoInView = false;
+    let armed = false;      // true once a trigger fires
+    let hasPopped = false;  // attention ring only on first appearance
+
+    function update() {
+      const showDock = armed && !demoInView && !minimised;
+      dock.classList.toggle('visible', showDock);
+      fab.classList.toggle('visible', armed && !demoInView && minimised);
+
+      if (showDock && !hasPopped) {
+        hasPopped = true;
+        setTimeout(() => dock.classList.add('attention'), 650);
+      }
+    }
+
+    // Trigger 1: scrolled past the hero
+    function checkScroll() {
+      if (!armed && window.scrollY > window.innerHeight * 0.6) armed = true;
+      update();
+    }
+
+    // Trigger 2: 10 seconds on page, even without scrolling
+    setTimeout(() => { armed = true; update(); }, 10000);
+
+    // Hide whenever the signup form is on screen
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        demoInView = entries[0].isIntersecting;
+        update();
+      }, { threshold: 0.12 }).observe(demo);
+    }
+
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('resize', update);
+
+    document.getElementById('offerDockClose').addEventListener('click', () => {
+      minimised = true;
+      dock.classList.remove('attention');
+      update();
+    });
+
+    fab.addEventListener('click', () => {
+      minimised = false;
+      dock.classList.remove('attention');
+      void dock.offsetWidth;              // restart the pop animation
+      dock.classList.add('attention');
+      update();
+    });
+
+    dock.querySelector('.dock-cta').addEventListener('click', () => {
+      minimised = true;
+      update();
+    });
+
+    checkScroll();
+  })();
 </script>
 
 </body>
