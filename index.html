@@ -1423,6 +1423,129 @@ footer {
   color: var(--text-dim);
 }
 
+/* ── RECOGNITION & COVERAGE ── */
+.media-section { background: var(--dark-bg-2); }
+.media-header { text-align: center; margin-bottom: 48px; }
+
+.awards-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 18px; margin-bottom: 44px;
+}
+.award-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-top: 3px solid var(--amber);
+  border-radius: 12px;
+  padding: 26px 24px;
+  text-align: center;
+}
+.award-item .award-icon {
+  width: 40px; height: 40px; margin: 0 auto 14px;
+  color: var(--amber);
+}
+.award-item .award-icon svg { width: 100%; height: 100%; }
+.award-item .award-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600; font-size: 1rem;
+  color: var(--white); line-height: 1.3;
+  margin-bottom: 6px;
+}
+.award-item .award-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-dim);
+}
+
+.media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.media-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  text-decoration: none;
+  transition: transform .3s ease, border-color .3s ease;
+}
+.media-card:hover { transform: translateY(-4px); border-color: rgba(29,158,117,0.5); }
+.media-photo {
+  position: relative; width: 100%; height: 180px;
+  overflow: hidden; background: var(--dark-bg-3);
+}
+.media-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.media-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(6,14,26,0) 55%, rgba(6,14,26,0.6) 100%);
+}
+.media-photo .media-kind {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 20px;
+  background: rgba(6,14,26,0.82);
+  border: 1px solid rgba(29,158,117,0.5);
+  color: var(--teal-light);
+  backdrop-filter: blur(6px);
+}
+.media-photo .media-kind.award {
+  border-color: rgba(245,166,35,0.55); color: var(--amber);
+}
+.media-body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.media-body .media-source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 1.8px;
+  text-transform: uppercase; color: var(--teal);
+}
+.media-body h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600; font-size: 1rem;
+  text-transform: none; letter-spacing: 0;
+  color: var(--white); line-height: 1.4;
+}
+.media-body p {
+  font-weight: 300; font-size: 0.88rem;
+  color: var(--off-white); line-height: 1.55;
+}
+.media-body .media-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px;
+  color: var(--text-dim); text-transform: uppercase;
+}
+.media-body .media-link {
+  margin-top: auto; padding-top: 12px;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600; font-size: 0.85rem;
+  color: var(--teal-light);
+}
+.media-card:hover .media-link { color: var(--white); }
+
+.media-also {
+  margin-top: 30px; padding-top: 22px;
+  border-top: 1px solid var(--card-border);
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px 20px; flex-wrap: wrap;
+}
+.media-also .also-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-dim);
+}
+.media-also a {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500; font-size: 0.88rem;
+  color: var(--text-muted); text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  transition: color .2s ease, border-color .2s ease;
+}
+.media-also a:hover { color: var(--white); border-color: var(--teal); }
+
+@media (max-width: 1024px) {
+  .awards-strip { grid-template-columns: 1fr; }
+  .media-grid { grid-template-columns: 1fr; }
+}  
+  
 /* ── FLOATING OFFER DOCK ── */
 .offer-dock {
   position: fixed;
@@ -2078,6 +2201,91 @@ footer {
   </div>
 </section>
 
+<!-- ── RECOGNITION & COVERAGE ── -->
+<section class="media-section section-padding" id="media">
+  <div class="container">
+    <div class="media-header">
+      <div class="eyebrow">// Recognition &amp; Coverage</div>
+      <h2 class="section-title" style="margin:0 auto;">Validated beyond <span class="accent">the lab</span></h2>
+      <p class="section-intro" style="margin:24px auto 0;text-align:center;">Featured by the Ministry of Higher Education, awarded at national innovation competition, and profiled by the university's Corporate Communication Centre.</p>
+    </div>
+
+    <div class="awards-strip">
+      <div class="award-item">
+        <div class="award-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5L17 22l-5-3-5 3 1.5-8.5"/></svg>
+        </div>
+        <div class="award-title">Gold Award &amp; Special Award for High Performance</div>
+        <div class="award-meta">CITREX 2026</div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
+        </div>
+        <div class="award-title">Exhibited at Hari TVET Negara</div>
+        <div class="award-meta">National TVET Showcase</div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M2 7h20"/><circle cx="12" cy="14" r="4"/></svg>
+        </div>
+        <div class="award-title">TRL 5 · Active Pre-Commercialisation</div>
+        <div class="award-meta">Lab2Market &amp; PIDA Grants</div>
+      </div>
+    </div>
+
+    <div class="media-grid">
+      <a class="media-card" href="https://www.facebook.com/reel/3619816594842451" target="_blank" rel="noopener">
+        <div class="media-photo">
+          <span class="media-kind">Ministry</span>
+          <img src="images/media-kpt.jpg" alt="KPT feature on the TET-IM induction machine training kit">
+        </div>
+        <div class="media-body">
+          <div class="media-source">Kementerian Pendidikan Tinggi</div>
+          <h3>TET-IM featured by the Ministry of Higher Education</h3>
+          <p>The induction machine training kit showcased in a national feature on hands-on TVET innovation.</p>
+          <div class="media-date">Video feature · 2026</div>
+          <span class="media-link">Watch the feature <span class="btn-arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="media-card" href="https://news.umpsa.edu.my/research/modular-induction-motor-assembly-memperkasakan-latihan-tvet-melalui-pembelajaran-motor" target="_blank" rel="noopener">
+        <div class="media-photo">
+          <span class="media-kind">Press</span>
+          <img src="images/media-umpsa.jpg" alt="UMPSA News feature on the Modular Induction Motor Assembly">
+        </div>
+        <div class="media-body">
+          <div class="media-source">UMPSA News</div>
+          <h3>Modular Induction Motor Assembly memperkasakan latihan TVET melalui pembelajaran motor elektrik secara amali</h3>
+          <p>Full profile by the UMPSA Corporate Communication Centre — development background, module structure, and cost comparison against imported training equipment.</p>
+          <div class="media-date">24 June 2026 · Bahasa Melayu</div>
+          <span class="media-link">Read the article <span class="btn-arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="media-card" href="PASTE_CITREX_LINKEDIN_URL_HERE" target="_blank" rel="noopener">
+        <div class="media-photo">
+          <span class="media-kind award">Award</span>
+          <img src="images/media-citrex.jpg" alt="CITREX 2026 Gold Award for TET-IM">
+        </div>
+        <div class="media-body">
+          <div class="media-source">CITREX 2026</div>
+          <h3>Gold Award and Special Award for High Performance</h3>
+          <p>Recognised at the Creation, Innovation, Technology and Research Exposition — Special Award conferred by the Centre for Advanced Industrial Technology.</p>
+          <div class="media-date">Competition · 2026</div>
+          <span class="media-link">See photos <span class="btn-arrow">→</span></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="media-also">
+      <span class="also-label">// Also covered by</span>
+      <a href="https://www.facebook.com/story.php?story_fbid=1502173005038448&amp;id=100057372883617" target="_blank" rel="noopener">UMPSA Research &amp; Innovation</a>
+      <a href="https://www.facebook.com/share/p/1HxFBo7kYg/" target="_blank" rel="noopener">UMPSA R&amp;D</a>
+    </div>
+  </div>
+</section>
+  
 <!-- ── BROCHURE / TAKE IT WITH YOU ── -->
 <section class="brochure-section section-padding" id="brochure">
   <div class="container">
@@ -2276,6 +2484,7 @@ footer {
           <li><a href="#modules">Six Modules</a></li>
           <li><a href="#innovations">Innovations</a></li>
           <li><a href="#engagement">Engagement</a></li>
+          <li><a href="#media">Recognition</a></li>
         <li><a href="#brochure">Brochure</a></li>
         </ul>
       </div>
