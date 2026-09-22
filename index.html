@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TET-IM · TVET Electromechanical Training — Induction Machine</title>
+<title>Motoreka · Motor Design Trainer System for TVET</title>
+<meta name="description" content="Motoreka is a modular motor design trainer system for TVET education — students design, wind, assemble and operate a real induction machine. Developed at EMDLab, UMPSA.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"%3E%3Crect width="48" height="48" rx="10" fill="#101B25"/%3E%3Cpath fill="#5F8FA8" fill-rule="evenodd" d="M24 0.5A23.5 23.5 0 1 1 24 47.5A23.5 23.5 0 1 1 24 0.5ZM22.55 5.56L22.31 2.47A21.6 21.6 0 0 1 25.69 2.47L25.45 5.56A18.5 18.5 0 0 1 31.96 7.30L33.30 4.50A21.6 21.6 0 0 1 36.23 6.20L34.48 8.75A18.5 18.5 0 0 1 39.25 13.52L41.80 11.77A21.6 21.6 0 0 1 43.50 14.70L40.70 16.04A18.5 18.5 0 0 1 42.44 22.55L45.53 22.31A21.6 21.6 0 0 1 45.53 25.69L42.44 25.45A18.5 18.5 0 0 1 40.70 31.96L43.50 33.30A21.6 21.6 0 0 1 41.80 36.23L39.25 34.48A18.5 18.5 0 0 1 34.48 39.25L36.23 41.80A21.6 21.6 0 0 1 33.30 43.50L31.96 40.70A18.5 18.5 0 0 1 25.45 42.44L25.69 45.53A21.6 21.6 0 0 1 22.31 45.53L22.55 42.44A18.5 18.5 0 0 1 16.04 40.70L14.70 43.50A21.6 21.6 0 0 1 11.77 41.80L13.52 39.25A18.5 18.5 0 0 1 8.75 34.48L6.20 36.23A21.6 21.6 0 0 1 4.50 33.30L7.30 31.96A18.5 18.5 0 0 1 5.56 25.45L2.47 25.69A21.6 21.6 0 0 1 2.47 22.31L5.56 22.55A18.5 18.5 0 0 1 7.30 16.04L4.50 14.70A21.6 21.6 0 0 1 6.20 11.77L8.75 13.52A18.5 18.5 0 0 1 13.52 8.75L11.77 6.20A21.6 21.6 0 0 1 14.70 4.50L16.04 7.30A18.5 18.5 0 0 1 22.55 5.56Z"/%3E%3Cpath fill="#C0703A" d="M9.5 24a14.5 14.5 0 0 1 29 0z"/%3E%3Cpath fill="#2C4453" d="M9.5 24a14.5 14.5 0 0 0 29 0z"/%3E%3Ccircle cx="24" cy="24" r="3.2" fill="#101B25"/%3E%3C/svg%3E">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@800&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 :root {
   --navy: #0C3B6E;
@@ -15,6 +17,15 @@
   --amber: #F5A623;
   --red: #E24B4A;
   --wa: #25D366;
+  /* Motoreka brand (Scheme A) — used for the logo mark and product codes */
+  --mk-navy: #101B25;
+  --mk-graphite: #2C4453;
+  --mk-copper: #C0703A;
+  --mk-steel: #5F8FA8;
+  --mk-paper: #F5F3EF;
+  --mk-steel-light: #A8C4D5;
+  --mk-word: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --mk-desc: 'IBM Plex Mono', 'JetBrains Mono', monospace;
   --white: #FFFFFF;
   --off-white: #E8EEF4;
   --dark-bg: #060E1A;
@@ -158,23 +169,19 @@ nav {
 }
 .brand { display: flex; align-items: center; gap: 12px; color: white; text-decoration: none; }
 .brand-mark {
-  width: 38px; height: 38px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 700; font-size: 12px;
-  color: white;
-  letter-spacing: 0.5px;
+  width: 42px; height: 42px;
+  display: block; flex-shrink: 0;
 }
 .brand-name {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
+  font-family: var(--mk-word);
+  font-weight: 800;
+  font-size: 1.6rem;
+  line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0;
+  color: var(--mk-paper);
 }
-.brand-name .sub { display: block; font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1.5px; margin-top: 2px; }
+.brand-name .sub { display: block; font-family: var(--mk-desc); font-weight: 400; font-size: 0.55rem; color: var(--mk-steel-light); letter-spacing: 0.06em; margin-top: 5px; }
 .nav-menu {
   display: flex; gap: 2.2rem; list-style: none; align-items: center;
 }
@@ -424,7 +431,7 @@ section { position: relative; }
   font-weight: 400;
 }
 
-/* ── INTRODUCING TET-IM ── */
+/* ── INTRODUCING MOTOREKA ── */
 .intro-section {
   background: var(--dark-bg-2);
   position: relative;
@@ -456,22 +463,36 @@ section { position: relative; }
   align-items: center;
 }
 .intro-text { text-align: left; }
+.intro-mark {
+  width: 84px; height: 84px;
+  display: block;
+  margin-bottom: 20px;
+}
 .tetim-mark {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 8.5rem;
-  letter-spacing: 6px;
+  font-family: var(--mk-word);
+  font-weight: 800;
+  font-size: 5.2rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
   line-height: 1;
-  color: white;
-  text-shadow: 0 4px 30px rgba(29,158,117,0.3);
-  margin-bottom: 22px;
+  color: var(--mk-paper);
+  text-shadow: 0 4px 30px rgba(95,143,168,0.25);
+  margin-bottom: 14px;
 }
 .intro-section .name {
+  font-family: var(--mk-desc);
+  font-weight: 400;
+  font-size: 1.28rem;
+  color: var(--mk-steel-light);
+  letter-spacing: 0.27em;
+  text-transform: uppercase;
+}
+.intro-section .model {
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   color: var(--off-white);
-  letter-spacing: 0.5px;
+  margin-top: 14px;
 }
 .intro-section .divider {
   width: 80px; height: 2px; background: var(--teal); margin: 24px 0;
@@ -518,7 +539,7 @@ section { position: relative; }
 .modules-header h2 { font-size: 3.2rem; }
 .modules-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   position: relative;
 }
@@ -558,6 +579,13 @@ section { position: relative; }
   line-height: 1.3;
   margin-bottom: 10px;
   min-height: 40px;
+}
+.module-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--mk-steel);
+  letter-spacing: 1px;
+  margin: 14px 0 4px;
 }
 .module-desc {
   font-family: 'DM Sans', sans-serif;
@@ -797,21 +825,23 @@ section { position: relative; }
   text-transform: uppercase;
 }
 .panel-cover .title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 2.4rem;
-  line-height: 0.95;
+  font-family: var(--mk-word);
+  font-weight: 800;
+  font-size: 1.45rem;
+  line-height: 1;
+  letter-spacing: 0;
   color: white;
   text-transform: uppercase;
   text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
-.panel-cover .title .a { color: var(--teal); display: block; }
+.panel-cover .cover-mark { width: 34px; height: 34px; display: block; margin-bottom: 10px; }
 .panel-cover .sub {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--mk-desc);
   font-weight: 400;
-  font-size: 9px;
-  color: var(--off-white);
-  letter-spacing: 1.5px;
+  font-size: 6px;
+  color: var(--mk-steel-light);
+  letter-spacing: 0.27em;
+  white-space: nowrap;
   text-transform: uppercase;
   margin-top: 6px;
 }
@@ -1359,14 +1389,16 @@ footer {
   margin-bottom: 48px;
 }
 .footer-brand h4 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 1.3rem;
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--mk-word);
+  font-weight: 800;
+  font-size: 1.4rem;
   text-transform: uppercase;
-  color: white;
-  margin-bottom: 12px;
-  letter-spacing: 0.5px;
+  color: var(--mk-paper);
+  margin-bottom: 14px;
+  letter-spacing: 0;
 }
+.footer-brand h4 svg { width: 36px; height: 36px; flex-shrink: 0; }
 .footer-brand p {
   font-weight: 300;
   font-size: 0.92rem;
@@ -1670,7 +1702,8 @@ footer {
   .brochure-ctas { justify-content: center; }
   .cta-grid { grid-template-columns: 1fr; gap: 48px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .tetim-mark { font-size: 7rem; }
+  .tetim-mark { font-size: 4.4rem; }
+  .intro-section .name { font-size: 1.08rem; }
 }
 
 @media (max-width: 768px) {
@@ -1678,7 +1711,7 @@ footer {
   .section-padding-sm { padding: 60px 0; }
   .container, .container-tight { padding: 0 20px; }
   nav { padding: 14px 20px; }
-  .brand-name { font-size: 0.95rem; }
+  .brand-name { font-size: 1.25rem; }
   .brand-name .sub { display: none; }
   .nav-menu {
     display: none;
@@ -1713,11 +1746,12 @@ footer {
   .modules-grid { grid-template-columns: repeat(2, 1fr); }
   .innovations-grid { grid-template-columns: 1fr; }
   .metrics-row { grid-template-columns: 1fr; }
-  .tetim-mark { font-size: 5rem; letter-spacing: 3px; }
+  .tetim-mark { font-size: 3.4rem; }
+  .intro-mark { margin: 0 auto 18px; width: 68px; height: 68px; }
   .intro-section .quote { font-size: 1.05rem; }
   .intro-grid { grid-template-columns: 1fr; gap: 36px; }
   .intro-text { text-align: center; }
-  .intro-section .name { font-size: 1.2rem; }
+  .intro-section .name { font-size: 0.83rem; }
   .intro-section .quote { margin: 0 auto; }
   .intro-section .divider { margin: 24px auto; }
   .intro-photo { aspect-ratio: 4 / 3; max-width: 520px; margin: 0 auto; }
@@ -1726,7 +1760,9 @@ footer {
   .testimonial { padding: 28px 24px; }
   .brochure-text h2 { font-size: 2.2rem; }
   .trifold-panel { width: 130px; height: 350px; }
-  .panel-cover .title { font-size: 1.8rem; }
+  .panel-cover .title { font-size: 1.05rem; }
+  .panel-cover .sub { font-size: 4.4px; }
+  .panel-cover .cover-mark { width: 26px; height: 26px; }
   .panel-content { padding: 14px 11px; gap: 8px; }
   .panel-content .ph { height: 46px; }
 
@@ -1749,7 +1785,8 @@ footer {
 @media (max-width: 480px) {
   .hero-content h1 { font-size: 2.1rem; }
   .modules-grid { grid-template-columns: 1fr; gap: 24px; }
-  .tetim-mark { font-size: 4rem; }
+  .tetim-mark { font-size: 2.6rem; }
+  .intro-section .name { font-size: 0.64rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1765,13 +1802,36 @@ footer {
 </head>
 <body>
 
+<!-- Motoreka slot-ring mark — defined once, reused via <use href="#mk-mark"> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="mk-mark" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="53.2" fill="none" stroke="#5F8FA8" stroke-width="4.3"/>
+    <g fill="#5F8FA8">
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(0 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(30 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(60 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(90 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(120 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(150 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(180 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(210 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(240 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(270 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(300 60 60)"/>
+    <rect x="57.8" y="13.1" width="4.4" height="10.6" transform="rotate(330 60 60)"/>
+    </g>
+    <path fill="#C0703A" d="M33 60a27 27 0 0 1 54 0z"/>
+    <path fill="#5F8FA8" d="M33 60a27 27 0 0 0 54 0z"/>
+  </symbol>
+</svg>
+
 <header id="topNav">
   <nav>
-    <a href="#top" class="brand">
-      <div class="brand-mark">TET</div>
+    <a href="#top" class="brand" aria-label="Motoreka home">
+      <svg class="brand-mark" aria-hidden="true"><use href="#mk-mark"/></svg>
       <div class="brand-name">
-        TET-IM
-        <span class="sub">EMDLab · UMPSA</span>
+        Motoreka
+        <span class="sub">Motor Design Trainer System</span>
       </div>
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
@@ -1794,7 +1854,7 @@ footer {
   <div class="hero-grid-bg"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="eyebrow">// TVET Electromechanical Training</div>
+      <div class="eyebrow">// Motoreka · Motor Design Trainer System</div>
       <h1>
         Modular electric motor
         <span class="teal">assembly</span>
@@ -1819,7 +1879,7 @@ footer {
         <div class="hero-aspect">
         <iframe
           src="exhibition.html"
-          title="TET-IM Exhibition Animation"
+          title="Motoreka exhibition animation"
           loading="eager"
           allow="autoplay"></iframe>
         </div>
@@ -1864,13 +1924,15 @@ footer {
     <div class="intro-grid">
       <div class="intro-text">
         <div class="eyebrow">// Introducing</div>
-        <div class="tetim-mark">TET-IM</div>
-        <div class="name">TVET Electromechanical Training — Induction Machine</div>
+        <svg class="intro-mark" aria-hidden="true"><use href="#mk-mark"/></svg>
+        <div class="tetim-mark">Motoreka</div>
+        <div class="name">Motor Design Trainer System</div>
+        <div class="model">MTS-IM · Induction Machine</div>
         <div class="divider"></div>
         <p class="quote">"The first electric motor training system built for hands-on TVET education — from loose silicon steel laminations to a running, fully-instrumented induction machine."</p>
       </div>
       <div class="intro-photo">
-        <img src="images/photo-f.jpg" alt="Students assembling the TET-IM motor">
+        <img src="images/photo-f.jpg" alt="Students assembling the Motoreka induction motor">
         <div class="photo-tag">Hands-on assembly</div>
       </div>
     </div>
@@ -1883,47 +1945,44 @@ footer {
     <div class="modules-header">
       <div class="eyebrow">// From Design to Operation</div>
       <h2 class="section-title">A complete learning <span class="accent">ecosystem</span></h2>
-      <p class="section-intro" style="margin-left:auto;margin-right:auto;text-align:left;display:inline-block;">Six progressive modules taking students from first principles to drive commissioning. Adopt the full programme, or integrate individual modules into your existing curriculum.</p>
+      <p class="section-intro" style="margin-left:auto;margin-right:auto;text-align:left;display:inline-block;">Five progressive modules taking students from first principles to drive commissioning. Adopt the full programme, or integrate individual modules into your existing curriculum.</p>
     </div>
 
     <div class="modules-grid">
       <div class="module-node">
         <div class="module-num">01</div>
         <div class="module-photo"><img src="images/photo-g.jpg" alt="Companion app screenshot"></div>
-        <div class="module-name">Electromagnetic Theory</div>
-        <div class="module-desc">Faraday, Lorentz, rotating fields — explored through interactive simulation</div>
+        <div class="module-code">MTM-01</div>
+        <div class="module-name">Foundation</div>
+        <div class="module-desc">Electromagnetic theory — Faraday, Lorentz and rotating fields, explored through interactive simulation</div>
       </div>
       <div class="module-node">
         <div class="module-num">02</div>
         <div class="module-photo"><img src="images/photo-d.jpg" alt="Silicon steel laminations"></div>
-        <div class="module-name">Core Lamination Design</div>
-        <div class="module-desc">FEMM-based design, M330-35A silicon steel, slot geometry trade-offs</div>
+        <div class="module-code">MTM-02</div>
+        <div class="module-name">Core</div>
+        <div class="module-desc">Core lamination design — FEMM, M330-35A silicon steel, slot geometry trade-offs</div>
       </div>
       <div class="module-node">
         <div class="module-num">03</div>
         <div class="module-photo"><img src="images/photo-b.jpg" alt="Student winding stator"></div>
-        <div class="module-name">Motor Winding</div>
-        <div class="module-desc">Hand-wound 3-phase coils, IEC winding diagrams, guided app workflow</div>
+        <div class="module-code">MTM-03</div>
+        <div class="module-name">Wind</div>
+        <div class="module-desc">Motor winding — hand-wound 3-phase coils, IEC winding diagrams, guided app workflow</div>
       </div>
       <div class="module-node">
         <div class="module-num">04</div>
         <div class="module-photo"><img src="images/photo-f.jpg" alt="Motor assembly"></div>
-        <div class="module-name">Motor Assembly</div>
-        <div class="module-desc">Bolt-and-nut reversible build — disassemble and rebuild every session</div>
+        <div class="module-code">MTM-04-IM</div>
+        <div class="module-name">Build</div>
+        <div class="module-desc">Motor assembly — bolt-and-nut reversible build, disassembled and rebuilt every session</div>
       </div>
       <div class="module-node">
         <div class="module-num">05</div>
         <div class="module-photo"><img src="images/photo-c.jpg" alt="Student at drives panel"></div>
-        <div class="module-name">Drives &amp; Control</div>
-        <div class="module-desc">DOL, star-delta, VFD commissioning with full electrical safety</div>
-      </div>
-      <div class="module-node">
-        <div class="module-num">06</div>
-        <div class="module-photo placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div class="module-name">Assessment &amp; Feedback</div>
-        <div class="module-desc">Structured rubrics and outcome verification tied to each module</div>
+        <div class="module-code">MTM-05-IM</div>
+        <div class="module-name">Drive</div>
+        <div class="module-desc">Drives &amp; control — DOL, star-delta, VFD commissioning with full electrical safety</div>
       </div>
     </div>
 
@@ -1932,7 +1991,7 @@ footer {
       <div class="modules-badge">Engineering Technology</div>
       <div class="modules-badge">Technology</div>
     </div>
-    <p class="modules-caption">Flexible modular adoption — integrate at the level that fits your curriculum.</p>
+    <p class="modules-caption">Every module closes with structured rubrics and outcome verification. Adopt all five, or integrate at the level that fits your curriculum.</p>
   </div>
 </section>
 
@@ -1967,13 +2026,13 @@ footer {
         </div>
       </div>
       <div class="innovation-card">
-        <div class="innovation-photo"><img src="images/photo-a.jpg" alt="Assembled TET-IM induction motor"></div>
+        <div class="innovation-photo"><img src="images/photo-a.jpg" alt="Assembled Motoreka induction motor"></div>
         <div class="innovation-body">
           <div class="innovation-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7"/><polyline points="21 4 21 10 15 10"/></svg>
           </div>
           <h3>Interchangeable Rotor</h3>
-          <p>Swappable topology — IM, PMSM, SyRM — expandable as the curriculum advances.</p>
+          <p>Swappable topology — IM, PMSM, SynRM — expandable as the curriculum advances.</p>
         </div>
       </div>
       <div class="innovation-card">
@@ -1996,7 +2055,7 @@ footer {
     <div class="companion-header">
       <div class="eyebrow">// Every Module Ready to Teach</div>
       <h2 class="section-title" style="margin:0 auto;">Structured notes, worksheets &amp; <span class="accent">assistant apps</span></h2>
-      <p class="section-intro" style="margin:24px auto 0;text-align:center;">Each of the six modules ships with print-ready training materials, guided lab worksheets, and dedicated companion web apps. Instructors deliver from day one.</p>
+      <p class="section-intro" style="margin:24px auto 0;text-align:center;">Each of the five modules ships with print-ready training materials, guided lab worksheets, and dedicated companion web apps. Instructors deliver from day one.</p>
     </div>
 
     <div class="companion-grid">
@@ -2014,15 +2073,15 @@ footer {
         </div>
       </div>
       <div class="companion-card">
-        <div class="companion-photo"><img src="images/comp-app.jpg" alt="IM Winding Assistant web app"></div>
+        <div class="companion-photo"><img src="images/comp-app.jpg" alt="Motoreka Winding Assistant web app"></div>
         <div class="companion-body">
           <div class="tag">// Companion Web Apps</div>
-          <h3>Interactive Design Assistants</h3>
-          <p>Browser-based tools — IM Winding Assistant, lamination calculator, electromagnetic theory explorer — turning each worksheet into a hands-on numerical experiment.</p>
+          <h3>Motoreka Lab Suite</h3>
+          <p>Browser-based companion apps — Force, CoreSim and Winding Assistant — turning each worksheet into a hands-on numerical experiment.</p>
           <ul class="feature-list">
-            <li>IM Winding Assistant</li>
-            <li>Lamination calculator</li>
-            <li>Live electromagnetic simulator</li>
+            <li>Force (MLS-FRC) — electromagnetic theory explorer</li>
+            <li>CoreSim (MLS-CRS) — core &amp; lamination simulator</li>
+            <li>Winding Assistant (MLS-WND)</li>
           </ul>
         </div>
       </div>
@@ -2048,7 +2107,7 @@ footer {
   <div class="container">
     <div class="institutions-grid">
       <div class="institutions-text">
-        <div class="eyebrow">// Why Institutions Choose TET-IM</div>
+        <div class="eyebrow">// Why Institutions Choose Motoreka</div>
         <h2>Curriculum-ready.<br><span class="teal">Day one.</span></h2>
         <p>Modular curriculum architecture adoptable across Technology, Engineering Technology, and Engineering programmes — without redesign. Integrated lecture notes, worksheets, and structured lab activities included.</p>
         <div class="metrics-row">
@@ -2093,7 +2152,7 @@ footer {
   <div class="container">
     <div class="engagement-header">
       <div class="eyebrow">// How Institutions Can Engage</div>
-      <h2 class="section-title" style="margin:0 auto;">Two ways to bring TET-IM <span class="accent">to your programme</span></h2>
+      <h2 class="section-title" style="margin:0 auto;">Two ways to bring Motoreka <span class="accent">to your programme</span></h2>
     </div>
 
     <div class="engagement-grid">
@@ -2104,10 +2163,10 @@ footer {
         <div class="eng-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.7l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.7l7 4a2 2 0 002 0l7-4a2 2 0 001-1.7z"/><polyline points="3.3 7 12 12 20.7 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>
         </div>
-        <p class="desc">Complete TET-IM unit with stator, rotor variants, lamination kit, and bolt-and-nut assembly hardware — yours to keep.</p>
+        <p class="desc">The MAK-IM Motor Assembly Kit — stator, rotor variants, lamination kit, and bolt-and-nut assembly hardware — yours to keep.</p>
         <ul class="eng-features">
-          <li>Companion web apps + lecture notes + lab worksheets bundled</li>
-          <li>Modules à la carte or as a full bundle</li>
+          <li>Motoreka Lab apps + lecture notes + lab worksheets bundled</li>
+          <li>Modules à la carte or as the full MTS-IM system</li>
           <li>Train-the-Trainer programme included on delivery</li>
           <li>Local servicing and spares from UMPSA</li>
         </ul>
@@ -2124,9 +2183,9 @@ footer {
         <div class="eng-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
-        <p class="desc">No hardware purchase required. Participants use TET-IM equipment and software during the programme — at UMPSA or at your institution.</p>
+        <p class="desc">No hardware purchase required. Participants use Motoreka equipment and software during the programme — at UMPSA or at your institution.</p>
         <ul class="eng-features">
-          <li>Use TET-IM hardware + software during the programme</li>
+          <li>Use Motoreka hardware + software during the programme</li>
           <li>No procurement, no maintenance burden</li>
           <li>Pick a public workshop or commission an on-site session</li>
           <li>Same curriculum, same outcomes</li>
@@ -2178,7 +2237,7 @@ footer {
     <div class="media-header">
       <div class="eyebrow">// Recognition &amp; Coverage</div>
       <h2 class="section-title" style="margin:0 auto;">Validated beyond <span class="accent">the lab</span></h2>
-      <p class="section-intro" style="margin:24px auto 0;text-align:center;">Featured by the Ministry of Higher Education, awarded at national innovation competition, and profiled by the university's Corporate Communication Centre.</p>
+      <p class="section-intro" style="margin:24px auto 0;text-align:center;">Featured by the Ministry of Higher Education, awarded at national innovation competition, and profiled by the university's Corporate Communication Centre. Coverage refers to the project by its development name, TET-IM.</p>
     </div>
 
    
@@ -2186,11 +2245,11 @@ footer {
       <a class="media-card" href="https://www.facebook.com/reel/3619816594842451" target="_blank" rel="noopener">
         <div class="media-photo">
           <span class="media-kind">Ministry</span>
-          <img src="images/media-kpt.jpg" alt="KPT feature on the TET-IM induction machine training kit">
+          <img src="images/media-kpt.jpg" alt="KPT feature on the Motoreka induction machine training kit">
         </div>
         <div class="media-body">
           <div class="media-source">Kementerian Pendidikan Tinggi</div>
-          <h3>TET-IM featured by the Ministry of Higher Education</h3>
+          <h3>Featured by the Ministry of Higher Education</h3>
           <p>The induction machine training kit showcased in a national feature on hands-on TVET innovation.</p>
           <div class="media-date">Video feature · 2026</div>
           <span class="media-link">Watch the feature <span class="btn-arrow">→</span></span>
@@ -2214,7 +2273,7 @@ footer {
       <a class="media-card" href="PASTE_CITREX_LINKEDIN_URL_HERE" target="_blank" rel="noopener">
         <div class="media-photo">
           <span class="media-kind award">Award</span>
-          <img src="images/media-citrex.jpg" alt="CITREX 2026 Gold Award for TET-IM">
+          <img src="images/media-citrex.jpg" alt="CITREX 2026 Gold Award">
         </div>
         <div class="media-body">
           <div class="media-source">CITREX 2026</div>
@@ -2241,9 +2300,9 @@ footer {
       <div class="brochure-text">
         <div class="eyebrow">// Take It With You</div>
         <h2>One brochure.<br><span class="teal">Everything your team needs.</span></h2>
-        <p>Print-ready trifold summarising the TET-IM system — the problem, the six-module curriculum, key innovations, both engagement options, and contact details. Forward it to colleagues, take it to a planning meeting, or print a stack for your faculty.</p>
+        <p>Print-ready trifold summarising the Motoreka system — the problem, the five-module curriculum, key innovations, both engagement options, and contact details. Forward it to colleagues, take it to a planning meeting, or print a stack for your faculty.</p>
         <ul class="brochure-includes">
-          <li>Six-module curriculum overview at a glance</li>
+          <li>Five-module curriculum overview at a glance</li>
           <li>Pricing for both engagement options</li>
           <li>Direct contact + scannable QR to this page</li>
         </ul>
@@ -2263,13 +2322,14 @@ footer {
               <div class="top">// EMDLab · UMPSA</div>
             </div>
             <div>
-              <div class="title">Modular<br>Electric Motor<br><span class="a">Assembly</span></div>
-              <div class="sub">for TVET Training</div>
+              <svg class="cover-mark" aria-hidden="true"><use href="#mk-mark"/></svg>
+              <div class="title">Motoreka</div>
+              <div class="sub">Motor Design Trainer System</div>
             </div>
             <div class="tag">"From Design to Operation"</div>
           </div>
           <div class="trifold-panel panel-2 panel-content">
-            <div class="h">// SIX MODULES</div>
+            <div class="h">// FIVE MODULES</div>
             <div class="line teal"></div>
             <div class="heading">Complete<br>Learning Ecosystem</div>
             <div class="line w-90"></div>
@@ -2311,20 +2371,20 @@ footer {
     <div class="cta-grid">
       <div class="cta-text">
         <div class="eyebrow">// Join the Pilot</div>
-        <h2>Bring TET-IM<br><span class="teal">to your institution.</span></h2>
+        <h2>Bring Motoreka<br><span class="teal">to your institution.</span></h2>
         <p>Every institution that registers gets a tailored proposal — deployment options, costs, and a timeline that fits your academic calendar. Registering costs nothing and commits you to nothing.</p>
         <ul class="cta-bullets">
           <li>Tailored proposal for your programme level and student count</li>
           <li>Optional site visit and instructor briefing</li>
           <li><strong>Early adopter bonus</strong> — the first 5 institutions to register also receive a complimentary Train-the-Trainer session</li>
-          <li><strong>Early adopter bonus</strong> — plus a sample of the IM Winding Assistant app, sent out for your team to test</li>
+          <li><strong>Early adopter bonus</strong> — plus a sample of the Winding Assistant app, sent out for your team to test</li>
         </ul>
 
         <!-- ▼ REPLACE 60133902485 AND THE DISPLAYED NUMBER WITH YOUR OWN ▼ -->
         <div class="cta-whatsapp">
           <div class="wa-lead">Questions before you register? Message us directly — no form required.</div>
           <a class="wa-link"
-             href="https://wa.me/60133902485?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20the%20TET-IM%20training%20system."
+             href="https://wa.me/60133902485?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20the%20Motoreka%20trainer%20system."
              target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2A10 10 0 002 12a9.9 9.9 0 001.4 5.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
             WhatsApp
@@ -2334,12 +2394,12 @@ footer {
       </div>
 
       <form class="demo-form" action="https://formspree.io/f/xvgrqkdd" method="POST">
-        <input type="hidden" name="_subject" value="New TET-IM Pilot Program Request">
+        <input type="hidden" name="_subject" value="New Motoreka Pilot Program Request">
         <h3>Register your interest</h3>
         <div class="form-sub">Open to all institutions. We'll reply within 24 hours.</div>
         <div class="pilot-offer">
           <span class="badge">// Early Adopter Bonus</span>
-          <p>Everyone who registers receives a tailored proposal. The <strong>first 5 institutions</strong> also get a <strong>complimentary Train-the-Trainer session</strong> and a <strong>sample of the IM Winding Assistant app</strong> to test — with no purchase commitment.</p>
+          <p>Everyone who registers receives a tailored proposal. The <strong>first 5 institutions</strong> also get a <strong>complimentary Train-the-Trainer session</strong> and a <strong>sample of the Winding Assistant app</strong> to test — with no purchase commitment.</p>
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -2406,7 +2466,7 @@ footer {
         <div class="form-note">We respond within one business day.</div>
         <div class="form-wa">
           <div class="wa-ask">Prefer to ask first?</div>
-          <a href="https://wa.me/60133902485?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20the%20TET-IM%20training%20system."
+          <a href="https://wa.me/60133902485?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20the%20Motoreka%20trainer%20system."
              target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2A10 10 0 002 12a9.9 9.9 0 001.4 5.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
             WhatsApp +60 13-390 2485
@@ -2422,14 +2482,14 @@ footer {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <h4>TET-IM</h4>
-        <p>TVET Electromechanical Training — Induction Machine. The first electric motor training platform built for hands-on TVET education, developed at EMDLab, Faculty of Manufacturing &amp; Mechatronic Engineering Technology, Universiti Malaysia Pahang Al-Sultan Abdullah.</p>
+        <h4><svg aria-hidden="true"><use href="#mk-mark"/></svg>Motoreka</h4>
+        <p>Motor Design Trainer System. The first electric motor training platform built for hands-on TVET education, developed at EMDLab, Faculty of Manufacturing &amp; Mechatronic Engineering Technology, Universiti Malaysia Pahang Al-Sultan Abdullah.</p>
       </div>
       <div class="footer-links">
         <h5>// Programme</h5>
         <ul>
           <li><a href="curriculum.html">Curriculum</a></li>
-          <li><a href="#modules">Six Modules</a></li>
+          <li><a href="#modules">Five Modules</a></li>
           <li><a href="#innovations">Innovations</a></li>
           <li><a href="#engagement">Engagement</a></li>
           <li><a href="#media">Recognition</a></li>
@@ -2461,7 +2521,7 @@ footer {
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2025 EMDLab · Universiti Malaysia Pahang Al-Sultan Abdullah. All rights reserved.
+      &copy; 2026 EMDLab · Universiti Malaysia Pahang Al-Sultan Abdullah. Motoreka is a product line of EMDLab. All rights reserved.
     </div>
   </div>
 </footer>
@@ -2473,12 +2533,12 @@ footer {
   <h4>First 5 Institutions<br><span class="teal">Train Free</span></h4>
   <ul class="dock-list">
     <li>Complimentary Train-the-Trainer session</li>
-    <li>Sample IM Winding Assistant app to test</li>
+    <li>Sample Winding Assistant app to test</li>
     <li>No purchase commitment</li>
   </ul>
   <a href="#demo" class="dock-cta">Register Interest <span class="btn-arrow">→</span></a>
   <a class="dock-wa"
-     href="https://wa.me/60133902485?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20the%20TET-IM%20training%20system."
+     href="https://wa.me/60133902485?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20the%20Motoreka%20trainer%20system."
      target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2A10 10 0 002 12a9.9 9.9 0 001.4 5.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
     Ask a question on WhatsApp
