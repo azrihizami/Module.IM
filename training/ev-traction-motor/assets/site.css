@@ -542,3 +542,8 @@ svg.chart .s-cu { stroke: var(--steel); stroke-width: 2.2; stroke-dasharray: 8 3
 .cost-bar .b-mag { background: var(--steel); color: #101B25; }
 .cost-bar .b-cu { background: #D39A6E; color: #101B25; }
 @media (max-width: 560px) { .mx-panel { padding: 14px; } .mx-tabs [role=tab] { padding: 10px 14px 8px; } }
+
+/* ---------- S4: system impact calculator ---------- */
+.imp-sum { display: grid; gap: 14px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 16px 18px; }
+.imp-sum .checks { background: var(--bg); }
+.mx-out > .req-grid { border-bottom: 1px solid var(--line); padding-bottom: 14px; }
