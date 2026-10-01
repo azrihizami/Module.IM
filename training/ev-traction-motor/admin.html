@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Participant accounts · Motoreka Training</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='45.5' fill='none' stroke='%232C4453' stroke-width='5'/%3E%3Cpath d='M28 50a22 22 0 0 1 44 0z' fill='%23C0703A'/%3E%3Cpath d='M28 50a22 22 0 0 0 44 0z' fill='%23101B25'/%3E%3C/svg%3E">
+<style>
+@font-face{font-family:"Archivo";font-weight:400;src:url("assets/fonts/archivo-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Archivo";font-weight:600;src:url("assets/fonts/archivo-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Archivo";font-weight:700;src:url("assets/fonts/archivo-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"Archivo";font-weight:800;src:url("assets/fonts/archivo-latin-800-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;src:url("assets/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2")}
+:root{--navy:#101B25;--graphite:#2C4453;--steel:#5F8FA8;--copper:#C0703A;--paper:#F5F3EF;--card:#FFFFFF;--line:#DDD8CF;--ink:#101B25;--muted:#56666F;
+ --ok:#2F6F52;--ok-bg:#E3F0E8;--off:#8A4B2D;--off-bg:#F6E6DC;--f:"Archivo","Helvetica Neue",Arial,sans-serif;--m:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--paper);color:var(--ink);font-family:var(--f);font-size:15px;line-height:1.5}
+.wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+.rail{background:var(--navy);color:var(--paper);border-bottom:1px solid var(--graphite)}
+.rail .wrap{display:flex;align-items:center;gap:18px;min-height:68px;flex-wrap:wrap}
+.lockup{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}.lockup svg{width:36px;height:36px;flex:none}
+.lockup b{display:block;font-weight:800;font-size:1.15rem;letter-spacing:.01em;line-height:1}.lockup i{display:block;font-style:normal;font-family:var(--m);font-size:.6rem;letter-spacing:.26em;color:#8FAFC1;margin-top:5px}
+.rail .ttl{padding-left:18px;border-left:1px solid var(--graphite);display:grid;line-height:1.15}
+.rail .ttl span{font-family:var(--m);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#8FAFC1}.rail .ttl b{font-weight:600}
+.rail .me{margin-left:auto;display:flex;gap:10px;align-items:center;font-size:.85rem}
+.rail button{background:none;color:var(--paper);border:1px solid var(--graphite);border-radius:3px;padding:5px 10px;font:inherit;font-size:.8rem;cursor:pointer}
+main.wrap{padding-top:28px;padding-bottom:60px}
+.lab{font-family:var(--m);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--steel)}
+h1{margin:4px 0 6px;font-size:1.9rem;line-height:1.15;font-weight:800}h2{margin:0 0 4px;font-size:1.12rem;font-weight:700}
+p{margin:0}.sub{color:var(--muted)}.small{font-size:.84rem;color:var(--muted)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:20px}
+.narrow{max-width:460px;margin:6vh auto 0}
+.stack{display:grid;gap:18px}.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+form{display:grid;gap:10px}label{display:grid;gap:4px;font-size:.84rem;color:var(--muted)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media (max-width:520px){.row{grid-template-columns:1fr}}
+input,select,textarea{font:inherit;font-size:.95rem;color:var(--ink);background:#fff;border:1px solid #C9C2B6;border-radius:3px;padding:8px 10px;width:100%}
+textarea{min-height:110px;font-family:var(--m);font-size:.82rem}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--steel);outline-offset:0;border-color:var(--steel)}
+.pw{display:flex;gap:6px}.pw input{font-family:var(--m)}
+button,.btn{font:inherit;font-size:.88rem;font-weight:600;border-radius:3px;padding:8px 14px;cursor:pointer;border:1px solid var(--graphite);background:#fff;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;justify-content:center}
+button.pri{background:var(--navy);color:var(--paper);border-color:var(--navy)}button.pri:hover{background:var(--graphite)}
+button.cu{background:var(--copper);border-color:var(--copper);color:#fff}
+button:disabled{opacity:.55;cursor:not-allowed}
+button.sm{padding:4px 9px;font-size:.78rem;font-weight:500}button.warn{border-color:#B9573A;color:#8A3B22}button.warn.arm{background:#B9573A;color:#fff}
+.acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.msg{font-size:.85rem;min-height:1.3em;color:var(--muted)}.msg.bad{color:#A8442A}.msg.good{color:var(--ok)}
+.bar{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;background:var(--navy);color:var(--paper);border-radius:4px;padding:14px 18px}
+.stat{display:grid;line-height:1.1}.stat b{font-size:1.5rem;font-weight:800}.stat span{font-family:var(--m);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:#8FAFC1}
+.bar .state{margin-left:auto;font-size:.85rem;display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;background:#7FB89A;display:inline-block}.dot.dirty{background:var(--copper)}
+.list{display:grid;border-top:1px solid var(--line);margin-top:12px}
+.it{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1.2fr) 100px 84px 128px 300px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.it.hd{font-family:var(--m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:8px 0}
+.it .nm b{display:block;font-weight:600}.it .nm span{font-size:.82rem;color:var(--muted)}.it .un{font-family:var(--m);font-size:.84rem;overflow-wrap:anywhere}
+.it .dt{font-size:.8rem;color:var(--muted);display:grid;line-height:1.3}.it .dt span{font-size:.72rem}
+.it .ac{justify-content:flex-end}
+.chip{display:inline-block;font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:10px;background:#E8EEF2;color:var(--graphite)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}.chip.off{background:var(--off-bg);color:var(--off)}.chip.fac{background:#E7E1F0;color:#4B3B6B}
+.it.edit{grid-template-columns:1fr 1fr auto}
+@media (max-width:860px){.it{grid-template-columns:1fr auto;gap:6px 12px}.it .ac{justify-content:flex-start}.it.hd{display:none}.it .un,.it .dt{grid-column:1}.it .rl{grid-column:2;grid-row:1}.it .ac{grid-column:1/-1}.it .st{grid-column:2;grid-row:2}}
+.search{max-width:280px}
+.creds{display:grid;gap:0;margin:10px 0;border-top:1px solid var(--line)}
+.cr{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.88rem;align-items:center}
+.cr code{font-family:var(--m);font-size:.86rem;overflow-wrap:anywhere}.cr .k{font-size:.72rem;color:var(--muted)}
+.empty{color:var(--muted);font-size:.88rem;padding:12px 0}
+details summary{cursor:pointer;font-size:.88rem;color:var(--graphite);font-weight:600;margin-top:6px}
+details[open] summary{margin-bottom:8px}
+.note{background:#EEF3F6;border-left:3px solid var(--steel);padding:10px 12px;font-size:.84rem;border-radius:0 3px 3px 0}
+.note.cu{background:#F8EDE5;border-color:var(--copper)}
+ol.steps{margin:6px 0 0;padding-left:20px;font-size:.84rem;color:var(--muted)}ol.steps li{margin:3px 0}
+a{color:var(--graphite)}
+.print-only{display:none}
+@media print{
+ body{background:#fff}.rail,main>section{display:none!important}.print-only{display:block!important}
+ @page{size:A4;margin:12mm}
+ .slips{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+ .slip{border:0.3mm dashed #888;padding:6mm;break-inside:avoid;font-size:10.5pt;display:grid;gap:2mm}
+ .slip .hd{display:flex;align-items:center;gap:3mm}.slip .hd svg{width:9mm;height:9mm}.slip .hd b{font-weight:800;font-size:11pt}
+ .slip .hd span{display:block;font-family:var(--m);font-size:6pt;letter-spacing:.25em;color:#5F8FA8}
+ .slip .t{font-weight:700;font-size:11pt}.slip .u{font-size:8.5pt;color:#333;word-break:break-all}
+ .slip dl{display:grid;grid-template-columns:auto 1fr;gap:1mm 4mm;margin:1mm 0}.slip dt{color:#555;font-size:8.5pt}.slip dd{margin:0;font-family:var(--m);font-size:11pt;font-weight:600}
+ .slip .f{font-size:7.5pt;color:#555}
+}
+</style></head>
+<body>
+<header class="rail"><div class="wrap">
+ <a class="lockup" href="./" aria-label="Course home"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="45.5" fill="none" stroke="#5F8FA8" stroke-width="5"/><path d="M28 50a22 22 0 0 1 44 0z" fill="#C0703A"/><path d="M28 50a22 22 0 0 0 44 0z" fill="#5F8FA8"/></svg><span><b>MOTOREKA</b><i>TRAINING</i></span></a>
+ <span class="ttl"><span>Facilitator</span><b>Participant accounts</b></span>
+ <span class="me" id="me" hidden><span id="me-name"></span><button id="b-lock" type="button">Lock</button></span>
+</div></header>
+<main class="wrap">
+
+<section id="unlock" class="panel narrow">
+ <div class="lab">Facilitator sign-in</div><h1>Participant accounts</h1><p class="sub" id="course-title"></p>
+ <form id="f-unlock" style="margin-top:16px">
+  <label>Facilitator username<input id="a-user" value="admin" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+  <label>Password<input id="a-pw" type="password" autocomplete="current-password" required></label>
+  <button class="pri" id="b-unlock">Unlock</button><div class="msg" id="m-unlock" role="status"></div>
+ </form>
+ <p class="small" style="margin-top:12px">Accounts file: <span id="src">loading…</span>. <label style="display:inline;color:var(--graphite);text-decoration:underline;cursor:pointer">Open a users.json file instead<input type="file" id="file-users" accept=".json,application/json" hidden></label></p>
+</section>
+
+<section id="app" class="stack" hidden>
+ <div class="bar" role="region" aria-label="Summary">
+  <div class="stat"><b id="n-act">0</b><span>Active participants</span></div>
+  <div class="stat"><b id="n-off">0</b><span>Disabled</span></div>
+  <div class="stat"><b id="n-fac">0</b><span>Facilitators</span></div>
+  <div class="state"><span class="dot" id="dot"></span><span id="state">Matches motoreka.my</span></div>
+ </div>
+
+ <div class="grid2">
+  <div class="panel">
+   <h2>Add a participant</h2><p class="small">A password is generated for you. It is shown once, in New passwords.</p>
+   <form id="f-add" style="margin-top:12px">
+    <div class="row"><label>Full name (as on the certificate)<input id="n-name" required></label><label>Organisation<input id="n-org" value="Perodua"></label></div>
+    <div class="row"><label>Username<input id="n-user" autocapitalize="none" spellcheck="false" required pattern="[a-z0-9._\-]{3,40}" title="3 to 40 characters: a–z, 0–9, dot, dash, underscore"></label>
+     <label>Role<select id="n-role"><option value="user">Participant</option><option value="admin">Facilitator (can manage accounts)</option></select></label></div>
+    <label>Password<span class="pw"><input id="n-pw" spellcheck="false" autocomplete="off" required minlength="10"><button type="button" class="sm" id="b-gen" title="Generate another">New</button></span></label>
+    <div class="acts"><button class="pri">Add participant</button><span class="msg" id="m-add" role="status"></span></div>
+   </form>
+   <details><summary>Add several at once</summary>
+    <p class="small">One per line: <code>Full name, Organisation, username</code>. Organisation and username are optional.</p>
+    <textarea id="bulk" placeholder="Ahmad Faiz bin Ismail, Perodua&#10;Nur Aina binti Hassan, Perodua, nur.aina"></textarea>
+    <div class="acts" style="margin-top:8px"><button type="button" class="pri" id="b-bulk">Add all</button><span class="msg" id="m-bulk" role="status"></span></div>
+   </details>
+  </div>
+
+  <div class="panel">
+   <h2>New passwords</h2>
+   <p class="small">Passwords are not stored anywhere. Print the slips or save the list before you close this page. A lost password can only be reset.</p>
+   <div class="creds" id="creds"></div>
+   <div class="acts"><button type="button" class="cu" id="b-print" disabled>Print login slips</button><button type="button" id="b-copy" disabled>Copy as text</button><button type="button" id="b-csv" disabled>Download list</button><span class="msg" id="m-creds"></span></div>
+  </div>
+ </div>
+
+ <div class="panel">
+  <div class="acts" style="justify-content:space-between"><div><h2>Accounts</h2><p class="small">Disable stops someone signing in, also on devices where they chose to stay signed in. Enable gives the same password back.</p></div>
+   <input class="search" id="q" type="search" placeholder="Search name or username" aria-label="Search accounts"></div>
+  <div class="list" id="list"></div>
+ </div>
+
+ <div class="panel">
+  <h2>Publish changes</h2>
+  <p class="small">Changes count only once the accounts file on motoreka.my is replaced. Until then nothing changes for participants.</p>
+  <div class="grid2" style="margin-top:14px">
+   <div>
+    <div class="lab" style="margin-bottom:6px">Publish directly</div>
+    <form id="f-pub">
+     <label>GitHub token for Module.IM<input id="tok" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
+     <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="tok-rm" style="width:auto"> Remember the token on this computer</label>
+     <div class="acts"><button class="pri" id="b-pub">Publish to motoreka.my</button><span class="msg" id="m-pub" role="status"></span></div>
+    </form>
+    <details><summary>How to make the token (once)</summary>
+     <ol class="steps"><li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+      <li>Name it "Motoreka accounts". Repository access: Only select repositories → <b id="repo-name"></b>.</li>
+      <li>Permissions → Repository permissions → Contents: Read and write. Generate, copy, paste above.</li></ol>
+    </details>
+   </div>
+   <div>
+    <div class="lab" style="margin-bottom:6px">Or upload by hand</div>
+    <div class="acts"><button type="button" id="b-dl">Download users.json</button></div>
+    <ol class="steps"><li>On GitHub, open <span id="repo-path"></span>.</li><li>Add file → Upload files → drop users.json → Commit to main.</li><li>The site updates in about a minute.</li></ol>
+   </div>
+  </div>
+ </div>
+
+ <div class="grid2">
+  <div class="panel">
+   <h2>Certificates</h2><p class="small">Names and organisations of active participants, ready for the certificate tool.</p>
+   <div class="acts" style="margin-top:12px"><button type="button" id="b-cert">Download names.csv</button></div>
+  </div>
+  <div class="panel">
+   <h2>Change my password</h2>
+   <form id="f-mypw" style="margin-top:8px"><div class="row"><label>New password<input id="my1" type="password" minlength="10" required autocomplete="new-password"></label><label>Again<input id="my2" type="password" minlength="10" required autocomplete="new-password"></label></div>
+    <div class="acts"><button>Change password</button><span class="msg" id="m-my" role="status"></span></div>
+    <p class="note cu" id="build-note" hidden>Course rebuilds sign in with the <b>admin</b> account. If you change its password, the new one must also go into <code>.course-password</code> where the course is built.</p>
+   </form>
+  </div>
+ </div>
+</section>
+<div class="print-only"><div class="slips" id="slips"></div></div>
+</main>
+
+<script>
+(function(){
+"use strict";
+var CFG={"course":"ev-traction-motor","title":"EV Traction Motor Sizing & Design","iter":250000,"store":"mk-1c5119f6","repo":"azrihizami/Module.IM","repoPath":"training/ev-traction-motor/users.json","site":"https://motoreka.my/training/ev-traction-motor/"};
+CFG=Object.assign({course:"ev-traction-motor",title:"EV Traction Motor Sizing & Design",iter:250000,repo:"azrihizami/Module.IM",repoPath:"training/ev-traction-motor/users.json",site:"https://motoreka.my/training/ev-traction-motor/"},CFG);
+var $=function(id){return document.getElementById(id);};
+var TE=new TextEncoder(),TD=new TextDecoder();
+var u8=function(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0);});};
+var b64=function(b){var s="",a=new Uint8Array(b);for(var i=0;i<a.length;i+=8192)s+=String.fromCharCode.apply(null,a.subarray(i,i+8192));return btoa(s);};
+var hex=function(b){return Array.from(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0");}).join("");};
+var rnd=function(n){return crypto.getRandomValues(new Uint8Array(n));};
+var today=function(){return new Date().toISOString().slice(0,10);};
+async function key(raw,use){return crypto.subtle.importKey("raw",raw,"AES-GCM",false,[use]);}
+async function wrap(raw,data){var iv=rnd(12);return b64(iv)+":"+b64(await crypto.subtle.encrypt({name:"AES-GCM",iv:iv},await key(raw,"encrypt"),data));}
+async function unwrap(raw,w){var p=w.split(":");return new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:u8(p[0])},await key(raw,"decrypt"),u8(p[1])));}
+async function kek(pw,salt,iter){var m=await crypto.subtle.importKey("raw",TE.encode(pw),"PBKDF2",false,["deriveBits"]);return new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2",salt:salt,iterations:iter,hash:"SHA-256"},m,256));}
+async function uid(n){return hex(await crypto.subtle.digest("SHA-256",TE.encode("motoreka|"+CFG.course+"|"+n.trim().toLowerCase()))).slice(0,32);}
+
+var S={db:null,src:"",loadedUpdated:null,me:null,K:null,A:null,recs:{},creds:[],dirty:false,q:Promise.resolve()};
+function queue(fn){var r=S.q.then(fn);S.q=r.catch(function(){});return r;}
+$("course-title").textContent=CFG.title;$("repo-name").textContent=CFG.repo.split("/")[1];
+$("repo-path").textContent=CFG.repo+" → "+CFG.repoPath.replace(/\/users\.json$/,"/");
+
+// ---------- load users.json (same folder when hosted, the public site when opened from disk)
+function accept(db,src){if(!db||db.format!=="motoreka-course-users")throw new Error("not an accounts file");if(db.course&&db.course!==CFG.course)throw new Error("this accounts file is for "+db.course);
+ S.db=db;S.src=src;S.loadedUpdated=db.updated||null;$("src").textContent=src+(db.updated?" (updated "+db.updated.slice(0,16).replace("T"," ")+" UTC)":"");}
+async function fetchJSON(u){var r=await fetch(u+(u.indexOf("?")<0?"?":"&")+"v="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error(r.status);return r.json();}
+function tokenSaved(){try{return localStorage.getItem("mk-admin-token")||"";}catch(e){return "";}}
+function ghAPI(){return "https://api.github.com/repos/"+CFG.repo+"/contents/"+CFG.repoPath;}
+function ghH(t){return {"Authorization":"Bearer "+t,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"};}
+async function fromGitHub(t){var r=await fetch(ghAPI()+"?ref=main&v="+Date.now(),{headers:ghH(t),cache:"no-store"});if(!r.ok)throw new Error(r.status);var c=await r.json();return JSON.parse(TD.decode(u8(c.content.replace(/\s/g,""))));}
+async function load(){
+ var tok=tokenSaved();
+ if(tok){try{accept(await fromGitHub(tok),"GitHub, "+CFG.repo);return;}catch(e){}}
+ var tries=location.protocol==="file:"?[[CFG.site+"users.json","motoreka.my"]]:[["users.json","this site"],[CFG.site+"users.json","motoreka.my"]];
+ for(var i=0;i<tries.length;i++){try{accept(await fetchJSON(tries[i][0]),tries[i][1]);return;}catch(e){}}
+ $("src").textContent="not found. Open the users.json file";}
+$("file-users").addEventListener("change",function(e){var f=e.target.files[0];if(!f)return;var rd=new FileReader();
+ rd.onload=function(){try{accept(JSON.parse(rd.result),"file "+f.name);msg("m-unlock","Accounts file loaded. Unlock to continue.","good");}catch(x){msg("m-unlock",x.message,"bad");}};rd.readAsText(f);e.target.value="";});
+function msg(id,t,cls){var m=$(id);m.textContent=t||"";m.className="msg"+(cls?" "+cls:"");}
+
+// ---------- unlock
+$("f-unlock").addEventListener("submit",async function(ev){ev.preventDefault();
+ if(!S.db){msg("m-unlock","No accounts file loaded yet.","bad");return;}
+ var btn=$("b-unlock");btn.disabled=true;msg("m-unlock","Checking…");
+ try{var un=$("a-user").value.trim(),id=await uid(un),e=S.db.users.find(function(x){return x.id===id;});
+  if(!e||e.role!=="admin"||!e.w)throw 0;
+  var U=await unwrap(await kek($("a-pw").value,u8(e.s),S.db.iter),e.w);
+  S.K=await unwrap(U,e.k);S.A=await unwrap(U,e.a);S.recs={};
+  for(var i=0;i<S.db.users.length;i++){var x=S.db.users[i];S.recs[x.id]=JSON.parse(TD.decode(await unwrap(S.A,x.r)));}
+  S.me={id:id,U:U,u:un.toLowerCase()};
+  $("a-pw").value="";$("unlock").hidden=true;$("app").hidden=false;$("me").hidden=false;$("me-name").textContent="Signed in as "+(S.recs[id].n||un);
+  $("build-note").hidden=S.me.u!=="admin";
+  var t=tokenSaved();if(t){$("tok").value=t;$("tok-rm").checked=true;}
+  genPw();render();
+ }catch(x){msg("m-unlock","That facilitator username or password is not right.","bad");}
+ btn.disabled=false;});
+$("b-lock").addEventListener("click",function(){if(!leaveOK())return;location.reload();});
+function leaveOK(){return !(S.dirty||S.creds.some(function(c){return !c.saved;}))||window.confirm("You have changes or new passwords that are not published or saved. Leave anyway?");}
+window.addEventListener("beforeunload",function(e){if(S.dirty||S.creds.some(function(c){return !c.saved;})){e.preventDefault();e.returnValue="";}});
+
+// ---------- account operations
+var ALPHA="abcdefghjkmnpqrstuvwxyz23456789";
+function newPw(){var out="";while(out.length<12){var b=rnd(16);for(var i=0;i<b.length&&out.length<12;i++)if(b[i]<248)out+=ALPHA[b[i]%31];}return out.slice(0,4)+"-"+out.slice(4,8)+"-"+out.slice(8);}
+function genPw(){$("n-pw").value=newPw();}
+$("b-gen").addEventListener("click",genPw);
+var SKIP={bin:1,binti:1,bte:1,bt:1,b:1,"a/l":1,"a/p":1,al:1,ap:1,"s/o":1,"d/o":1,dr:1,"dr.":1,ir:1,ts:1,"ts.":1,"ir.":1};
+function suggest(name){var t=name.toLowerCase().split(/\s+/).filter(function(w){return w&&!SKIP[w];}).map(function(w){return w.normalize("NFD").replace(/[^a-z0-9]/g,"");}).filter(Boolean);
+ return (t.slice(0,2).join(".")||"user").slice(0,32);}
+async function freeName(base){var n=base,i=2;while(S.recs[await uid(n)])n=base+i++;return n;}
+var userTyped=false;
+$("n-user").addEventListener("input",function(){userTyped=this.value.length>0;});
+$("n-name").addEventListener("input",async function(){if(userTyped)return;var v=this.value.trim();$("n-user").value=v?await freeName(suggest(v)):"";});
+
+async function add(o){
+ var u=o.u.trim().toLowerCase(),id=await uid(u);
+ if(!o.n.trim())throw new Error("Enter the full name.");
+ if(!/^[a-z0-9._-]{3,40}$/.test(u))throw new Error("Username: 3 to 40 characters, a–z, 0–9, dot, dash or underscore.");
+ if(S.recs[id])throw new Error("The username "+u+" is already taken.");
+ if((o.pw||"").length<10)throw new Error("The password needs at least 10 characters.");
+ var U=rnd(32),s=rnd(16),role=o.role==="admin"?"admin":"user";
+ var e={id:id,role:role,s:b64(s),w:await wrap(await kek(o.pw,s,S.db.iter),U),k:await wrap(U,S.K),n:await wrap(U,TE.encode(o.n.trim()))};
+ if(role==="admin")e.a=await wrap(U,S.A);
+ var rec={u:u,n:o.n.trim(),o:(o.o||"").trim(),c:today(),p:today(),U:b64(U)};
+ e.r=await wrap(S.A,TE.encode(JSON.stringify(rec)));
+ S.db.users.push(e);S.recs[id]=rec;S.creds.push({n:rec.n,o:rec.o,u:u,p:o.pw,why:"New"});changed();return u;}
+async function saveRec(e,rec){e.r=await wrap(S.A,TE.encode(JSON.stringify(rec)));S.recs[e.id]=rec;}
+async function reset(id){var e=find(id),rec=S.recs[id],pw=newPw(),U=rnd(32),s=rnd(16);
+ e.s=b64(s);e.w=await wrap(await kek(pw,s,S.db.iter),U);e.k=await wrap(U,S.K);e.n=await wrap(U,TE.encode(rec.n));
+ if(e.role==="admin")e.a=await wrap(U,S.A);rec.U=b64(U);rec.p=today();await saveRec(e,rec);
+ S.creds.push({n:rec.n,o:rec.o,u:rec.u,p:pw,why:"Reset"});changed();}
+async function disable(id){var e=find(id),rec=S.recs[id];rec.off={s:e.s,w:e.w,d:today()};["s","w","k","n","a"].forEach(function(k){delete e[k];});await saveRec(e,rec);changed();}
+async function enable(id){var e=find(id),rec=S.recs[id],U=u8(rec.U);e.s=rec.off.s;e.w=rec.off.w;e.k=await wrap(U,S.K);e.n=await wrap(U,TE.encode(rec.n));
+ if(e.role==="admin")e.a=await wrap(U,S.A);delete rec.off;await saveRec(e,rec);changed();}
+function removeAcc(id){S.db.users=S.db.users.filter(function(x){return x.id!==id;});delete S.recs[id];changed();}
+async function rename(id,n,o){var e=find(id),rec=S.recs[id];rec.n=n.trim();rec.o=o.trim();if(e.k)e.n=await wrap(u8(rec.U),TE.encode(rec.n));await saveRec(e,rec);changed();}
+function find(id){return S.db.users.find(function(x){return x.id===id;});}
+function activeAdmins(){return S.db.users.filter(function(x){return x.role==="admin"&&x.w;}).length;}
+function changed(){S.dirty=true;render();}
+
+$("f-add").addEventListener("submit",async function(ev){ev.preventDefault();
+ try{var u=await queue(function(){return add({n:$("n-name").value,o:$("n-org").value,u:$("n-user").value,role:$("n-role").value,pw:$("n-pw").value});});
+  msg("m-add","Added "+u+".","good");$("n-name").value="";$("n-user").value="";userTyped=false;$("n-role").value="user";genPw();$("n-name").focus();}
+ catch(x){msg("m-add",x.message,"bad");}});
+$("b-bulk").addEventListener("click",function(){queue(bulk);});
+async function bulk(){var lines=$("bulk").value.split(/\r?\n/).map(function(l){return l.trim();}).filter(Boolean),ok=0,bad=[];
+ for(var i=0;i<lines.length;i++){var p=lines[i].split(",").map(function(x){return x.trim();});
+  try{await add({n:p[0],o:p[1]||$("n-org").value,u:p[2]||await freeName(suggest(p[0])),role:"user",pw:newPw()});ok++;}catch(x){bad.push(lines[i]+" ("+x.message+")");}}
+ $("bulk").value=bad.map(function(b){return b.replace(/ \(.*\)$/,"");}).join("\n");
+ msg("m-bulk",ok+" added."+(bad.length?" Not added: "+bad.join("; "):""),bad.length?"bad":"good");}
+
+// ---------- render
+function el(t,a,kids){var e=document.createElement(t);if(a)for(var k in a){if(k==="text")e.textContent=a[k];else if(k==="cls")e.className=a[k];else if(k.slice(0,2)==="on")e.addEventListener(k.slice(2),a[k]);else e.setAttribute(k,a[k]);}
+ (kids||[]).forEach(function(c){if(c)e.appendChild(typeof c==="string"?document.createTextNode(c):c);});return e;}
+function armed(label,fn){var b=el("button",{type:"button",cls:"sm warn",text:label});var t=null;
+ b.addEventListener("click",function(){if(!b.classList.contains("arm")){b.classList.add("arm");b.textContent="Confirm "+label.toLowerCase();t=setTimeout(function(){b.classList.remove("arm");b.textContent=label;},4000);return;}clearTimeout(t);fn();});return b;}
+var editing=null;
+function render(){
+ var us=S.db.users,R=S.recs;
+ $("n-act").textContent=us.filter(function(x){return x.role==="user"&&x.w;}).length;
+ $("n-off").textContent=us.filter(function(x){return !x.w;}).length;
+ $("n-fac").textContent=us.filter(function(x){return x.role==="admin"&&x.w;}).length;
+ $("dot").className="dot"+(S.dirty?" dirty":"");$("state").textContent=S.dirty?"Changes not published yet":"Matches the loaded accounts file";
+ var q=$("q").value.trim().toLowerCase(),L=$("list");L.textContent="";
+ L.appendChild(el("div",{cls:"it hd"},[el("span",{text:"Name"}),el("span",{text:"Username"}),el("span",{text:"Role"}),el("span",{text:"Status"}),el("span",{text:"Created"}),el("span",{text:""})]));
+ var rows=us.slice().sort(function(a,b){return (a.role===b.role?0:a.role==="admin"?-1:1)||(R[a.id].n||"").localeCompare(R[b.id].n||"");})
+  .filter(function(x){var r=R[x.id];return !q||(r.n+" "+r.u+" "+r.o).toLowerCase().indexOf(q)>=0;});
+ if(!rows.length)L.appendChild(el("div",{cls:"empty",text:us.length>1||q?"No accounts match.":"No participants yet. Add the first one above."}));
+ rows.forEach(function(x){var r=R[x.id],me=x.id===S.me.id,on=!!x.w;
+  if(editing===x.id){var ni=el("input",{value:r.n,"aria-label":"Full name"}),oi=el("input",{value:r.o,"aria-label":"Organisation"});
+   L.appendChild(el("div",{cls:"it edit"},[ni,oi,el("div",{cls:"acts"},[el("button",{type:"button",cls:"sm pri",text:"Save",onclick:function(){if(!ni.value.trim())return;editing=null;queue(function(){return rename(x.id,ni.value,oi.value);});}}),el("button",{type:"button",cls:"sm",text:"Cancel",onclick:function(){editing=null;render();}})])]));return;}
+  var acts=el("div",{cls:"acts ac"});
+  acts.appendChild(el("button",{type:"button",cls:"sm",text:"Edit",onclick:function(){editing=x.id;render();}}));
+  if(!me){
+   if(on)acts.appendChild(el("button",{type:"button",cls:"sm",text:"Reset password",onclick:function(){queue(function(){return reset(x.id);});}}));
+   if(on&&!(x.role==="admin"&&activeAdmins()<2))acts.appendChild(el("button",{type:"button",cls:"sm",text:"Disable",onclick:function(){queue(function(){return disable(x.id);});}}));
+   if(!on)acts.appendChild(el("button",{type:"button",cls:"sm",text:"Enable",onclick:function(){queue(function(){return enable(x.id);});}}));
+   if(!(x.role==="admin"&&on&&activeAdmins()<2))acts.appendChild(armed("Remove",function(){removeAcc(x.id);}));
+  } else acts.appendChild(el("span",{cls:"small",text:"you"}));
+  L.appendChild(el("div",{cls:"it"},[
+   el("div",{cls:"nm"},[el("b",{text:r.n||"—"}),r.o?el("span",{text:r.o}):null]),el("div",{cls:"un",text:r.u}),
+   el("div",{cls:"rl"},[el("span",{cls:"chip"+(x.role==="admin"?" fac":""),text:x.role==="admin"?"Facilitator":"Participant"})]),
+   el("div",{cls:"st"},[el("span",{cls:"chip "+(on?"ok":"off"),text:on?"Active":"Disabled"})]),
+   el("div",{cls:"dt"},[r.c||"",r.p&&r.p!==r.c?el("span",{text:"password "+r.p}):null,r.off?el("span",{text:"disabled "+(r.off.d||"")}):null]),acts]));});
+ var C=$("creds");C.textContent="";
+ if(!S.creds.length)C.appendChild(el("div",{cls:"empty",text:"New and reset passwords appear here."}));
+ S.creds.forEach(function(c){C.appendChild(el("div",{cls:"cr"},[el("div",{},[el("b",{text:c.n}),el("div",{cls:"k",text:c.why})]),el("code",{text:c.u}),el("code",{text:c.p})]));});
+ ["b-print","b-copy","b-csv"].forEach(function(b){$(b).disabled=!S.creds.length;});
+}
+$("q").addEventListener("input",render);
+
+// ---------- new passwords: slips, text, list
+function markSaved(){S.creds.forEach(function(c){c.saved=true;});}
+function slipsHTML(){var M='<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45.5" fill="none" stroke="#5F8FA8" stroke-width="5"/><path d="M28 50a22 22 0 0 1 44 0z" fill="#C0703A"/><path d="M28 50a22 22 0 0 0 44 0z" fill="#101B25"/></svg>';
+ var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});};
+ return S.creds.map(function(c){return '<div class="slip"><div class="hd">'+M+'<div><b>MOTOREKA</b><span>TRAINING</span></div></div><div class="t">'+esc(CFG.title)+'</div><div class="u">'+esc(CFG.site)+
+  '</div><dl><dt>Name</dt><dd style="font-family:inherit">'+esc(c.n)+'</dd><dt>Username</dt><dd>'+esc(c.u)+'</dd><dt>Password</dt><dd>'+esc(c.p)+'</dd></dl><div class="f">Keep this slip private. If you lose the password, ask your facilitator to reset it.</div></div>';}).join("");}
+$("b-print").addEventListener("click",function(){$("slips").innerHTML=slipsHTML();markSaved();window.print();});
+function credText(){return S.creds.map(function(c){return c.n+"\nUsername: "+c.u+"\nPassword: "+c.p;}).join("\n\n")+"\n\nSign in at "+CFG.site;}
+$("b-copy").addEventListener("click",async function(){try{await navigator.clipboard.writeText(credText());markSaved();msg("m-creds","Copied.","good");}catch(x){msg("m-creds","Copy is blocked here. Use Download list.","bad");}});
+function csvCell(s){s=String(s==null?"":s);return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
+function download(name,text,type){var b=new Blob([text],{type:type}),a=el("a",{href:URL.createObjectURL(b),download:name});document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href);},30000);}
+$("b-csv").addEventListener("click",function(){download("new-passwords-"+today()+".csv","Name,Organisation,Username,Password,Note\n"+S.creds.map(function(c){return [c.n,c.o,c.u,c.p,c.why].map(csvCell).join(",");}).join("\n")+"\n","text/csv");markSaved();});
+$("b-cert").addEventListener("click",function(){var rows=S.db.users.filter(function(x){return x.role==="user"&&x.w;}).map(function(x){return S.recs[x.id];}).sort(function(a,b){return a.n.localeCompare(b.n);});
+ download("names.csv","Name,Organisation\n"+rows.map(function(r){return csvCell(r.n)+","+csvCell(r.o);}).join("\n")+"\n","text/csv");});
+
+// ---------- my password
+$("f-mypw").addEventListener("submit",function(ev){ev.preventDefault();queue(myPw);});
+async function myPw(){var a=$("my1").value,b=$("my2").value;
+ if(a!==b){msg("m-my","The two passwords differ.","bad");return;}if(a.length<10){msg("m-my","Use at least 10 characters.","bad");return;}
+ var e=find(S.me.id),rec=S.recs[S.me.id],s=rnd(16);e.s=b64(s);e.w=await wrap(await kek(a,s,S.db.iter),S.me.U);rec.p=today();await saveRec(e,rec);
+ $("my1").value="";$("my2").value="";msg("m-my","Changed. Publish to make it count.","good");changed();}
+
+// ---------- publish
+function serial(){S.db.updated=new Date().toISOString();return JSON.stringify(S.db,null,1)+"\n";}
+$("b-dl").addEventListener("click",async function(){await S.q;download("users.json",serial(),"application/json");S.dirty=false;S.loadedUpdated=S.db.updated;render();
+ $("state").textContent="Downloaded. Upload users.json to GitHub to make it count.";});
+$("f-pub").addEventListener("submit",async function(ev){ev.preventDefault();var tok=$("tok").value.trim(),btn=$("b-pub");
+ if(!tok){msg("m-pub","Paste the GitHub token first.","bad");return;}
+ try{if($("tok-rm").checked)localStorage.setItem("mk-admin-token",tok);else localStorage.removeItem("mk-admin-token");}catch(x){}
+ btn.disabled=true;msg("m-pub","Checking GitHub…");await S.q;
+ var api=ghAPI(),H=ghH(tok);
+ try{var r=await fetch(api+"?ref=main&v="+Date.now(),{headers:H,cache:"no-store"}),sha=null;
+  if(r.status===401||r.status===403)throw new Error("GitHub refused the token. Check that it has Contents: Read and write on "+CFG.repo+".");
+  if(r.ok){var cur=await r.json();sha=cur.sha;var remote=JSON.parse(TD.decode(u8(cur.content.replace(/\s/g,""))));
+   if(S.loadedUpdated&&remote.updated&&remote.updated!==S.loadedUpdated)throw new Error("The accounts file on GitHub changed after you loaded it (another device or a course rebuild). Download your new-password list, reload this page and repeat the changes.");}
+  else if(r.status!==404)throw new Error("GitHub answered "+r.status+".");
+  var body=serial(),n=S.db.users.filter(function(x){return x.w;}).length;
+  var p=await fetch(api,{method:"PUT",headers:Object.assign({"Content-Type":"application/json"},H),body:JSON.stringify({message:"Course accounts: "+n+" active ("+CFG.course+")",content:b64(TE.encode(body)),sha:sha||undefined,branch:"main"})});
+  if(!p.ok){var t=await p.json().catch(function(){return {};});throw new Error("GitHub did not accept the file: "+(t.message||p.status));}
+  S.dirty=false;S.loadedUpdated=S.db.updated;render();msg("m-pub","Published. motoreka.my picks it up in about a minute.","good");
+ }catch(x){msg("m-pub",x.message||"Publishing failed.","bad");}
+ btn.disabled=false;});
+
+if(!window.crypto||!crypto.subtle){msg("m-unlock","This browser cannot run the account tools. Use a current Chrome or Edge.","bad");}
+load();
+})();
+</script>
+</body></html>
