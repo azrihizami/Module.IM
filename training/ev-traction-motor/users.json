@@ -1,0 +1,19 @@
+{
+ "format": "motoreka-course-users",
+ "version": 1,
+ "course": "ev-traction-motor",
+ "iter": 250000,
+ "users": [
+  {
+   "id": "80b484b01e7a7f51987d6ae828b953ea",
+   "role": "admin",
+   "s": "Nqia1Kb8YeK+u8+1zhEnwA==",
+   "w": "HsY2DQ2rS9FlSJp3:4Z5c8ZZ6DDXH5GPLHU+b7lpyPx0V80JeJE2yxSgYhGMVQmigIYG2nmWXDkLW7Mvc",
+   "k": "J1DGDBnStfxIcfdB:qjx6c6Pk9q4PC6fBcckPOkiacuQYg5RxMoqwRASbEcZtWRFOqLWWYdL7VUliI8Az",
+   "n": "kZLS2eKYdc4Unj2R:K2slMu8ztPhSSW+OAysCPKFeo4dyye8gRIg+",
+   "a": "6XyJQm9V1jjpqCoR:F7iUmXXJ0zjSJF/7ppTVRvQ34c5EP3BXDwUT47xLOUL3LKVwSm99t1c7Ff4Awat1",
+   "r": "yQh58/WXUUgv/NOI:pwdmcuSMdNj0UOXFuC/+wK6Cb3iDco8HpZY9XBfcqQXLWwM2BEwp7WF459VFdCyucqoTcXKllh7cY3KRZhZJUM8+DdPQaw6xVakd00WqldKRCHNeCM6GnvvV5PsVX+qaSDWaI0KPsrS8iZKssJ6qKy6HKHDoSDhskl0FiN4gHiD32hNDnuVCBuGwqA=="
+  }
+ ],
+ "updated": "2026-10-01T09:37:21.018Z"
+}
