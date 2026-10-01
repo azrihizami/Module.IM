@@ -156,7 +156,7 @@ a{color:var(--graphite)}
    <div>
     <div class="lab" style="margin-bottom:6px">Or upload by hand</div>
     <div class="acts"><button type="button" id="b-dl">Download users.json</button></div>
-    <ol class="steps"><li>On GitHub, open <span id="repo-path"></span>.</li><li>Add file → Upload files → drop users.json → Commit to main.</li><li>The site updates in about a minute.</li></ol>
+    <ol class="steps"><li>Open the upload page: <a id="up-link" target="_blank" rel="noopener"></a>. It must be this repository and folder; a users.json anywhere else is not read.</li><li>Drop users.json there → Commit changes (to main).</li><li>The site updates in about a minute.</li></ol>
    </div>
   </div>
  </div>
@@ -199,7 +199,7 @@ async function uid(n){return hex(await crypto.subtle.digest("SHA-256",TE.encode(
 var S={db:null,src:"",loadedUpdated:null,me:null,K:null,A:null,recs:{},creds:[],dirty:false,q:Promise.resolve()};
 function queue(fn){var r=S.q.then(fn);S.q=r.catch(function(){});return r;}
 $("course-title").textContent=CFG.title;$("repo-name").textContent=CFG.repo.split("/")[1];
-$("repo-path").textContent=CFG.repo+" → "+CFG.repoPath.replace(/\/users\.json$/,"/");
+var upDir=CFG.repoPath.replace(/\/users\.json$/,"");$("up-link").href="https://github.com/"+CFG.repo+"/upload/main/"+upDir;$("up-link").textContent=CFG.repo+" / "+upDir;
 
 // ---------- load users.json (same folder when hosted, the public site when opened from disk)
 function accept(db,src){if(!db||db.format!=="motoreka-course-users")throw new Error("not an accounts file");if(db.course&&db.course!==CFG.course)throw new Error("this accounts file is for "+db.course);
