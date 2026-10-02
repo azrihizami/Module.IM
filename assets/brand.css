@@ -86,7 +86,7 @@ p{margin:0}.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter
 .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}@media (max-width:640px){.gallery{grid-template-columns:1fr}}
 .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);border:1px solid var(--line)}
 /* why it matters (training) */
-.why{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(20px,4vw,44px);align-items:start;padding:22px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg)}
+.why{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(20px,4vw,44px);align-items:center;padding:22px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg)}
 @media (max-width:900px){.why{grid-template-columns:1fr}}
 .why-copy{display:grid;gap:12px;min-width:0}.why-copy h3{font-size:1.3rem}.why-copy p{color:var(--ink-2)}
 .whyn{display:grid;gap:0;margin:4px 0 0;border-top:1px solid var(--line)}.whyn div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line)}
@@ -123,15 +123,3 @@ a.mcard:hover{border-color:var(--line-strong)}a.mcard:hover img{transform:scale(
 @media (max-width:760px){.foot .wrap{grid-template-columns:1fr}}.foot .lockup b{letter-spacing:.04em}.foot-brand{display:grid;gap:10px}.foot-brand p{color:var(--rail-muted);font-size:.88rem;max-width:48ch}
 .foot-links{display:grid;gap:6px;align-content:start}.foot-links .label{color:var(--rail-muted)}.foot-links a{text-decoration:none;font-size:.92rem;overflow-wrap:anywhere}.foot-links a:hover{text-decoration:underline}
 .foot .foot-base{padding-block:14px;border-top:1px solid var(--rail-line);display:block;color:var(--rail-muted)}
-
-/* powertrain diagram (shared with the course) */
-.pt{display:grid;gap:14px}
-.pt-svg{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line,#D8D3C9);border-radius:var(--r,4px);background:var(--surface,#FCFBF8);padding:12px}
-.pt-svg svg{display:block;width:100%;min-width:700px;height:auto}
-.pt-notes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:0 22px}
-.pt-notes li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line,#D8D3C9);align-items:start}
-.pt-n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--steel,#5F8FA8);color:#fff;font-family:var(--f-mono,monospace);font-size:.72rem;margin-top:1px}
-.pt-notes b{display:block;font-size:.92rem}.pt-notes span.t{font-size:.86rem;color:var(--ink-2,#2C4453);line-height:1.45}
-.pt-hint{display:none;margin:-6px 0 0;font-size:.8rem;color:var(--muted,#56666F)}@media (max-width:760px){.pt-hint{display:block}}
-.pt-notes .s{font-family:var(--f-mono,monospace);font-size:.64rem;letter-spacing:.1em;color:var(--muted,#56666F);margin-left:6px}
-.why-pt{grid-column:1/-1;display:grid;gap:10px;padding-bottom:20px;border-bottom:1px solid var(--line)}.why-pt h3{font-size:1.3rem}
