@@ -85,6 +85,13 @@ p{margin:0}.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter
 .steps li::before{content:"0" counter(s);font-family:var(--f-mono);color:var(--muted);font-size:.8rem}.steps span{color:var(--ink-2)}
 .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}@media (max-width:640px){.gallery{grid-template-columns:1fr}}
 .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);border:1px solid var(--line)}
+/* why it matters (training) */
+.why{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(20px,4vw,44px);align-items:start;padding:22px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg)}
+@media (max-width:900px){.why{grid-template-columns:1fr}}
+.why-copy{display:grid;gap:12px;min-width:0}.why-copy h3{font-size:1.3rem}.why-copy p{color:var(--ink-2)}
+.whyn{display:grid;gap:0;margin:4px 0 0;border-top:1px solid var(--line)}.whyn div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line)}
+.whyn dt{font-weight:800;font-size:1.35rem;font-variant-numeric:tabular-nums;color:var(--ink)}.whyn dd{margin:0;color:var(--ink-2);font-size:.92rem}
+.why-fig{margin:0;display:grid;gap:8px;min-width:0}.why-fig img{width:100%;border:1px solid var(--line);border-radius:var(--r);background:#fff}.why-fig figcaption{font-size:.84rem;color:var(--muted)}
 /* recognition cards */
 .media{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}@media (max-width:860px){.media{grid-template-columns:1fr}}
 .mcard{display:grid;grid-template-rows:auto 1fr;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);text-decoration:none;overflow:hidden;min-width:0}
