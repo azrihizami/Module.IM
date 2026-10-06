@@ -656,3 +656,26 @@ a.rm-node:hover b { text-decoration: underline; text-decoration-color: var(--lin
 .pt-hint{display:none;margin:-6px 0 0;font-size:.8rem;color:var(--muted,#56666F)}@media (max-width:760px){.pt-hint{display:block}}
 .pt-notes .s{font-family:var(--f-mono,monospace);font-size:.64rem;letter-spacing:.1em;color:var(--muted,#56666F);margin-left:6px}
 /* s0:end */
+
+
+/* ---------- Sizing Calculator help ---------- */
+.hp-quick { padding: 14px 16px 6px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.hp-quick h2 { font-size: 1rem; margin: 0 0 8px; }
+.hp-quick ol { margin: 0 0 8px; padding-left: 1.2em; display: grid; gap: 6px; font-size: 0.88rem; color: var(--ink-2); line-height: 1.4; }
+.hp-tip { font-size: 0.86rem; color: var(--ink-2); margin: 0 0 8px; }
+.hp-tip .btn { font-size: 0.84rem; padding: 4px 8px; margin-left: 4px; }
+.hp-btn { display: inline-grid; place-items: center; width: 20px; height: 20px; margin-left: 6px; padding: 0; vertical-align: middle;
+  border-radius: 50%; border: 1px solid var(--steel); background: transparent; color: var(--ink-2);
+  font: 600 0.72rem/1 var(--f-mono); cursor: pointer; }
+.hp-btn:hover, .hp-btn[aria-expanded="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.hp-btn:focus-visible { outline: 2px solid var(--steel); outline-offset: 2px; }
+.hp-demo { cursor: default; }
+.hp-body { margin: -2px 0 4px; padding: 8px 10px; border-left: 3px solid var(--steel); background: var(--surface-2);
+  font-size: 0.84rem; line-height: 1.4; color: var(--ink-2); display: grid; gap: 4px; }
+.hp-body[hidden] { display: none; }
+.hp-body p { margin: 0; }
+.hp-body b { color: var(--ink); }
+.hp-src { color: var(--muted); }
+.hp-gif { margin: 0 0 8px; font-size: 0.86rem; }
+.hp-gif summary { cursor: pointer; font-weight: 600; color: var(--ink-2); padding: 2px 0; }
+.hp-gif img { display: block; width: 100%; height: auto; margin-top: 8px; border: 1px solid var(--line); border-radius: var(--r); }
