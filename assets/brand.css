@@ -194,6 +194,15 @@ background:#F5F3EF;color:#101B25;border:1px solid #D8D3C9;border-radius:2px 6px 
 .enq-msg{padding:18px 20px;border-radius:var(--r);display:grid;gap:6px;border:1px solid var(--rail-muted);color:var(--rail-ink)}.enq-msg.err{border-color:var(--copper)}
 .hp{position:absolute;left:-5000px}
 .offers.two{grid-template-columns:repeat(2,minmax(0,1fr))}@media (max-width:640px){.offers.two{grid-template-columns:1fr}}
+.toolgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}@media (max-width:960px){.toolgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:600px){.toolgrid{grid-template-columns:1fr}}
+.tool{display:grid;grid-template-rows:auto auto auto 1fr auto;gap:10px;padding:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);min-width:0;scroll-margin-top:90px}
+.tool h3{font-size:1.05rem}.tool p{color:var(--ink-2);font-size:.92rem}.tool-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.tool-foot .btn{font-size:.86rem;padding:7px 12px}
+.shot{display:block;padding:0;border:1px solid var(--line);border-radius:var(--r);background:#fff;cursor:zoom-in;overflow:hidden}
+.shot img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:left top;transition:transform .25s}.shot:hover img{transform:scale(1.02)}
+.shot:focus-visible{outline:2px solid var(--steel);outline-offset:2px}@media (prefers-reduced-motion:reduce){.shot img{transition:none}}
+dialog.zoom{padding:0;border:0;background:transparent;max-width:min(96vw,1280px);max-height:94vh;overflow:visible}
+dialog.zoom::backdrop{background:rgba(16,27,37,.84)}dialog.zoom img{display:block;width:100%;height:auto;max-height:86vh;object-fit:contain;border-radius:var(--r);background:#fff;cursor:zoom-out}
+dialog.zoom p{margin:8px 0 0;max-width:none;color:#F5F3EF;font-size:.86rem;text-align:center}
 /* footer */
 .foot{background:var(--rail);color:var(--rail-ink);border-top:1px solid var(--rail-line)}.foot .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr));gap:24px;padding-block:32px}
 @media (max-width:760px){.foot .wrap{grid-template-columns:1fr}}.foot .lockup b{letter-spacing:.04em}.foot-brand{display:grid;gap:10px}.foot-brand p{color:var(--rail-muted);font-size:.88rem;max-width:48ch}
