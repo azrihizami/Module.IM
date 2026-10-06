@@ -36,7 +36,7 @@ var hex=function(b){return Array.from(new Uint8Array(b),function(x){return x.toS
 async function dec(raw,w){var p=w.split(":"),k=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["decrypt"]);return new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:u8(p[0])},k,u8(p[1])));}
 async function uid(n){return hex(await crypto.subtle.digest("SHA-256",new TextEncoder().encode("motoreka|"+CFG.course+"|"+n.trim().toLowerCase()))).slice(0,32);}
 async function users(){var r;try{r=await fetch("users.json?v="+Date.now(),{cache:"no-store"});}catch(e){throw new Error("net");}if(!r.ok)throw new Error("net");return r.json();}
-async function show(K){var h=new TextDecoder().decode(await dec(K,CFG.page)).replace("%3Csvg viewBox=","%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox=");put(sessionStorage,S,b64(K));document.open();document.write(h);document.close();}
+async function show(K){var h=new TextDecoder().decode(await dec(K,CFG.page)).replace("%3Csvg viewBox=","%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox=");var fi=h.indexOf(">Downloads</a></nav>");if(fi>0&&h.indexOf('href="feedback/"')<0)h=h.slice(0,fi+14)+'<a href="feedback/">Feedback</a>'+h.slice(fi+14);put(sessionStorage,S,b64(K));document.open();document.write(h);document.close();}
 var err=document.getElementById("err");
 function msg(t){err.textContent=t;body.style.visibility="";}
 if(!window.crypto||!crypto.subtle){msg("This browser cannot open the course. Use a current Chrome, Edge, Firefox or Safari over https.");return;}
