@@ -678,4 +678,9 @@ a.rm-node:hover b { text-decoration: underline; text-decoration-color: var(--lin
 .hp-src { color: var(--muted); }
 .hp-gif { margin: 0 0 8px; font-size: 0.86rem; }
 .hp-gif summary { cursor: pointer; font-weight: 600; color: var(--ink-2); padding: 2px 0; }
-.hp-gif img { display: block; width: 100%; height: auto; margin-top: 8px; border: 1px solid var(--line); border-radius: var(--r); }
+.hp-gif img { display: block; width: 100%; height: auto; margin-top: 8px; border: 1px solid var(--line); border-radius: var(--r); cursor: zoom-in; }
+.hp-gif-hint { display: block; margin-top: 4px; font-size: 0.78rem; color: var(--muted); }
+.hp-zoom { padding: 0; border: 0; background: transparent; max-width: min(96vw, 1200px); max-height: 94vh; overflow: visible; }
+.hp-zoom::backdrop { background: rgba(16, 27, 37, 0.82); }
+.hp-zoom img { display: block; width: 100%; height: auto; max-height: 86vh; object-fit: contain; border-radius: var(--r); background: #fff; cursor: zoom-out; }
+.hp-zoom p { margin: 8px 0 0; max-width: none; color: #F5F3EF; font-size: 0.86rem; text-align: center; }
