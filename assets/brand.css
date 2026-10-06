@@ -193,6 +193,7 @@ background:#F5F3EF;color:#101B25;border:1px solid #D8D3C9;border-radius:2px 6px 
 .enq .btn.solid{background:var(--rail-ink);color:var(--navy);border-color:var(--rail-ink);cursor:pointer;font-family:inherit}
 .enq-msg{padding:18px 20px;border-radius:var(--r);display:grid;gap:6px;border:1px solid var(--rail-muted);color:var(--rail-ink)}.enq-msg.err{border-color:var(--copper)}
 .hp{position:absolute;left:-5000px}
+.offers.two{grid-template-columns:repeat(2,minmax(0,1fr))}@media (max-width:640px){.offers.two{grid-template-columns:1fr}}
 /* footer */
 .foot{background:var(--rail);color:var(--rail-ink);border-top:1px solid var(--rail-line)}.foot .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr));gap:24px;padding-block:32px}
 @media (max-width:760px){.foot .wrap{grid-template-columns:1fr}}.foot .lockup b{letter-spacing:.04em}.foot-brand{display:grid;gap:10px}.foot-brand p{color:var(--rail-muted);font-size:.88rem;max-width:48ch}
