@@ -234,4 +234,16 @@ dialog.zoom p{margin:8px 0 0;max-width:none;color:#F5F3EF;font-size:.86rem;text-
 .flow b{font-size:1rem}.flow span{color:var(--ink-2);font-size:.9rem}
 .modhead{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .svc.two{grid-template-columns:repeat(2,minmax(0,1fr))}@media (max-width:700px){.svc.two{grid-template-columns:1fr}}
+/* early adopter offer (trainer page): the one copper call to action */
+.btn.copper{background:var(--copper);border-color:var(--copper);color:#fff}.btn.copper:hover{background:#A85F2F;border-color:#A85F2F}
+.offer-band{background:var(--surface);border-bottom:1px solid var(--line);border-top:3px solid var(--copper)}
+.offer-band .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding-block:22px}
+.offer-band .wrap>div{display:grid;gap:4px;max-width:70ch}.offer-band .label{color:var(--copper)}.offer-band b{font-size:1.15rem}.offer-band p{color:var(--ink-2);font-size:.95rem}
+.offer-card{display:grid;gap:8px;padding:16px 18px;border:1px solid var(--copper);border-left-width:3px;border-radius:var(--r);background:var(--rail-2)}
+.offer-card.light{background:var(--surface);max-width:68ch}.offer-card.light .label{color:var(--copper)}.offer-card.light ul{color:var(--ink-2)}.offer-card.light .btn{justify-self:start;margin-top:4px}
+.offer-card .label{color:#E39A66}.offer-card b{font-size:1.05rem}.offer-card ul{margin:0;padding-left:18px;display:grid;gap:4px;color:#C9D6DE;font-size:.92rem}
+.offer-pill{position:fixed;right:16px;bottom:16px;z-index:6;display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;background:var(--copper);color:#fff;
+font-weight:600;font-size:.9rem;text-decoration:none;box-shadow:0 6px 18px rgba(16,27,37,.25);transition:opacity .2s,transform .2s}
+.offer-pill .dot{width:8px;height:8px;border-radius:50%;background:#fff}.offer-pill.hide{opacity:0;transform:translateY(10px);pointer-events:none}
+@media (prefers-reduced-motion:reduce){.offer-pill{transition:none}}@media (max-width:560px){.offer-pill{left:16px;right:16px;justify-content:center}}
 .enq .note{grid-column:1/-1;font-size:.86rem;color:var(--rail-muted)}
