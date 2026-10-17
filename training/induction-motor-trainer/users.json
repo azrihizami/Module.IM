@@ -1,0 +1,19 @@
+{
+ "format": "motoreka-course-users",
+ "version": 1,
+ "course": "induction-motor-trainer",
+ "iter": 250000,
+ "users": [
+  {
+   "id": "2344e34672e15fd47082bcd01c4a6ce3",
+   "role": "admin",
+   "s": "PWjTBs4yZvZIvmBTb8yT+w==",
+   "w": "3Cd8ZKK2ImQYUdi1:inXh9mepiA2dwk3n94A50xA9XqJx6Yma1MKc3pKkJBhGktP5H+Z/MWYtbFtEgSa/",
+   "k": "MXPSD1GA5Oisctin:zhaG7De+Dz1yiTxxRH4M0pJ6BrHNoHkazp0XO+C6M+rusxTnhm3u3o/kT0ar2px5",
+   "n": "gi9oBYfogBu+Yj6L:lvBGvRwxf/AFx+08M3/trTiT0jTFAgQfdu0a",
+   "a": "Ibv0K+xM6dsJrgI5:MVUvfjcfflB7g4EBMdfkujcqYc8+D6lVLtgWqX1gJFpp2K6wjxcAUr647vcU/kKt",
+   "r": "46uCJrXyXmau+hLR:Z2KKurucyfc2Aa0DgdVesocdUf2hg/+T4jy5AMVzbhdE/aOgFFxaAX5t7n6Tj6k5FmK9Xr+zMT4n0GqI8MWylvM88W7Hdiiql/CWR909MqI8RZD8DA224wdJM7MMMrlnrFRpOKLbb7OIQw+TaWGjyVbcbS9LVYhBfPC+MCL43z1Ya+UPeX6pRsusWA=="
+  }
+ ],
+ "updated": "2026-10-17T11:56:50.383Z"
+}
