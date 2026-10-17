@@ -216,3 +216,22 @@ dialog.zoom p{margin:8px 0 0;max-width:none;color:#F5F3EF;font-size:.86rem;text-
 @media (max-width:760px){.foot .wrap{grid-template-columns:1fr}}.foot .lockup b{letter-spacing:.04em}.foot-brand{display:grid;gap:10px}.foot-brand p{color:var(--rail-muted);font-size:.88rem;max-width:48ch}
 .foot-links{display:grid;gap:6px;align-content:start}.foot-links .label{color:var(--rail-muted)}.foot-links a{text-decoration:none;font-size:.92rem;overflow-wrap:anywhere}.foot-links a:hover{text-decoration:underline}
 .foot .foot-base{padding-block:14px;border-top:1px solid var(--rail-line);display:block;color:var(--rail-muted)}
+
+/* induction motor trainer pages */
+.mods{list-style:none;margin:0;padding:0;display:grid;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.mods li{display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,220px);gap:8px 20px;padding:18px 20px;border-bottom:1px solid var(--line);align-items:start}
+.mods li:last-child{border-bottom:0}.mods .n{font-family:var(--f-mono);font-size:1.4rem;font-weight:500;color:var(--steel);line-height:1}
+.mods h3{font-size:1.08rem}.mods p{color:var(--ink-2);font-size:.95rem;margin-top:6px}.mods .side{display:grid;gap:6px;justify-items:start}
+.mods .side span:not(.label){font-size:.9rem}
+@media (max-width:760px){.mods li{grid-template-columns:40px minmax(0,1fr)}.mods .side{grid-column:2}}
+.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}@media (max-width:760px){.quotes{grid-template-columns:1fr}}
+.quotes figure{margin:0;padding:22px;border:1px solid var(--line);border-left:3px solid var(--steel);border-radius:var(--r);background:var(--surface);display:grid;gap:12px}
+.quotes blockquote{margin:0;font-size:1.05rem;line-height:1.5}.quotes figcaption{font-size:.88rem;color:var(--ink-2)}.quotes figcaption b{color:var(--ink);display:block}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:2px solid var(--ink);margin:0;padding:0;list-style:none}
+@media (max-width:760px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.flow li{display:grid;gap:4px;padding:14px 16px 14px 0}.flow li+li{padding-left:16px;border-left:1px solid var(--line)}
+@media (max-width:760px){.flow li:nth-child(3){border-left:0;padding-left:0}}
+.flow b{font-size:1rem}.flow span{color:var(--ink-2);font-size:.9rem}
+.modhead{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.svc.two{grid-template-columns:repeat(2,minmax(0,1fr))}@media (max-width:700px){.svc.two{grid-template-columns:1fr}}
+.enq .note{grid-column:1/-1;font-size:.86rem;color:var(--rail-muted)}
