@@ -159,6 +159,7 @@ a.mcard:hover{border-color:var(--line-strong)}a.mcard:hover img{transform:scale(
 .rung:last-child{border-right:0}@media (max-width:960px){.rung{border-right:0;border-bottom:1px solid var(--line);grid-template-rows:auto auto auto auto auto auto}}
 .rung-top{display:flex;align-items:baseline;gap:10px}.step{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
 .rung p{color:var(--ink-2);font-size:.94rem}.rung-fig{margin:0}.rung-fig img{width:100%;height:250px;object-fit:cover;object-position:left top;border:1px solid var(--line);border-radius:var(--r)}
+.ladder.r32 .rung{grid-template-rows:auto auto auto 1fr auto auto}.ladder.r32 .rung-fig img{height:auto;aspect-ratio:3/2}
 .sessions.mini{align-self:stretch}.sessions.mini li{padding:5px 12px;grid-template-columns:34px minmax(0,1fr);font-size:.88rem}.sessions.mini b{font-weight:500}
 .chip{justify-self:start;white-space:nowrap;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:2px;background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
 .chip.ok{background:var(--navy);color:var(--paper);border-color:var(--navy)}
