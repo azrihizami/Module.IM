@@ -137,8 +137,6 @@ a.mcard:hover{border-color:var(--line-strong)}a.mcard:hover img{transform:scale(
 .ev-hero .hero-fig img{aspect-ratio:4/3}
 .yt{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;border:1px solid var(--rail-line);background:#101B25}
 .yt a{display:block;width:100%;height:100%}.ev-hero .yt img{width:100%;height:100%;aspect-ratio:16/9;object-fit:cover;border:0;border-radius:0;display:block}
-.hero-fig .yt img{width:100%;height:100%;aspect-ratio:16/9;object-fit:cover;border:0;border-radius:0;display:block}
-.yt.right .yt-btn{left:90%}
 .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .yt-btn{position:absolute;left:77%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:rgba(192,112,58,.92);box-shadow:0 4px 18px rgba(0,0,0,.35);transition:transform .15s}
 .yt-btn::after{content:'';position:absolute;left:30px;top:22px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #fff}
@@ -287,3 +285,9 @@ font-weight:600;font-size:.9rem;text-decoration:none;box-shadow:0 6px 18px rgba(
 .offer-pill .dot{width:8px;height:8px;border-radius:50%;background:#fff}.offer-pill.hide{opacity:0;transform:translateY(10px);pointer-events:none}
 @media (prefers-reduced-motion:reduce){.offer-pill{transition:none}}@media (max-width:560px){.offer-pill{left:16px;right:16px;justify-content:center}}
 .enq .note{grid-column:1/-1;font-size:.86rem;color:var(--rail-muted)}
+.dl-dialog{border:0;padding:0;background:transparent;width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto}
+.dl-dialog::backdrop{background:rgba(16,27,37,.72)}
+.dl-dialog .enq{position:relative;margin:0}.dl-dialog .dl-head{display:grid;gap:8px}.dl-dialog h2{color:var(--rail-ink);font-size:1.3rem;padding-right:28px}
+.dl-dialog .dl-lede{color:#C9D6DE;font-size:.92rem}.dl-dialog .enq .btn.line{border-color:var(--rail-muted);color:var(--rail-ink);background:transparent}
+.dl-x{position:absolute;top:10px;right:10px;width:32px;height:32px;border:0;border-radius:3px;background:transparent;color:var(--rail-muted);font-size:1.4rem;line-height:1;cursor:pointer}
+.dl-x:hover{background:var(--rail)}.dl-x:focus-visible{outline:2px solid var(--steel)}
