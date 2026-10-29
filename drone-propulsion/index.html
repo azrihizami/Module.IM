@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Designing a Drone Propulsion Motor · Coming soon · Motoreka</title>
+<meta name="description" content="A Motoreka module in development with UMPSA Aerospace: choose the motor and propeller for a drone, then design the motor itself. Watch the trailer and register your interest.">
+<link rel="canonical" href="https://motoreka.my/drone-propulsion/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Motoreka"><meta property="og:title" content="Design the propulsion for your own drone · Motoreka"><meta property="og:description" content="Coming soon, in collaboration with UMPSA Aerospace. Choose the motor and propeller for a drone, then design the motor."><meta property="og:url" content="https://motoreka.my/drone-propulsion/"><meta property="og:image" content="https://motoreka.my/drone-propulsion/poster.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='45.5' fill='none' stroke='%232C4453' stroke-width='5'/%3E%3Cpath d='M28 50a22 22 0 0 1 44 0z' fill='%23C0703A'/%3E%3Cpath d='M28 50a22 22 0 0 0 44 0z' fill='%23101B25'/%3E%3C/svg%3E">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="2908d861-c75c-431c-811b-f1da4046d6da" data-domains="motoreka.my"></script>
+<script>(function(){var s="";try{s=new URLSearchParams(location.search).get("src")||"";if(s)sessionStorage.setItem("mk-src",s);else s=sessionStorage.getItem("mk-src")||"";}catch(e){}window.mkSrc=function(){return s;};window.mkTrack=function(n,d){d=d||{};d.src=s||"direct";var t=0;(function f(){if(window.umami&&umami.track){try{umami.track(n,d);}catch(e){}}else if(t++<20)setTimeout(f,250);})();};})();</script>
+</head><body>
+<style>
+@font-face{font-family:'Archivo';font-weight:400;font-style:normal;font-display:swap;src:url('../assets/fonts/archivo-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'Archivo';font-weight:500;font-style:normal;font-display:swap;src:url('../assets/fonts/archivo-latin-500-normal.woff2') format('woff2')}
+@font-face{font-family:'Archivo';font-weight:600;font-style:normal;font-display:swap;src:url('../assets/fonts/archivo-latin-600-normal.woff2') format('woff2')}
+@font-face{font-family:'Archivo';font-weight:700;font-style:normal;font-display:swap;src:url('../assets/fonts/archivo-latin-700-normal.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-weight:500;font-style:normal;font-display:swap;src:url('../assets/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2')}
+/* Layout: Motoreka product page, single brand look. Navy hero and bands, paper sections, one copper call to action. */
+:root{
+  --navy:#101B25; --graphite:#2C4453; --steel:#5F8FA8; --copper:#C0703A;
+  --paper:#F5F3EF; --ink:#3E5463; --lsteel:#A9C4D3; --muted:#8FAFC1;
+  --rule:#D9D6CE; --white:#fff; --wash:#EAE7E0;
+  --u:#C8463A; --v:#D9A62E; --w:#4A7FC1;
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--display);-webkit-text-size-adjust:100%}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--display);color:var(--navy);margin:0;text-wrap:balance;line-height:1.14}
+h2{font-size:clamp(27px,4vw,40px);font-weight:700;letter-spacing:-.015em}
+h3{font-size:19px;font-weight:600}
+p{margin:0}
+.kick{font:500 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--steel)}
+.lead{font-size:19px;max-width:64ch}
+section{padding-block:76px}
+.btn{display:inline-block;font:600 16px/1 var(--display);padding:16px 24px;text-decoration:none;border-radius:3px}
+.btn.solid{background:var(--copper);color:#fff}
+.btn.line{border:1.5px solid var(--lsteel);color:var(--lsteel)}
+.btn.dk{border:1.5px solid var(--graphite);color:var(--graphite)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--steel);outline-offset:2px}
+.preview{background:var(--copper);color:#fff;font:500 12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:9px 0;text-align:center}
+
+/* in-development additions */
+.chip{display:inline-flex;align-items:center;gap:8px;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--copper);border:1px solid var(--copper);padding:7px 11px;border-radius:2px;margin-top:20px}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--copper);display:inline-block}
+.collab{display:flex;align-items:center;gap:14px;margin-top:26px}
+.collab .lg{background:#fff;border-radius:4px;padding:6px 8px;display:flex}
+.collab .lg img{height:46px;width:auto;display:block}
+.collab span{font:500 11px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.collab span b{display:block;color:#fff;font:600 15px/1.3 var(--display);letter-spacing:0;text-transform:none}
+.hdr-collab{display:flex;align-items:center;gap:10px;font:500 10px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hdr-collab .lg{background:#fff;border-radius:3px;padding:3px 5px;display:flex}
+.hdr-collab img{height:28px;width:auto;display:block}
+.road{background:#fff;border-block:1px solid var(--rule)}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:30px;border:1px solid var(--rule)}
+.rcol{padding:24px;border-right:1px solid var(--rule)}
+.rcol:last-child{border-right:0}
+.rcol .tag{font:500 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--steel)}
+.rcol.now .tag{color:var(--copper)}
+.rcol h3{margin-top:10px}
+.rcol ul{margin:14px 0 0;padding-left:20px;display:grid;gap:8px;font-size:16px}
+.collabband{background:var(--wash)}
+.cb{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center}
+.cb .lg{background:#fff;border:1px solid var(--rule);border-radius:4px;padding:14px 18px;display:flex}
+.cb .lg img{height:110px;width:auto;display:block}
+.cb p{max-width:62ch}
+.fl2{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.plan{font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--copper)}
+footer .fcollab{display:flex;align-items:center;gap:10px;margin-top:10px}
+footer .fcollab .lg{background:#fff;border-radius:3px;padding:3px 5px;display:flex}
+footer .fcollab img{height:30px;width:auto}
+@media (max-width:760px){.rgrid{grid-template-columns:1fr}.rcol{border-right:0;border-bottom:1px solid var(--rule)}.rcol:last-child{border-bottom:0}.cb{grid-template-columns:1fr;gap:18px}.cb .lg img{height:84px}.hdr-collab span{display:none}}
+
+.cp{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:30px;border:1px solid var(--rule);background:#fff}
+.cpc{padding:22px;border-right:1px solid var(--rule)}
+.cpc:last-child{border-right:0}
+.cpc .ic{margin-bottom:16px;line-height:0}.cpc .ic svg{display:block;border:1px solid var(--rule);border-radius:4px}
+.cpc h3{margin-top:10px}
+.cpc ol{margin:14px 0 0;padding-left:24px;display:grid;gap:7px;font-size:16px}
+@media (max-width:900px){.cp{grid-template-columns:1fr 1fr}.cpc:nth-child(2){border-right:0}.cpc:nth-child(-n+2){border-bottom:1px solid var(--rule)}}
+@media (max-width:560px){.cp{grid-template-columns:1fr}.cpc{border-right:0;border-bottom:1px solid var(--rule)}.cpc:last-child{border-bottom:0}}
+
+.real{background:var(--paper);padding-block:64px}
+.pgal{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.pgal figure{margin:0}
+.pgal img{display:block;width:100%;aspect-ratio:11/10;object-fit:cover;border:1px solid var(--rule);background:var(--wash)}
+.pgal figcaption{font-size:14px;line-height:1.45;margin-top:9px;color:var(--ink)}
+@media (max-width:900px){.pgal{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.pgal{grid-template-columns:1fr}}
+/* header */
+.rail{background:var(--navy);padding-top:18px}
+.rail .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.lock{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
+.lock b{font:700 15px/1 var(--display);letter-spacing:.22em}
+.lock span{font:500 11px/1 var(--mono);letter-spacing:.2em;color:var(--muted);display:block;margin-top:5px}
+.nav{display:flex;gap:22px;flex-wrap:wrap}
+.nav a{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--lsteel);text-decoration:none}
+.nav a:hover{color:#fff}
+
+/* hero */
+.hero{background:var(--navy);color:var(--lsteel);padding-block:52px 84px;
+  background-image:linear-gradient(rgba(95,143,168,.085) 1px,transparent 1px),linear-gradient(90deg,rgba(95,143,168,.085) 1px,transparent 1px);background-size:64px 64px}
+.hero h1{color:#fff;font-size:clamp(33px,5.2vw,58px);font-weight:700;margin-top:16px;letter-spacing:-.02em}
+.hero .sub{font:500 clamp(19px,2.4vw,25px)/1.35 var(--display);color:var(--lsteel);margin-top:18px;max-width:30ch}
+.hero p.lead{color:var(--muted);margin-top:20px;font-size:18px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
+.vid{position:relative;border:1px solid var(--graphite);background:#070D13}
+.vid video{display:block;width:100%;height:auto;max-width:100%;aspect-ratio:16/9;background:#070D13}
+.vid figcaption{font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:10px 12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* promise */
+.promise{background:var(--white);border-block:1px solid var(--rule)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:34px}
+.pc{border-top:3px solid var(--navy);padding-top:18px}
+.pc h3{margin-bottom:8px}
+.pc p{font-size:16px}
+
+/* tracks */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.card{background:var(--white);border:1px solid var(--rule);padding:30px}
+.card.dark{background:var(--navy);border-color:var(--navy);color:var(--lsteel)}
+.card.dark h3{color:#fff}
+.card h3{margin-top:12px;font-size:25px}
+.card ul{margin:18px 0 0;padding-left:20px;display:grid;gap:9px;font-size:16px}
+.card .for{margin-top:12px;font-size:15px;color:var(--graphite)}
+.card.dark .for{color:var(--muted)}
+.card .ends{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);font-size:15px}
+.card.dark .ends{border-color:var(--graphite)}
+
+/* the thread */
+.thread{background:var(--wash)}
+.flow{display:flex;gap:0;margin-top:30px;border:1px solid var(--rule);background:var(--white);overflow-x:auto}
+.fl{flex:1 1 0;min-width:168px;padding:18px 16px;border-right:1px solid var(--rule)}
+.fl:last-child{border-right:0}
+.fl b{display:block;font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--steel);margin-bottom:8px}
+.fl span{font-size:15px;color:var(--navy);font-weight:600;line-height:1.3;display:block}
+.loops{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.loop{display:flex;gap:12px;align-items:flex-start;border:1px dashed var(--steel);padding:14px 16px;background:var(--white);font-size:15px}
+.loop svg{flex:none;margin-top:2px}
+.loop b{color:var(--navy)}
+
+.parts{margin-top:40px;display:grid;gap:34px}
+.part>h4{font:500 12px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--graphite);padding-bottom:10px;border-bottom:2px solid var(--graphite);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.part>h4 em{font-style:normal;color:var(--steel)}
+.units{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+.unit{background:var(--white);border:1px solid var(--rule);display:grid;grid-template-rows:auto auto 1fr auto;min-width:0}
+.unit figure{margin:0;background:var(--paper);border-bottom:1px solid var(--rule);aspect-ratio:120/72}
+.unit figure svg{display:block;width:100%;height:100%;max-width:100%}
+.unit .hd{display:flex;gap:10px;align-items:baseline;padding:14px 16px 0}
+.unit .n{font:500 12px/1 var(--mono);color:var(--steel);font-variant-numeric:tabular-nums}
+.unit .hd b{font-size:16px;font-weight:600;color:var(--navy);line-height:1.25}
+.unit .q{padding:6px 16px 12px;font-size:14px;line-height:1.45}
+.unit .io{border-top:1px solid var(--rule);padding:10px 16px;display:grid;gap:4px;font:500 11px/1.35 var(--mono);letter-spacing:.04em;color:var(--graphite)}
+.unit .io i{font-style:normal;color:var(--steel);text-transform:uppercase;letter-spacing:.12em}
+.unit.opt{background:repeating-linear-gradient(135deg,var(--white),var(--white) 10px,var(--paper) 10px,var(--paper) 20px)}
+.unit.opt figure{background:var(--white)}
+.tagline{margin-top:22px;font-size:15px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.swatch{display:inline-flex;gap:8px;align-items:center;font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--graphite)}
+.swatch i{width:22px;height:14px;border:1px solid var(--rule);display:block}
+.swatch i.o{background:repeating-linear-gradient(135deg,var(--white),var(--white) 5px,var(--paper) 5px,var(--paper) 10px)}
+.swatch i.s{background:var(--white)}
+
+/* tools */
+.tools{background:var(--navy);color:var(--lsteel);
+  background-image:linear-gradient(rgba(95,143,168,.085) 1px,transparent 1px),linear-gradient(90deg,rgba(95,143,168,.085) 1px,transparent 1px);background-size:64px 64px}
+.tools h2{color:#fff}
+.tools .lead{color:var(--lsteel);margin-top:14px}
+.tabs{display:flex;gap:0;margin-top:34px;border:1px solid var(--graphite);border-bottom:0;flex-wrap:wrap}
+.tabs button{flex:1 1 200px;background:transparent;border:0;border-right:1px solid var(--graphite);color:var(--lsteel);font:500 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:16px 14px;cursor:pointer;text-align:left}
+.tabs button:last-child{border-right:0}
+.tabs button[aria-selected=true]{background:var(--paper);color:var(--navy)}
+.panel{background:var(--paper);color:var(--ink);border:1px solid var(--graphite);padding:28px}
+.pgrid{display:grid;grid-template-columns:300px 1fr;gap:32px;align-items:start}
+.ctrls{display:grid;gap:16px;min-width:0}
+.ctrl{display:grid;gap:7px}
+.ctrl label{font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--graphite);display:flex;justify-content:space-between;gap:10px}
+.ctrl label b{color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums}
+.ctrl input[type=range]{width:100%;accent-color:var(--copper)}
+.ctrl select{font:400 15px/1.3 var(--display);padding:10px;border:1px solid var(--rule);background:var(--white);color:var(--navy);border-radius:2px;width:100%}
+.out{display:grid;gap:18px;min-width:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.stat{background:var(--white);padding:14px 15px}
+.stat b{display:block;font:700 26px/1.1 var(--display);color:var(--navy);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.stat span{display:block;font:500 10px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--steel);margin-top:6px}
+.stat.hi b{color:var(--copper)}
+.plot{background:var(--white);border:1px solid var(--rule)}
+.plot svg{display:block;width:100%;height:auto;max-width:100%}
+.verdict{display:grid;gap:8px}
+.vrow{display:flex;gap:10px;align-items:baseline;font-size:15px}
+.vrow i{flex:none;width:9px;height:9px;border-radius:50%;margin-top:6px;background:var(--steel)}
+.vrow i.ok{background:#3E7F55}.vrow i.no{background:var(--copper)}
+.fine{font-size:13px;line-height:1.5;color:var(--graphite)}
+.modes{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap}
+.modes span{font:500 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:7px 9px;background:var(--wash);color:var(--graphite);border:1px solid var(--rule)}
+.modes span.on{background:var(--navy);color:var(--lsteel);border-color:var(--navy)}
+.more{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.more div{border:1px solid var(--graphite);padding:16px;font-size:15px;color:var(--lsteel)}
+.more b{display:block;color:#fff;font-weight:600;margin-bottom:5px}
+.more span{font:500 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--steel)}
+
+/* match */
+.match{background:var(--white);border-block:1px solid var(--rule)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:34px;border:1px solid var(--rule)}
+.step{padding:24px;border-right:1px solid var(--rule);min-width:0}
+.step:last-child{border-right:0}
+.step h3{margin-top:10px}
+.step p{font-size:15px;margin-top:8px}
+.mot{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+.mcard{border:1px solid var(--rule);background:var(--paper);padding:24px}
+.mcard h3{margin-top:8px}
+.bars{display:grid;gap:9px;margin-top:16px}
+.bar{display:grid;grid-template-columns:86px 1fr 46px;gap:10px;align-items:center;font:500 11px/1 var(--mono);color:var(--graphite);letter-spacing:.06em;text-transform:uppercase}
+.bar i{display:block;height:9px;background:var(--steel)}
+.bar i.m{background:var(--copper)}
+.bar span:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--navy)}
+
+
+/* enquiry */
+.enq{background:var(--navy);color:var(--lsteel)}
+.enq h2{color:#fff}
+.enq .lead{color:var(--lsteel)}
+.enq-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+form{display:grid;gap:15px}
+label.f{font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:grid;gap:7px}
+input,select,textarea{font:400 16px/1.4 var(--display);color:var(--navy);background:var(--paper);border:1px solid var(--rule);padding:12px;border-radius:2px;width:100%;max-width:100%}
+textarea{min-height:96px;resize:vertical}
+.note{font-size:14px;min-height:1.4em;color:var(--muted)}
+button.send{font:600 16px/1 var(--display);background:var(--copper);color:#fff;border:0;padding:16px 24px;border-radius:3px;cursor:pointer;justify-self:start}
+footer{background:#0A121A;color:var(--muted);padding-block:34px;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer b{color:#fff;font-weight:600}
+
+@media (max-width:980px){
+  .hero-grid,.pg,.two,.mot,.enq-grid,.pgrid,.loops{grid-template-columns:1fr;gap:28px}
+  .units{grid-template-columns:1fr 1fr}
+  .more{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .step:nth-child(2){border-right:0}
+  .step:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .pgrid{gap:24px}
+}
+@media (max-width:620px){
+  section{padding-block:54px}
+  .units,.more,.steps{grid-template-columns:1fr}
+  .step{border-right:0;border-bottom:1px solid var(--rule)}
+  .step:last-child{border-bottom:0}
+  .nav{display:none}
+  .panel{padding:20px}
+}
+@media (prefers-reduced-motion:no-preference){.btn,button.send{transition:transform .15s}.btn:hover,button.send:hover{transform:translateY(-1px)}}
+</style>
+
+
+<header class="rail"><div class="wrap">
+  <a class="lock" href="../" aria-label="Motoreka home">
+    <svg viewBox="0 0 100 100" width="40" height="40" aria-hidden="true">
+      <circle cx="50" cy="50" r="45.5" fill="none" stroke="#5F8FA8" stroke-width="5"></circle>
+      <g stroke="#5F8FA8" stroke-width="4" stroke-linecap="round"><path d="M50 4v8M50 88v8M4 50h8M88 50h8M27 10l4 7M69 83l4 7M10 27l7 4M83 69l7 4M73 10l-4 7M31 83l-4 7M90 27l-7 4M17 69l-7 4"></path></g>
+      <path d="M26 50a24 24 0 0 1 48 0z" fill="#C0703A"></path><path d="M26 50a24 24 0 0 0 48 0z" fill="#5F8FA8"></path>
+    </svg>
+    <div><b>MOTOREKA</b><span>TRAINING</span></div>
+  </a>
+  <nav class="nav" aria-label="Page"><a href="#status">Status</a><a href="#tracks">Two tracks</a><a href="#thread">Outline</a><a href="#enquire">Register interest</a></nav>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <div class="kick">Motoreka Training · Drone propulsion</div>
+    <div class="chip"><i></i>In development · Coming soon</div>
+    <h1>Design the propulsion for your own drone</h1>
+    <p class="sub">Which motor and propeller does your drone actually need?</p>
+    <p class="lead">A spray drone and a racing quad use the same physics and completely different motors. Learn to choose the set that fits your aircraft, then learn to design the motor itself.</p>
+    <div class="cta"><a class="btn solid" href="#enquire">Register your interest</a><a class="btn line" href="#thread">See the outline</a></div>
+    <div class="collab"><span class="lg"><img src="aerospace_logo.png" alt="UMPSA Aerospace logo"></span><span>In collaboration with<b>UMPSA Aerospace</b></span></div>
+  </div>
+  <figure class="vid" style="margin:0">
+    <video controls preload="metadata" poster="poster.jpg" playsinline><source src="trailer.mp4" type="video/mp4">Your browser cannot play this video.</video>
+    <figcaption><span>Module trailer · 0:59 · sound on</span><span>Heavy lift · Racing</span></figcaption>
+  </figure>
+</div></section>
+
+<section class="real"><div class="wrap">
+  <div class="kick">Grounded in a real motor</div>
+  <h2 style="margin-top:14px">Built from a real teardown</h2>
+  <p class="lead" style="margin-top:14px">The module draws on the teardown and measurement of a drone motor used on the DJI Agras T40 (10033, 48KV), carried out at EMDLab.</p>
+  <div class="pgal">
+    <figure><img src="ph_annot.jpg" alt="Annotated bottom view of the opened motor with measured diameters" loading="lazy"><figcaption>Measured on the opened motor: 36 coils, stator about 100 mm across.</figcaption></figure>
+    <figure><img src="ph_stator.jpg" alt="The 36-coil stator on a measuring mat" loading="lazy"><figcaption>The 36-coil stator, removed and measured.</figcaption></figure>
+    <figure><img src="ph_rotor.jpg" alt="The motor opened up during teardown" loading="lazy"><figcaption>Opened up, part by part.</figcaption></figure>
+    <figure><img src="ph_hub.jpg" alt="Close-up of the machined aluminium hub" loading="lazy"><figcaption>The machined hub, close up.</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="road" id="status"><div class="wrap">
+  <div class="kick">Where the module is</div>
+  <h2 style="margin-top:14px">Being built in the open</h2>
+  <p class="lead" style="margin-top:14px">The module is in development. Here is what you can use today and what is still to come. We will update this page as each part is ready.</p>
+  <div class="rgrid">
+    <div class="rcol now"><div class="tag">Ready to see</div><h3>Now</h3><ul><li>The trailer above.</li><li>The module outline: two tracks and thirteen planned units.</li></ul></div>
+    <div class="rcol"><div class="tag">In progress</div><h3>Next</h3><ul><li>Writing the units and the Choose It track.</li><li>Free tools to try, released ahead of the module.</li></ul></div>
+    <div class="rcol"><div class="tag">Planned</div><h3>Later</h3><ul><li>The Design It track.</li><li>Hands-on learning and a capstone.</li></ul></div>
+  </div>
+</div></section>
+
+<section class="promise"><div class="wrap">
+  <div class="kick">What the module is built to give you</div>
+  <h2 style="margin-top:14px">Three things you will be able to do</h2>
+  <div class="pg">
+    <div class="pc"><h3>Size the propulsion</h3><p>Take any aircraft, its mass and its mission, and work out the thrust, torque and speed each motor must deliver.</p></div>
+    <div class="pc"><h3>Choose the right set</h3><p>Pick the motor, propeller and battery that fit an aircraft, and explain why.</p></div>
+    <div class="pc"><h3>Design the motor</h3><p>Go inside: slots, poles, windings, magnets and heat, modelled in FEMM and validated on the bench.</p></div>
+  </div>
+</div></section>
+
+<section id="tracks"><div class="wrap">
+  <div class="kick">One module, two depths</div>
+  <h2 style="margin-top:14px">Choose how far inside the motor you go</h2>
+  <p class="lead" style="margin-top:14px">Choose It is the on-ramp to Design It, so nobody starts from zero.</p>
+  <div class="two">
+    <article class="card">
+      <div class="kick">Track 1</div><h3>Choose It</h3>
+      <p class="for">For TVET and diploma students, hobbyists, competition teams, drone operators and service technicians. Basic electricity is enough.</p>
+      <ul>
+        <li>Work out the thrust each motor must give for a given aircraft and mission.</li>
+        <li>Choose a motor, propeller and battery that fit the brief, and explain why.</li>
+        <li>Name every part inside a drone motor and say what it does.</li>
+        <li>Judge a set by thrust, efficiency and temperature.</li>
+      </ul>
+    </article>
+    <article class="card dark">
+      <div class="kick" style="color:var(--muted)">Track 2</div><h3>Design It</h3>
+      <p class="for">For final-year and postgraduate students and industry engineers. Starts from Choose It or equivalent, plus basic electromagnetics.</p>
+      <ul>
+        <li>Turn a mission into a motor specification: KV, torque, current, mass budget.</li>
+        <li>Choose the topology, the slot and pole combination and the winding.</li>
+        <li>Size and model an outer-rotor motor in FEMM and predict its heating over a mission.</li>
+        <li>Trade mass against losses and temperature through material choices.</li>
+        <li>Validate against test data and explain any gap.</li>
+      </ul>
+    </article>
+  </div>
+</div></section>
+
+<section class="thread" id="thread"><div class="wrap">
+  <div class="kick">The planned outline</div>
+  <h2 style="margin-top:14px">Thirteen units, from the load to the machine</h2>
+  <p class="lead" style="margin-top:14px">The module follows a real design: start from the aircraft's job, end with a motor you have tested. Content is being written and may change.</p>
+  <div class="cp">
+    <div class="cpc"><div class="ic"><svg viewBox="0 0 64 64" width="56" height="56" role="img" aria-label="Propeller with a thrust arrow"><rect width="64" height="64" rx="4" fill="#F5F3EF"/><g transform="translate(32 38)"><ellipse cx="-13" cy="0" rx="12" ry="3.6" fill="#5F8FA8" transform="rotate(-14 -13 0)"/><ellipse cx="13" cy="0" rx="12" ry="3.6" fill="#5F8FA8" transform="rotate(14 13 0)"/><circle r="3.2" fill="#2C4453"/></g><path d="M32 29V9M25 16l7-8 7 8" fill="none" stroke="#C0703A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="kick">Part 1</div><h3>The load</h3><ol start="1"><li>The aircraft and the mission</li><li>The propeller is the load</li><li>Reading a motor</li></ol></div>
+    <div class="cpc"><div class="ic"><svg viewBox="0 0 64 64" width="56" height="56" role="img" aria-label="Cross-section of an outer-rotor motor"><rect width="64" height="64" rx="4" fill="#F5F3EF"/><g transform="translate(32 32)"><circle r="26" fill="none" stroke="#2C4453" stroke-width="3"/><path d="M20.0 0.0L24.0 0.0" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M19.3 5.2L23.2 6.2" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M17.3 10.0L20.8 12.0" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M14.1 14.1L17.0 17.0" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M10.0 17.3L12.0 20.8" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M5.2 19.3L6.2 23.2" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M0.0 20.0L0.0 24.0" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M-5.2 19.3L-6.2 23.2" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M-10.0 17.3L-12.0 20.8" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M-14.1 14.1L-17.0 17.0" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M-17.3 10.0L-20.8 12.0" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M-19.3 5.2L-23.2 6.2" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M-20.0 0.0L-24.0 0.0" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M-19.3 -5.2L-23.2 -6.2" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M-17.3 -10.0L-20.8 -12.0" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M-14.1 -14.1L-17.0 -17.0" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M-10.0 -17.3L-12.0 -20.8" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M-5.2 -19.3L-6.2 -23.2" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M-0.0 -20.0L-0.0 -24.0" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M5.2 -19.3L6.2 -23.2" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M10.0 -17.3L12.0 -20.8" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M14.1 -14.1L17.0 -17.0" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><path d="M17.3 -10.0L20.8 -12.0" stroke="#5F8FA8" stroke-width="5" stroke-linecap="butt"/><path d="M19.3 -5.2L23.2 -6.2" stroke="#C0703A" stroke-width="5" stroke-linecap="butt"/><circle r="15" fill="#5F8FA8" opacity=".35"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(0)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(30)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(60)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(90)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(120)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(150)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(180)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(210)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(240)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(270)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(300)"/><rect x="-2" y="-14" width="4" height="9" fill="#2C4453" transform="rotate(330)"/><circle r="4" fill="#101B25"/></g></svg></div><div class="kick">Part 2</div><h3>The machine</h3><ol start="4"><li>Why this machine?</li><li>Teardown</li><li>Slots, poles and windings</li><li>Electromagnetic design</li></ol></div>
+    <div class="cpc"><div class="ic"><svg viewBox="0 0 64 64" width="56" height="56" role="img" aria-label="Thermometer showing heat"><rect width="64" height="64" rx="4" fill="#F5F3EF"/><rect x="26" y="9" width="12" height="34" rx="6" fill="#fff" stroke="#2C4453" stroke-width="2.5"/><circle cx="32" cy="46" r="8" fill="#C0703A" stroke="#2C4453" stroke-width="2.5"/><rect x="29.5" y="22" width="5" height="24" fill="#C0703A"/><path d="M43 18h6M43 26h9M43 34h6" stroke="#5F8FA8" stroke-width="2.5" stroke-linecap="round"/></svg></div><div class="kick">Part 3</div><h3>The limits</h3><ol start="8"><li>Heat</li><li>Mass and materials</li></ol></div>
+    <div class="cpc"><div class="ic"><svg viewBox="0 0 64 64" width="56" height="56" role="img" aria-label="Test gauge with a tick"><rect width="64" height="64" rx="4" fill="#F5F3EF"/><path d="M12 42a20 20 0 0 1 40 0" fill="none" stroke="#2C4453" stroke-width="3" stroke-linecap="round"/><path d="M32 42L42 27" stroke="#C0703A" stroke-width="3.5" stroke-linecap="round"/><circle cx="32" cy="42" r="3.5" fill="#101B25"/><path d="M20 53l6 5 12-11" transform="translate(6 -3) scale(.8)" fill="none" stroke="#5F8FA8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="kick">Part 4</div><h3>System and proof</h3><ol start="10"><li>Driving it: the ESC</li><li>Mechanical design and making</li><li>Test and validate</li><li>Capstone</li></ol></div>
+  </div>
+</div></section>
+
+
+
+<section class="collabband"><div class="wrap cb">
+  <div class="lg"><img src="aerospace_logo.png" alt="UMPSA Aerospace logo"></div>
+  <div>
+    <div class="kick">In collaboration with</div>
+    <h2 style="margin-top:12px;font-size:clamp(24px,3.4vw,34px)">UMPSA Aerospace</h2>
+    <p style="margin-top:12px">This module is being developed with UMPSA Aerospace, so that what you learn is tied to real drone applications. Motoreka is a product of UMPSA, developed at EMDLab.</p>
+  </div>
+</div></section>
+
+<section class="enq" id="enquire"><div class="wrap enq-grid">
+  <div>
+    <div class="kick" style="color:var(--steel)">Next step</div>
+    <h2 style="margin-top:14px">Be first to hear when it opens</h2>
+    <p class="lead" style="margin-top:14px">Tell us who you teach or train and which track fits. We will send you the outline and let you know when the first units and the pilot open.</p>
+    <p style="margin-top:18px;font-size:15px;color:var(--muted)">Motoreka is a product of Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA), developed at EMDLab, in collaboration with UMPSA Aerospace.</p>
+  </div>
+  <form id="enq" action="https://formspree.io/f/xvgrqkdd" method="POST"><input type="hidden" name="_subject" value="Motoreka interest · Drone propulsion module"><input type="hidden" name="form" value="drone-propulsion-interest"><input type="hidden" name="src" id="enq-src"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+    <label class="f" for="f_name">Name<input id="f_name" name="name" autocomplete="name" required></label>
+    <label class="f" for="f_email">Email<input id="f_email" name="email" type="email" autocomplete="email" required></label>
+    <label class="f" for="f_org">Organisation<input id="f_org" name="org" autocomplete="organization"></label>
+    <label class="f" for="f_track">Track<select id="f_track" name="track"><option>Choose It</option><option>Design It</option><option>Both</option><option>Not sure yet</option></select></label>
+    <label class="f" for="f_msg">Your group or interest<textarea id="f_msg" name="msg"></textarea></label>
+    <button class="send" type="submit">Register interest</button>
+    <p class="note" id="f_note" role="status"></p>
+  </form>
+    <p class="note" id="f_ok" role="status" hidden style="color:#fff;font-size:18px"><b>Thank you. Your interest is registered.</b> We will be in touch as the module opens.</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div><b>Motoreka Training</b><br>Learn electric machines by building and designing them.</div>
+  <div>Industry training · TVET training kits · STEM<br>motoreka.my<div class="fcollab"><span>In collaboration with</span><span class="lg"><img src="aerospace_logo.png" alt="UMPSA Aerospace"></span></div></div>
+</div></footer>
+
+<script>
+(function(){
+'use strict';
+function $(id){return document.getElementById(id)}
+var f=$('enq'),n=$('f_note'),src='';
+try{src=new URLSearchParams(location.search).get('src')||'';if(src)sessionStorage.setItem('mk-src',src);else src=sessionStorage.getItem('mk-src')||'';}catch(e){}
+if(!src&&document.referrer&&document.referrer.indexOf(location.host)<0)src='ref:'+document.referrer.split('/')[2];
+$('enq-src').value=src;
+f.addEventListener('submit',function(e){e.preventDefault();
+  if(!($('f_name').value&&$('f_email').value)){n.textContent='Add your name and email first.';return}
+  var b=f.querySelector('button[type=submit]');b.disabled=true;b.textContent='Sending…';
+  fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}}).then(function(r){
+    if(!r.ok)throw new Error(r.status);
+    f.hidden=true;n.hidden=false;n.textContent='';var o=$('f_ok');o.hidden=false;
+    if(window.mkTrack)mkTrack('enquiry-drone-module');
+  }).catch(function(){b.disabled=false;b.textContent='Register interest';n.textContent='It did not send. Check the connection and try again, or email mahizami@umpsa.edu.my.'});
+});
+})();
+</script>
+
+</body></html>
