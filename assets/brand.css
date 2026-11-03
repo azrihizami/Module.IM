@@ -209,6 +209,9 @@ background:#F5F3EF;color:#101B25;border:1px solid #D8D3C9;border-radius:2px 6px 
 .toolgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}@media (max-width:960px){.toolgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:600px){.toolgrid{grid-template-columns:1fr}}
 .tool{display:grid;grid-template-rows:auto auto auto 1fr auto;gap:10px;padding:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);min-width:0;scroll-margin-top:90px}
 .tool h3{font-size:1.05rem}.tool p{color:var(--ink-2);font-size:.92rem}.tool-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.tool-foot .btn{font-size:.86rem;padding:7px 12px}
+/* the free Hairpin Motor Viewer row (EV hub and free tools page) */
+.hp-card{margin-top:12px;padding-top:28px;border-top:1px solid var(--line);text-decoration:none;color:inherit}.hp-card .feature-copy>span:not(.label):not(.chip):not(.more){color:var(--ink-2)}
+.hp-card .chip,.hp-card .more{justify-self:start}.hp-card:hover h3{text-decoration:underline;text-decoration-color:var(--steel);text-underline-offset:4px}
 .shot{display:block;padding:0;border:1px solid var(--line);border-radius:var(--r);background:#fff;cursor:zoom-in;overflow:hidden}
 .shot img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:left top;transition:transform .25s}.shot:hover img{transform:scale(1.02)}
 .shot:focus-visible{outline:2px solid var(--steel);outline-offset:2px}@media (prefers-reduced-motion:reduce){.shot img{transition:none}}
