@@ -1,0 +1,635 @@
+<title>Hairpin Motor Viewer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one-screen workbench. Navy header band with the variant tabs, 3D bench on the left,
+   instrument panel on the right (stacks under the bench on phones), status bar with the brand line. */
+:root{
+  --navy:#101B25; --graphite:#2C4453; --steel:#5F8FA8; --copper:#C0703A; --paper:#F5F3EF;
+  --bg:#F5F3EF; --panel:#FBFAF7; --line:#DCD8D0; --fg:#18232D; --muted:#5A6874;
+  --bench:#E7E4DE; --chip:#ECE9E3; --chip-on:#2C4453; --chip-on-fg:#F5F3EF;
+  --u:#C8312A; --v:#D9A514; --w:#2A64C4; --ok:#2E7D4F; --warn:#B26A00;
+  --f-body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C141C; --panel:#121E29; --line:#24364A; --fg:#E8E5DF; --muted:#93A3B1;
+  --bench:#101B25; --chip:#1A2A38; --chip-on:#5F8FA8; --chip-on-fg:#0C141C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C141C; --panel:#121E29; --line:#24364A; --fg:#E8E5DF; --muted:#93A3B1;
+  --bench:#101B25; --chip:#1A2A38; --chip-on:#5F8FA8; --chip-on-fg:#0C141C; color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font:14px/1.45 var(--f-body);overflow:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--navy)}
+.app{height:100%;display:grid;grid-template-rows:auto 1fr auto}
+header{background:var(--navy);color:var(--paper);display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand h1{font-size:15px;font-weight:600;letter-spacing:.01em;margin:0;white-space:nowrap}
+.brand small{display:block;font:500 10.5px/1.2 var(--f-mono);color:#9DB6C6;letter-spacing:.06em;text-transform:uppercase}
+nav.variants{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+nav.variants button{font:500 12.5px var(--f-body);color:#C9D6DF;background:transparent;border:1px solid #2C4453;border-radius:3px;padding:6px 11px;cursor:pointer}
+nav.variants button[aria-pressed="true"]{background:var(--steel);border-color:var(--steel);color:var(--navy)}
+nav.variants button:hover{border-color:var(--steel)}
+main{display:grid;grid-template-columns:minmax(0,1fr) 352px;min-height:0}
+.bench{position:relative;background:var(--bench);min-height:0;overflow:hidden}
+.bench canvas{display:block;width:100%;height:100%;touch-action:none}
+.load{position:absolute;inset:auto 16px 16px 16px;display:flex;align-items:center;gap:10px;font:12px var(--f-mono);color:var(--muted)}
+.load .bar{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.load .bar i{display:block;height:100%;width:0;background:var(--copper)}
+.caption{position:absolute;left:16px;top:14px;max-width:min(440px,calc(100% - 32px));background:color-mix(in srgb,var(--panel) 88%,transparent);
+  border:1px solid var(--line);border-radius:4px;padding:10px 12px;backdrop-filter:blur(4px)}
+.caption .k{font:500 10.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--copper)}
+.caption b{display:block;font-size:15px;font-weight:600;margin-top:2px;text-wrap:balance}
+.caption span{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.pick{position:absolute;right:16px;bottom:16px;font:12px/1.5 var(--f-mono);background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:8px 10px;max-width:calc(100% - 32px)}
+.hint{position:absolute;right:16px;top:14px;font:11px var(--f-mono);color:var(--muted)}
+aside{background:var(--panel);border-left:1px solid var(--line);overflow-y:auto;min-height:0}
+.tabs{display:flex;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:2}
+.tabs button{flex:1;font:600 12.5px var(--f-body);background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:11px 6px;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--copper)}
+section.blk{padding:14px 16px;border-bottom:1px solid var(--line);display:grid;gap:9px}
+.blk h2{margin:0;font:600 10.5px var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{font:500 12px var(--f-body);background:var(--chip);color:var(--fg);border:1px solid transparent;border-radius:3px;padding:5px 9px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-fg)}
+.chip:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.chip .sw{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:0}
+.play{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+.play button{font:600 12px var(--f-body);background:var(--copper);color:#fff;border:0;border-radius:3px;padding:6px 12px;cursor:pointer;min-width:64px}
+input[type=range]{width:100%;accent-color:var(--copper)}
+.mono{font:12px/1.5 var(--f-mono);font-variant-numeric:tabular-nums}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:24px 1fr;gap:6px;padding:5px 6px;border-radius:3px;cursor:pointer;font-size:12.5px;color:var(--muted)}
+.steps li::before{counter-increment:s;content:counter(s,decimal-leading-zero);font:11px var(--f-mono);padding-top:1px}
+.steps li.done{color:var(--fg)}
+.steps li.now{background:var(--chip);color:var(--fg);font-weight:600}
+.steps li.sep{border-top:1px dashed var(--line);margin-top:4px;padding-top:9px}
+table.kv{width:100%;border-collapse:collapse;font-size:12.5px}
+table.kv td{padding:4px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.kv td:first-child{color:var(--muted);padding-right:10px;width:44%}
+table.kv td:last-child{font:12px var(--f-mono);font-variant-numeric:tabular-nums}
+.trace{font:12px/1.5 var(--f-mono)}
+select,input[type=number]{font:13px var(--f-body);background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:5px 6px}
+.form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.form label{display:grid;gap:3px;font-size:11.5px;color:var(--muted)}
+.form input,.form select{width:100%;min-width:0}
+.diag{overflow-x:auto;border:1px solid var(--line);border-radius:3px;background:#fff}
+.diag svg{display:block;max-width:none}
+.note{font-size:12px;color:var(--muted)}
+.state{display:inline-block;font:600 11px var(--f-mono);padding:2px 7px;border-radius:10px;color:#fff;background:var(--ok)}
+.state.bad{background:#B3261E}
+.msgs{font:12px/1.5 var(--f-mono);white-space:pre-wrap;margin:0}
+footer{background:var(--navy);color:#9DB6C6;font:11.5px var(--f-mono);display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;
+  padding-block:6px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+[hidden]{display:none!important}
+.sl{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:baseline}
+.sl label{font-size:12.5px}
+.sl output{font:12px var(--f-mono);font-variant-numeric:tabular-nums;color:var(--fg)}
+.sl input[type=range],.sl select{grid-column:1/-1}
+.sl small{grid-column:1/-1;color:var(--muted);font-size:11px;margin-top:-2px}
+.live{display:flex;gap:8px;align-items:flex-start;font-size:12.5px}
+.live .state{flex:none}
+.state.busy{background:var(--warn)}
+.checks{display:grid;gap:4px;font-size:12.5px}
+.checks input{accent-color:var(--copper);margin-right:6px}
+input.path{width:100%;font:12px var(--f-mono);background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:6px}
+.play-like{font:600 12px var(--f-body);background:var(--copper);color:#fff;border:0;border-radius:3px;padding:7px 14px;cursor:pointer}
+[data-pane]{display:none}
+[data-pane].on{display:block}
+@media (max-width:820px){
+  body{overflow:auto}
+  .app{height:auto;min-height:100%}
+  main{grid-template-columns:minmax(0,1fr)}
+  .bench{height:58vh}
+  aside{border-left:0;border-top:1px solid var(--line);overflow:visible}
+  nav.variants{margin-left:0}
+  .hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="app">
+<header>
+  <div class="brand">
+    <svg viewBox="0 0 100 100" width="30" height="30" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="45.5" fill="none" stroke="#5F8FA8" stroke-width="5"/><g stroke="#5F8FA8" stroke-width="4.6"><line x1="50" y1="19" x2="50" y2="12"/><line x1="65.5" y1="23.15" x2="69" y2="17.09"/><line x1="76.85" y1="34.5" x2="82.91" y2="31"/><line x1="81" y1="50" x2="88" y2="50"/><line x1="76.85" y1="65.5" x2="82.91" y2="69"/><line x1="65.5" y1="76.85" x2="69" y2="82.91"/><line x1="50" y1="81" x2="50" y2="88"/><line x1="34.5" y1="76.85" x2="31" y2="82.91"/><line x1="23.15" y1="65.5" x2="17.09" y2="69"/><line x1="19" y1="50" x2="12" y2="50"/><line x1="23.15" y1="34.5" x2="17.09" y2="31"/><line x1="34.5" y1="23.15" x2="31" y2="17.09"/></g><path d="M28 50a22 22 0 0 1 44 0z" fill="#C0703A"/><path d="M28 50a22 22 0 0 0 44 0z" fill="#5F8FA8"/></svg>
+    <div><h1>Hairpin Motor Viewer</h1><small>Parametric hairpin stator · 3D</small></div>
+  </div>
+  <nav class="variants" id="variants" aria-label="Variant"></nav>
+</header>
+<main>
+  <div class="bench" id="bench">
+    <div class="caption" id="caption" hidden><div class="k" id="capK"></div><b id="capT"></b><span id="capX"></span></div>
+    <div class="hint" id="hint">Drag to orbit · scroll to zoom · right-drag to pan · click a part</div>
+    <div class="pick" id="pick" hidden></div>
+    <div class="load" id="load"><span id="loadT">Loading</span><div class="bar"><i id="loadBar"></i></div></div>
+  </div>
+  <aside>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="false" data-tab="design" id="tab-design" hidden>Design</button>
+      <button role="tab" aria-selected="true" data-tab="model" id="tab-model">Model</button>
+      <button role="tab" aria-selected="false" data-tab="build" id="tab-build">Build</button>
+      <button role="tab" aria-selected="false" data-tab="winding" id="tab-winding">Winding</button>
+    </div>
+
+    <div data-pane="design">
+      <section class="blk"><h2>Live design</h2>
+        <div class="row"><select id="dPreset" aria-label="Start from"></select><button class="chip" id="dReset">Load</button></div>
+        <div class="live"><span class="state" id="dState">ready</span><span id="dMsg">Move a slider: the stator is rebuilt in a few seconds and then checked.</span></div>
+        <div class="row"><button class="chip" id="dFix" hidden>Fix clearance (steepen ramps)</button></div>
+        <pre class="msgs" id="dWorst" hidden></pre>
+      </section>
+      <div id="dGroups"></div>
+      <section class="blk"><h2>Housing</h2>
+        <div class="row"><button class="chip" id="dIEC">Build IEC motor</button><button class="chip" id="dEV">Build EV motor</button></div>
+        <p class="note">Puts the current stator into a full motor: about 3 to 5 minutes. The IEC housing is the 80M cross-section and fits a stator up to Ø124 mm.</p>
+        <pre class="msgs" id="dMotorLog" hidden></pre>
+      </section>
+      <section class="blk"><h2>Export for SolidWorks and analysis</h2>
+        <div class="checks" id="dWhat">
+          <label><input type="checkbox" value="step" checked> STEP stator assembly</label>
+          <label><input type="checkbox" value="inserted"> STEP inserted stage</label>
+          <label><input type="checkbox" value="stl"> STL per part group</label>
+          <label><input type="checkbox" value="dxf" checked> 2D cross-section DXF</label>
+          <label><input type="checkbox" value="physics"> Simplified thermal and structural bodies</label>
+        </div>
+        <label class="note" for="dDir">Folder</label><input type="text" id="dDir" class="path">
+        <div class="row"><button class="play-like" id="dExport">Export</button><button class="chip" id="dOpen" hidden>Open folder</button></div>
+        <pre class="msgs" id="dExLog" hidden></pre>
+      </section>
+    </div>
+    <div data-pane="model" class="on">
+      <section class="blk"><h2>Show</h2><div class="row" id="groups"></div></section>
+      <section class="blk"><h2>Section</h2>
+        <div class="row" id="cutRow">
+          <button class="chip" data-cut="none">Full</button>
+          <button class="chip" data-cut="housing">Cut housing</button>
+          <button class="chip" data-cut="quarter">Quarter cut</button>
+          <button class="chip" data-cut="half">Half</button>
+          <button class="chip" data-cut="xray" id="xrayBtn">X-ray housing</button>
+        </div>
+        <label class="note" for="slice">Axial slice position</label>
+        <input type="range" id="slice" min="0" max="1000" value="1000">
+      </section>
+      <section class="blk"><h2>Colour</h2>
+        <div class="row" id="colRow">
+          <button class="chip" data-col="mat" aria-pressed="true">Materials</button>
+          <button class="chip" data-col="phase"><span class="sw" style="background:var(--u)"></span>U <span class="sw" style="background:var(--v);margin-left:4px"></span>V <span class="sw" style="background:var(--w);margin-left:4px"></span>W</button>
+        </div>
+      </section>
+      <section class="blk"><h2>Current path</h2>
+        <div class="row"><select id="trPh" aria-label="Phase"><option>U</option><option>V</option><option>W</option></select>
+          <select id="trBr" aria-label="Parallel path"></select>
+          <button class="chip" id="trGo">Trace</button><button class="chip" id="trOff">Clear</button></div>
+        <div class="trace" id="trInfo">Follows one phase hairpin by hairpin, from the terminal to the end of the path.</div>
+      </section>
+      <section class="blk"><h2>This design</h2><table class="kv" id="summary"></table></section>
+    </div>
+
+    <div data-pane="build">
+      <section class="blk"><h2>Manufacturing and assembly</h2>
+        <div class="play"><button id="playBtn">Play</button><input type="range" id="tl" min="0" max="1000" value="1000" aria-label="Build stage"><span class="mono" id="tlN"></span></div>
+        <ol class="steps" id="steps"></ol>
+        <p class="note">Hairpins are inserted with straight legs, the layer rings are expanded, then odd and even rings are twisted in opposite directions before welding.</p>
+      </section>
+    </div>
+
+    <div data-pane="winding">
+      <section class="blk"><h2>Winding layout</h2>
+        <div class="form">
+          <label>Slots<input type="number" id="wQ" min="6" max="144" step="3" value="24"></label>
+          <label>Poles<input type="number" id="wP" min="2" max="24" step="2" value="4"></label>
+          <label>Layers<select id="wL"><option>2</option><option selected>4</option><option>6</option><option>8</option></select></label>
+          <label>Crown pitch<input type="number" id="wY" min="1" max="40" value="6"></label>
+          <label>Paths<input type="number" id="wA" min="1" max="8" value="1"></label>
+          <label>Terminals<select id="wT"><option value="6lead">6 leads</option><option value="star">Star</option></select></label>
+        </div>
+        <div class="row"><span class="state" id="wState">checked</span><span class="note" id="wNote"></span></div>
+        <table class="kv" id="wRep"></table>
+        <pre class="msgs" id="wMsg" hidden></pre>
+      </section>
+      <section class="blk"><h2>Developed diagram</h2><div class="diag" id="wSvg"></div>
+        <p class="note">Change any field to check another combination; the 3D view keeps the selected variant. Slots run left to right, layer 1 (bore side) at the bottom. Solid lines are hairpin crowns, dashed lines are welds; heavy dashes are the switched welds that link the layer pairs.</p></section>
+    </div>
+  </aside>
+</main>
+<footer><span id="status">Ready</span><span>Motoreka is a product of UMPSA, developed at EMDLab</span></footer>
+</div>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+
+const VARIANTS=[
+  {id:'iec',file:'iec_motor',label:'IEC motor'},
+  {id:'ev',file:'ev_motor',label:'EV motor'},
+  {id:'stator',file:'stator_imt',label:'Stator (IMT)'},
+  {id:'s48',file:'stator_48s8p',label:'48 slots · 8 poles'}];
+const MORPH_F=[0,0.3,0.55,0.8,1.0];
+const PH={A:'#c8312a',B:'#d9a514',C:'#2a64c4',N:'#8a8f96'};
+const PHL={A:'#ef8a7f',B:'#f2d36b',C:'#86a9e6',N:'#b4b8bd'};
+const PNAME={A:'U',B:'V',C:'W',N:'N'};
+const FRIENDLY={core:'Core',seams:'Core',liners:'Insulation',closures:'Insulation',pins:'Hairpins',welds:'Welds',coating:'Welds',
+  bus:'Bus bars',Housing:'Housing',End_Shields:'End shields',Rotor:'Rotor',Bearing:'Bearings',Cooling:'Fan and cowl',
+  Terminal_Box:'Terminal box',Leads:'Leads',Fasteners:'Fasteners',Covers:'Covers',Coolant:'Coolant',Resolver:'Resolver',HV_Cables:'HV cables'};
+const HOUSING=new Set(['Housing','End_Shields','Cooling','Terminal_Box','Fasteners','Covers','Coolant','Resolver']);
+const $=id=>document.getElementById(id);
+let V=null, dirty=true;   // V: current variant {meta, root, parts, ...}
+
+/* ---------- renderer ---------- */
+const bench=$('bench');
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.localClippingEnabled=true;
+renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.05;
+bench.prepend(renderer.domElement);
+const scene=new THREE.Scene();
+const pmrem=new THREE.PMREMGenerator(renderer);
+scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture;
+scene.add(new THREE.HemisphereLight(0xffffff,0x445566,0.6));
+const sun=new THREE.DirectionalLight(0xffffff,1.6); sun.position.set(300,-400,600); scene.add(sun);
+const fill=new THREE.DirectionalLight(0xffffff,0.5); fill.position.set(-400,300,-200); scene.add(fill);
+const camera=new THREE.PerspectiveCamera(32,1,1,20000); camera.up.set(0,0,1);
+const controls=new OrbitControls(camera,renderer.domElement); controls.enableDamping=true; controls.dampingFactor=0.12; controls.addEventListener('change',()=>dirty=true);
+function bgFromTheme(){scene.background=new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue('--bench').trim()||'#e7e4de'); dirty=true;}
+bgFromTheme(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change',bgFromTheme);
+new MutationObserver(bgFromTheme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+function resize(){const r=bench.getBoundingClientRect(); renderer.setSize(r.width,r.height,false); camera.aspect=r.width/Math.max(1,r.height); camera.updateProjectionMatrix(); dirty=true;}
+new ResizeObserver(resize).observe(bench);
+
+/* ---------- state ---------- */
+// current variant: see top: {meta, root, parts:[{p,mesh,mat,si,...}], ...}
+const cache={};
+const ui={groups:new Set(),cut:'none',xray:false,col:'mat',slice:1,t:null,trace:null};
+const planes={q1:new THREE.Plane(new THREE.Vector3(0,1,0),0),q2:new THREE.Plane(new THREE.Vector3(0,0,-1),0),
+  half:new THREE.Plane(new THREE.Vector3(0,1,0),0),slice:new THREE.Plane(new THREE.Vector3(-1,0,0),0)};
+
+function groupKey(p){
+  const g=p.group;
+  if(g.startsWith('phase_')||g.startsWith('copper_')||g==='pins_forming')return 'pins';
+  if(g.startsWith('bus_')||g==='neutral')return 'bus';
+  if(g.startsWith('Bearing'))return 'Bearing';
+  if(g==='HV_Cables')return 'HV_Cables';
+  return g;
+}
+
+// Content-Length is the compressed size when the server gzips the file, so it cannot size the buffer:
+// collect the chunks, then join them; the progress bar uses it only as a hint.
+async function fetchBin(url,onp){
+  const r=await fetch(url); if(!r.ok)throw new Error(`${url}: ${r.status}`);
+  const n=r.headers.get('content-encoding')?0:+r.headers.get('content-length')||0; if(!r.body)return r.arrayBuffer();
+  const rd=r.body.getReader(), parts=[]; let k=0;
+  for(;;){const {done,value}=await rd.read(); if(done)break; parts.push(value); k+=value.length; if(n)onp(Math.min(1,k/n));}
+  const buf=new Uint8Array(k); let o=0; for(const c of parts){buf.set(c,o); o+=c.length;}
+  return buf.buffer;
+}
+
+async function load(v){
+  const base=v.base||'assets/';
+  if(cache[v.id])return cache[v.id];
+  $('load').hidden=false; $('loadT').textContent=`Loading ${v.label}`; $('loadBar').style.width='0';
+  const meta=await (await fetch(`${base}${v.file}.json`)).json();
+  let buf=await fetchBin(`${base}${meta.file}`,f=>$('loadBar').style.width=(100*f).toFixed(0)+'%');
+  if(meta.file.endsWith('.txt')){const t=atob(new TextDecoder().decode(buf)); const u=new Uint8Array(t.length); for(let i=0;i<t.length;i++)u[i]=t.charCodeAt(i); buf=u.buffer;}  // base64 copy (hosts that serve no binary files)
+  const Q=new Int16Array(buf,0,meta.nPos), I=new Uint16Array(buf,meta.idxByte,meta.nIdx);
+  const lo=meta.qlo, sc=meta.qsc;
+  const pos=(vo,vc)=>{const a=new Float32Array(vc*3); for(let i=0,j=vo*3;i<vc*3;i+=3,j+=3){a[i]=(Q[j]+32767)*sc[0]+lo[0];a[i+1]=(Q[j+1]+32767)*sc[1]+lo[1];a[i+2]=(Q[j+2]+32767)*sc[2]+lo[2];}return a;};
+  const root=new THREE.Group(); const parts=[];
+  const ids=meta.stages.map(s=>s.id);
+  for(const p of meta.parts){
+    const g=new THREE.BufferGeometry();
+    g.setAttribute('position',new THREE.BufferAttribute(pos(p.v[0],p.v[1]),3));
+    g.setIndex(new THREE.BufferAttribute(I.slice(p.i[0],p.i[0]+p.i[1]),1));
+    const cad=!!p.fly||['core','seams','liners','closures'].includes(p.group);
+    if(cad)g.computeVertexNormals();
+    const mat=new THREE.MeshStandardMaterial({color:p.color,metalness:p.metal,roughness:p.rough,flatShading:!cad,side:THREE.DoubleSide});
+    const mesh=new THREE.Mesh(g,mat); mesh.userData.k=parts.length; root.add(mesh);
+    const e={p,mesh,mat,g,key:groupKey(p),si:Math.max(0,ids.indexOf(p.stage)),base:new THREE.Color(p.color)};
+    if(p.morph){e.morph=p.morph.map(o=>pos(o,p.v[1])); e.work=g.attributes.position;}
+    parts.push(e);
+  }
+  // insertion direction: hairpins go in from the crown side (the end whose shape does not change while forming)
+  let crownDir=-1; const fp=parts.find(e=>e.morph);
+  if(fp){const a=fp.morph[0], b=fp.morph[fp.morph.length-1]; let best=0, bx=0;
+    for(let i=0;i<a.length;i+=3){const d=Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]); if(d>best){best=d;bx=a[i];}}
+    const cx=parts.filter(e=>e.p.group==='core').reduce((s,e)=>{e.g.computeBoundingBox();return s+e.g.boundingBox.getCenter(new THREE.Vector3()).x;},0)/Math.max(1,parts.filter(e=>e.p.group==='core').length);
+    crownDir=bx>cx?-1:1;}
+  const bb=new THREE.Box3().setFromObject(root);
+  const o={meta,root,parts,bb,ids,crownDir,size:bb.getSize(new THREE.Vector3()),center:bb.getCenter(new THREE.Vector3())};
+  o.idx=k=>ids.indexOf(k);
+  cache[v.id]=o; $('load').hidden=true; return o;
+}
+
+/* ---------- build timeline ---------- */
+const ease=x=>x<=0?0:x>=1?1:x*x*(3-2*x);
+function stageFly(e,O){
+  if(e.p.fly&&(e.p.fly[0]||e.p.fly[1]||e.p.fly[2]))return e.p.fly;
+  const L=O.size.x;
+  switch(e.p.stage){
+    case 'stack':return [0,0,0.9*O.size.z+60];
+    case 'insulate':return e.p.group==='liners'?[-0.9*L,0,0]:[0.9*L,0,0];
+    case 'connect':return [0,0,40];
+    case 'leads':return [0,0,60];
+    case 'press':case 'shrink':return [-1.1*L,0,0];
+  }
+  return [0,0,0];
+}
+function applyTime(){
+  const O=V, N=O.meta.stages.length, t=ui.t==null?N:ui.t;
+  const iIns=O.idx('insert'), iExp=O.idx('expand'), iTw=O.idx('twist');
+  let f=0; if(t>iExp)f=0.3*ease(t-iExp); if(t>iTw)f=0.3+0.7*Math.min(1,t-iTw);
+  for(const e of O.parts){
+    const g=e.key, p=e.p; let vis=ui.groups.has(g), prog=1, off=[0,0,0];
+    if(p.group==='pins_forming'){
+      vis=vis&&ui.t!=null&&t>iIns&&t<iTw+1;
+      if(vis){prog=1; const pi=ease(Math.min(1,(t-iIns)*1.25)); off=[O.crownDir*(1-pi)*(O.meta.kind==='stator'?O.size.x*0.9:220),0,0]; setMorph(e,f);}
+    }else if(p.after){vis=vis&&t>=iTw+1-1e-6;}
+    else{
+      const s=e.si; vis=vis&&t>s;
+      if(vis){
+        let d=t-s; if(p.stage==='stack'&&p.order!=null)d=d*1.6-p.order*0.07;
+        prog=ease(Math.min(1,d*1.15)); const fv=stageFly(e,O); off=fv.map(x=>x*(1-prog));
+      }
+    }
+    e.mesh.visible=vis&&prog>0.001;
+    e.mesh.position.set(off[0],off[1],off[2]);
+    e.fade=prog;
+  }
+  styleAll();
+  const k=Math.min(N-1,Math.floor(t-1e-6)), st=O.meta.stages[Math.max(0,k)];
+  if(ui.t==null){$('caption').hidden=true;}
+  else{$('caption').hidden=false; $('capK').textContent=`Step ${k+1} of ${N}`; $('capT').textContent=st.title; $('capX').textContent=st.text;}
+  $('tlN').textContent=`${Math.min(N,Math.floor(t+1e-6))}/${N}`;
+  [...$('steps').children].forEach((li,i)=>{li.className=(li.classList.contains('sep')?'sep ':'')+(i<Math.floor(t+1e-6)?'done':'')+(ui.t!=null&&i===k?' now':'');});
+}
+function setMorph(e,f){
+  let j=0; while(j<MORPH_F.length-2&&f>MORPH_F[j+1])j++;
+  const a=e.morph[j], b=e.morph[j+1], w=Math.min(1,Math.max(0,(f-MORPH_F[j])/(MORPH_F[j+1]-MORPH_F[j]))), out=e.work.array;
+  for(let i=0;i<out.length;i++)out[i]=a[i]+(b[i]-a[i])*w;
+  e.work.needsUpdate=true; e.g.computeBoundingSphere();
+}
+
+/* ---------- styling: colour mode, x-ray, clipping, trace ---------- */
+function clipFor(e){
+  const P=[]; const housing=HOUSING.has(e.p.group);
+  if(ui.cut==='quarter'||(ui.cut==='housing'&&housing))P.push(planes.q1,planes.q2);
+  if(ui.cut==='half')P.push(planes.half);
+  if(ui.slice<0.999)P.push(planes.slice);
+  return P;
+}
+function styleAll(){
+  dirty=true; const tr=ui.trace;
+  for(const e of V.parts){
+    const m=e.mat, p=e.p; let c=e.base.clone(), op=e.fade??1, em=0x000000;
+    if(ui.col==='phase'&&p.phase&&p.phase!=='N'){
+      if(p.group.startsWith('copper_'))c=new THREE.Color(PHL[p.phase]); else if(!p.group.startsWith('bus'))c=new THREE.Color(PH[p.phase]);
+    }
+    if(ui.xray&&HOUSING.has(p.group))op=Math.min(op,0.16);
+    if(tr){
+      const on=tr.lit.has(e.mesh.userData.k);
+      if(e.key==='pins'||e.key==='bus'||e.key==='Welds'||p.group==='welds'||p.group==='coating'){
+        if(on){c=new THREE.Color(PH[tr.ph]); if(tr.cur===e.mesh.userData.k)em=0x553311;}
+        else op=Math.min(op,0.1);
+      }else op=Math.min(op,HOUSING.has(p.group)||p.group==='Rotor'||p.key==='Bearing'?0.05:0.22);
+    }
+    m.color.copy(c); m.emissive.setHex(em);
+    const tp=op<0.999; if(m.transparent!==tp){m.transparent=tp; m.needsUpdate=true;}
+    m.opacity=op; m.depthWrite=!tp;
+    const cp=clipFor(e); if(cp.length!==m.clippingPlanes?.length||cp.some((q,i)=>m.clippingPlanes[i]!==q)){m.clippingPlanes=cp; m.clipIntersection=cp.length===2&&cp[0]===planes.q1; m.needsUpdate=true;}
+  }
+}
+function setPlanes(){
+  const c=V.center, s=V.size;
+  planes.q1.constant=-c.y; planes.q2.constant=c.z;        // removes y<cy and z>cz: the quarter facing the camera
+  planes.q1.normal.set(0,1,0); planes.q2.normal.set(0,0,-1);
+  planes.half.constant=-c.y;
+  planes.slice.constant=V.bb.min.x+ui.slice*s.x;
+}
+
+/* ---------- variant switch and UI ---------- */
+function chip(label,pressed,on){const b=document.createElement('button');b.className='chip';b.textContent=label;b.setAttribute('aria-pressed',pressed);b.onclick=on;return b;}
+async function show(v,opt={}){
+  for(const b of $('variants').children)b.setAttribute('aria-pressed',b.dataset.id===v.id);
+  let O; try{O=await load(v);}catch(err){$('loadT').textContent=`Could not load ${v.label}: ${err.message}`;return;}
+  const keep=opt.keep&&V; const oldKeys=V?new Set(V.parts.map(e=>e.key)):new Set();
+  if(V)scene.remove(V.root); V=O; O.v=v; scene.add(O.root);
+  ui.trace=null; if(!keep){ui.t=null; $('tl').value=1000; ui.slice=1; $('slice').value=1000;}
+  // groups
+  const keys=[...new Set(O.parts.map(e=>e.key))]; const labels=new Map();
+  for(const k of keys){const l=FRIENDLY[k]||k.replace(/_/g,' '); if(!labels.has(l))labels.set(l,[]); labels.get(l).push(k);}
+  if(!keep)ui.groups=new Set(keys); else keys.forEach(k=>{if(!oldKeys.has(k))ui.groups.add(k);});
+  const G=$('groups'); G.textContent='';
+  for(const [l,ks] of labels)G.append(chip(l,ks.some(k=>ui.groups.has(k)),ev=>{const on=ev.currentTarget.getAttribute('aria-pressed')!=='true';ev.currentTarget.setAttribute('aria-pressed',on);ks.forEach(k=>on?ui.groups.add(k):ui.groups.delete(k));applyTime();}));
+  if(!keep){ui.cut=O.meta.kind==='motor'?'housing':'none'; ui.xray=false;} syncCut();
+  // summary
+  $('summary').innerHTML=O.meta.summary.map(([a,b])=>`<tr><td>${a}</td><td>${b}</td></tr>`).join('');
+  // steps
+  const S=$('steps'); S.textContent='';
+  O.meta.stages.forEach((s,i)=>{const li=document.createElement('li');li.textContent=s.title;if(i===10)li.classList.add('sep');li.onclick=()=>{stopPlay();ui.t=i+1;$('tl').value=1000*(i+1)/O.meta.stages.length;applyTime();};S.append(li);});
+  // winding form follows the variant
+  const wr=(O.meta.summary.find(r=>r[0]==='Winding')||[,''])[1];
+  const m=wr.match(/(\d+) slots \/ (\d+) poles, q=\d+, (\d+) layers, y=(\d+)\/\d+, a=(\d+), (\w+)/);
+  if(m&&!opt.keep){$('wQ').value=m[1];$('wP').value=m[2];$('wL').value=m[3];$('wY').value=m[4];$('wA').value=m[5];$('wT').value=m[6];
+    if(document.querySelector('[data-pane=winding]').classList.contains('on'))renderWinding();}
+  // trace paths
+  trBranches();
+  // camera
+  const r=O.size.length()*0.5;
+  if(!keep){
+  controls.target.copy(O.center);
+  resize(); const vf=THREE.MathUtils.degToRad(camera.fov)/2, hf=Math.atan(Math.tan(vf)*camera.aspect);
+  camera.position.copy(O.center).add(new THREE.Vector3(0.95,-1.55,0.85).normalize().multiplyScalar(r*0.9/Math.sin(Math.min(vf,hf))));
+  camera.near=r/50; camera.far=r*40; camera.updateProjectionMatrix();
+  }
+  setPlanes(); applyTime();
+  $('status').textContent=`${O.meta.title} · ${O.parts.length} parts`;
+  try{history.replaceState(null,'','#'+v.id);}catch(_){}
+}
+function disposeVariant(O){O.parts.forEach(e=>{e.g.dispose();e.mat.dispose();}); for(const k in cache)if(cache[k]===O)delete cache[k];}
+function syncCut(){for(const b of $('cutRow').children){const c=b.dataset.cut; b.setAttribute('aria-pressed',c==='xray'?ui.xray:ui.cut===c);}
+  const motor=V?.meta.kind==='motor'; $('cutRow').querySelector('[data-cut=housing]').hidden=!motor; $('xrayBtn').hidden=!motor;}
+$('cutRow').onclick=ev=>{const b=ev.target.closest('button');if(!b)return; if(b.dataset.cut==='xray')ui.xray=!ui.xray; else ui.cut=b.dataset.cut; syncCut(); styleAll();};
+$('slice').oninput=ev=>{ui.slice=ev.target.value/1000; setPlanes(); styleAll();};
+$('colRow').onclick=ev=>{const b=ev.target.closest('button');if(!b)return; ui.col=b.dataset.col; for(const x of $('colRow').children)x.setAttribute('aria-pressed',x===b); styleAll();};
+function addVariantButton(v,first){let b=$('variants').querySelector(`[data-id="${v.id}"]`); if(!b){b=document.createElement('button');b.dataset.id=v.id; first?$('variants').prepend(b):$('variants').append(b);} b.textContent=v.label; b.onclick=()=>show(v); return b;}
+for(const v of VARIANTS)addVariantButton(v);
+document.querySelector('.tabs').onclick=ev=>{const b=ev.target.closest('button');if(!b)return;
+  for(const x of document.querySelectorAll('.tabs button'))x.setAttribute('aria-selected',x===b);
+  for(const p of document.querySelectorAll('[data-pane]'))p.classList.toggle('on',p.dataset.pane===b.dataset.tab);
+  if(b.dataset.tab==='build'&&ui.t==null){ui.t=V.meta.stages.length;applyTime();}
+  if(b.dataset.tab==='winding')renderWinding();};
+
+/* build playback */
+let playing=null;
+function stopPlay(){if(playing){cancelAnimationFrame(playing.raf);playing=null;$('playBtn').textContent='Play';}}
+$('playBtn').onclick=()=>{
+  if(playing){stopPlay();return;}
+  const N=V.meta.stages.length; if(ui.t==null||ui.t>=N-0.01)ui.t=0;
+  const t0=performance.now(), s0=ui.t, rate=matchMedia('(prefers-reduced-motion: reduce)').matches?1.2:0.45;
+  playing={}; $('playBtn').textContent='Pause';
+  const step=now=>{ui.t=Math.min(N,s0+(now-t0)/1000*rate); $('tl').value=1000*ui.t/N; applyTime(); if(ui.t>=N){stopPlay();return;} playing.raf=requestAnimationFrame(step);};
+  playing.raf=requestAnimationFrame(step);
+};
+$('tl').oninput=ev=>{stopPlay(); ui.t=ev.target.value/1000*V.meta.stages.length; applyTime();};
+
+/* current path trace */
+function trBranches(){const ph=$('trPh').value, br=V.meta.paths[ph]||[]; $('trBr').innerHTML=br.map((_,i)=>`<option value="${i}">Path ${i+1}</option>`).join(''); $('trBr').hidden=br.length<2;}
+$('trPh').onchange=trBranches;
+let trTimer=null;
+$('trGo').onclick=()=>{
+  clearInterval(trTimer); ui.t=null; applyTime();
+  const ph=$('trPh').value, code={U:'A',V:'B',W:'C'}[ph], seq=V.meta.paths[ph][+$('trBr').value||0];
+  ui.trace={ph:code,lit:new Set(),cur:-1};
+  const bars=V.parts.filter(e=>e.key==='bus'&&e.p.phase===code).map(e=>e.mesh.userData.k);
+  const zb=V.parts.some(e=>e.p.conds&&e.p.conds.some(c=>c[0]===0));
+  let k=0; const fmt=c=>`slot ${c[0]+(zb?1:0)} L${c[1]+(zb?1:0)}`;
+  trTimer=setInterval(()=>{
+    if(k>=seq.length){ui.trace.cur=-1; bars.forEach(b=>ui.trace.lit.add(b)); styleAll(); $('trInfo').textContent=`Phase ${ph}: ${seq.length} hairpins in series, then the terminal bars.`; clearInterval(trTimer); return;}
+    const idx=seq[k]; ui.trace.lit.add(idx); ui.trace.cur=idx; const p=V.parts[idx].p;
+    $('trInfo').textContent=`Phase ${ph} · hairpin ${k+1} of ${seq.length} · ${p.conds.map(fmt).join(' → ')}${p.special?' · special pin':''}`;
+    styleAll(); k++;
+  },matchMedia('(prefers-reduced-motion: reduce)').matches?40:170);
+};
+$('trOff').onclick=()=>{clearInterval(trTimer); ui.trace=null; $('trInfo').textContent='Follows one phase hairpin by hairpin, from the terminal to the end of the path.'; styleAll();};
+
+/* picking */
+const ray=new THREE.Raycaster(); let down=null;
+renderer.domElement.addEventListener('pointerdown',e=>down=[e.clientX,e.clientY]);
+renderer.domElement.addEventListener('pointerup',e=>{
+  if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>4||!V)return;
+  const r=renderer.domElement.getBoundingClientRect();
+  ray.setFromCamera(new THREE.Vector2((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1),camera);
+  const hits=ray.intersectObjects(V.root.children.filter(m=>m.visible&&m.material.opacity>0.3),false)
+    .filter(h=>h.object.material.clippingPlanes.every(pl=>pl.distanceToPoint(h.point)>=0)||(h.object.material.clipIntersection&&!h.object.material.clippingPlanes.every(pl=>pl.distanceToPoint(h.point)<0)));
+  const pk=$('pick'); if(!hits.length){pk.hidden=true;return;}
+  const p=V.parts[hits[0].object.userData.k].p;
+  let s=p.name.replace(/_/g,' '); if(p.phase&&p.phase!=='N')s+=` · phase ${PNAME[p.phase]}`;
+  if(p.conds&&p.conds.length&&p.group.startsWith('phase_')){const zb=true; s+=` · slots ${p.conds.map(c=>`${c[0]+1}/L${c[1]+1}`).join(' – ')}`;}
+  pk.textContent=s; pk.hidden=false;
+});
+
+/* winding panel (JS port of the winding engine) */
+let WE=null;
+async function renderWinding(){
+  if(!WE){try{WE=await import('./winding_engine.js');}catch(err){$('wNote').textContent='Winding engine not available.';return;}}
+  const spec={Qs:+$('wQ').value,poles:+$('wP').value,layers:+$('wL').value,y_c:+$('wY').value,paths:+$('wA').value,terminals:$('wT').value};
+  let w; try{w=WE.buildWinding(spec);}catch(err){w={errors:[String(err.message||err)]};}
+  const bad=w.errors&&w.errors.length;
+  $('wState').textContent=bad?'not valid':'checked'; $('wState').classList.toggle('bad',!!bad);
+  $('wMsg').hidden=!bad; $('wMsg').textContent=bad?w.errors.join('\n'):'';
+  if(bad){$('wRep').innerHTML='';$('wSvg').innerHTML='';$('wNote').textContent='';return;}
+  const r=w.report, s=r.spec, kw=r.winding_factor, nv=r.inslot_neighbour_voltage;
+  const rows=[['q (slots/pole/phase)',s.q],['Pole pitch',`${s.tau} slots`],['Crown / weld pitch',`${s.y_c} / ${s.y_w} slots`],
+    ['Winding factor kw1',kw[1].toFixed(4)],['kw5 / kw7',`${kw[5].toFixed(4)} / ${kw[7].toFixed(4)}`],
+    ['Series turns per phase',r.series_turns_per_phase],['Hairpins / special',`${r.hairpins} / ${r.special_pins} (pitch ${r.special_pitches.join(', ')})`],
+    ['Welds / switched / jumpers',`${r.welds} / ${r.switched_welds} / ${r.jumpers}`],
+    ['Phase angles',r.phase_angles_deg.map(a=>a+'°').join(', ')],
+    ['In-slot neighbour voltage',`${nv.max.toFixed(2)} × phase peak (phase-phase ${nv.phase_to_phase.toFixed(2)})`]];
+  $('wRep').innerHTML=rows.map(([a,b])=>`<tr><td>${a}</td><td>${b}</td></tr>`).join('');
+  $('wNote').textContent=`${spec.Qs} slots, ${spec.poles} poles, ${spec.layers} layers`;
+  $('wSvg').innerHTML=WE.windingSVG(w,{});
+  const svg=$('wSvg').querySelector('svg'); if(svg){svg.style.width=Math.max(640,spec.Qs*30)+'px'; svg.style.maxWidth='none';}
+}
+for(const id of ['wQ','wP','wL','wY','wA','wT'])$(id).addEventListener('input',renderWinding);
+
+/* ---------- desktop app: live sliders around the Python generator ---------- */
+const APP=window.HAIRPIN_APP;
+async function api(path,body){const r=await fetch(path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{}); return r.json();}
+async function poll(id,onlog){for(;;){const j=await api('api/job/'+id); onlog&&onlog(j); if(['done','error','skipped'].includes(j.state))return j; await new Promise(r=>setTimeout(r,400));}}
+function setState(kind,text){const st=$('dState'); st.textContent=kind; st.className='state'+(kind==='busy'||kind==='building'||kind==='checking'?' busy':kind==='ok'||kind==='ready'?'':' bad'); $('dMsg').textContent=text;}
+async function initApp(){
+  const {schema,defaults,presets}=await api('api/schema');
+  const P={...defaults}; const inputs={};
+  document.getElementById('tab-design').hidden=false;
+  document.querySelector('.brand h1').textContent='Hairpin Motor Designer'; document.querySelector('.brand small').textContent='Live parametric hairpin stator · v'+APP.version;
+  $('dDir').value=APP.out;
+  $('dPreset').innerHTML=Object.keys(presets).map(k=>`<option>${k}</option>`).join('');
+  const groups=[...new Set(schema.map(s=>s.group))]; const host=$('dGroups');
+  for(const g of groups){
+    const sec=document.createElement('section'); sec.className='blk'; sec.innerHTML=`<h2>${g}</h2>`;
+    for(const s of schema.filter(x=>x.group===g)){
+      const w=document.createElement('div'); w.className='sl'; const id='p_'+s.key;
+      if(s.type==='range'){
+        w.innerHTML=`<label for="${id}">${s.label}</label><output id="${id}_o"></output><input type="range" id="${id}" min="${s.min}" max="${s.max}" step="${s.step}">${s.note?`<small>${s.note}</small>`:''}`;
+      }else{
+        w.innerHTML=`<label for="${id}">${s.label}</label><span></span><select id="${id}">${s.options.map(o=>Array.isArray(o)?`<option value="${o[0]}">${o[1]}</option>`:`<option value="${o}">${o}</option>`).join('')}</select>${s.note?`<small>${s.note}</small>`:''}`;
+      }
+      sec.append(w); inputs[s.key]={s,el:w.querySelector('#'+id),out:w.querySelector('output')};
+    }
+    host.append(sec);
+  }
+  const fmt=(s,v)=>s.unit?`${(+v).toFixed(s.step<0.1?2:s.step<1?1:0)} ${s.unit}`:String(v);
+  function toUI(){for(const k in inputs){const {s,el,out}=inputs[k]; el.value=P[k]; if(out)out.value=fmt(s,P[k]);}
+    const tau=P.Qs/P.poles; inputs.y_c.out.value=`${P.y_c} slots (full pitch ${Number.isInteger(tau)?tau:tau.toFixed(1)})`;}
+  function fromUI(){for(const k in inputs){const {s,el}=inputs[k]; P[k]=s.type==='range'?+el.value:(isNaN(+el.value)?el.value:+el.value);}}
+  let timer=null, seq=0, live=null;
+  async function rebuild(){
+    fromUI(); toUI();
+    // winding check first, in the page (instant)
+    $('wQ').value=P.Qs;$('wP').value=P.poles;$('wL').value=P.layers;$('wY').value=P.y_c;$('wA').value=P.paths;$('wT').value=P.terminals;
+    if(!WE){try{WE=await import('./winding_engine.js');}catch(_){}}
+    if(WE){try{WE.buildWinding({Qs:P.Qs,poles:P.poles,layers:P.layers,y_c:P.y_c,paths:P.paths,terminals:P.terminals});}
+      catch(err){setState('invalid','Winding: '+err.message); $('dFix').hidden=true; return;}}
+    const my=++seq; setState('building','Building the stator…'); $('dFix').hidden=true; $('dWorst').hidden=true;
+    const r=await api('api/build',{params:P});
+    const b=await poll(r.build); if(my!==seq)return;
+    if(b.state==='error'){setState('error',b.error);return;}
+    if(b.state!=='done')return;
+    live={id:'live',label:'Live design',base:'live/',file:b.result.asset.split('/')[1]};
+    delete cache.live; addVariantButton(live,true); const wasLive=V&&V.v&&V.v.id==='live';
+    const oldV=V; await show(live,{keep:wasLive}); if(oldV&&oldV.v&&oldV.v.id==='live'&&oldV!==V)disposeVariant(oldV);
+    setState('checking','Built. Checking overlaps and end-winding clearance…');
+    const c=await poll(r.check); if(my!==seq)return;
+    if(c.state!=='done'){setState('error',c.error||'check skipped');return;}
+    showCheck(c.result);
+  }
+  function showCheck(k){
+    const bad=k.clashes||k.violations||k.invalid;
+    if(!bad){setState('ok',`No overlaps; every end-winding gap is at least ${k.clearance} mm.`); $('dFix').hidden=true; $('dWorst').hidden=true; return;}
+    setState('too close',`${k.violations} end-winding gaps below ${k.clearance} mm`+(k.min_gap!=null?` (smallest ${k.min_gap} mm)`:'')+(k.clashes?`, ${k.clashes} overlaps`:'')+'.');
+    $('dFix').hidden=false; $('dWorst').hidden=false;
+    $('dWorst').textContent=k.worst.map(w=>`${w.gap} mm  ${w.where}  ${w.a.replace(/^pin_/,'')} / ${w.b.replace(/^pin_/,'')}`).join('\n');
+  }
+  const later=()=>{clearTimeout(timer); timer=setTimeout(rebuild,550);};
+  for(const k in inputs){const {s,el,out}=inputs[k];
+    el.addEventListener('input',()=>{if(out)out.value=fmt(s,el.value); if(k==='y_c')toUI2(); later();});}
+  const toUI2=()=>{fromUI(); toUI();};
+  $('dReset').onclick=()=>{Object.assign(P,presets[$('dPreset').value]); toUI(); rebuild();};
+  $('dFix').onclick=async()=>{fromUI(); const my=++seq; setState('building','Steepening the ramps 1° at a time until every gap passes (up to a minute)…'); $('dFix').hidden=true;
+    const r=await api('api/fix',{params:P}); const b=await poll(r.build); if(my!==seq)return;
+    if(b.state!=='done'){setState('error',b.error);return;}
+    live={id:'live',label:'Live design',base:'live/',file:b.result.asset.split('/')[1]}; delete cache.live; addVariantButton(live,true);
+    const oldV=V; await show(live,{keep:true}); if(oldV&&oldV!==V&&oldV.v&&oldV.v.id==='live')disposeVariant(oldV); showCheck(b.result.check);};
+  async function motor(kind){
+    fromUI(); const L=$('dMotorLog'); L.hidden=false; L.textContent='Queued…';
+    const r=await api('api/motor',{kind,params:P});
+    const j=await poll(r.job,j=>L.textContent=j.log.slice(-6).join('\n'));
+    if(j.state!=='done'){L.textContent='Could not build it: '+j.error;return;}
+    const v={id:'live-'+kind,label:kind==='iec'?'Live IEC':'Live EV',base:'live/',file:j.result.asset.split('/')[1]};
+    delete cache[v.id]; addVariantButton(v,true); show(v); L.textContent+='\nShown as "'+v.label+'".';
+  }
+  $('dIEC').onclick=()=>motor('iec'); $('dEV').onclick=()=>motor('ev');
+  $('dExport').onclick=async()=>{
+    const what=[...$('dWhat').querySelectorAll('input:checked')].map(x=>x.value); const L=$('dExLog'); L.hidden=false; L.textContent='Queued…'; $('dOpen').hidden=true;
+    const r=await api('api/export',{what,dir:$('dDir').value});
+    const j=await poll(r.job,j=>L.textContent=j.log.slice(-8).join('\n'));
+    if(j.state!=='done'){L.textContent+='\nExport failed: '+j.error;return;}
+    L.textContent=`Saved in ${j.result.dir}\n`+j.result.files.join('\n'); $('dOpen').hidden=false; $('dOpen').onclick=()=>api('api/open',{dir:j.result.dir});
+  };
+  toUI();
+  document.getElementById('tab-design').click();
+  rebuild();
+}
+if(APP)initApp();
+
+/* render loop */
+(function loop(){requestAnimationFrame(loop); const moved=controls.update(); if(moved||dirty){dirty=false; renderer.render(scene,camera);}})();
+const start=VARIANTS.find(v=>v.id===location.hash.slice(1))||VARIANTS[0];
+show(start);
+addEventListener('hashchange',()=>{const v=VARIANTS.find(v=>v.id===location.hash.slice(1)); if(v&&v!==V?.v)show(v);});
+window.__viewer={show,ui,applyTime,get V(){return V},camera,controls,VARIANTS};
+</script>
