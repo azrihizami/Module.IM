@@ -277,11 +277,14 @@ function groupKey(p){
   return g;
 }
 
+// Content-Length is the compressed size when the server gzips the file, so it cannot size the buffer:
+// collect the chunks, then join them; the progress bar uses it only as a hint.
 async function fetchBin(url,onp){
   const r=await fetch(url); if(!r.ok)throw new Error(`${url}: ${r.status}`);
-  const n=+r.headers.get('content-length')||0; if(!r.body||!n)return r.arrayBuffer();
-  const rd=r.body.getReader(), buf=new Uint8Array(n); let k=0;
-  for(;;){const {done,value}=await rd.read(); if(done)break; buf.set(value,k); k+=value.length; onp(k/n);}
+  const n=r.headers.get('content-encoding')?0:+r.headers.get('content-length')||0; if(!r.body)return r.arrayBuffer();
+  const rd=r.body.getReader(), parts=[]; let k=0;
+  for(;;){const {done,value}=await rd.read(); if(done)break; parts.push(value); k+=value.length; if(n)onp(Math.min(1,k/n));}
+  const buf=new Uint8Array(k); let o=0; for(const c of parts){buf.set(c,o); o+=c.length;}
   return buf.buffer;
 }
 
