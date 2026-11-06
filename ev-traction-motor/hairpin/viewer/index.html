@@ -538,7 +538,9 @@ for(const id of ['wQ','wP','wL','wY','wA','wT'])$(id).addEventListener('input',r
 
 /* ---------- desktop app: live sliders around the Python generator ---------- */
 const APP=window.HAIRPIN_APP;
-async function api(path,body){const r=await fetch(path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{}); return r.json();}
+async function api(path,body){let r;try{r=await fetch(path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});}catch(_){throw new Error('The app\'s local server did not answer. Close the app and start it again with run.bat.');}let j;try{j=await r.json();}catch(_){throw new Error(`The app's local server sent no reply (HTTP ${r.status}).`);}if(!r.ok)throw new Error(j.error||`HTTP ${r.status}`);return j;}
+// a failed request must never leave the Design panel on 'building'
+window.addEventListener('unhandledrejection',e=>{if($('dState'))setState('error',String((e.reason&&e.reason.message)||e.reason));});
 async function poll(id,onlog){for(;;){const j=await api('api/job/'+id); onlog&&onlog(j); if(['done','error','skipped'].includes(j.state))return j; await new Promise(r=>setTimeout(r,400));}}
 function setState(kind,text){const st=$('dState'); st.textContent=kind; st.className='state'+(kind==='busy'||kind==='building'||kind==='checking'?' busy':kind==='ok'||kind==='ready'?'':' bad'); $('dMsg').textContent=text;}
 async function initApp(){
