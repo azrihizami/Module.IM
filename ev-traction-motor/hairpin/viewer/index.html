@@ -486,7 +486,7 @@ $('trGo').onclick=()=>{
   ui.trace={ph:code,lit:new Set(),cur:-1};
   const bars=V.parts.filter(e=>e.key==='bus'&&e.p.phase===code).map(e=>e.mesh.userData.k);
   const zb=V.parts.some(e=>e.p.conds&&e.p.conds.some(c=>c[0]===0));
-  let k=0; const fmt=c=>`slot ${c[0]+(zb?1:0)} L${c[1]+(zb?1:0)}`;
+  let k=0; const fmt=c=>`slot ${c[0]+(zb?1:0)} L${c[1]}`;
   trTimer=setInterval(()=>{
     if(k>=seq.length){ui.trace.cur=-1; bars.forEach(b=>ui.trace.lit.add(b)); styleAll(); $('trInfo').textContent=`Phase ${ph}: ${seq.length} hairpins in series, then the terminal bars.`; clearInterval(trTimer); return;}
     const idx=seq[k]; ui.trace.lit.add(idx); ui.trace.cur=idx; const p=V.parts[idx].p;
@@ -508,7 +508,7 @@ renderer.domElement.addEventListener('pointerup',e=>{
   const pk=$('pick'); if(!hits.length){pk.hidden=true;return;}
   const p=V.parts[hits[0].object.userData.k].p;
   let s=p.name.replace(/_/g,' '); if(p.phase&&p.phase!=='N')s+=` · phase ${PNAME[p.phase]}`;
-  if(p.conds&&p.conds.length&&p.group.startsWith('phase_')){const zb=true; s+=` · slots ${p.conds.map(c=>`${c[0]+1}/L${c[1]+1}`).join(' – ')}`;}
+  if(p.conds&&p.conds.length&&p.group.startsWith('phase_')){const zb=true; s+=` · slots ${p.conds.map(c=>`${c[0]+1}/L${c[1]}`).join(' – ')}`;}
   pk.textContent=s; pk.hidden=false;
 });
 
