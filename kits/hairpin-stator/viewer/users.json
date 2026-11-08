@@ -1,0 +1,28 @@
+{
+ "format": "motoreka-course-users",
+ "version": 1,
+ "course": "hairpin-stator-kit",
+ "iter": 250000,
+ "users": [
+  {
+   "id": "4aab4129bd2e7903f4f4ed78614db043",
+   "role": "admin",
+   "s": "qLrfhu8lCwMtX8X/sYDHaA==",
+   "w": "K3c6Mh9Yj6a+7waa:/lL63vJ6Me1RsBunNZg4j93OqPHAcmar9u1nGinst2HXbyoRfJnzjvggkkLzV5gg",
+   "k": "UnEpLWrGe+1bf7Q3:JhUqKO5ocbaGikP8XmFmS65bHlA9S0M5XVOvpGgNHQEfE1gCe6eIaOhMfIi5njxu",
+   "n": "fz/NRTJHw3G19sdc:mSse5z3ZRMhqGwtLhCqnLTlebEsH1K9yEgFY",
+   "a": "KZLNjZ2t49c+Rmnx:kHek1RSCGuDUD6y9DrFhRnlmVxVbghUgJ7uT4MxlUoGBi2VkS1SvLizs/DtdOcm/",
+   "r": "RerW4aeYqa4k3OkB:M+sCjjoCbBAHLEQfQtkvJ2K/Bx6ISmJd5F8MjhPDIWH3jas1EIawP8/Bie1E6utHo4EkpPpjFrQ/TE97lNZPj0ZzYVqaDZx4GzBEZNcY7FoeNYfpbm5vTDnKTz2oF3PLH7BrRtsgYTM6sEGz3y9LE4ykZh7V0QPMwNzq7341cgzJcaO4/4Ryg+dAeQ=="
+  },
+  {
+   "id": "b7faee2ea09f497ebbc666e5337b7dfd",
+   "role": "user",
+   "s": "Ps85ObrvjySj4goy7yyRCQ==",
+   "w": "3cCN4cb2U0WhvdJQ:TezslME9r9fYOSTZ7aa/DHBNtrhqwketWJGfmYPFUOU7AT8odFBLgqU0P8l6myIH",
+   "k": "BZ1v4VZqglBEaHxe:pxfiebMxgn3T3EK5+LmoM059lyvWaTJFHZxiB0WLifV5Er3D61WT9QOklPR1fIY8",
+   "n": "8mYDrgPt1fZHVid1:/SLtucb4U6uS4CcoW2gL6BNuCGjHMiQUyPK85j3gEA8=",
+   "r": "HkyktAHpUNsmHrFv:kxn3gbCDWGim9Ty4fB5XeblnVk58ICcfnB3Ask3DrGegIJDRhP0ACDSJwvUXXqGfDf77D5Oy/h0CwbBQrle6w3oMPRB1D3smdj8CcB6dkOpAJWjqrmoDqm2t6iKGcTCe7cXeyILzI0S7uVKOzW2w4CiuANaOJtPIPv97ema+MIGGKrVPtFAxx6KxBqudpGyYu+/vyelGx409eRg="
+  }
+ ],
+ "updated": "2026-11-08T13:26:02.121Z"
+}
