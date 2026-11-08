@@ -508,7 +508,8 @@ $('load').remove();
 resize();
 buildKit('full');
 // deep link: #step=12 or #step=12h (the how-to before step 12)
-function fromHash(){ const m = /step=([0-9]+h?)/.exec(location.hash); if (!m) return;
+function fromHash(){ if (/kit=test/.test(location.hash) && kitKey !== 'test' && DATA.kits.test) buildKit('test');
+  const m = /step=([0-9]+[hl]?)/.exec(location.hash); if (!m) return;
   const j = K.steps.findIndex(s => (s.id || s.n) === m[1]); if (j >= 0) goStep(j); }
 fromHash(); addEventListener('hashchange', fromHash);
 requestAnimationFrame(loop);
