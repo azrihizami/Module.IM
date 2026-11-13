@@ -1,0 +1,746 @@
+WEBVTT
+
+1
+00:00:01.560 --> 00:00:03.216
+Insert, twist, weld.
+
+2
+00:00:03.216 --> 00:00:06.276
+Lecture four of the Manufacturing module.
+
+3
+00:00:07.288 --> 00:00:09.590
+Lecture three made our 96 hairpins.
+
+4
+00:00:09.590 --> 00:00:11.976
+Now they become one winding:
+
+5
+00:00:11.976 --> 00:00:17.940
+into the slots, legs twisted, and the ends welded in pairs.
+
+6
+00:00:17.940 --> 00:00:23.044
+Our example is still the EV-size stator, 48 slots and 8 poles.
+
+7
+00:00:23.704 --> 00:00:24.504
+The steps:
+
+8
+00:00:24.288 --> 00:00:30.058
+line the slots, set the pins in a nest, insert them, widen and twist
+
+9
+00:00:30.058 --> 00:00:34.084
+the legs, weld the ends, then check, connect and coat.
+
+10
+00:00:34.872 --> 00:00:40.500
+The angles, heights and weld positions come from our Hairpin Motor Designer, with the
+
+11
+00:00:40.500 --> 00:00:42.180
+formed crowns of lecture three.
+
+12
+00:00:43.253 --> 00:00:44.327
+Chapter one.
+
+13
+00:00:44.327 --> 00:00:45.793
+Liners and the nest.
+
+14
+00:00:47.505 --> 00:00:53.243
+First every slot gets its liner, folded insulation between copper and steel:
+
+15
+00:00:53.243 --> 00:00:59.700
+often a laminate of aramid paper and polyimide film, sold as Nomex and Kapton,
+
+16
+00:00:59.700 --> 00:01:01.853
+0.13 to 0.2 millimetres thick.
+
+17
+00:01:02.833 --> 00:01:08.428
+A machine creases the paper, folds it, pushes it into the slot and cuts
+
+18
+00:01:08.428 --> 00:01:12.479
+it, leaving a few millimetres standing out at each end.
+
+19
+00:01:12.479 --> 00:01:15.096
+One maker quotes 1.3 seconds a slot:
+
+20
+00:01:15.096 --> 00:01:17.245
+about a minute for our 48 slots.
+
+21
+00:01:18.225 --> 00:01:22.854
+Meanwhile the pins are set into a nest, a ring of grooves wider than
+
+22
+00:01:22.854 --> 00:01:23.654
+the slots.
+
+23
+00:01:23.404 --> 00:01:25.408
+The nest can be loose;
+
+24
+00:01:25.408 --> 00:01:26.574
+the slots cannot.
+
+25
+00:01:26.574 --> 00:01:31.798
+So each pin finds its place in the nest, and the full set, the
+
+26
+00:01:31.798 --> 00:01:33.757
+basket, goes into the core together.
+
+27
+00:01:34.833 --> 00:01:38.738
+The 48 pins of layers one and two form a ring.
+
+28
+00:01:38.738 --> 00:01:43.372
+Most span five slots and overlap like roof tiles, so the last ones must
+
+29
+00:01:43.372 --> 00:01:44.575
+go under the first.
+
+30
+00:01:44.575 --> 00:01:50.401
+One patent parks the first few on a spacer, sets the rest, slips the
+
+31
+00:01:50.401 --> 00:01:53.884
+last few under, then pushes the first ones home:
+
+32
+00:01:53.884 --> 00:01:56.797
+on our ring, five, 38 and five.
+
+33
+00:01:57.777 --> 00:02:02.209
+Then the second ring, layers three and four, the same way.
+
+34
+00:02:02.209 --> 00:02:05.829
+In one study, automated setting took one to two seconds a pin;
+
+35
+00:02:05.829 --> 00:02:07.773
+by hand, about ten.
+
+36
+00:02:08.868 --> 00:02:09.979
+Chapter two.
+
+37
+00:02:09.979 --> 00:02:11.184
+Insert and widen.
+
+38
+00:02:12.672 --> 00:02:17.552
+A gripper lifts the basket and lines up all 192 legs over the 48
+
+39
+00:02:17.552 --> 00:02:20.396
+lined slots, four legs to a slot.
+
+40
+00:02:21.184 --> 00:02:26.526
+In our stator a 3.6-millimetre bar enters its lined slot with 0.15 millimetres to
+
+41
+00:02:26.526 --> 00:02:27.861
+spare on each side.
+
+42
+00:02:27.861 --> 00:02:33.727
+The chamfered leg ends find the slot, and guides hold the liner against the
+
+43
+00:02:33.727 --> 00:02:37.644
+walls, so no leg can catch it and drag it in.
+
+44
+00:02:38.656 --> 00:02:43.809
+The legs go in part way, then a press seats the whole basket, and
+
+45
+00:02:43.809 --> 00:02:47.653
+a stop sets how far the legs stand out.
+
+46
+00:02:47.653 --> 00:02:50.116
+Each leg travels about 190 millimetres:
+
+47
+00:02:50.116 --> 00:02:53.932
+through the 120-millimetre core, and some 70 out the other side.
+
+48
+00:02:55.008 --> 00:02:56.120
+Rejects at this step:
+
+49
+00:02:56.120 --> 00:03:02.332
+a bent crown, scratched enamel, a leg standing too high or too low, or
+
+50
+00:03:02.332 --> 00:03:04.556
+a liner torn or pushed out of place.
+
+51
+00:03:05.536 --> 00:03:09.913
+On the weld side the legs now stand 61 to 76 millimetres out of
+
+52
+00:03:09.913 --> 00:03:14.144
+the core, the even layers taller, as they have further to twist.
+
+53
+00:03:14.144 --> 00:03:19.521
+Then ring tools widen them, moving each layer out a little to make room
+
+54
+00:03:19.521 --> 00:03:20.684
+for the twist tool.
+
+55
+00:03:25.792 --> 00:03:27.023
+Chapter three.
+
+56
+00:03:27.023 --> 00:03:27.823
+Twist.
+
+57
+00:03:29.084 --> 00:03:32.846
+The twist tool is a set of rings, one per layer.
+
+58
+00:03:32.846 --> 00:03:37.795
+Each ring has a pocket at every slot, and each pocket takes one leg
+
+59
+00:03:37.795 --> 00:03:38.595
+tip.
+
+60
+00:03:38.084 --> 00:03:39.528
+Our stator needs four rings.
+
+61
+00:03:40.188 --> 00:03:44.719
+Lecture two showed that with a five-slot crown, the weld side must span seven
+
+62
+00:03:44.719 --> 00:03:45.519
+slots.
+
+63
+00:03:45.019 --> 00:03:46.824
+That is the weld pitch.
+
+64
+00:03:46.824 --> 00:03:52.387
+Seven does not halve, so the odd layers turn three slots one way, and
+
+65
+00:03:52.387 --> 00:03:54.331
+the even layers four the other.
+
+66
+00:03:54.331 --> 00:03:56.520
+Three plus four is seven:
+
+67
+00:03:56.520 --> 00:03:58.696
+each leg meets its partner.
+
+68
+00:03:59.324 --> 00:04:04.580
+On our 48-slot stator that is 22.5 degrees for the odd layers and 30
+
+69
+00:04:04.580 --> 00:04:05.960
+for the even ones.
+
+70
+00:04:06.780 --> 00:04:09.533
+Opposite turns have a second benefit.
+
+71
+00:04:09.533 --> 00:04:13.251
+One thesis puts each ring at hundreds to thousands of newton-metres.
+
+72
+00:04:13.251 --> 00:04:16.457
+Turned opposite ways, their torques mostly cancel;
+
+73
+00:04:16.457 --> 00:04:22.222
+one layer alone would push its whole torque through the core and its clamp,
+
+74
+00:04:22.222 --> 00:04:23.912
+which can damage the laminations.
+
+75
+00:04:24.828 --> 00:04:30.603
+As the tip swings round, the leg leans over, so the tip must also
+
+76
+00:04:30.603 --> 00:04:31.403
+come down.
+
+77
+00:04:31.246 --> 00:04:36.329
+In our stator the drop is 12 to 27 millimetres, less for the three-slot
+
+78
+00:04:36.329 --> 00:04:37.535
+layers.
+
+79
+00:04:37.535 --> 00:04:40.637
+This drop against angle is the twist curve;
+
+80
+00:04:40.637 --> 00:04:43.208
+machines follow it with cams or servo axes.
+
+81
+00:04:44.092 --> 00:04:45.343
+Each leg bends twice:
+
+82
+00:04:45.343 --> 00:04:50.676
+at its base, where it leans over, and at the tip, which the pocket
+
+83
+00:04:50.676 --> 00:04:52.185
+holds upright.
+
+84
+00:04:52.185 --> 00:04:56.838
+We gave the base bend the gentle radius of the crown shoulders, an inner
+
+85
+00:04:56.838 --> 00:04:58.088
+radius of 7.2 millimetres.
+
+86
+00:04:58.780 --> 00:05:03.326
+Then springback again, calculated as in lecture three.
+
+87
+00:05:03.326 --> 00:05:09.842
+The layer-one leg springs back about 0.9 degrees and its layer-two partner 1.1, so
+
+88
+00:05:09.842 --> 00:05:12.777
+their tips move 0.7 and 1.1 millimetres.
+
+89
+00:05:12.777 --> 00:05:19.423
+Partners twist opposite ways, so they spring apart sideways, along the row:
+
+90
+00:05:19.423 --> 00:05:20.680
+about 1.8 millimetres.
+
+91
+00:05:21.244 --> 00:05:27.049
+So the rings turn a little too far, then back off slightly before letting
+
+92
+00:05:27.049 --> 00:05:27.849
+go.
+
+93
+00:05:27.376 --> 00:05:30.429
+One research group's model overtwists by one degree:
+
+94
+00:05:30.429 --> 00:05:32.392
+about 1.3 millimetres at our tips.
+
+95
+00:05:33.244 --> 00:05:38.218
+After the twist our tips stand 49 millimetres above the core.
+
+96
+00:05:38.218 --> 00:05:43.072
+The gentle bends cost 3.8 millimetres of height against sharp drawing corners.
+
+97
+00:05:48.011 --> 00:05:49.147
+Chapter four.
+
+98
+00:05:49.147 --> 00:05:49.975
+Laser welding.
+
+99
+00:05:51.463 --> 00:05:53.095
+Our stator has 90 welds.
+
+100
+00:05:53.095 --> 00:05:58.715
+42 pairs in the inner row, 42 in the outer, and six switched welds
+
+101
+00:05:58.715 --> 00:06:02.407
+that link the two rows, as in lecture two.
+
+102
+00:06:02.407 --> 00:06:05.523
+The same core with eight layers would need 186.
+
+103
+00:06:06.439 --> 00:06:08.484
+First each pair is clamped together.
+
+104
+00:06:08.484 --> 00:06:15.382
+Before clamping, the partners may stand a few tenths of a millimetre apart, face
+
+105
+00:06:15.382 --> 00:06:16.182
+to face.
+
+106
+00:06:16.063 --> 00:06:21.173
+In a 2023 study by Omlor and colleagues, the weld tolerated gaps only up
+
+107
+00:06:21.173 --> 00:06:22.195
+to 0.6 millimetres.
+
+108
+00:06:22.983 --> 00:06:26.584
+Some machine makers also cut the tips to one height.
+
+109
+00:06:26.584 --> 00:06:31.380
+That levels the scatter from twisting, though flat cut ends reflect more laser light
+
+110
+00:06:31.380 --> 00:06:32.851
+than the chamfered ones.
+
+111
+00:06:33.639 --> 00:06:35.361
+Why a laser?
+
+112
+00:06:35.361 --> 00:06:40.208
+Copper carries heat away fast, so the energy must come in a short, intense
+
+113
+00:06:40.208 --> 00:06:41.286
+burst.
+
+114
+00:06:41.286 --> 00:06:46.218
+In the Omlor study the laser put about four and a half kilowatts into
+
+115
+00:06:46.218 --> 00:06:47.827
+a spot 0.17 millimetres wide.
+
+116
+00:06:48.871 --> 00:06:53.437
+Solid copper reflects most of an infrared beam and absorbs about five percent.
+
+117
+00:06:53.437 --> 00:06:59.828
+Once it melts, a keyhole opens, a narrow channel of vapour, and the copper
+
+118
+00:06:59.828 --> 00:07:01.128
+absorbs about 70 percent.
+
+119
+00:07:01.128 --> 00:07:07.679
+Green light is absorbed better, but in one benchmark it welded four times slower,
+
+120
+00:07:07.679 --> 00:07:08.979
+though with fewer pores.
+
+121
+00:07:09.863 --> 00:07:16.082
+A scanner, a pair of fast mirrors, steers the beam from pair to pair.
+
+122
+00:07:16.082 --> 00:07:21.320
+A camera finds each pair, then the beam runs small loops across both tips,
+
+123
+00:07:21.320 --> 00:07:23.795
+an ellipse about 2.4 by 1.2 millimetres.
+
+124
+00:07:24.615 --> 00:07:28.079
+In the Omlor study a weld took about 110 milliseconds:
+
+125
+00:07:28.079 --> 00:07:33.831
+for our 90 welds, ten seconds of laser time, a little more for our
+
+126
+00:07:33.831 --> 00:07:35.295
+thicker bar.
+
+127
+00:07:35.295 --> 00:07:38.515
+One machine maker allows 50 to 200 milliseconds a pair.
+
+128
+00:07:39.559 --> 00:07:41.097
+What goes wrong?
+
+129
+00:07:41.097 --> 00:07:41.897
+Spatter:
+
+130
+00:07:41.410 --> 00:07:46.611
+drops of molten copper thrown out, which can land on the enamel.
+
+131
+00:07:46.611 --> 00:07:47.674
+And pores:
+
+132
+00:07:47.674 --> 00:07:50.153
+gas trapped as the weld freezes.
+
+133
+00:07:50.153 --> 00:07:55.161
+The gas comes from enamel left on the copper, as lecture three warned, and
+
+134
+00:07:55.161 --> 00:07:57.043
+from oxygen in ordinary tough-pitch copper.
+
+135
+00:07:58.023 --> 00:07:58.823
+Two fixes.
+
+136
+00:07:58.694 --> 00:08:03.830
+In the Omlor study, oxygen-free copper cut the pore volume by 40 percent.
+
+137
+00:08:03.830 --> 00:08:09.303
+A ring of light around the main spot keeps the keyhole open.
+
+138
+00:08:09.303 --> 00:08:14.422
+On oxygen-free copper it cut pores by another two thirds, and the weld tolerated
+
+139
+00:08:14.422 --> 00:08:15.763
+gaps of 0.8 millimetres.
+
+140
+00:08:16.647 --> 00:08:19.182
+How big must a weld be?
+
+141
+00:08:19.182 --> 00:08:23.280
+The joint must have at least the area of the conductor.
+
+142
+00:08:23.280 --> 00:08:28.271
+Our copper is about 14 square millimetres and the joint 3.4 millimetres wide, so
+
+143
+00:08:28.271 --> 00:08:30.771
+the weld must reach about 4.2 millimetres deep.
+
+144
+00:08:35.830 --> 00:08:37.130
+Chapter five.
+
+145
+00:08:37.130 --> 00:08:38.978
+Check, connect, coat.
+
+146
+00:08:40.466 --> 00:08:44.547
+One bad weld can scrap the stator, so every weld is checked.
+
+147
+00:08:44.547 --> 00:08:48.072
+During welding, sensors watch the light from the melt.
+
+148
+00:08:48.072 --> 00:08:53.727
+After it, a 3D sensor measures the bead, the solid drop of copper on
+
+149
+00:08:53.727 --> 00:08:54.527
+each pair.
+
+150
+00:08:55.154 --> 00:08:57.063
+Resistance is the electrical check.
+
+151
+00:08:57.063 --> 00:09:00.870
+One study measured good joints at about three micro-ohms;
+
+152
+00:09:00.870 --> 00:09:04.126
+a one-millimetre gap pushed them above eight.
+
+153
+00:09:04.850 --> 00:09:06.217
+Then the leads.
+
+154
+00:09:06.217 --> 00:09:10.951
+Our stator has two parallel paths per phase, so twelve ends have no partner:
+
+155
+00:09:10.951 --> 00:09:16.494
+six join the three phase leads, and six the neutral ring, which joins the
+
+156
+00:09:16.494 --> 00:09:18.501
+phases in a star.
+
+157
+00:09:18.501 --> 00:09:19.739
+More laser welds:
+
+158
+00:09:19.739 --> 00:09:21.022
+102 joints in all.
+
+159
+00:09:21.714 --> 00:09:23.974
+Last, the beads are coated.
+
+160
+00:09:23.974 --> 00:09:29.162
+They are bare, live copper, 6 to 7.5 millimetres from the next pair, which
+
+161
+00:09:29.162 --> 00:09:30.477
+may be another phase.
+
+162
+00:09:30.477 --> 00:09:36.100
+So the stator is heated and its beads dipped into epoxy powder, which melts
+
+163
+00:09:36.100 --> 00:09:38.043
+onto the hot copper.
+
+164
+00:09:38.043 --> 00:09:41.246
+Some lines coat only after impregnation, in lecture five.
+
+165
+00:09:42.465 --> 00:09:43.265
+Summary.
+
+166
+00:09:42.900 --> 00:09:44.045
+Four points.
+
+167
+00:09:45.117 --> 00:09:45.917
+One.
+
+168
+00:09:45.403 --> 00:09:50.519
+The pins are set in a loose nest, the last under the first, then
+
+169
+00:09:50.519 --> 00:09:52.233
+pushed into the lined slots together.
+
+170
+00:09:53.053 --> 00:09:53.880
+Two.
+
+171
+00:09:53.880 --> 00:09:59.039
+Odd and even layers twist opposite ways, three and four slots, so each leg
+
+172
+00:09:59.039 --> 00:10:01.897
+meets its partner and the torques mostly cancel.
+
+173
+00:10:02.685 --> 00:10:03.485
+Three.
+
+174
+00:10:03.440 --> 00:10:09.322
+Springback shifts partners sideways, so the rings overtwist, and each pair is clamped before
+
+175
+00:10:09.322 --> 00:10:10.122
+welding.
+
+176
+00:10:10.525 --> 00:10:11.325
+Four.
+
+177
+00:10:11.250 --> 00:10:15.313
+A laser welds each pair in about a tenth of a second.
+
+178
+00:10:15.313 --> 00:10:20.038
+Residue and oxygen make pores, and one bad weld can scrap a stator, so
+
+179
+00:10:20.038 --> 00:10:21.193
+every weld is checked.
+
+180
+00:10:22.429 --> 00:10:25.262
+That is the end of lecture four.
+
+181
+00:10:25.262 --> 00:10:26.580
+Next, lecture five:
+
+182
+00:10:26.580 --> 00:10:30.614
+impregnate and test, how the winding is sealed and proven.
+
+183
+00:10:30.614 --> 00:10:35.684
+Until then, insert, twist and weld our stator step by step in the free
+
+184
+00:10:35.684 --> 00:10:36.484
+Viewer.
+
+185
+00:10:36.797 --> 00:10:41.565
+Motoreka is a product of UMPSA, developed at EMDLab.
+
+186
+00:10:41.565 --> 00:10:43.721
+motoreka.my.
+
