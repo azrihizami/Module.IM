@@ -195,9 +195,9 @@ const GROUPS = [['core','Core'],['magnet','Magnets'],['resin','Resin'],['shaft',
 const STAGES = {
   ev: [
     {id:'stack', n:'04', t:'Stack the core segments', x:'Laminations with the V pockets, bridges and ribs: one packet per skew step'},
-    {id:'insert', n:'05', t:'Insert the magnets', x:'Coated, unmagnetised blocks pushed axially into the pockets, two pieces per pocket per packet'},
-    {id:'fix', n:'06', t:'Fix the magnets', x:'Resin fills the clearance and the end barriers, then cures'},
-    {id:'skew', n:'07', t:'Stack on the shaft with a step skew', x:'Each packet turned by one skew step as it goes onto the shaft'},
+    {id:'insert', n:'05', t:'Insert the magnets', x:'Each packet filled on its own: once skewed, the pockets of neighbouring packets no longer line up'},
+    {id:'fix', n:'06', t:'Fix the magnets', x:'Resin fills the clearance and the end barriers of each packet, then cures'},
+    {id:'skew', n:'07', t:'Stack on the shaft with a step skew', x:'The filled packets go onto the shaft, each turned by one skew step'},
     {id:'plates', n:'08', t:'Fit the end plates', x:'Non-magnetic plates close the stack and carry the balance mass'},
     {id:'balance', n:'09', t:'Balance', x:'Material drilled from the end plates until the unbalance is within the grade'},
     {id:'magnetise', n:'10', t:'Magnetise', x:'One pulse through a fixture around the rotor magnetises every pole'},
@@ -420,7 +420,7 @@ function applyTime(){
   if (!R) return;
   const N = R.stages.length, t = ui.t == null ? N : ui.t;
   const sStack = idx('stack'), sIns = idx('insert'), sFix = idx('fix'), sSkew = idx('skew'), sPl = idx('plates'), sBal = idx('balance'), sMag = idx('magnetise'), sInto = idx('into');
-  const nSeg = R.segs.length, G = Math.max(14, P.L * 0.12);
+  const nSeg = R.segs.length, segL = P.L / nSeg, G = nSeg > 1 ? segL * 1.25 + 20 : 0;   // packets apart: each is a sub-assembly until the shaft step
   const kClose = ease(clamp01((t - sSkew) * 2 - 1));          // second half of the shaft step: packets close up and take their skew
   const magOn = ease(clamp01((t - sMag - 0.35) / 0.4));       // magnet colour after the pulse
   for (const s of R.segs){
@@ -431,9 +431,9 @@ function applyTime(){
     s.g.position.set((i - (nSeg-1)/2) * G * (1 - kClose), 0, P.R * 2.4 * (1 - drop));
     s.g.rotation.x = s.skew * kClose;
     for (const e of s.mags){
-      const d = ease(clamp01((t - sIns) * 1.4 - (e.pole / P.p) * 0.35 - (e.piece % P.piecesPerStep) * 0.08));
+      const d = ease(clamp01((t - sIns) * 2.2 - e.seg * 0.3 - (e.pole / P.p) * 0.25 - (e.piece % P.piecesPerStep) * 0.08));   // packet by packet
       e.mesh.visible = ui.show.has('magnet') && t > sIns && d > 0.001;
-      e.mesh.position.x = (e.mesh.userData.x ??= e.mesh.position.x) - (P.L * 0.9 + 40) * (1 - d);
+      e.mesh.position.x = (e.mesh.userData.x ??= e.mesh.position.x) - (segL + 24) * (1 - d);   // from the packet's own end, through no other packet
       e.mag = magOn;
     }
     const op = ease(clamp01((t - sFix) * 1.3));
