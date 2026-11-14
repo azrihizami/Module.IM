@@ -64,20 +64,20 @@
 
   // ---------- signed in
   function chip(text, cls) { return el("span", { class: "chip" + (cls ? " " + cls : "") }, text); }
-  function renderCourse(d) {
-    var list = $("#acc-lectures"); list.innerHTML = "";
+  function renderCourse(d, root, C) {
+    var list = root.querySelector(".acc-lectures"); list.innerHTML = "";
     var passed = 0, out = 0;
     (d.lectures || []).forEach(function (l) {
       if (l.open) out++; if (l.passed) passed++;
       var li = el("li", { class: "lec" + (l.open ? "" : " coming") });
-      li.appendChild(el("span", { class: "sno" }, "M" + l.n));
+      li.appendChild(el("span", { class: "sno" }, (C.prefix || "") + l.n));
       var mid = el("span"); mid.appendChild(el("b", {}, l.title));
       var line = !l.open ? "Not out yet" : l.passed ? l.right + " of " + l.questions + " right" :
                  l.answered === l.questions ? l.right + " of " + l.questions + " right: " + l.pass_min + " needed" :
                  l.answered ? l.answered + " of " + l.questions + " questions answered" : "Not started";
       mid.appendChild(el("span", {}, line));
-      if (l.open && A.lectures && A.lectures[l.id]) {
-        var go = el("a", { href: A.lectures[l.id] }, l.passed ? "Watch again" : (l.answered ? "Continue" : "Watch"));
+      if (l.open && C.lectures && C.lectures[l.id]) {
+        var go = el("a", { href: C.lectures[l.id] }, l.passed ? "Watch again" : (l.answered ? "Continue" : "Watch"));
         mid.appendChild(go);
       }
       li.appendChild(mid);
@@ -85,8 +85,8 @@
       list.appendChild(li);
     });
     var total = (d.course && d.course.lectures_total) || 6;
-    $("#acc-count").textContent = passed + " of " + total + " lectures passed";
-    var c = $("#acc-cert"); c.innerHTML = "";
+    root.querySelector(".acc-count").textContent = passed + " of " + total + " lectures passed";
+    var c = root.querySelector(".acc-cert"); c.innerHTML = "";
     if (d.certificate) {
       c.appendChild(el("p", {}, "Your certificate was issued on " + new Date(d.certificate.issued_at).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) + "."));
       c.appendChild(el("a", { class: "btn copper", href: A.certificate + "?c=" + d.certificate.code }, "View your certificate"));
@@ -95,13 +95,13 @@
       var b = el("button", { type: "button", class: "btn copper" }, "Get your certificate");
       b.addEventListener("click", function () {
         b.disabled = true;
-        MK.claim(A.course).then(function (r) { location.href = A.certificate + "?c=" + r.code; })
+        MK.claim(C.id).then(function (r) { location.href = A.certificate + "?c=" + r.code; })
           .catch(function (er) { b.disabled = false; c.appendChild(el("p", { class: "enq-msg err" }, er.message)); });
       });
       c.appendChild(b);
     } else {
       c.appendChild(el("p", {}, out < total
-        ? "Pass each lecture (2 of its 3 questions right) for the certificate. It opens when all " + total + " lectures are out; " + out + " are out now."
+        ? "Pass each lecture (2 of its 3 questions right) for the certificate. It opens when all " + total + " lectures are out; " + out + (out === 1 ? " is" : " are") + " out now."
         : "Pass each lecture (2 of its 3 questions right) for the certificate."));
     }
   }
@@ -112,7 +112,11 @@
     $("#acc-email").textContent = (MK.state.user && MK.state.user.email) || "";
     var nb = $("#acc-next"); nb.hidden = !next; if (next) nb.querySelector("a").href = next;
     show("#acc-in");
-    MK.course(A.course).then(renderCourse).catch(function (er) { $("#acc-lectures").textContent = er.message; });
+    (A.courses || []).forEach(function (C) {
+      var root = document.querySelector('.acc-course[data-course="' + C.id + '"]'); if (!root) return;
+      MK.course(C.id).then(function (d) { renderCourse(d, root, C); })
+        .catch(function (er) { root.querySelector(".acc-lectures").textContent = er.message; });
+    });
   }
   $("#f-profile").addEventListener("submit", function (e) {
     e.preventDefault();
