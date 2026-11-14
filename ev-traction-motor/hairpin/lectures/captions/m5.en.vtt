@@ -1,0 +1,850 @@
+WEBVTT
+
+1
+00:00:01.560 --> 00:00:03.480
+Impregnate and test.
+
+2
+00:00:03.480 --> 00:00:05.636
+Lecture five of the Manufacturing module.
+
+3
+00:00:06.552 --> 00:00:13.560
+Lecture four left our EV-size stator, 48 slots and 8 poles, welded and coated:
+
+4
+00:00:13.560 --> 00:00:15.736
+102 joints.
+
+5
+00:00:15.736 --> 00:00:19.812
+Now it is sealed in resin, and then it must prove it works.
+
+6
+00:00:20.568 --> 00:00:21.912
+The steps:
+
+7
+00:00:21.912 --> 00:00:25.464
+heat, trickle, gel and cure.
+
+8
+00:00:25.464 --> 00:00:26.776
+Then the tests:
+
+9
+00:00:26.776 --> 00:00:34.296
+resistance, insulation resistance, the high-voltage test called hipot, surge and partial discharge.
+
+10
+00:00:34.296 --> 00:00:36.772
+And a decision on any stator that fails.
+
+11
+00:00:37.784 --> 00:00:44.194
+The resistances, voltages and resin volumes here come from our Hairpin Motor Designer, run
+
+12
+00:00:44.194 --> 00:00:45.188
+on that stator.
+
+13
+00:00:46.388 --> 00:00:47.412
+Chapter one.
+
+14
+00:00:47.412 --> 00:00:48.448
+Why resin.
+
+15
+00:00:49.744 --> 00:00:51.600
+Look inside one slot.
+
+16
+00:00:51.600 --> 00:00:58.928
+Our 3.6-millimetre bars leave 0.15 millimetres on each side, between bar and liner.
+
+17
+00:00:58.928 --> 00:01:02.940
+With the gaps between the layers, 12 percent of the slot is still air.
+
+18
+00:01:03.792 --> 00:01:06.928
+Resin fills that air, for three reasons.
+
+19
+00:01:06.928 --> 00:01:11.613
+First, it glues the pins to each other and to the liner, so vibration
+
+20
+00:01:11.613 --> 00:01:14.364
+does not rub the enamel or work on the welds.
+
+21
+00:01:14.928 --> 00:01:16.816
+Second, heat.
+
+22
+00:01:16.816 --> 00:01:19.728
+The copper's heat must cross into the steel.
+
+23
+00:01:19.728 --> 00:01:24.048
+Air conducts about 0.026 watts per metre-kelvin;
+
+24
+00:01:24.048 --> 00:01:28.252
+an impregnating resin about 0.21, eight times more.
+
+25
+00:01:29.296 --> 00:01:34.320
+Between copper and steel lie the enamel, that gap and the liner.
+
+26
+00:01:34.320 --> 00:01:39.152
+In our slot the air gap holds two thirds of their thermal resistance.
+
+27
+00:01:39.152 --> 00:01:43.440
+Fill it with resin and the three resist less than half as much:
+
+28
+00:01:43.440 --> 00:01:48.592
+at 10 amps per square millimetre, the temperature drop falls from 33 kelvin to
+
+29
+00:01:48.592 --> 00:01:51.228
+13, in our one-dimensional estimate.
+
+30
+00:01:51.984 --> 00:01:53.872
+Third, protection:
+
+31
+00:01:53.872 --> 00:01:59.180
+resin keeps out moisture and oil, and removes the air where small sparks, partial
+
+32
+00:01:59.180 --> 00:02:00.476
+discharges, can start.
+
+33
+00:02:01.716 --> 00:02:02.932
+Chapter two.
+
+34
+00:02:02.932 --> 00:02:04.000
+Trickle and cure.
+
+35
+00:02:05.776 --> 00:02:12.080
+The resins are polyesterimides, polyesters or epoxies that harden with heat.
+
+36
+00:02:12.080 --> 00:02:16.688
+Viscosity, the resistance to flow, decides the process:
+
+37
+00:02:16.688 --> 00:02:22.335
+one resin sold for EV motors is like honey at room temperature, about 2,200
+
+38
+00:02:22.335 --> 00:02:27.856
+millipascal-seconds, and like oil at 80 degrees, about 100.
+
+39
+00:02:27.856 --> 00:02:29.788
+So the stator is heated first.
+
+40
+00:02:30.768 --> 00:02:34.428
+Dipping the stator in a tank wastes resin and leaves it where it is
+
+41
+00:02:34.428 --> 00:02:36.080
+not wanted;
+
+42
+00:02:36.080 --> 00:02:41.296
+vacuum-pressure impregnation, VPI, suits large machines.
+
+43
+00:02:41.296 --> 00:02:44.956
+For car motors, one study calls trickling the usual method.
+
+44
+00:02:46.096 --> 00:02:47.312
+Trickling:
+
+45
+00:02:47.312 --> 00:02:52.406
+the hot stator turns slowly on a shaft, tilted a few degrees, while nozzles
+
+46
+00:02:52.406 --> 00:02:54.588
+drip resin onto both end windings.
+
+47
+00:02:55.280 --> 00:03:00.160
+Capillary action, the pull that draws liquid into a thin gap, carries it into
+
+48
+00:03:00.160 --> 00:03:01.776
+the slots.
+
+49
+00:03:01.776 --> 00:03:08.144
+On an eight-layer, 48-slot stator, one study timed 35 minutes to the far end;
+
+50
+00:03:08.144 --> 00:03:12.316
+simulated without capillary forces, no resin arrived in 45.
+
+51
+00:03:13.360 --> 00:03:18.113
+In our slot, resin fills the side gaps, the gaps between layers and the
+
+52
+00:03:18.113 --> 00:03:19.024
+corners:
+
+53
+00:03:19.024 --> 00:03:21.264
+11 square millimetres.
+
+54
+00:03:21.264 --> 00:03:28.686
+Over the 120-millimetre stack and 48 slots, that is 64 cubic centimetres, about 75
+
+55
+00:03:28.686 --> 00:03:30.128
+grams.
+
+56
+00:03:30.128 --> 00:03:33.180
+A film on the end windings could add half as much again.
+
+57
+00:03:34.224 --> 00:03:39.504
+Only as much is dripped as the winding takes, so the bore stays clean.
+
+58
+00:03:39.504 --> 00:03:42.012
+The stator is weighed before and after.
+
+59
+00:03:42.832 --> 00:03:47.523
+The resin gels, thickening to a jelly, while the stator keeps turning so none
+
+60
+00:03:47.523 --> 00:03:49.840
+runs out, then cures:
+
+61
+00:03:49.840 --> 00:03:54.768
+for that resin, 15 to 30 minutes at 130 degrees.
+
+62
+00:03:54.768 --> 00:03:57.052
+Some lines coat the weld heads only now.
+
+63
+00:04:02.175 --> 00:04:03.135
+Chapter three.
+
+64
+00:04:03.135 --> 00:04:03.935
+Resistance.
+
+65
+00:04:05.403 --> 00:04:09.946
+A four-wire meter drives about one amp through two of the stator's leads and
+
+66
+00:04:09.946 --> 00:04:14.822
+measures the voltage with a second pair of probes, so contact resistance does not
+
+67
+00:04:14.822 --> 00:04:15.622
+count.
+
+68
+00:04:16.155 --> 00:04:21.115
+Resistance is rho, the resistivity, times length over area.
+
+69
+00:04:21.115 --> 00:04:25.725
+For copper at 20 degrees, rho is one fifty-eighth of an ohm for one
+
+70
+00:04:25.725 --> 00:04:28.475
+metre of one square millimetre.
+
+71
+00:04:28.475 --> 00:04:34.587
+One path of our winding is 7.49 metres of 14.15 square millimetres:
+
+72
+00:04:34.587 --> 00:04:37.019
+9.12 milliohms.
+
+73
+00:04:37.019 --> 00:04:39.911
+Its 17 joints bring it to 9.17.
+
+74
+00:04:40.699 --> 00:04:43.483
+Each phase has two paths in parallel:
+
+75
+00:04:43.483 --> 00:04:45.915
+4.59 milliohms.
+
+76
+00:04:45.915 --> 00:04:50.189
+The star point is inside the stator, so the meter sees two phases in
+
+77
+00:04:50.189 --> 00:04:51.195
+series.
+
+78
+00:04:51.195 --> 00:04:52.923
+Between U and V:
+
+79
+00:04:52.923 --> 00:04:55.079
+9.17 milliohms again.
+
+80
+00:04:56.315 --> 00:05:00.347
+Copper's resistance rises about 0.4 percent per kelvin:
+
+81
+00:05:00.347 --> 00:05:05.115
+at 150 degrees our phase is 6.93 milliohms.
+
+82
+00:05:05.115 --> 00:05:09.671
+So the tester measures the temperature and corrects every reading to 20 degrees.
+
+83
+00:05:10.619 --> 00:05:15.683
+The three readings, U to V, V to W and W to U, must
+
+84
+00:05:15.683 --> 00:05:20.635
+agree with each other and the design, within a window the maker sets.
+
+85
+00:05:20.635 --> 00:05:23.067
+A missing weld opens one path:
+
+86
+00:05:23.067 --> 00:05:26.311
+that phase doubles, and two readings jump by half.
+
+87
+00:05:27.259 --> 00:05:29.595
+A poor weld is another story.
+
+88
+00:05:29.595 --> 00:05:34.907
+In lecture four, a gapped joint measured five micro-ohms more than a good one.
+
+89
+00:05:34.907 --> 00:05:39.373
+Shared with the parallel path, that lifts the U to V reading by 1.2
+
+90
+00:05:39.373 --> 00:05:45.887
+micro-ohms, 0.013 percent, as much as a temperature error of four hundredths of a
+
+91
+00:05:45.887 --> 00:05:47.099
+kelvin.
+
+92
+00:05:47.099 --> 00:05:48.859
+The meter could resolve it;
+
+93
+00:05:48.859 --> 00:05:50.779
+no temperature correction can.
+
+94
+00:05:50.779 --> 00:05:53.223
+So every weld was checked as it was made.
+
+95
+00:05:58.388 --> 00:05:59.476
+Chapter four.
+
+96
+00:05:59.476 --> 00:06:01.248
+Insulation under voltage.
+
+97
+00:06:02.576 --> 00:06:04.560
+Three boundaries must hold:
+
+98
+00:06:04.560 --> 00:06:07.932
+phase to core, phase to phase, and turn to turn.
+
+99
+00:06:08.944 --> 00:06:12.752
+First, what an 800-volt motor sees.
+
+100
+00:06:12.752 --> 00:06:17.296
+The 800 volts is the battery's DC voltage, the DC bus.
+
+101
+00:06:17.296 --> 00:06:20.176
+The inverter turns it into AC:
+
+102
+00:06:20.176 --> 00:06:26.631
+between two leads, the line voltage reaches at most about 566 volts r.m.s., and
+
+103
+00:06:26.631 --> 00:06:28.700
+its peaks touch the full 800.
+
+104
+00:06:29.616 --> 00:06:34.049
+Our model knows each conductor's place in its path, so it maps the voltage
+
+105
+00:06:34.049 --> 00:06:37.980
+between neighbours at that full voltage, without switching spikes.
+
+106
+00:06:38.864 --> 00:06:40.368
+Here is the surprise:
+
+107
+00:06:40.368 --> 00:06:45.701
+our crown spans five slots, not six, so the even layers sit one slot
+
+108
+00:06:45.701 --> 00:06:46.960
+over.
+
+109
+00:06:46.960 --> 00:06:53.360
+Half the neighbouring pairs in the slots, 72 of 144, are two different phases,
+
+110
+00:06:53.360 --> 00:06:55.068
+with only enamel between them.
+
+111
+00:06:55.920 --> 00:07:01.105
+The worst pair, the first conductors after the leads, sees 97 percent of the
+
+112
+00:07:01.105 --> 00:07:02.448
+line peak:
+
+113
+00:07:02.448 --> 00:07:07.472
+about 780 volts on an 800-volt bus, before spikes.
+
+114
+00:07:07.472 --> 00:07:11.036
+With a six-slot crown, no slot would hold two phases.
+
+115
+00:07:11.696 --> 00:07:13.168
+Is that unusual?
+
+116
+00:07:13.168 --> 00:07:14.096
+No.
+
+117
+00:07:14.096 --> 00:07:19.536
+Every two-layer winding with a shortened crown has slots shared by two phases.
+
+118
+00:07:19.536 --> 00:07:24.637
+Makers keep the short pitch because it cuts harmonics, and arrange the connections so
+
+119
+00:07:24.637 --> 00:07:27.504
+the conductors next to the leads never meet;
+
+120
+00:07:27.504 --> 00:07:30.192
+patents describe exactly that.
+
+121
+00:07:30.192 --> 00:07:34.928
+In our stator only 3 of the 72 pairs exceed 90 percent of the
+
+122
+00:07:34.928 --> 00:07:37.532
+line peak, and the average is about half.
+
+123
+00:07:38.672 --> 00:07:39.696
+Test one:
+
+124
+00:07:39.696 --> 00:07:41.712
+insulation resistance.
+
+125
+00:07:41.712 --> 00:07:46.608
+500 or 1,000 volts DC go between winding and core;
+
+126
+00:07:46.608 --> 00:07:51.683
+one standard asks at least five megohms, and one maker of test gear sees
+
+127
+00:07:51.683 --> 00:07:53.948
+up to ten gigaohms on new parts.
+
+128
+00:07:54.992 --> 00:07:56.016
+Test two:
+
+129
+00:07:56.016 --> 00:08:00.496
+the hipot, short for high potential, the withstand test.
+
+130
+00:08:00.496 --> 00:08:04.903
+The three leads are joined, the core is grounded, and an AC voltage far
+
+131
+00:08:04.903 --> 00:08:10.385
+above the working voltage is applied, so weak insulation fails here, not in the
+
+132
+00:08:10.385 --> 00:08:11.568
+car.
+
+133
+00:08:11.568 --> 00:08:17.168
+The machine standard sets twice the rated voltage plus 1,000 volts, for a minute,
+
+134
+00:08:17.168 --> 00:08:22.064
+or, in series production, 120 percent for one second.
+
+135
+00:08:22.064 --> 00:08:23.164
+Nothing may break down.
+
+136
+00:08:24.080 --> 00:08:29.584
+The standard's U is the motor's AC line voltage, so for an 800-volt battery
+
+137
+00:08:29.584 --> 00:08:32.272
+U is 566 volts:
+
+138
+00:08:32.272 --> 00:08:36.976
+2.1 kilovolts for a minute, or 2.6 for a second.
+
+139
+00:08:36.976 --> 00:08:43.344
+Taking the full 800 instead, a stricter reading, gives 2.6 and 3.1.
+
+140
+00:08:43.344 --> 00:08:49.277
+Our neutral ring joins the phases, so this test, like insulation resistance, checks winding
+
+141
+00:08:49.277 --> 00:08:51.292
+to core, not phase to phase.
+
+142
+00:08:52.272 --> 00:08:53.264
+Test three:
+
+143
+00:08:53.264 --> 00:08:54.064
+surge.
+
+144
+00:08:54.064 --> 00:08:59.376
+A capacitor discharges into two phases and the winding rings like a bell;
+
+145
+00:08:59.376 --> 00:09:01.936
+all three pairs should ring alike.
+
+146
+00:09:01.936 --> 00:09:05.148
+A shorted turn rings faster and dies sooner.
+
+147
+00:09:05.840 --> 00:09:08.944
+But our path has only 16 turns.
+
+148
+00:09:08.944 --> 00:09:15.792
+A common surge level, twice the bus voltage plus 1,000 volts, is 2.6 kilovolts.
+
+149
+00:09:15.792 --> 00:09:21.795
+Shared evenly over two phases, each turn gets about 80 volts, below the roughly
+
+150
+00:09:21.795 --> 00:09:25.008
+350 any air gap needs to spark.
+
+151
+00:09:25.008 --> 00:09:30.219
+So surge finds shorts and wrong connections, not weak enamel between one turn and
+
+152
+00:09:30.219 --> 00:09:31.019
+the next.
+
+153
+00:09:31.312 --> 00:09:32.624
+Test four:
+
+154
+00:09:32.624 --> 00:09:38.159
+partial discharge, small sparks in air gaps that do not bridge the insulation but
+
+155
+00:09:38.159 --> 00:09:40.656
+slowly eat the enamel.
+
+156
+00:09:40.656 --> 00:09:45.205
+The tester raises a voltage between leads, or to the core, and listens for
+
+157
+00:09:45.205 --> 00:09:46.736
+the first discharges:
+
+158
+00:09:46.736 --> 00:09:48.028
+the inception voltage.
+
+159
+00:09:48.816 --> 00:09:53.008
+An 800-volt traction motor is designed to stay free of them.
+
+160
+00:09:53.008 --> 00:09:59.376
+One European project set the limit between phases at 1,920 volts peak to peak:
+
+161
+00:09:59.376 --> 00:10:03.344
+twice the bus voltage, plus 20 percent for spikes.
+
+162
+00:10:03.344 --> 00:10:08.304
+Our worst slot pair swings 1,550 before spikes.
+
+163
+00:10:08.304 --> 00:10:15.568
+That project found 110-micrometre enamel enough at 180 degrees, and 80 not.
+
+164
+00:10:15.568 --> 00:10:17.180
+Ours is 120.
+
+165
+00:10:18.160 --> 00:10:22.684
+All these run before the resin, when some faults can still be fixed, and
+
+166
+00:10:22.684 --> 00:10:23.516
+again after.
+
+167
+00:10:28.607 --> 00:10:29.759
+Chapter five.
+
+168
+00:10:29.759 --> 00:10:30.987
+Find and reject.
+
+169
+00:10:32.475 --> 00:10:34.683
+Each test has its faults.
+
+170
+00:10:34.683 --> 00:10:37.083
+Resistance finds open paths;
+
+171
+00:10:37.083 --> 00:10:41.659
+insulation resistance and hipot, weak insulation to the core;
+
+172
+00:10:41.659 --> 00:10:45.403
+surge, shorted turns and wrong connections;
+
+173
+00:10:45.403 --> 00:10:49.159
+partial discharge, thin enamel or bars too close.
+
+174
+00:10:49.883 --> 00:10:51.739
+Did the resin get in?
+
+175
+00:10:51.739 --> 00:10:53.691
+The scale says how much.
+
+176
+00:10:53.691 --> 00:10:56.251
+Our model suggests a second clue:
+
+177
+00:10:56.251 --> 00:11:01.398
+if the gaps fill, the capacitance to the core rises by half, from 6.9
+
+178
+00:11:01.398 --> 00:11:03.751
+to 10.6 nanofarads.
+
+179
+00:11:04.827 --> 00:11:08.923
+A bad weld caught before the heads are coated can be repaired.
+
+180
+00:11:08.923 --> 00:11:13.659
+One patent cuts it out and joins the ends by arc welding with filler,
+
+181
+00:11:13.659 --> 00:11:17.511
+as a second laser weld on the shortened pins would overheat the enamel.
+
+182
+00:11:18.395 --> 00:11:23.536
+But once twisted, no pin can be changed economically, and we found no published
+
+183
+00:11:23.536 --> 00:11:25.787
+repair for a cured winding:
+
+184
+00:11:25.787 --> 00:11:30.791
+such a stator is most likely scrap, with its 5.8 kilograms of copper.
+
+185
+00:11:31.899 --> 00:11:34.363
+The arithmetic is unforgiving.
+
+186
+00:11:34.363 --> 00:11:38.512
+If one weld in a thousand is bad, almost one in ten of our
+
+187
+00:11:38.512 --> 00:11:40.731
+stators carries one;
+
+188
+00:11:40.731 --> 00:11:43.931
+with 200 welds, nearly one in five.
+
+189
+00:11:43.931 --> 00:11:50.427
+For 99 good stators in 100, fewer than one weld in 10,000 may fail.
+
+190
+00:11:50.427 --> 00:11:53.543
+So every result is stored under the stator's code.
+
+191
+00:11:54.645 --> 00:11:55.445
+Summary.
+
+192
+00:11:55.413 --> 00:11:56.321
+Four points.
+
+193
+00:11:57.489 --> 00:11:58.353
+One.
+
+194
+00:11:58.353 --> 00:12:00.657
+Resin fills the gaps of the winding:
+
+195
+00:12:00.657 --> 00:12:05.097
+it fixes the pins, in our estimate more than halves the heat resistance to
+
+196
+00:12:05.097 --> 00:12:07.133
+the steel, and keeps out moisture.
+
+197
+00:12:07.825 --> 00:12:08.625
+Two.
+
+198
+00:12:08.593 --> 00:12:11.377
+The stator is trickled hot and turning;
+
+199
+00:12:11.377 --> 00:12:15.229
+capillary action fills the gaps, then the resin gels and cures.
+
+200
+00:12:15.953 --> 00:12:16.849
+Three.
+
+201
+00:12:16.849 --> 00:12:21.681
+Resistance shows the paths are complete, not that every weld is good:
+
+202
+00:12:21.681 --> 00:12:25.725
+one poor weld moves our reading by 0.013 percent.
+
+203
+00:12:26.513 --> 00:12:27.377
+Four.
+
+204
+00:12:27.377 --> 00:12:34.405
+Insulation resistance, hipot, surge and partial discharge check the insulation, before and after the
+
+205
+00:12:34.405 --> 00:12:35.409
+resin.
+
+206
+00:12:35.409 --> 00:12:39.293
+With our five-slot crown, half the slot neighbours are two phases.
+
+207
+00:12:40.209 --> 00:12:42.321
+That is the end of lecture five.
+
+208
+00:12:42.321 --> 00:12:44.017
+Next, lecture six:
+
+209
+00:12:44.017 --> 00:12:48.209
+into the motor, where the stator meets its housing and rotor.
+
+210
+00:12:48.209 --> 00:12:51.325
+Until then, explore the finished stator in the free Viewer.
+
+211
+00:12:52.145 --> 00:12:57.713
+Motoreka is a product of UMPSA, developed at EMDLab.
+
+212
+00:12:57.713 --> 00:12:59.197
+motoreka.my.
+
