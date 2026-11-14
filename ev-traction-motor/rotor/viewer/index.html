@@ -1,0 +1,700 @@
+<title>Magnet Rotor Viewer</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Same workbench as the Hairpin Motor Viewer: navy header with the variants, 3D bench on the left,
+   instrument panel on the right (under the bench on phones), status bar with the brand line. */
+:root{
+  --navy:#101B25; --graphite:#2C4453; --steel:#5F8FA8; --copper:#C0703A; --paper:#F5F3EF;
+  --bg:#F5F3EF; --panel:#FBFAF7; --line:#DCD8D0; --fg:#18232D; --muted:#5A6874;
+  --bench:#E7E4DE; --chip:#ECE9E3; --chip-on:#2C4453; --chip-on-fg:#F5F3EF;
+  --ok:#2E7D4F; --warn:#B26A00; --bad:#B3261E;
+  --f-body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C141C; --panel:#121E29; --line:#24364A; --fg:#E8E5DF; --muted:#93A3B1;
+  --bench:#101B25; --chip:#1A2A38; --chip-on:#5F8FA8; --chip-on-fg:#0C141C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C141C; --panel:#121E29; --line:#24364A; --fg:#E8E5DF; --muted:#93A3B1;
+  --bench:#101B25; --chip:#1A2A38; --chip-on:#5F8FA8; --chip-on-fg:#0C141C; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font:14px/1.45 var(--f-body);overflow:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--navy)}
+.app{height:100%;display:grid;grid-template-rows:auto 1fr auto}
+header{background:var(--navy);color:var(--paper);display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand h1{font-size:15px;font-weight:600;letter-spacing:.01em;margin:0;white-space:nowrap}
+.brand small{display:block;font:500 10.5px/1.2 var(--f-mono);color:#9DB6C6;letter-spacing:.06em;text-transform:uppercase}
+nav.variants{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+nav.variants button{font:500 12.5px var(--f-body);color:#C9D6DF;background:transparent;border:1px solid #2C4453;border-radius:3px;padding:6px 11px;cursor:pointer}
+nav.variants button[aria-pressed="true"]{background:var(--steel);border-color:var(--steel);color:var(--navy)}
+nav.variants button:hover{border-color:var(--steel)}
+main{display:grid;grid-template-columns:minmax(0,1fr) 352px;min-height:0}
+.bench{position:relative;background:var(--bench);min-height:0;overflow:hidden}
+.bench canvas{display:block;width:100%;height:100%;touch-action:none}
+.load{position:absolute;inset:auto 16px 16px 16px;display:flex;align-items:center;gap:10px;font:12px var(--f-mono);color:var(--muted)}
+.load .bar{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.load .bar i{display:block;height:100%;width:0;background:var(--copper)}
+.caption{position:absolute;left:16px;top:14px;max-width:min(440px,calc(100% - 32px));background:color-mix(in srgb,var(--panel) 88%,transparent);
+  border:1px solid var(--line);border-radius:4px;padding:10px 12px;backdrop-filter:blur(4px)}
+.caption .k{font:500 10.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--copper)}
+.caption b{display:block;font-size:15px;font-weight:600;margin-top:2px;text-wrap:balance}
+.caption span{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.pick{position:absolute;right:16px;bottom:16px;font:12px/1.5 var(--f-mono);background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:8px 10px;max-width:calc(100% - 32px)}
+.hint{position:absolute;right:16px;top:14px;font:11px var(--f-mono);color:var(--muted)}
+aside{background:var(--panel);border-left:1px solid var(--line);overflow-y:auto;min-height:0}
+.tabs{display:flex;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:2}
+.tabs button{flex:1;font:600 12.5px var(--f-body);background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:11px 6px;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--copper)}
+section.blk{padding:14px 16px;border-bottom:1px solid var(--line);display:grid;gap:9px}
+.blk h2{margin:0;font:600 10.5px var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{font:500 12px var(--f-body);background:var(--chip);color:var(--fg);border:1px solid transparent;border-radius:3px;padding:5px 9px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-fg)}
+.chip:disabled{opacity:.45;cursor:default}
+.chip:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.sw{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:0}
+.play{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+.play button{font:600 12px var(--f-body);background:var(--copper);color:#fff;border:0;border-radius:3px;padding:6px 12px;cursor:pointer;min-width:64px}
+input[type=range]{width:100%;accent-color:var(--copper)}
+.mono{font:12px/1.5 var(--f-mono);font-variant-numeric:tabular-nums}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1px}
+.steps li{display:grid;grid-template-columns:28px 1fr;gap:6px;padding:5px 6px;border-radius:3px;cursor:pointer;font-size:12.5px;color:var(--muted)}
+.steps li .n{font:11px var(--f-mono);padding-top:1px}
+.steps li.done{color:var(--fg)}
+.steps li.now{background:var(--chip);color:var(--fg);font-weight:600}
+table.kv{width:100%;border-collapse:collapse;font-size:12.5px}
+table.kv td{padding:4px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.kv td:first-child{color:var(--muted);padding-right:10px;width:48%}
+table.kv td:last-child{font:12px var(--f-mono);font-variant-numeric:tabular-nums}
+.note{font-size:12px;color:var(--muted);margin:0}
+.state{display:inline-block;font:600 11px var(--f-mono);padding:2px 7px;border-radius:10px;color:#fff;background:var(--ok);flex:none}
+.state.bad{background:var(--bad)}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:12.5px}
+.checks li{display:grid;grid-template-columns:14px 1fr;gap:6px}
+.checks li::before{content:"✓";color:var(--ok);font-weight:700}
+.checks li.bad::before{content:"!";color:var(--bad)}
+footer{background:var(--navy);color:#9DB6C6;font:11.5px var(--f-mono);display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;
+  padding-block:6px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+[hidden]{display:none!important}
+.sl{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:baseline}
+.sl label{font-size:12.5px}
+.sl output{font:12px var(--f-mono);font-variant-numeric:tabular-nums;color:var(--fg)}
+.sl input[type=range]{grid-column:1/-1}
+.sl small{grid-column:1/-1;color:var(--muted);font-size:11px;margin-top:-2px}
+.play-like{font:600 12px var(--f-body);background:var(--copper);color:#fff;border:0;border-radius:3px;padding:7px 14px;cursor:pointer}
+.sec2d{border:1px solid var(--line);border-radius:3px;background:var(--bg)}
+.sec2d svg{display:block;width:100%;height:auto}
+[data-pane]{display:none}
+[data-pane].on{display:block}
+@media (max-width:820px){
+  body{overflow:auto}
+  .app{height:auto;min-height:100%}
+  main{grid-template-columns:minmax(0,1fr)}
+  .bench{height:58vh}
+  aside{border-left:0;border-top:1px solid var(--line);overflow:visible}
+  nav.variants{margin-left:0}
+  .hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="app">
+<header>
+  <div class="brand">
+    <svg viewBox="0 0 100 100" width="30" height="30" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="45.5" fill="none" stroke="#5F8FA8" stroke-width="5"/><g stroke="#5F8FA8" stroke-width="4.6"><line x1="50" y1="19" x2="50" y2="12"/><line x1="65.5" y1="23.15" x2="69" y2="17.09"/><line x1="76.85" y1="34.5" x2="82.91" y2="31"/><line x1="81" y1="50" x2="88" y2="50"/><line x1="76.85" y1="65.5" x2="82.91" y2="69"/><line x1="65.5" y1="76.85" x2="69" y2="82.91"/><line x1="50" y1="81" x2="50" y2="88"/><line x1="34.5" y1="76.85" x2="31" y2="82.91"/><line x1="23.15" y1="65.5" x2="17.09" y2="69"/><line x1="19" y1="50" x2="12" y2="50"/><line x1="23.15" y1="34.5" x2="17.09" y2="31"/><line x1="34.5" y1="23.15" x2="31" y2="17.09"/></g><path d="M28 50a22 22 0 0 1 44 0z" fill="#C0703A"/><path d="M28 50a22 22 0 0 0 44 0z" fill="#5F8FA8"/></svg>
+    <div><h1>Magnet Rotor Viewer</h1><small>Parametric interior-magnet rotor · 3D</small></div>
+  </div>
+  <nav class="variants" id="variants" aria-label="Variant"></nav>
+</header>
+<main>
+  <div class="bench" id="bench">
+    <div class="caption" id="caption" hidden><div class="k" id="capK"></div><b id="capT"></b><span id="capX"></span></div>
+    <div class="hint" id="hint">Drag to orbit · scroll to zoom · right-drag to pan · click a part</div>
+    <div class="pick" id="pick" hidden></div>
+    <div class="load" id="load" hidden><span id="loadT">Loading</span><div class="bar"><i id="loadBar"></i></div></div>
+  </div>
+  <aside>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="model">Model</button>
+      <button role="tab" aria-selected="false" data-tab="build">Build</button>
+      <button role="tab" aria-selected="false" data-tab="design">Design</button>
+    </div>
+
+    <div data-pane="model" class="on">
+      <section class="blk"><h2>Show</h2><div class="row" id="groups"></div></section>
+      <section class="blk"><h2>Section</h2>
+        <div class="row" id="cutRow">
+          <button class="chip" data-cut="none">Full</button>
+          <button class="chip" data-cut="xray" aria-pressed="true">X-ray core</button>
+          <button class="chip" data-cut="quarter">Quarter cut</button>
+          <button class="chip" data-cut="half">Half</button>
+        </div>
+        <label class="note" for="slice">Axial slice position</label>
+        <input type="range" id="slice" min="0" max="1000" value="1000">
+      </section>
+      <section class="blk"><h2>Colour</h2>
+        <div class="row" id="colRow">
+          <button class="chip" data-col="mat" aria-pressed="true">Materials</button>
+          <button class="chip" data-col="poles"><span class="sw" style="background:var(--copper)"></span>N <span class="sw" style="background:var(--steel);margin-left:4px"></span>S</button>
+          <button class="chip" data-col="pieces">Magnet pieces</button>
+        </div>
+        <div class="row"><button class="chip" id="arrBtn" aria-pressed="false">Magnetisation arrows</button></div>
+      </section>
+      <section class="blk"><h2>Cross-section</h2><div class="sec2d" id="sec2d"></div>
+        <p class="note">One lamination, to scale. Copper and steel blocks are the magnets, shaded as N and S poles; the grey around them is the pocket the resin fills.</p></section>
+      <section class="blk"><h2>This rotor</h2><table class="kv" id="summary"></table><p class="note" id="vNote"></p></section>
+    </div>
+
+    <div data-pane="build">
+      <section class="blk"><h2>Manufacturing and assembly</h2>
+        <div class="play"><button id="playBtn">Play</button><input type="range" id="tl" min="0" max="1000" value="1000" aria-label="Build stage"><span class="mono" id="tlN"></span></div>
+        <ol class="steps" id="steps"></ol>
+        <p class="note">Step numbers match the article. Steps 01 to 03 (making the magnets), 11 (spin test) and 12 (rotor check) happen away from the rotor line and have diagrams in the article.</p>
+      </section>
+    </div>
+
+    <div data-pane="design">
+      <section class="blk"><h2>Live design</h2>
+        <div class="row"><span class="state" id="dState">ok</span><button class="chip" id="dReset">Reset to the preset</button></div>
+        <ul class="checks" id="dChecks"></ul>
+      </section>
+      <section class="blk"><h2>Magnets and pockets</h2><div id="dGeo" style="display:grid;gap:10px"></div></section>
+      <section class="blk"><h2>Stack</h2><div id="dStack" style="display:grid;gap:10px"></div></section>
+      <section class="blk"><h2>Export</h2>
+        <div class="row"><button class="play-like" id="dxfBtn">Download the section (DXF)</button></div>
+        <p class="note">One lamination with its magnets, in mm, on layers CORE, MAGNET and SHAFT. It opens in FEMM (Import DXF) for a one-pole or full model.</p>
+      </section>
+    </div>
+  </aside>
+</main>
+<footer><span id="status">Ready</span><span>Motoreka is a product of UMPSA, developed at EMDLab</span></footer>
+</div>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {PRESETS, MATERIALS, buildPole, rot} from './rotor_geom.js';
+
+const $ = id => document.getElementById(id);
+const STATOR = '../../hairpin/viewer/assets/stator_48s8p';
+const STATOR_LABEL = 'Hairpin stator · 48 slots, 8 poles · bore Ø134 mm (from the Hairpin Motor Viewer)';   // the EV-size hairpin stator of the Hairpin Motor Viewer
+const COL = {core:'#7f858d', printed:'#d6d1c6', coat:'#c3c7cc', ferrite:'#3c3e41', N:'#C0703A', S:'#5F8FA8', resin:'#2a2f35',
+  shaft:'#8e949b', plate:'#b3b8be', mark:'#1a1f24', fixture:'#C0703A', coil:'#b87333'};
+const PIECE = ['#C0703A','#5F8FA8','#8FAFC1','#D9A066','#2C4453','#A9C4D3'];
+const GROUPS = [['core','Core'],['magnet','Magnets'],['resin','Resin'],['shaft','Shaft'],['plate','End plates'],['stator','Stator']];
+const STAGES = {
+  ev: [
+    {id:'stack', n:'04', t:'Stack the core segments', x:'Laminations with the V pockets, bridges and ribs: one packet per skew step'},
+    {id:'insert', n:'05', t:'Insert the magnets', x:'Coated, unmagnetised blocks pushed axially into the pockets, two pieces per pocket per packet'},
+    {id:'fix', n:'06', t:'Fix the magnets', x:'Resin fills the clearance and the end barriers, then cures'},
+    {id:'skew', n:'07', t:'Stack on the shaft with a step skew', x:'Each packet turned by one skew step as it goes onto the shaft'},
+    {id:'plates', n:'08', t:'Fit the end plates', x:'Non-magnetic plates close the stack and carry the balance mass'},
+    {id:'balance', n:'09', t:'Balance', x:'Material drilled from the end plates until the unbalance is within the grade'},
+    {id:'magnetise', n:'10', t:'Magnetise', x:'One pulse through a fixture around the rotor magnetises every pole'},
+    {id:'into', n:'13', t:'Into the stator', x:'Guided into the hairpin stator against the pull of the magnets'}],
+  kit: [
+    {id:'stack', n:'04', t:'Stack the printed core', x:'Two printed packets with the V pockets, bridges and ribs'},
+    {id:'insert', n:'05', t:'Insert the ferrite blocks', x:'Two blocks per pocket, pushed in axially'},
+    {id:'fix', n:'06', t:'Fix the blocks', x:'A drop of adhesive in each end barrier holds the blocks'},
+    {id:'skew', n:'07', t:'Press onto the shaft', x:'Both packets on the steel shaft, no skew'},
+    {id:'plates', n:'08', t:'Fit the end plates', x:'Printed end plates close the stack'},
+    {id:'balance', n:'09', t:'Balance', x:'Small weights in the end-plate holes until it runs smoothly'},
+    {id:'magnetise', n:'10', t:'Magnetise', x:'Ferrite blocks are bought magnetised or magnetised in a fixture'}]
+};
+let VAR = 'ev', P = null, R = null, dirty = true;
+const ui = {show: new Set(['core','magnet','resin','shaft','plate']), cut:'xray', col:'mat', slice:1, t:null, arrows:false, playing:false};
+
+/* ---------- renderer ---------- */
+const bench = $('bench');
+const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.localClippingEnabled = true;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+bench.prepend(renderer.domElement);
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.add(new THREE.HemisphereLight(0xffffff, 0x445566, 0.6));
+const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(300, -400, 600); scene.add(sun);
+const fill = new THREE.DirectionalLight(0xffffff, 0.5); fill.position.set(-400, 300, -200); scene.add(fill);
+const camera = new THREE.PerspectiveCamera(32, 1, 1, 20000); camera.up.set(0, 0, 1);
+const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true; controls.dampingFactor = 0.12;
+controls.addEventListener('change', () => dirty = true);
+function bgFromTheme(){ scene.background = new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue('--bench').trim() || '#e7e4de'); dirty = true; }
+bgFromTheme(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', bgFromTheme);
+function resize(){ const r = bench.getBoundingClientRect(); renderer.setSize(r.width, r.height, false); camera.aspect = r.width / Math.max(1, r.height); camera.updateProjectionMatrix(); dirty = true; }
+new ResizeObserver(resize).observe(bench);
+
+const planes = {q1:new THREE.Plane(new THREE.Vector3(0,1,0),0), q2:new THREE.Plane(new THREE.Vector3(0,0,-1),0),
+  half:new THREE.Plane(new THREE.Vector3(0,1,0),0), slice:new THREE.Plane(new THREE.Vector3(-1,0,0),0)};
+
+/* ---------- geometry helpers ---------- */
+// 2D section (x, y) → 3D: the rotor axis is world x; 2D x → world -z, 2D y → world y (rotateY(+90°) of an xy extrusion).
+const V2 = p => new THREE.Vector2(p[0], p[1]);
+function extrude(outline, holes, depth){
+  const s = new THREE.Shape(outline.map(V2));
+  for (const h of holes) s.holes.push(new THREE.Path(h.map(V2)));
+  const g = new THREE.ExtrudeGeometry(s, {depth, bevelEnabled:false, curveSegments:48, steps:1});
+  g.rotateY(Math.PI / 2);
+  return g;
+}
+function circle(r, n = 180, cx = 0, cy = 0){ const a = []; for (let i = 0; i < n; i++){ const t = 2*Math.PI*i/n; a.push([cx + r*Math.cos(t), cy + r*Math.sin(t)]); } return a; }
+function bore(rs, kw, kd){
+  const pts = [], hw = Math.asin(Math.min(0.95, kw/2/rs)), N = 120;
+  for (let i = 0; i <= N; i++){ const a = hw + (2*Math.PI - 2*hw)*i/N; pts.push([rs*Math.cos(a), rs*Math.sin(a)]); }
+  pts.push([rs + kd, -kw/2], [rs + kd, kw/2]);
+  return pts;
+}
+function mat(color, metal, rough, extra = {}){ return new THREE.MeshStandardMaterial({color, metalness:metal, roughness:rough, side:THREE.DoubleSide, ...extra}); }
+const d2w = (x, y) => new THREE.Vector3(0, y, -x);   // 2D section point → world (y, z) at x = 0
+
+/* ---------- build one rotor ---------- */
+function disposeTree(o){ o.traverse(c => { if (c.geometry) c.geometry.dispose(); if (c.material) (Array.isArray(c.material) ? c.material : [c.material]).forEach(m => m.dispose()); }); }
+
+function build(){
+  const pole = buildPole(P);
+  if (R){ scene.remove(R.root); disposeTree(R.rotor); if (R.fixture) disposeTree(R.fixture); }
+  const ferrite = P.material === 'ferrite';
+  const root = new THREE.Group(), rotor = new THREE.Group(); root.add(rotor);
+  const parts = [];
+  const half = Math.PI / P.p, nSeg = P.skewSteps, segL = P.L / nSeg, nPc = P.piecesPerStep, pcL = segL / nPc;
+  const kw = Math.max(4, Math.round(P.rs * 0.3)), kd = kw * 0.45;
+  // core outline holes: bore with keyway, 2 pockets per pole, one lightening hole per pole
+  const holes = [bore(P.rs, kw, kd)];
+  const polesAt = k => 2 * half * k;
+  for (let k = 0; k < P.p; k++){
+    const a = polesAt(k);
+    holes.push(rot(pole.upper.pocket, a), rot(pole.lower.pocket, a));
+    if (pole.hole){ const c = rot([pole.hole.c], a)[0]; holes.push(circle(pole.hole.r, 64, c[0], c[1])); }
+  }
+  const coreG = pole.ok || pole.upper.pocket.length > 4 ? extrude(circle(P.R, 240), holes, segL - 0.05) : extrude(circle(P.R, 240), [bore(P.rs, kw, kd)], segL - 0.05);
+  const mCore = mat(ferrite ? COL.printed : COL.core, ferrite ? 0 : 0.5, ferrite ? 0.85 : 0.45, {transparent:true});
+  const mResin = mat(ferrite ? '#e9e2c9' : COL.resin, 0, ferrite ? 0.6 : 0.55, {transparent:true, opacity:1});
+  const segs = [];
+  for (let i = 0; i < nSeg; i++){
+    const g = new THREE.Group(); rotor.add(g);
+    const x0 = -P.L/2 + i*segL;
+    const core = new THREE.Mesh(coreG, mCore); core.position.x = x0; g.add(core);
+    parts.push({mesh:core, kind:'core', seg:i, label:`${ferrite ? 'Printed core' : 'Lamination stack'} · packet ${i+1} of ${nSeg} · ${segL.toFixed(1)} mm`});
+    const seg = {g, core, mags:[], resin:[], x0, skew: nSeg > 1 ? (i - (nSeg-1)/2) * P.skewTotal/(nSeg-1) * Math.PI/180 : 0};
+    for (let k = 0; k < P.p; k++){
+      const a = polesAt(k), north = k % 2 === 0;
+      for (const [side, part] of [['upper', pole.upper], ['lower', pole.lower]]){
+        if (pole.ok){
+          const rg = extrude(rot(part.pocket, a), [rot(part.magnet, a)], segL - 0.3);
+          const rm = new THREE.Mesh(rg, mResin); rm.position.x = x0 + 0.15; g.add(rm);
+          seg.resin.push(rm); parts.push({mesh:rm, kind:'resin', seg:i, label:`${ferrite ? 'Adhesive' : 'Fixing resin'} · pole ${k+1}`});
+        }
+        const mg = extrude(rot(part.magnet, a), [], pcL - 0.4);
+        for (let j = 0; j < nPc; j++){
+          const m = new THREE.Mesh(mg, mat(ferrite ? COL.ferrite : COL.coat, ferrite ? 0 : 0.75, ferrite ? 0.9 : 0.3));
+          m.position.x = x0 + j*pcL + 0.2; g.add(m);
+          const e = {mesh:m, kind:'magnet', seg:i, pole:k, north, piece:i*nPc + j, side, label:`Magnet · pole ${k+1} (${north ? 'N' : 'S'}) · piece ${i*nPc + j + 1} of ${nSeg*nPc} · ${P.wm.toFixed(1)} × ${P.tm.toFixed(1)} × ${(pcL-0.4).toFixed(1)} mm`};
+          seg.mags.push(e); parts.push(e);
+        }
+      }
+    }
+    segs.push(seg);
+  }
+  // shaft: rotor seat, two bearing journals, splined drive end
+  const shaftParts = [];
+  const mShaft = mat(COL.shaft, 0.9, 0.3);
+  const ext = Math.max(40, P.L * 0.45), jr = P.rs * 0.75, sr = P.rs * 0.6;
+  const lathe = [[0, -P.L/2 - ext - 30], [sr, -P.L/2 - ext - 30], [sr, -P.L/2 - ext], [jr, -P.L/2 - ext], [jr, -P.L/2 - 8], [P.rs, -P.L/2 - 8], [P.rs, P.L/2 + 8], [jr, P.L/2 + 8], [jr, P.L/2 + ext], [0, P.L/2 + ext]];
+  const sg = new THREE.LatheGeometry(lathe.map(([r, x]) => new THREE.Vector2(r, x)), 64); sg.rotateZ(-Math.PI/2);
+  const shaft = new THREE.Mesh(sg, mShaft); rotor.add(shaft); shaftParts.push(shaft);
+  parts.push({mesh:shaft, kind:'shaft', label:`Shaft · Ø${(2*P.rs).toFixed(0)} mm seat, keyed · splined drive end`});
+  const nT = Math.max(12, Math.round(sr * 1.6)), tg = new THREE.BoxGeometry(26, sr * 0.18, sr * 0.2);
+  for (let i = 0; i < nT; i++){
+    const a = 2*Math.PI*i/nT, t = new THREE.Mesh(tg, mShaft);
+    t.position.set(-P.L/2 - ext - 15, (sr + sr*0.06)*Math.cos(a), (sr + sr*0.06)*Math.sin(a)); t.rotation.x = a; rotor.add(t); shaftParts.push(t);
+    parts.push({mesh:t, kind:'shaft', label:'Shaft · spline'});
+  }
+  const key = new THREE.Mesh(new THREE.BoxGeometry(P.L + 10, kw - 0.2, kd + 1.6), mShaft);
+  { const c = d2w(P.rs + kd/2 - 0.8, 0); key.position.set(0, c.y, c.z); } rotor.add(key); shaftParts.push(key);
+  parts.push({mesh:key, kind:'shaft', label:`Key · ${kw} mm`});
+  // end plates and balance marks
+  const pt = ferrite ? 4 : 5, mPlate = mat(ferrite ? COL.printed : COL.plate, ferrite ? 0 : 0.6, ferrite ? 0.85 : 0.35, {transparent:true});
+  const plateG = extrude(circle(P.R - 2, 180), [circle(P.rs, 90)], pt);
+  const plates = [], marks = [];
+  for (const s of [-1, 1]){
+    const pl = new THREE.Mesh(plateG, mPlate); pl.position.x = s < 0 ? -P.L/2 - pt - 0.1 : P.L/2 + 0.1; rotor.add(pl); plates.push(pl);
+    parts.push({mesh:pl, kind:'plate', side:s, label:`End plate · ${ferrite ? 'printed' : 'non-magnetic stainless steel'} · ${pt} mm`});
+    const hr = Math.max(2.5, P.R * 0.045), mg = extrude(circle(hr, 32), [], 1.2);
+    const angs = s < 0 ? [0.4, 0.62, 2.9] : [3.6, 3.85];
+    for (const a of angs){
+      const r0 = P.R - 2 - hr - 3, m = new THREE.Mesh(mg, mat(COL.mark, 0.2, 0.8));
+      const c = d2w(r0*Math.cos(a), r0*Math.sin(a)); m.position.set(s < 0 ? -P.L/2 - pt - 0.25 : P.L/2 + pt - 0.95, c.y, c.z);
+      rotor.add(m); marks.push(m); parts.push({mesh:m, kind:'plate', label:'Balance correction · drilled pocket'});
+    }
+  }
+  // magnetising fixture (shown during "Magnetise"): yoke ring with one pole shoe and coil per rotor pole
+  const fixture = new THREE.Group(); root.add(fixture);
+  const fmat = mat(COL.fixture, 0.2, 0.5, {transparent:true, opacity:0.0, depthWrite:false});
+  const yoke = new THREE.Mesh(extrude(circle(P.R + 46, 180), [circle(P.R + 30, 180)], P.L + 20), fmat); yoke.position.x = -P.L/2 - 10; fixture.add(yoke);
+  const cmat = mat(COL.coil, 0.6, 0.35, {transparent:true, opacity:0.0, depthWrite:false});
+  for (let k = 0; k < P.p; k++){
+    const a = polesAt(k), w = 2 * (P.R + 1) * Math.sin(half * 0.55);
+    const shoe = new THREE.Mesh(new THREE.BoxGeometry(P.L + 20, w, 29), fmat);
+    const c = d2w((P.R + 1 + 14.5)*Math.cos(a), (P.R + 1 + 14.5)*Math.sin(a)), th = Math.atan2(c.z, c.y);
+    shoe.position.set(0, c.y, c.z); shoe.rotation.x = th - Math.PI/2; fixture.add(shoe);
+    const cr = w/2 + 4, coil = new THREE.Mesh(new THREE.TorusGeometry(cr, 3.2, 8, 40), cmat);
+    coil.scale.set(((P.L + 20)/2 + 4) / cr, 1, 1);
+    const cc = d2w((P.R + 20)*Math.cos(a), (P.R + 20)*Math.sin(a)); coil.position.set(0, cc.y, cc.z); coil.rotation.x = th - Math.PI/2; fixture.add(coil);
+  }
+  fixture.visible = false;
+  // magnetisation arrows just outside the rotor at mid-length: out of N poles, into S poles
+  const arrows = new THREE.Group(); rotor.add(arrows);
+  for (let k = 0; k < P.p; k++){
+    const a = polesAt(k), north = k % 2 === 0, m = mat(north ? COL.N : COL.S, 0.1, 0.5);
+    const ag = new THREE.Group(); ag.add(new THREE.Mesh(new THREE.CylinderGeometry(1.4, 1.4, 14, 12), m));
+    const head = new THREE.Mesh(new THREE.ConeGeometry(3.4, 7, 16), m); head.position.y = 10; ag.add(head);
+    const dir = d2w(Math.cos(a), Math.sin(a)).normalize();
+    ag.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), north ? dir : dir.clone().negate());
+    ag.position.copy(dir.clone().multiplyScalar(P.R + 14));
+    arrows.add(ag);
+  }
+  arrows.visible = false;
+  scene.add(root);
+  R = {pole, root, rotor, parts, segs, shaft:shaftParts, plates, marks, fixture, fmat, cmat, arrows, mResin, mCore, mPlate, stages:STAGES[VAR], stator: R && R.stator && VAR === 'ev' ? R.stator : null};
+  if (R.stator){ root.add(R.stator.root); for (const m of R.stator.meshes) parts.push({mesh:m, kind:'stator', label:STATOR_LABEL}); }
+  applyClip(); applyTime(); drawSection(); fillSummary(); renderChecks();
+  dirty = true;
+}
+
+/* ---------- stator (EV variant): the 48-slot hairpin stator of the Hairpin Motor Viewer ---------- */
+async function fetchBin(url, onp){
+  const r = await fetch(url); if (!r.ok) throw new Error(`${url}: ${r.status}`);
+  const n = r.headers.get('content-encoding') ? 0 : +r.headers.get('content-length') || 0; if (!r.body) return r.arrayBuffer();
+  const rd = r.body.getReader(), ch = []; let k = 0;
+  for (;;){ const {done, value} = await rd.read(); if (done) break; ch.push(value); k += value.length; if (n) onp(Math.min(1, k/n)); }
+  const buf = new Uint8Array(k); let o = 0; for (const c of ch){ buf.set(c, o); o += c.length; } return buf.buffer;
+}
+let statorPromise = null;
+function loadStator(){
+  if (statorPromise) return statorPromise;
+  $('load').hidden = false; $('loadT').textContent = 'Loading the 48-slot hairpin stator';
+  statorPromise = (async () => {
+    const meta = await (await fetch(STATOR + '.json')).json();
+    const buf = await fetchBin(STATOR.replace(/[^/]+$/, '') + meta.file, f => $('loadBar').style.width = (100*f).toFixed(0) + '%');
+    const Q = new Int16Array(buf, 0, meta.nPos), I = new Uint16Array(buf, meta.idxByte, meta.nIdx), lo = meta.qlo, sc = meta.qsc;
+    const root = new THREE.Group(), meshes = [];
+    for (const p of meta.parts){
+      if (p.group === 'pins_forming') continue;
+      const a = new Float32Array(p.v[1]*3);
+      for (let i = 0, j = p.v[0]*3; i < a.length; i += 3, j += 3){ a[i] = (Q[j]+32767)*sc[0]+lo[0]; a[i+1] = (Q[j+1]+32767)*sc[1]+lo[1]; a[i+2] = (Q[j+2]+32767)*sc[2]+lo[2]; }
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(a, 3));
+      g.setIndex(new THREE.BufferAttribute(I.slice(p.i[0], p.i[0] + p.i[1]), 1));
+      const cad = ['core','seams','liners','closures'].includes(p.group); if (cad) g.computeVertexNormals();
+      const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({color:p.color, metalness:p.metal, roughness:p.rough, flatShading:!cad, side:THREE.DoubleSide, transparent:true, opacity:1}));
+      root.add(m); meshes.push(m);
+    }
+    $('load').hidden = true;
+    return {root, meshes};
+  })().catch(err => { $('load').hidden = true; $('status').textContent = 'The stator could not be loaded here: ' + err.message; statorPromise = null; return null; });
+  return statorPromise;
+}
+async function ensureStator(){
+  if (VAR !== 'ev' || (R && R.stator)) return;
+  const s = await loadStator(); if (!s || VAR !== 'ev') return;
+  R.stator = s; R.root.add(s.root);
+  for (const m of s.meshes) R.parts.push({mesh:m, kind:'stator', label:STATOR_LABEL});
+  applyClip(); applyTime(); frame(); dirty = true;
+}
+
+/* ---------- timeline ---------- */
+const ease = x => x <= 0 ? 0 : x >= 1 ? 1 : x*x*(3 - 2*x);
+const clamp01 = x => Math.max(0, Math.min(1, x));
+function idx(id){ return R.stages.findIndex(s => s.id === id); }
+function applyTime(){
+  if (!R) return;
+  const N = R.stages.length, t = ui.t == null ? N : ui.t;
+  const sStack = idx('stack'), sIns = idx('insert'), sFix = idx('fix'), sSkew = idx('skew'), sPl = idx('plates'), sBal = idx('balance'), sMag = idx('magnetise'), sInto = idx('into');
+  const nSeg = R.segs.length, G = Math.max(14, P.L * 0.12);
+  const kClose = ease(clamp01((t - sSkew) * 2 - 1));          // second half of the shaft step: packets close up and take their skew
+  const magOn = ease(clamp01((t - sMag - 0.35) / 0.4));       // magnet colour after the pulse
+  for (const s of R.segs){
+    const i = R.segs.indexOf(s);
+    const drop = ease(clamp01((t - sStack) * 1.6 - i * 0.25));
+    const show = ui.show.has('core');
+    s.core.visible = show && t > sStack && drop > 0.001;
+    s.g.position.set((i - (nSeg-1)/2) * G * (1 - kClose), 0, P.R * 2.4 * (1 - drop));
+    s.g.rotation.x = s.skew * kClose;
+    for (const e of s.mags){
+      const d = ease(clamp01((t - sIns) * 1.4 - (e.pole / P.p) * 0.35 - (e.piece % P.piecesPerStep) * 0.08));
+      e.mesh.visible = ui.show.has('magnet') && t > sIns && d > 0.001;
+      e.mesh.position.x = (e.mesh.userData.x ??= e.mesh.position.x) - (P.L * 0.9 + 40) * (1 - d);
+      e.mag = magOn;
+    }
+    const op = ease(clamp01((t - sFix) * 1.3));
+    for (const r of s.resin) r.visible = ui.show.has('resin') && t > sFix && op > 0.01;
+    const xr = ui.cut === 'xray';
+    R.mResin.opacity = op * (xr ? 0.3 : 1); R.mResin.depthWrite = op > 0.999 && !xr;
+  }
+  const sh = ease(clamp01((t - sSkew) * 2));
+  for (const m of R.shaft){ m.visible = ui.show.has('shaft') && t > sSkew && sh > 0.001; m.position.x = (m.userData.x ??= m.position.x) + (P.L * 1.6 + 120) * (1 - sh); }
+  R.plates.forEach((m, j) => { const d = ease(clamp01((t - sPl) * 1.5)); m.visible = ui.show.has('plate') && t > sPl && d > 0.001; m.position.x = (m.userData.x ??= m.position.x) + (j ? 1 : -1) * 70 * (1 - d); });
+  R.marks.forEach(m => { const d = ease(clamp01((t - sBal) * 1.6 - 0.3)); m.visible = ui.show.has('plate') && t > sBal && d > 0.001; m.scale.set(1, Math.max(0.01, d), Math.max(0.01, d)); });
+  // fixture: fades in, pulse, fades out
+  const f = t > sMag && t < sMag + 1 ? Math.sin(Math.PI * clamp01(t - sMag)) : 0;
+  R.fixture.visible = f > 0.01; R.fmat.opacity = 0.35 * f; R.cmat.opacity = 0.8 * f;
+  R.arrows.visible = ui.arrows && t >= sMag + 0.75;
+  // into the stator
+  if (sInto >= 0){
+    const s = R.stator, a = clamp01((t - sInto) / 0.3), d = ease(clamp01((t - sInto - 0.3) / 0.7));
+    const want = ui.t != null || ui.show.has('stator');
+    if (s){ s.root.visible = want && t > sInto; for (const m of s.meshes){ m.material.opacity = a; m.material.depthWrite = a > 0.5; } }
+    R.rotor.position.x = t > sInto && want ? -(P.L * 1.25 + 160) * (1 - d) : 0;
+    if (t > sInto && want && !s) ensureStator();
+  } else R.rotor.position.x = 0;
+  if (R.stator && sInto < 0) R.stator.root.visible = false;
+  restyleMagnets();
+  // caption and step list
+  const cur = Math.min(N - 1, Math.max(0, Math.ceil(t) - 1));
+  const st = R.stages[cur];
+  $('caption').hidden = ui.t == null;
+  if (ui.t != null){ $('capK').textContent = `Step ${st.n} of the article · ${cur + 1} of ${N}`; $('capT').textContent = st.t; $('capX').textContent = st.x; }
+  [...$('steps').children].forEach((li, i) => { li.className = i < cur || ui.t == null ? 'done' : i === cur ? 'now' : ''; });
+  $('tlN').textContent = `${Math.min(N, Math.max(0, cur + 1))}/${N}`;
+  dirty = true;
+}
+
+/* ---------- styling ---------- */
+const tmpC = new THREE.Color();
+function restyleMagnets(){
+  const ferrite = P.material === 'ferrite';
+  for (const e of R.parts){
+    if (e.kind !== 'magnet') continue;
+    const base = ferrite ? COL.ferrite : COL.coat, pole = e.north ? COL.N : COL.S;
+    if (ui.col === 'poles') e.mesh.material.color.set(pole);
+    else if (ui.col === 'pieces') e.mesh.material.color.set(PIECE[e.piece % PIECE.length]);
+    else e.mesh.material.color.set(base).lerp(tmpC.set(pole), (ui.t == null ? 1 : e.mag || 0) * (ferrite ? 0.75 : 0.85));
+  }
+}
+function applyClip(){
+  if (!R) return;
+  const span = P.L / 2 + 90;
+  planes.slice.constant = -span + 2 * span * ui.slice;
+  const xr = ui.cut === 'xray';
+  R.mCore.opacity = xr ? 0.2 : 1; R.mCore.depthWrite = !xr; R.mPlate.opacity = xr ? 0.25 : 1; R.mPlate.depthWrite = !xr;
+  const list = [], inter = ui.cut === 'quarter';
+  if (ui.cut === 'quarter') list.push(planes.q1, planes.q2);
+  if (ui.cut === 'half') list.push(planes.half);
+  if (ui.slice < 0.999 && ui.cut !== 'quarter') list.push(planes.slice);
+  R.root.traverse(o => { if (o.material){ o.material.clippingPlanes = list.length ? list : null; o.material.clipIntersection = inter; o.material.needsUpdate = true; } });
+  dirty = true;
+}
+
+/* ---------- 2D section (SVG) ---------- */
+function drawSection(){
+  const pole = R.pole, s = 100 / P.R, half = Math.PI / P.p;
+  const path = poly => 'M' + poly.map(([x, y]) => `${(x*s).toFixed(2)} ${(-y*s).toFixed(2)}`).join('L') + 'Z';
+  let core = path(circle(P.R, 240)), pk = '', mg = '', holes = '';
+  for (let k = 0; k < P.p; k++){
+    const a = 2*half*k, north = k % 2 === 0;
+    for (const part of [pole.upper, pole.lower]){
+      core += path(rot(part.pocket, a)); pk += `<path d="${path(rot(part.pocket, a))}" fill="#8b9097" opacity=".55"/>`;
+      mg += `<path d="${path(rot(part.magnet, a))}" fill="${north ? COL.N : COL.S}"/>`;
+    }
+    if (pole.hole){ const c = rot([pole.hole.c], a)[0]; core += path(circle(pole.hole.r, 48, c[0], c[1])); }
+  }
+  core += path(bore(P.rs, Math.max(4, Math.round(P.rs*0.3)), Math.max(4, Math.round(P.rs*0.3))*0.45));
+  const fc = P.material === 'ferrite' ? COL.printed : '#9aa0a7';
+  $('sec2d').innerHTML = `<svg viewBox="-106 -106 212 212" role="img" aria-label="Cross-section of one lamination with its magnets"><path d="${core}" fill="${fc}" fill-rule="evenodd" stroke="#4b5158" stroke-width=".3"/>${pk}${mg}<circle r="${(P.R + P.airgap)*s}" fill="none" stroke="var(--muted)" stroke-width=".4" stroke-dasharray="2 2"/></svg>`;
+}
+
+/* ---------- summary and checks ---------- */
+function fillSummary(){
+  const S = R.pole.summary, M = MATERIALS[P.material];
+  const rows = [
+    ['Rotor', `Ø${(2*P.R).toFixed(1)} mm × ${P.L.toFixed(0)} mm, ${P.p} poles`],
+    ['Air gap to the stator', `${P.airgap.toFixed(2)} mm`],
+    ['Magnet material', M.name],
+    ['Magnets', `${S.magnets} × ${S.magnetSection}, single V`],
+    ['Pieces', `${S.pieces} × ${S.pieceLength.toFixed(1)} mm long`],
+    ['Magnet mass', `${S.magMass.toFixed(0)} g`],
+    ...(M.reFrac ? [['Rare earth in it (≈30 %)', `${S.reMass.toFixed(0)} g`]] : [['Rare earth in it', 'none']]),
+    ['V angle · depth', `${P.alpha.toFixed(0)}° · ${P.ra.toFixed(1)} mm`],
+    ['Outer bridge · centre rib', `${P.bo.toFixed(2)} · ${P.rib.toFixed(2)} mm`],
+    ['q-axis web', `${S.qWeb.toFixed(2)} mm`],
+    ['Steel above the shaft', `${S.yoke.toFixed(1)} mm`],
+    ['Lightening holes', S.hole ? `${P.p} × Ø${S.hole.toFixed(1)} mm` : 'none'],
+    ['Core mass', `${(S.coreMass/1000).toFixed(2)} kg`],
+    ['Skew', P.skewSteps > 1 ? `${P.skewSteps} steps × ${S.skewStep.toFixed(2)}° = ${P.skewTotal.toFixed(1)}°` : 'none'],
+  ];
+  $('summary').innerHTML = rows.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+  $('vNote').textContent = P.note + ' Our own parametric design, not a production rotor.';
+}
+function renderChecks(){
+  const pole = R.pole;
+  $('dState').textContent = pole.ok ? 'checked' : 'check'; $('dState').classList.toggle('bad', !pole.ok);
+  $('dChecks').innerHTML = pole.checks.map(c => `<li class="${c.ok ? '' : 'bad'}">${c.t}</li>`).join('');
+}
+
+/* ---------- design sliders ---------- */
+function sliderDefs(){
+  return {
+    dGeo: [
+      ['alpha', 'V angle', 90, 178, 1, '°', 'Angle between the two magnets of a pole; 180° is a flat bar'],
+      ['ra', 'V depth', P.rs + 6, P.R - 8, 0.5, 'mm', 'Distance from the centre to the bottom of the V'],
+      ['wm', 'Magnet width', 6, Math.round(P.R * 0.55), 0.5, 'mm', ''],
+      ['tm', 'Magnet thickness', 2, 14, 0.1, 'mm', 'Along the magnetisation'],
+      ['bo', 'Outer bridge', 0.5, 4, 0.05, 'mm', 'Steel left between the pocket and the rotor surface'],
+      ['rib', 'Centre rib', 0.6, 5, 0.05, 'mm', 'Steel between the two pockets of one pole']],
+    dStack: [
+      ['skewSteps', 'Skew steps', 1, 5, 1, '', 'Number of packets, each turned by one step'],
+      ['skewTotal', 'Total skew', 0, 20, 0.25, '°', `${(360/P.slots).toFixed(1)}° is one slot pitch of the ${P.slots}-slot stator`],
+      ['piecesPerStep', 'Magnet pieces per packet', 1, 4, 1, '', 'Axial segmentation, against eddy-current loss']]
+  };
+}
+function renderSliders(){
+  const defs = sliderDefs();
+  for (const [box, list] of Object.entries(defs)){
+    $(box).innerHTML = list.map(([k, l, a, b, st, u, h]) => `<div class="sl"><label for="s-${k}">${l}</label><output id="o-${k}">${(+P[k]).toFixed(st < 1 ? (st < 0.1 ? 2 : 1) : 0)} ${u}</output>
+      <input type="range" id="s-${k}" min="${a}" max="${b}" step="${st}" value="${P[k]}">${h ? `<small>${h}</small>` : ''}</div>`).join('');
+    for (const [k, , , , st, u] of list){
+      $('s-' + k).addEventListener('input', e => {
+        P[k] = +e.target.value; $('o-' + k).textContent = `${P[k].toFixed(st < 1 ? (st < 0.1 ? 2 : 1) : 0)} ${u}`;
+        if (k === 'skewSteps' && P.skewSteps === 1) P.skewTotal = 0;
+        scheduleBuild();
+      });
+    }
+  }
+}
+let bt = 0; function scheduleBuild(){ clearTimeout(bt); bt = setTimeout(() => { build(); $('status').textContent = R.pole.ok ? 'Rotor rebuilt' : 'Rotor rebuilt · a check fails'; }, 120); }
+
+/* ---------- DXF export (R12 lines and circles, mm) ---------- */
+function dxf(){
+  const pole = R.pole, half = Math.PI / P.p, out = ['0','SECTION','2','ENTITIES'];
+  const line = (a, b, layer) => out.push('0','LINE','8',layer,'10',a[0].toFixed(4),'20',a[1].toFixed(4),'30','0','11',b[0].toFixed(4),'21',b[1].toFixed(4),'31','0');
+  const poly = (p, layer) => p.forEach((q, i) => line(q, p[(i + 1) % p.length], layer));
+  const circ = (c, r, layer) => out.push('0','CIRCLE','8',layer,'10',c[0].toFixed(4),'20',c[1].toFixed(4),'30','0','40',r.toFixed(4));
+  circ([0, 0], P.R, 'CORE');
+  const kw = Math.max(4, Math.round(P.rs*0.3)); poly(bore(P.rs, kw, kw*0.45), 'SHAFT');
+  for (let k = 0; k < P.p; k++){
+    const a = 2*half*k;
+    for (const part of [pole.upper, pole.lower]){ poly(rot(part.pocket, a), 'CORE'); poly(rot(part.magnet, a), 'MAGNET'); }
+    if (pole.hole) circ(rot([pole.hole.c], a)[0], pole.hole.r, 'CORE');
+  }
+  out.push('0','ENDSEC','0','EOF');
+  const blob = new Blob([out.join('\n') + '\n'], {type:'application/dxf'}), a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = `motoreka-rotor-${VAR}-${P.p}p.dxf`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  $('status').textContent = 'Section saved as DXF';
+}
+
+/* ---------- camera ---------- */
+// bounds of what is drawn: hidden parts (a shaft still waiting off to the side) do not count
+function visBox(){
+  const b = new THREE.Box3(), g = new THREE.Box3(); R.root.updateMatrixWorld(true);
+  R.root.traverseVisible(c => { if (c.isMesh && c !== R.fixture && !R.fixture.children.includes(c)){ if (!c.geometry.boundingBox) c.geometry.computeBoundingBox(); b.union(g.copy(c.geometry.boundingBox).applyMatrix4(c.matrixWorld)); } });
+  if (b.isEmpty()) b.setFromObject(R.rotor);
+  return b;
+}
+function frame(){
+  const box = visBox();
+  const c = box.getCenter(new THREE.Vector3()), r = box.getSize(new THREE.Vector3()).length() / 2;
+  const d = r / Math.tan(camera.fov * Math.PI / 360) * 0.82;
+  const dir = new THREE.Vector3(0.62, -0.62, 0.48).normalize();
+  camera.position.copy(c).addScaledVector(dir, d); controls.target.copy(c); camera.near = d / 100; camera.far = d * 20; camera.updateProjectionMatrix(); controls.update(); dirty = true;
+}
+
+/* ---------- UI wiring ---------- */
+function setVariant(v){
+  VAR = PRESETS[v] ? v : 'ev'; P = {...PRESETS[VAR]};
+  [...$('variants').children].forEach(b => b.setAttribute('aria-pressed', b.dataset.v === VAR));
+  $('steps').innerHTML = STAGES[VAR].map((s, i) => `<li data-i="${i}"><span class="n">${s.n}</span><span>${s.t}</span></li>`).join('');
+  [...$('steps').children].forEach(li => li.addEventListener('click', () => { stop(); ui.t = +li.dataset.i + 1; syncTl(); applyTime(); if (STAGES[VAR][li.dataset.i].id === 'into') setTimeout(frame, 50); }));
+  renderGroups(); renderSliders();
+  if (R && R.stator && VAR !== 'ev'){ R.root.remove(R.stator.root); R.stator = null; }
+  build();
+  frame();
+  history.replaceState(null, '', '#' + VAR);
+}
+function renderGroups(){
+  $('groups').innerHTML = GROUPS.filter(([k]) => k !== 'stator' || VAR === 'ev').map(([k, l]) => `<button class="chip" data-g="${k}" aria-pressed="${ui.show.has(k)}">${l}</button>`).join('');
+  [...$('groups').children].forEach(b => b.addEventListener('click', () => {
+    const k = b.dataset.g; ui.show.has(k) ? ui.show.delete(k) : ui.show.add(k); b.setAttribute('aria-pressed', ui.show.has(k));
+    if (k === 'stator' && ui.show.has('stator')) ensureStator();
+    applyTime();
+  }));
+}
+$('variants').innerHTML = Object.values(PRESETS).map(p => `<button data-v="${p.id}">${p.label}</button>`).join('');
+[...$('variants').children].forEach(b => b.addEventListener('click', () => setVariant(b.dataset.v)));
+document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
+  document.querySelectorAll('[data-pane]').forEach(p => p.classList.toggle('on', p.dataset.pane === b.dataset.tab));
+  if (b.dataset.tab === 'build' && ui.t == null){ ui.t = 0; syncTl(); applyTime(); }
+  if (b.dataset.tab !== 'build' && ui.t != null){ stop(); ui.t = null; syncTl(); applyTime(); }
+}));
+$('cutRow').querySelectorAll('[data-cut]').forEach(b => b.addEventListener('click', () => { ui.cut = b.dataset.cut; $('cutRow').querySelectorAll('[data-cut]').forEach(x => x.setAttribute('aria-pressed', x === b)); applyClip(); applyTime(); }));
+$('slice').addEventListener('input', e => { const was = ui.slice < 0.999; ui.slice = e.target.value / 1000; if (was !== ui.slice < 0.999) applyClip(); else { const span = P.L/2 + 90; planes.slice.constant = -span + 2*span*ui.slice; dirty = true; } });
+$('colRow').querySelectorAll('[data-col]').forEach(b => b.addEventListener('click', () => { ui.col = b.dataset.col; $('colRow').querySelectorAll('[data-col]').forEach(x => x.setAttribute('aria-pressed', x === b)); restyleMagnets(); dirty = true; }));
+$('arrBtn').addEventListener('click', () => { ui.arrows = !ui.arrows; $('arrBtn').setAttribute('aria-pressed', ui.arrows); applyTime(); });
+$('dReset').addEventListener('click', () => { P = {...PRESETS[VAR]}; renderSliders(); build(); });
+$('dxfBtn').addEventListener('click', dxf);
+
+// timeline
+function syncTl(){ const N = STAGES[VAR].length; $('tl').value = ui.t == null ? 1000 : Math.round(1000 * ui.t / N); }
+$('tl').addEventListener('input', e => { stop(); ui.t = e.target.value / 1000 * STAGES[VAR].length; applyTime(); });
+let last = 0;
+function stop(){ ui.playing = false; $('playBtn').textContent = 'Play'; }
+$('playBtn').addEventListener('click', () => {
+  if (ui.playing){ stop(); return; }
+  const N = STAGES[VAR].length; if (ui.t == null || ui.t >= N - 0.01) ui.t = 0;
+  ui.playing = true; last = performance.now(); $('playBtn').textContent = 'Pause';
+});
+
+// picking
+const ray = new THREE.Raycaster(); let down = null;
+renderer.domElement.addEventListener('pointerdown', e => down = [e.clientX, e.clientY]);
+renderer.domElement.addEventListener('pointerup', e => {
+  if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 4) return;
+  const r = renderer.domElement.getBoundingClientRect();
+  ray.setFromCamera(new THREE.Vector2((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1), camera);
+  const vis = R.parts.filter(p => { let o = p.mesh; while (o){ if (!o.visible) return false; o = o.parent; } return true; });
+  const hit = ray.intersectObjects(vis.map(p => p.mesh), false).find(h => { const pl = h.object.material.clippingPlanes; return !pl || (h.object.material.clipIntersection ? !pl.every(q => q.distanceToPoint(h.point) < 0) : pl.every(q => q.distanceToPoint(h.point) >= 0)); });
+  const p = hit && R.parts.find(q => q.mesh === hit.object);
+  $('pick').hidden = !p; if (p) $('pick').textContent = p.label;
+});
+
+// loop
+function loop(now){
+  requestAnimationFrame(loop);
+  if (ui.playing){
+    const N = STAGES[VAR].length, dt = Math.min(0.1, (now - last) / 1000); last = now;
+    const before = ui.t; ui.t = Math.min(N, ui.t + dt * 0.45); syncTl(); applyTime();
+    const into = STAGES[VAR].findIndex(s => s.id === 'into');
+    if (into >= 0 && before <= into && ui.t > into) setTimeout(frame, 30);
+    if (ui.t >= N) stop();
+  }
+  controls.update();
+  if (dirty){ renderer.render(scene, camera); dirty = false; }
+}
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', bgFromTheme);
+setVariant((location.hash || '#ev').slice(1));
+requestAnimationFrame(loop);
+// for the stills script (web/make_rotor_images.py): view(t, [dx,dy,dz], zoom, cut, colour)
+async function view(t, d, zoom = 1, cut = 'xray', col = 'mat'){
+  ui.t = t; ui.cut = cut; ui.col = col; stop();
+  if (t != null && STAGES[VAR].some((s, i) => s.id === 'into' && t > i)) await ensureStator();
+  applyClip(); applyTime();
+  const box = visBox();
+  const c = box.getCenter(new THREE.Vector3()), r = box.getSize(new THREE.Vector3()).length() / 2;
+  const vf = camera.fov * Math.PI / 360, hf = Math.atan(Math.tan(vf) * camera.aspect);
+  const dist = zoom * r * 0.9 / Math.sin(Math.min(vf, hf)), n = Math.hypot(...d);
+  camera.position.set(c.x + d[0]/n*dist, c.y + d[1]/n*dist, c.z + d[2]/n*dist); controls.target.copy(c);
+  camera.near = dist / 100; camera.far = dist * 20; camera.updateProjectionMatrix(); controls.update(); dirty = true;
+  return true;
+}
+window.__rotor = {get P(){ return P; }, get R(){ return R; }, get VAR(){ return VAR; }, setVariant, ui, applyTime, view, camera, controls};
+</script>
