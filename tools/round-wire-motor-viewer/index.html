@@ -35,6 +35,60 @@
     for (const [id, v] of ivs) while (ivs.has(id) && v.next <= T) { v.next += v.p; v.fn(); }
     const cbs = [...raf.values()]; raf.clear();
     for (const cb of cbs) cb(T);
+    drawCallouts();
+  }
+
+  // ---------- callouts: a pointer to the part or the number the voice is talking about
+  // REC.callout({text, from, to, at: () => ({x, y}) | el: 'selector', dx, dy}): from/to in take seconds.
+  // at: a point in CSS px (for a 3D part, REC.project(obj, camera, canvas)), drawn as a ring with a leader line to the
+  // label; el: a page element (a value in the side panel, the counter), drawn as an outline with the label beside it.
+  const callouts = [];
+  let layer = null, svg = null;
+  const NS = 'http://www.w3.org/2000/svg';
+  function ensureLayer() {
+    if (layer) return;
+    layer = document.createElement('div');
+    layer.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:2147483000';
+    svg = document.createElementNS(NS, 'svg'); svg.setAttribute('width', '100%'); svg.setAttribute('height', '100%');
+    svg.style.cssText = 'position:absolute;inset:0;overflow:visible';
+    layer.appendChild(svg); document.body.appendChild(layer);
+  }
+  function drawCallouts() {
+    if (!callouts.length) return;
+    ensureLayer();
+    for (const c of callouts) {
+      const a = Math.max(0, Math.min(1, (now - c.from) / .3, (c.to - now) / .3));
+      if (!c.g) {
+        c.g = document.createElementNS(NS, 'g'); svg.appendChild(c.g);
+        c.lab = document.createElement('div');
+        c.lab.textContent = c.text;
+        c.lab.style.cssText = 'position:absolute;white-space:nowrap;background:#101B25;color:#F5F3EF;font:600 ' + (document.documentElement.classList.contains('rec-bench') ? 22 : 15) + 'px Archivo,system-ui,sans-serif;' +
+          'padding:6px 11px;border-radius:4px;border-left:3px solid #C0703A;box-shadow:0 2px 8px rgba(16,27,37,.25)';
+        layer.appendChild(c.lab);
+      }
+      c.g.style.opacity = a; c.lab.style.opacity = a;
+      if (!a) continue;
+      let x, y, box = null;
+      if (c.el) {
+        const e = typeof c.el === 'string' ? document.querySelector(c.el) : c.el;
+        if (!e) continue;
+        const r = e.getBoundingClientRect(); box = {x: r.left - 5, y: r.top - 4, w: r.width + 10, h: r.height + 8};
+        x = box.x; y = box.y + box.h / 2;
+      } else {
+        const q = c.at();
+        if (!q || q.behind || q.x < 0 || q.y < 0 || q.x > innerWidth || q.y > innerHeight) { c.g.style.opacity = 0; c.lab.style.opacity = 0; continue; }
+        x = q.x; y = q.y;
+      }
+      const dx = c.dx ?? (box ? -14 : 70), dy = c.dy ?? (box ? 0 : -60);
+      const lw = c.lab.offsetWidth, lh = c.lab.offsetHeight;
+      const lx = box ? x + dx - lw : x + dx - (dx < 0 ? lw : 0), ly = (box ? y : y + dy) - lh / 2;
+      c.lab.style.left = lx + 'px'; c.lab.style.top = ly + 'px';
+      const ex = box ? x + dx : (dx < 0 ? lx + lw : lx), ey = box ? y : ly + lh / 2;
+      c.g.innerHTML = box
+        ? `<rect x="${box.x}" y="${box.y}" width="${box.w}" height="${box.h}" rx="5" fill="rgba(192,112,58,.08)" stroke="#C0703A" stroke-width="2.5"/>`
+        : `<line x1="${x}" y1="${y}" x2="${ex}" y2="${ey}" stroke="#C0703A" stroke-width="2"/>` +
+          `<circle cx="${x}" cy="${y}" r="9" fill="none" stroke="#C0703A" stroke-width="2.5"/><circle cx="${x}" cy="${y}" r="3" fill="#C0703A"/>`;
+    }
   }
 
   const css = document.createElement('style');
@@ -77,6 +131,14 @@
       });
     },
     resize() { window.dispatchEvent(new Event('resize')); },
+    callout(c) { callouts.push(Object.assign({from: now, to: Infinity}, c)); },
+    // a 3D object or point on screen, in CSS px (behind: true when it is behind the camera)
+    project(o, camera, canvas) {
+      const v = o.isVector3 ? o.clone() : o.getWorldPosition(new camera.position.constructor());
+      v.project(camera); const r = canvas.getBoundingClientRect();
+      const x = r.left + (v.x + 1) / 2 * r.width, y = r.top + (1 - v.y) / 2 * r.height;
+      return {x, y, behind: v.z > 1 || x < r.left + 8 || x > r.right - 8 || y < r.top + 8 || y > r.bottom - 8};   // off the 3D view counts as hidden
+    },
   };
   window.REC = REC;
 
