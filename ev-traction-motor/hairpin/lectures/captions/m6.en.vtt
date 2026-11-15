@@ -1,0 +1,810 @@
+WEBVTT
+
+1
+00:00:01.592 --> 00:00:02.968
+Into the motor.
+
+2
+00:00:02.968 --> 00:00:05.796
+Lecture six, the last on the hairpin stator.
+
+3
+00:00:06.712 --> 00:00:13.944
+Lecture five left our EV-size stator, 48 slots and 8 poles, impregnated and tested:
+
+4
+00:00:13.944 --> 00:00:19.032
+9.17 milliohms between two leads, and its insulation proven.
+
+5
+00:00:19.032 --> 00:00:20.484
+Now it becomes a motor.
+
+6
+00:00:21.272 --> 00:00:22.456
+Five steps:
+
+7
+00:00:22.456 --> 00:00:28.440
+housing, cooling, connections, rotor, and a last test of the whole motor.
+
+8
+00:00:28.440 --> 00:00:30.968
+Beside it, wherever it differs:
+
+9
+00:00:30.968 --> 00:00:37.209
+our small 24-slot core in a finned industrial frame, an IEC frame, built as
+
+10
+00:00:37.209 --> 00:00:38.340
+an induction motor.
+
+11
+00:00:39.064 --> 00:00:43.576
+The numbers come from our Hairpin Motor Designer's model of that stator.
+
+12
+00:00:43.576 --> 00:00:48.376
+It has no housing or rotor yet, so we sized both from published motors
+
+13
+00:00:48.376 --> 00:00:49.912
+and assumed the rest;
+
+14
+00:00:49.912 --> 00:00:51.076
+we say so each time.
+
+15
+00:00:52.213 --> 00:00:53.301
+Chapter one.
+
+16
+00:00:53.301 --> 00:00:54.241
+Into the housing.
+
+17
+00:00:55.825 --> 00:01:00.234
+The housing must hold the stator for the car's life, carry its torque and
+
+18
+00:01:00.234 --> 00:01:01.841
+take its heat.
+
+19
+00:01:01.841 --> 00:01:06.550
+In battery cars the core is usually pressed into an aluminium housing with a
+
+20
+00:01:06.550 --> 00:01:07.857
+water jacket;
+
+21
+00:01:07.857 --> 00:01:10.589
+several hybrid motors bolt it in instead.
+
+22
+00:01:11.537 --> 00:01:14.097
+The usual press is a shrink fit.
+
+23
+00:01:14.097 --> 00:01:17.489
+The housing's bore is made slightly smaller than the core;
+
+24
+00:01:17.489 --> 00:01:20.529
+the difference is called the interference.
+
+25
+00:01:20.529 --> 00:01:23.153
+Heated, the aluminium grows;
+
+26
+00:01:23.153 --> 00:01:25.041
+the cold core drops in;
+
+27
+00:01:25.041 --> 00:01:27.197
+as it cools, the housing grips it.
+
+28
+00:01:28.305 --> 00:01:30.833
+How much grip does the torque need?
+
+29
+00:01:30.833 --> 00:01:33.521
+Friction at the fit must hold it.
+
+30
+00:01:33.521 --> 00:01:39.441
+Our estimated peak torque, for an assumed rotor, is 260 newton-metres.
+
+31
+00:01:39.441 --> 00:01:45.188
+Doubled for safety, with a friction coefficient of 0.15, that needs under half a
+
+32
+00:01:45.188 --> 00:01:46.449
+megapascal:
+
+33
+00:01:46.449 --> 00:01:51.101
+0.04 millimetres of interference on our 200-millimetre core.
+
+34
+00:01:52.017 --> 00:01:56.145
+Yet the few published fits we found are several times larger:
+
+35
+00:01:56.145 --> 00:02:02.033
+scaled to our size, 0.12 to 0.26 millimetres.
+
+36
+00:02:02.033 --> 00:02:04.049
+The reason is heat.
+
+37
+00:02:04.049 --> 00:02:09.440
+Aluminium expands almost twice as much as steel, so when both warm, the fit
+
+38
+00:02:09.440 --> 00:02:12.189
+loosens by 1.9 micrometres a kelvin.
+
+39
+00:02:13.041 --> 00:02:16.625
+So the fit is sized for heat, not torque.
+
+40
+00:02:16.625 --> 00:02:21.649
+We chose one that still grips with both parts soaked at 120 degrees:
+
+41
+00:02:21.649 --> 00:02:25.713
+0.23 to 0.28 millimetres.
+
+42
+00:02:25.713 --> 00:02:31.331
+With a 4-millimetre aluminium wall, as in published designs, it presses about 3 megapascals
+
+43
+00:02:31.331 --> 00:02:32.509
+at room temperature.
+
+44
+00:02:33.361 --> 00:02:37.429
+In the car, the jacket keeps the housing cooler than the core, and the
+
+45
+00:02:37.429 --> 00:02:39.569
+grip stays as assembled.
+
+46
+00:02:39.569 --> 00:02:42.961
+The weak moment is a hot soak with the coolant stopped:
+
+47
+00:02:42.961 --> 00:02:47.951
+in our model, the smallest fit lets go when both parts reach about 140
+
+48
+00:02:47.951 --> 00:02:48.751
+degrees.
+
+49
+00:02:49.489 --> 00:02:55.537
+To assemble, the bore must open by the interference plus about 0.2 millimetres:
+
+50
+00:02:55.537 --> 00:03:00.657
+in our model the housing must reach at least 131 degrees.
+
+51
+00:03:00.657 --> 00:03:05.373
+Makers of induction heaters quote 200 to 300, in a minute or two.
+
+52
+00:03:06.225 --> 00:03:08.433
+Could that heat harm the winding?
+
+53
+00:03:08.433 --> 00:03:10.609
+We found no published limit.
+
+54
+00:03:10.609 --> 00:03:16.490
+Shared evenly with core and copper, a 200-degree housing would leave them near 110
+
+55
+00:03:16.490 --> 00:03:20.945
+degrees, a 300-degree one near 160;
+
+56
+00:03:20.945 --> 00:03:22.973
+the core's outside gets hotter first.
+
+57
+00:03:23.825 --> 00:03:25.425
+The core pays too.
+
+58
+00:03:25.425 --> 00:03:29.297
+The fit squeezes the yoke, the steel ring behind the slots:
+
+59
+00:03:29.297 --> 00:03:36.177
+in our estimate to 25 to 31 megapascals, inside the 16 to 48 published.
+
+60
+00:03:36.177 --> 00:03:38.449
+Compressed steel loses more:
+
+61
+00:03:38.449 --> 00:03:44.513
+one thesis measured 18 percent more at 10 megapascals, and in its 48-slot, 8-pole
+
+62
+00:03:44.513 --> 00:03:47.485
+model, half a point of drive-cycle efficiency.
+
+63
+00:03:52.661 --> 00:03:53.845
+Chapter two.
+
+64
+00:03:53.845 --> 00:03:54.645
+Cooling.
+
+65
+00:03:55.793 --> 00:04:02.802
+At 10 amps per square millimetre and 150 degrees, our winding makes 1.67 kilowatts
+
+66
+00:04:02.802 --> 00:04:08.401
+of copper loss, half of it in the end windings, outside the core.
+
+67
+00:04:08.401 --> 00:04:10.481
+Iron loss comes on top;
+
+68
+00:04:10.481 --> 00:04:12.925
+without a rotor, our model leaves it out.
+
+69
+00:04:13.841 --> 00:04:19.188
+In a water jacket, water and glycol at about 65 degrees, 6 to 10
+
+70
+00:04:19.188 --> 00:04:22.941
+litres a minute, run through channels in the housing around the core.
+
+71
+00:04:23.985 --> 00:04:26.641
+Follow the heat from a slot to the water.
+
+72
+00:04:26.641 --> 00:04:31.697
+It crosses the slot wall, that is the enamel, the resin and the liner;
+
+73
+00:04:31.697 --> 00:04:33.425
+then tooth and yoke;
+
+74
+00:04:33.425 --> 00:04:36.081
+then the contact between core and housing;
+
+75
+00:04:36.081 --> 00:04:38.077
+then the aluminium, into the water.
+
+76
+00:04:39.089 --> 00:04:44.255
+For the slot loss alone, our one-dimensional estimate puts 13 kelvin on the slot
+
+77
+00:04:44.255 --> 00:04:49.681
+wall, 12 on the steel, 11 on the contact and 11 on the water:
+
+78
+00:04:49.681 --> 00:04:50.845
+47 in all.
+
+79
+00:04:51.729 --> 00:04:55.864
+The contact costs almost as much as the slot wall, and is the least
+
+80
+00:04:55.864 --> 00:04:56.913
+known:
+
+81
+00:04:56.913 --> 00:05:03.625
+published models treat it as a film of still air 0.006 to 0.1 millimetres
+
+82
+00:05:03.625 --> 00:05:08.797
+thick, which moves our 47 kelvin between 38 and 79.
+
+83
+00:05:09.969 --> 00:05:14.588
+With the jacket alone, the end-winding heat must flow back along the copper into
+
+84
+00:05:14.588 --> 00:05:20.439
+the slots, and in our estimate the copper reaches about 170 degrees at the
+
+85
+00:05:20.439 --> 00:05:22.205
+far ends of the end windings.
+
+86
+00:05:23.089 --> 00:05:28.136
+So many hairpin motors also spray oil on the end windings, about 2 litres
+
+87
+00:05:28.136 --> 00:05:30.225
+a minute in one test.
+
+88
+00:05:30.225 --> 00:05:34.065
+Per square metre, oil takes far less heat than water:
+
+89
+00:05:34.065 --> 00:05:39.985
+100 to 250 watts per kelvin, against about 1,400.
+
+90
+00:05:39.985 --> 00:05:44.534
+But the end windings offer five times the core's outer surface, with nothing in
+
+91
+00:05:44.534 --> 00:05:45.334
+between.
+
+92
+00:05:45.905 --> 00:05:51.134
+Counting copper loss only, the end windings then stay near 70 degrees and the
+
+93
+00:05:51.134 --> 00:05:53.905
+slot copper near 110.
+
+94
+00:05:53.905 --> 00:05:59.217
+For the same 150 degrees, the winding carries half as much current again:
+
+95
+00:05:59.217 --> 00:06:03.697
+13.5 amps per square millimetre instead of 9.
+
+96
+00:06:03.697 --> 00:06:05.661
+Now the slot path sets the limit.
+
+97
+00:06:06.641 --> 00:06:09.713
+Our IEC-frame motor has no liquid:
+
+98
+00:06:09.713 --> 00:06:12.945
+a shaft fan blows air along its fins.
+
+99
+00:06:12.945 --> 00:06:17.857
+Even 80 kelvin above the air, they shed only about 350 watts in our
+
+100
+00:06:17.857 --> 00:06:18.657
+estimate.
+
+101
+00:06:23.573 --> 00:06:24.757
+Chapter three.
+
+102
+00:06:24.757 --> 00:06:26.305
+Connections and sensors.
+
+103
+00:06:27.761 --> 00:06:31.345
+Three leads leave our stator, one per phase.
+
+104
+00:06:31.345 --> 00:06:37.169
+Each joins its phase's two parallel paths, so it carries twice a path's current.
+
+105
+00:06:37.169 --> 00:06:43.345
+Our model draws them with the same bar as the pins, 14.15 square millimetres:
+
+106
+00:06:43.345 --> 00:06:47.709
+when the winding carries 10 amps per square millimetre, the lead carries 20.
+
+107
+00:06:48.625 --> 00:06:54.033
+Production stators use stamped copper bars, one per phase and one for the neutral,
+
+108
+00:06:54.033 --> 00:06:57.329
+moulded into a plastic carrier over the weld side;
+
+109
+00:06:57.329 --> 00:07:00.049
+we found no published cross-section.
+
+110
+00:07:00.049 --> 00:07:03.997
+To match the winding, our leads would need 28 square millimetres.
+
+111
+00:07:04.849 --> 00:07:08.369
+The neutral ring, by contrast, needs no more copper.
+
+112
+00:07:08.369 --> 00:07:14.929
+Its six path ends sit in the order U, W, V, U, W, V,
+
+113
+00:07:14.929 --> 00:07:17.949
+so no stretch of it carries more than one path's current.
+
+114
+00:07:19.057 --> 00:07:20.785
+Where do the leads go?
+
+115
+00:07:20.785 --> 00:07:25.623
+Our IEC-frame motor brings six leads to a box on top, with links for
+
+116
+00:07:25.623 --> 00:07:27.313
+star or delta.
+
+117
+00:07:27.313 --> 00:07:31.637
+The EV motor has its star inside, so three leads rise out of the
+
+118
+00:07:31.637 --> 00:07:35.645
+end, to an axial box or straight through the wall into the inverter.
+
+119
+00:07:36.721 --> 00:07:40.177
+Two sensors complete the stator.
+
+120
+00:07:40.177 --> 00:07:43.910
+A thermistor, a resistor that changes with temperature, sits on the neutral ring or
+
+121
+00:07:43.910 --> 00:07:45.617
+in the end winding.
+
+122
+00:07:45.617 --> 00:07:49.568
+In one study the hot spot ran 50 kelvin ahead of it after a
+
+123
+00:07:49.568 --> 00:07:52.733
+load step, so the controller adds a thermal model.
+
+124
+00:07:53.649 --> 00:07:58.923
+And a resolver, a small rotary transformer on the shaft, tells the inverter where
+
+125
+00:07:58.923 --> 00:08:00.753
+the rotor's poles are.
+
+126
+00:08:00.753 --> 00:08:03.869
+For 8 poles its signal repeats four times a turn.
+
+127
+00:08:08.971 --> 00:08:10.123
+Chapter four.
+
+128
+00:08:10.123 --> 00:08:10.923
+The rotor.
+
+129
+00:08:12.487 --> 00:08:15.943
+The rotor and its magnets get lectures of their own;
+
+130
+00:08:15.943 --> 00:08:20.391
+here we only fit one, sized from published motors.
+
+131
+00:08:20.391 --> 00:08:25.769
+One teardown of a 48-slot, 8-pole motor with a core of our diameter found
+
+132
+00:08:25.769 --> 00:08:32.071
+an air gap, the clearance between rotor and stator, of 0.89 millimetres.
+
+133
+00:08:32.071 --> 00:08:36.391
+Others report 0.55 to 0.73.
+
+134
+00:08:36.391 --> 00:08:37.843
+We take 0.7.
+
+135
+00:08:38.791 --> 00:08:43.751
+Its magnets are magnetised before it goes in, and they pull on the core:
+
+136
+00:08:43.751 --> 00:08:48.604
+B squared over two mu-nought per unit area, with B the flux density in
+
+137
+00:08:48.604 --> 00:08:52.647
+the gap and mu-nought the permeability of air.
+
+138
+00:08:52.647 --> 00:08:57.831
+At the 0.9 tesla we assume, 320 kilopascals.
+
+139
+00:08:57.831 --> 00:09:00.423
+Centred, the pulls cancel;
+
+140
+00:09:00.423 --> 00:09:05.424
+with the rotor against one side, we estimate some 5 kilonewtons, the weight of
+
+141
+00:09:05.424 --> 00:09:06.224
+half a tonne.
+
+142
+00:09:07.015 --> 00:09:09.639
+So the rotor never goes in by hand:
+
+143
+00:09:09.639 --> 00:09:14.567
+a machine holds rotor and stator on one axis with guide sleeves.
+
+144
+00:09:14.567 --> 00:09:18.938
+A touch could chip a magnet or break its coating, and one simulation finds
+
+145
+00:09:18.938 --> 00:09:21.683
+the pull largest just as the rotor enters.
+
+146
+00:09:22.631 --> 00:09:27.802
+Two ball bearings carry the shaft, at about 18,000 revolutions a minute in one
+
+147
+00:09:27.802 --> 00:09:29.511
+recent car.
+
+148
+00:09:29.511 --> 00:09:34.554
+The inverter can drive small sparks through their grease, so many motors use insulated
+
+149
+00:09:34.554 --> 00:09:37.043
+or ceramic bearings, or a grounding ring.
+
+150
+00:09:38.023 --> 00:09:42.520
+Once the motor is closed the gap cannot be measured, so the bearing seats
+
+151
+00:09:42.520 --> 00:09:44.231
+must keep it even:
+
+152
+00:09:44.231 --> 00:09:50.291
+a repair-shop rule asks within 10 percent of the mean, 0.07 millimetres for ours.
+
+153
+00:09:51.175 --> 00:09:56.808
+Our IEC-frame motor has a die-cast cage rotor with no magnets, so there is
+
+154
+00:09:56.808 --> 00:09:57.895
+no pull:
+
+155
+00:09:57.895 --> 00:10:01.651
+it slides in by hand and runs in two small ball bearings.
+
+156
+00:10:02.714 --> 00:10:03.930
+Chapter five.
+
+157
+00:10:03.930 --> 00:10:05.094
+End-of-line test.
+
+158
+00:10:06.550 --> 00:10:09.206
+Every finished motor is tested again.
+
+159
+00:10:09.206 --> 00:10:13.775
+The insulation tests of lecture five are repeated, and the sealed water jacket is
+
+160
+00:10:13.775 --> 00:10:15.382
+filled with helium:
+
+161
+00:10:15.382 --> 00:10:20.962
+one maker of leak testers allows about 0.06 cubic centimetres a minute to escape.
+
+162
+00:10:21.846 --> 00:10:25.942
+Then a drive motor spins it, its own terminals open.
+
+163
+00:10:25.942 --> 00:10:32.470
+The magnets induce a voltage, the back-EMF, growing with speed, turns and flux.
+
+164
+00:10:32.470 --> 00:10:38.011
+At our assumed 0.9 tesla, our 16 turns should give about 28 volts r.m.s.
+
+165
+00:10:38.011 --> 00:10:41.442
+between two leads per thousand revolutions a minute.
+
+166
+00:10:42.230 --> 00:10:45.942
+The three phases must match each other and the design.
+
+167
+00:10:45.942 --> 00:10:50.358
+Back-EMF finds a weak, missing or wrongly fitted magnet;
+
+168
+00:10:50.358 --> 00:10:53.442
+in one study it hardly saw an off-centre rotor.
+
+169
+00:10:54.326 --> 00:10:56.822
+The same spin sets the resolver:
+
+170
+00:10:56.822 --> 00:11:01.116
+the tester shifts its zero until it lines up with the rotor's magnets, to
+
+171
+00:11:01.116 --> 00:11:03.298
+about half a degree of the electrical cycle.
+
+172
+00:11:04.118 --> 00:11:06.838
+Last, noise and vibration.
+
+173
+00:11:06.838 --> 00:11:11.702
+Sensors on the housing track orders, tones at fixed multiples of the speed:
+
+174
+00:11:11.702 --> 00:11:17.782
+our 48 slots give a 4.8-kilohertz whine at 6,000 revolutions a minute.
+
+175
+00:11:17.782 --> 00:11:20.054
+Limits are learnt from good motors;
+
+176
+00:11:20.054 --> 00:11:25.730
+in one study, a rotor 0.2 millimetres off centre changed single orders strongly.
+
+177
+00:11:26.646 --> 00:11:30.998
+Our IEC-frame motor has no magnets, so no back-EMF:
+
+178
+00:11:30.998 --> 00:11:34.722
+it runs at no load, and its current and losses are compared instead.
+
+179
+00:11:35.837 --> 00:11:36.637
+Summary.
+
+180
+00:11:36.605 --> 00:11:37.417
+Four points.
+
+181
+00:11:38.521 --> 00:11:39.321
+One.
+
+182
+00:11:39.289 --> 00:11:42.905
+A shrink fit holds the stator, sized for heat:
+
+183
+00:11:42.905 --> 00:11:46.181
+in our model the torque needs only about a sixth of it.
+
+184
+00:11:47.001 --> 00:11:47.833
+Two.
+
+185
+00:11:47.833 --> 00:11:52.121
+Heat crosses the slot wall, the steel and the contact to the water;
+
+186
+00:11:52.121 --> 00:11:56.805
+in our estimate, oil on the end windings adds half as much current again.
+
+187
+00:11:57.721 --> 00:11:58.553
+Three.
+
+188
+00:11:58.553 --> 00:12:01.273
+Each lead carries both parallel paths;
+
+189
+00:12:01.273 --> 00:12:04.165
+a thermistor and a resolver complete the stator.
+
+190
+00:12:04.985 --> 00:12:05.785
+Four.
+
+191
+00:12:05.785 --> 00:12:10.642
+The magnet rotor goes in on a guide against kilonewtons of pull, by our
+
+192
+00:12:10.642 --> 00:12:13.477
+estimate, and every motor is tested again.
+
+193
+00:12:14.329 --> 00:12:18.029
+That is the end of lecture six, and of our lectures on the hairpin
+
+194
+00:12:18.029 --> 00:12:19.193
+stator.
+
+195
+00:12:19.193 --> 00:12:24.970
+Flat wire became pins, the pins a welded, impregnated stator, and the stator a
+
+196
+00:12:24.970 --> 00:12:25.770
+motor.
+
+197
+00:12:26.417 --> 00:12:27.825
+Next in this course:
+
+198
+00:12:27.825 --> 00:12:32.671
+the rotor lectures, on magnets and how rotors are made, and the design lectures
+
+199
+00:12:32.671 --> 00:12:35.281
+that size the stator you have seen built.
+
+200
+00:12:35.281 --> 00:12:39.197
+Meanwhile, the free Viewer lets you take it apart, pin by pin.
+
+201
+00:12:39.857 --> 00:12:45.809
+Motoreka is a product of UMPSA, developed at EMDLab.
+
+202
+00:12:45.809 --> 00:12:47.197
+motoreka.my.
+
