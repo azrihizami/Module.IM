@@ -505,3 +505,5 @@ html.sp-lock{overflow:hidden}
 .soonline:hover b{text-decoration:underline;text-decoration-color:var(--steel);text-underline-offset:4px}
 @media (max-width:640px){.soonline{grid-template-columns:88px minmax(0,1fr)}.soonline img{width:88px}.soonline .more{grid-column:2}}
 .svc.two{grid-template-columns:repeat(2,minmax(0,1fr))}@media (max-width:760px){.svc.two{grid-template-columns:1fr}}
+.hero-fig .yt.film{border-color:var(--rail-line)}.yt.film .yt-btn{left:87%;top:78%}
+@media (max-width:600px){.yt.film .yt-btn{width:54px;height:54px;margin:-27px 0 0 -27px;left:88%;top:80%}.yt.film .yt-btn::after{left:21px;top:15px;border-width:12px 0 12px 19px}}
